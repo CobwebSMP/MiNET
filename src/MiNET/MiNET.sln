@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{DFC6A100
 	ProjectSection(SolutionItems) = preProject
 		..\..\.editorconfig = ..\..\.editorconfig
 		..\..\README.md = ..\..\README.md
+		Redstone.md = Redstone.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiNET", "MiNET\MiNET.csproj", "{A40D7181-E216-4C45-AEF8-AB66B42B1D2D}"

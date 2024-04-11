@@ -573,9 +573,6 @@ namespace MiNET.Worlds
 			if (zm == (int) spawnPoint.Z >> 4 && xm == (int) spawnPoint.X >> 4) Log.Warn($"Spawn correct {xm}, {zm} and {(int) spawnPoint.X >> 4}, {(int) spawnPoint.Z >> 4}");
 		}
 
-		private object _imageSync = new object();
-		private static int _chunkCount = 0;
-
 		private int GetMidX(ChunkColumn[] chunks)
 		{
 			if (!TrackResults) return 0;

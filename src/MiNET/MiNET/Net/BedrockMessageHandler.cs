@@ -246,6 +246,9 @@ namespace MiNET.Net
 				case McpeSetInventoryOptions msg:
 					handler.HandleMcpeSetInventoryOptions(msg);
 					break;
+				case McpeAnvilDamage msg:
+					handler.HandleMcpeAnvilDamage(msg);
+					break;
 
 				default:
 				{

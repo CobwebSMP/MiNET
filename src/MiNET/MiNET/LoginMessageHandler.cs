@@ -64,6 +64,7 @@ namespace MiNET
 
 		public LoginMessageHandler(BedrockMessageHandler bedrockHandler, RakSession session, IServerManager serverManager)
 		{
+			JWT.DefaultSettings.JsonMapper = new NewtonsoftMapper();
 			_bedrockHandler = bedrockHandler;
 			_session = session;
 			_serverManager = serverManager;
@@ -789,6 +790,10 @@ namespace MiNET
 		}
 
 		public void HandleMcpeSetInventoryOptions(McpeSetInventoryOptions message)
+		{
+		}
+
+		public void HandleMcpeAnvilDamage(McpeAnvilDamage message)
 		{
 		}
 	}

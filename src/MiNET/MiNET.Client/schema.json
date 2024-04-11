@@ -216,7 +216,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"oak\"]",
+    "Command": "oak_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 0,
@@ -234,7 +234,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"spruce\"]",
+    "Command": "spruce_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 1,
@@ -252,7 +252,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"birch\"]",
+    "Command": "birch_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 2,
@@ -270,7 +270,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"jungle\"]",
+    "Command": "jungle_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 3,
@@ -288,7 +288,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"acacia\"]",
+    "Command": "acacia_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 4,
@@ -306,7 +306,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = false, \"sapling_type\" = \"dark_oak\"]",
+    "Command": "dark_oak_sapling [\"age_bit\" = false]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 5,
@@ -323,8 +323,26 @@
       }
     ]
   },
+    {
+    "Command": "oak_sapling [\"age_bit\" = true]",
+    "Name": "minecraft:sapling",
+    "Id": 6,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "sapling_type",
+        "Value": "oak"
+      }
+    ]
+  },
   {
-    "Command": "sapling [\"age_bit\" = true, \"sapling_type\" = \"spruce\"]",
+    "Command": "spruce_sapling [\"age_bit\" = true]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 9,
@@ -342,7 +360,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = true, \"sapling_type\" = \"birch\"]",
+    "Command": "birch_sapling [\"age_bit\" = true]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 10,
@@ -360,7 +378,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = true, \"sapling_type\" = \"jungle\"]",
+    "Command": "jungle_sapling [\"age_bit\" = true]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 11,
@@ -378,7 +396,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = true, \"sapling_type\" = \"acacia\"]",
+    "Command": "acacia_sapling [\"age_bit\" = true]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 12,
@@ -396,7 +414,7 @@
     ]
   },
   {
-    "Command": "sapling [\"age_bit\" = true, \"sapling_type\" = \"dark_oak\"]",
+    "Command": "dark_oak_sapling [\"age_bit\" = true]",
     "Name": "minecraft:sapling",
     "Id": 6,
     "Data": 13,
@@ -31077,7 +31095,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"blue\", \"coral_fan_direction\" = 0]",
+    "Command": "tube_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 0,
@@ -31095,7 +31113,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"pink\", \"coral_fan_direction\" = 0]",
+    "Command": "brain_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 1,
@@ -31113,7 +31131,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"purple\", \"coral_fan_direction\" = 0]",
+    "Command": "bubble_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 2,
@@ -31131,7 +31149,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"red\", \"coral_fan_direction\" = 0]",
+    "Command": "fire_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 3,
@@ -31149,7 +31167,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"yellow\", \"coral_fan_direction\" = 0]",
+    "Command": "horn_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 4,
@@ -31167,7 +31185,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"blue\", \"coral_fan_direction\" = 1]",
+    "Command": "tube_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 5,
@@ -31185,7 +31203,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"pink\", \"coral_fan_direction\" = 1]",
+    "Command": "brain_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 9,
@@ -31203,7 +31221,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"purple\", \"coral_fan_direction\" = 1]",
+    "Command": "bubble_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 10,
@@ -31221,7 +31239,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"red\", \"coral_fan_direction\" = 1]",
+    "Command": "fire_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 11,
@@ -31239,7 +31257,7 @@
     ]
   },
   {
-    "Command": "coral_fan [\"coral_color\" = \"yellow\", \"coral_fan_direction\" = 1]",
+    "Command": "horn_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan",
     "Id": 388,
     "Data": 12,
@@ -31257,7 +31275,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"blue\", \"coral_fan_direction\" = 0]",
+    "Command": "dead_tube_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 0,
@@ -31275,7 +31293,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"pink\", \"coral_fan_direction\" = 0]",
+    "Command": "dead_brain_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 1,
@@ -31293,7 +31311,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"purple\", \"coral_fan_direction\" = 0]",
+    "Command": "dead_bubble_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 2,
@@ -31311,7 +31329,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"red\", \"coral_fan_direction\" = 0]",
+    "Command": "dead_fire_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 3,
@@ -31329,7 +31347,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"yellow\", \"coral_fan_direction\" = 0]",
+    "Command": "dead_horn_coral_fan [\"coral_fan_direction\" = 0]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 4,
@@ -31346,8 +31364,26 @@
       }
     ]
   },
+    {
+    "Command": "dead_tube_coral_fan [\"coral_fan_direction\" = 1]",
+    "Name": "minecraft:coral_fan_dead",
+    "Id": 389,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "8",
+        "Name": "coral_color",
+        "Value": "blue"
+      },
+      {
+        "Type": "3",
+        "Name": "coral_fan_direction",
+        "Value": "1"
+      }
+    ]
+  },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"pink\", \"coral_fan_direction\" = 1]",
+    "Command": "dead_brain_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 9,
@@ -31365,7 +31401,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"purple\", \"coral_fan_direction\" = 1]",
+    "Command": "dead_bubble_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 10,
@@ -31383,7 +31419,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"red\", \"coral_fan_direction\" = 1]",
+    "Command": "dead_fire_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 11,
@@ -31401,7 +31437,7 @@
     ]
   },
   {
-    "Command": "coral_fan_dead [\"coral_color\" = \"yellow\", \"coral_fan_direction\" = 1]",
+    "Command": "dead_horn_coral_fan [\"coral_fan_direction\" = 1]",
     "Name": "minecraft:coral_fan_dead",
     "Id": 389,
     "Data": 12,

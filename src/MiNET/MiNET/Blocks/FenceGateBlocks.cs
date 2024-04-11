@@ -35,6 +35,7 @@ namespace MiNET.Blocks
 	public abstract class FenceGateBlocks : Block
 	{
 		[StateRange(0, 3)] public virtual int Direction { get; set; }
+		[StateBit] public virtual bool OpenBit { get; set; } = false;
 		public FenceGateBlocks(byte id) : base(id)
 		{
 			FuelEfficiency = 15;

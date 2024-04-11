@@ -182,7 +182,6 @@ namespace MiNET.Client
 							}
 							stream.Position = afterPos;
 						}
-						return chunkColumn;
 					}
 
 					if (stream.Read(chunkColumn.biomeId, 0, 256) != 256)

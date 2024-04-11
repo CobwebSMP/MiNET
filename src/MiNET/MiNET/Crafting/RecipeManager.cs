@@ -29,6 +29,7 @@ using log4net;
 using MiNET.Items;
 using MiNET.Net;
 using MiNET.Worlds;
+using MiNET.Utils;
 
 namespace MiNET.Crafting
 {
@@ -65,6 +66,20 @@ namespace MiNET.Crafting
 		{
 			Recipes = new Recipes
 			{
+				new MultiRecipe() { Id = new UUID("00000000-0000-0000-0000-000000000001")},
+				new MultiRecipe() { Id = new UUID("00000000-0000-0000-0000-000000000002")},
+				new MultiRecipe() { Id = new UUID("00000000-0000-0000-0000-0000000000c8")},
+				new MultiRecipe() { Id = new UUID("442d85ed-8272-4543-a6f1-418f90ded05d")},
+				new MultiRecipe() { Id = new UUID("602234e4-cac1-4353-8bb7-b1ebff70024b")},
+				new MultiRecipe() { Id = new UUID("685a742a-c42e-4a4e-88ea-5eb83fc98e5b")},
+				new MultiRecipe() { Id = new UUID("85939755-ba10-4d9d-a4cc-efb7a8e943c4")},
+				new MultiRecipe() { Id = new UUID("8b36268c-1829-483c-a0f1-993b7156a8f2")},
+				new MultiRecipe() { Id = new UUID("98c84b38-1085-46bd-b1ce-dd38c159e6cc")},
+				new MultiRecipe() { Id = new UUID("aecd2294-4b94-434b-8667-4499bb2c9327")},
+				new MultiRecipe() { Id = new UUID("b5c5d105-75a2-4076-af2b-923ea2bf4bf0")},
+				new MultiRecipe() { Id = new UUID("d1ca6b84-338e-4f2f-9c6b-76cc8b4bd98d")},
+				new MultiRecipe() { Id = new UUID("d392b075-4ba1-40ae-8789-af868d56f6ce")},
+				new MultiRecipe() { Id = new UUID("d81aaeaf-e172-4440-9225-868df030d27b")},
 				new ShapedRecipe(1, 1,
 					new List<Item>
 					{

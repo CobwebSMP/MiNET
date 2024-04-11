@@ -34,8 +34,8 @@ namespace MiNET.Blocks
 {
 	public partial class Lever : Block
 	{
-		public static string RedstoneSignalDirection { get; set; } = "north";
 		public static string Direction { get; set; }
+		private BlockCoordinates[] cord = [];
 		private static readonly ILog Log = LogManager.GetLogger(typeof(Lever));
 		public Lever() : base(69)
 		{
@@ -84,66 +84,55 @@ namespace MiNET.Blocks
 
 		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
-			BlockCoordinates cord = blockCoordinates.BlockNorth();
 			world.BroadcastSound(blockCoordinates, LevelSoundEventType.ButtonOn);
+			world.ScheduleBlockTick(this, 10);
 			LeverDirection = Direction;
-			RedstoneSignalDirection = Direction switch
-			{
-				"north" => "south",
-				"south" => "north",
-				"west" => "east",
-				"east" => "west",
-				"up" => "down",
-				"down" => "up",
-				_ => throw new ArgumentOutOfRangeException()
-			};
-			if (RedstoneSignalDirection == "north")
-			{
-				cord = blockCoordinates.BlockNorth();
-			}
-			else if (RedstoneSignalDirection == "south")
-			{
-				cord = blockCoordinates.BlockSouth();
-			}
-			else if (RedstoneSignalDirection == "west")
-			{
-				cord = blockCoordinates.BlockWest();
-			}
-			else if (RedstoneSignalDirection == "east")
-			{
-				cord = blockCoordinates.BlockEast();
-			}
-			else if (RedstoneSignalDirection == "up")
-			{
-				cord = blockCoordinates.BlockUp();
-			}
-			else if (RedstoneSignalDirection == "down")
-			{
-				cord = blockCoordinates.BlockDown();
-			}
 			if (!OpenBit)
 			{
 				OpenBit = true;
 				world.SetBlock(this);
-				if (!world.RedstoneEnabled) { return true; }
-				var blockk = world.GetBlock(cord);
-				if (blockk is RedstoneLamp)
-				{
-					world.SetBlock(new LitRedstoneLamp { Coordinates = new BlockCoordinates(cord) });
-				}
 			}
 			else
 			{
 				OpenBit = false;
 				world.SetBlock(this);
-				if (!world.RedstoneEnabled) { return true; }
-				var blockk = world.GetBlock(cord);
-				if (blockk is RedstoneLamp)
-				{
-					world.SetBlock(new RedstoneLamp { Coordinates = new BlockCoordinates(cord) });
-				}
 			}
 			return true;
+		}
+
+		public override void BreakBlock(Level level, BlockFace face, bool silent = false)
+		{
+			BlockCoordinates[] cord = { Coordinates.BlockNorth(), Coordinates.BlockSouth(), Coordinates.BlockEast(), Coordinates.BlockWest(), Coordinates.BlockUp(), Coordinates.BlockDown() };
+			level.CancelBlockTick(this);
+			foreach (BlockCoordinates bCord in cord)
+			{
+				var blockk = level.GetBlock(bCord);
+				RedstoneController.signal(level, bCord, false);
+			}
+			base.BreakBlock(level, face);
+		}
+
+		public override void BlockAdded(Level level)
+		{
+			if (level.RedstoneEnabled) { level.ScheduleBlockTick(this, 10); }
+		}
+
+		public override void OnTick(Level level, bool isRandom)
+		{
+			if (isRandom) { return; }
+			cord = [Coordinates.BlockNorth(), Coordinates.BlockSouth(), Coordinates.BlockEast(), Coordinates.BlockWest(), Coordinates.BlockDown(), Coordinates.BlockNorthEast(), Coordinates.BlockNorthWest(), Coordinates.BlockSouthEast(), Coordinates.BlockSouthWest()];
+			foreach (BlockCoordinates bCord in cord)
+			{
+				if (OpenBit)
+				{
+					RedstoneController.signal(level, bCord, true);
+				}
+				else
+				{
+					RedstoneController.signal(level, bCord, false);
+				}
+			}
+			level.ScheduleBlockTick(this, 10);
 		}
 
 	}

@@ -23,7 +23,6 @@
 
 #endregion
 
-using System;
 using System.Numerics;
 using System.Threading.Tasks;
 using MiNET.Utils.Vectors;
@@ -34,9 +33,8 @@ namespace MiNET.Blocks
 	public abstract class Button : Block
 	{
 		public int TickRate { get; set; }
-		public static string RedstoneSignalDirection { get; set; } = "north";
 		public static int Direction { get; set; }
-		private BlockCoordinates cord = new BlockCoordinates(0, 0, 0);
+		private BlockCoordinates[] cord = [];
 		[StateBit] public virtual bool ButtonPressedBit { get; set; } = false;
 		[StateRange(0, 5)] public virtual int FacingDirection { get; set; } = 2;
 
@@ -56,59 +54,25 @@ namespace MiNET.Blocks
 			return true;
 		}
 
-		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
+		public override bool Interact(Level level, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
-			world.BroadcastSound(blockCoordinates, LevelSoundEventType.ButtonOn);
+			level.BroadcastSound(blockCoordinates, LevelSoundEventType.ButtonOn);
 			ButtonPressedBit = true;
 			FacingDirection = Direction;
-			world.SetBlock(this);
-			world.ScheduleBlockTick(this, TickRate);
+			level.SetBlock(this);
+			level.ScheduleBlockTick(this, TickRate);
 
-			if (!world.RedstoneEnabled) { return true; }
-			RedstoneSignalDirection = Direction switch
-			{
-				2 => "south",
-				3 => "north",
-				4 => "east",
-				5 => "west",
-				1 => "down",
-				0 => "up",
-				_ => throw new ArgumentOutOfRangeException()
-			};
+			if (!level.RedstoneEnabled) { return true; }
 
-			cord = blockCoordinates.BlockNorth();
-			if (RedstoneSignalDirection == "north")
-			{
-				cord = blockCoordinates.BlockNorth();
-			}
-			else if (RedstoneSignalDirection == "south")
-			{
-				cord = blockCoordinates.BlockSouth();
-			}
-			else if (RedstoneSignalDirection == "west")
-			{
-				cord = blockCoordinates.BlockWest();
-			}
-			else if (RedstoneSignalDirection == "east")
-			{
-				cord = blockCoordinates.BlockEast();
-			}
-			else if (RedstoneSignalDirection == "up")
-			{
-				cord = blockCoordinates.BlockUp();
-			}
-			else if (RedstoneSignalDirection == "down")
-			{
-				cord = blockCoordinates.BlockDown();
-			}
+			cord = [Coordinates.BlockNorth(), Coordinates.BlockSouth(), Coordinates.BlockEast(), Coordinates.BlockWest(), Coordinates.BlockDown(), Coordinates.BlockNorthEast(), Coordinates.BlockNorthWest(), Coordinates.BlockSouthEast(), Coordinates.BlockSouthWest()];
+
 			if (ButtonPressedBit)
 			{
-				var blockk = world.GetBlock(cord);
-				if (blockk is RedstoneLamp)
+				foreach (BlockCoordinates bCord in cord)
 				{
-					world.SetBlock(new LitRedstoneLamp { Coordinates = new BlockCoordinates(cord) });
+					RedstoneController.signal(level, bCord, true);
+					TurnOff(level);
 				}
-				TurnOff(world);
 			}
 			return true;
 		}
@@ -121,13 +85,12 @@ namespace MiNET.Blocks
 			level.SetBlock(this);
 		}
 
-		private async void TurnOff(Level world)
+		private async void TurnOff(Level level)
 		{
 			await Task.Delay((TickRate / 2) * 100);
-			var blockk = world.GetBlock(cord);
-			if (blockk is RedstoneLamp)
+			foreach (BlockCoordinates bCord in cord)
 			{
-				world.SetBlock(new RedstoneLamp { Coordinates = new BlockCoordinates(cord) });
+				RedstoneController.signal(level, bCord, false);
 			}
 		}
 	}

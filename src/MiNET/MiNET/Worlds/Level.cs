@@ -494,7 +494,7 @@ namespace MiNET.Worlds
 					{
 						if (player.Level.GetBlock((int) player.KnownPosition.X, (int) player.KnownPosition.Y, (int) player.KnownPosition.Z) is PressurePlateBase)
 						{
-							if (!player.Level.BlockWithTicks.ContainsKey(new BlockCoordinates((int) player.KnownPosition.X, (int) player.KnownPosition.Y, (int) player.KnownPosition.Z)));
+							if (!player.Level.BlockWithTicks.ContainsKey(new BlockCoordinates((int) player.KnownPosition.X, (int) player.KnownPosition.Y, (int) player.KnownPosition.Z)))
 							{
 								player.Level.ScheduleBlockTick(player.Level.GetBlock(new BlockCoordinates((int) player.KnownPosition.X, (int) player.KnownPosition.Y, (int) player.KnownPosition.Z)), 20);
 							}
@@ -1382,6 +1382,7 @@ namespace MiNET.Worlds
 			if (itemInHand.Id == 404) { itemInHand = new ItemBlock(new UnpoweredComparator()); }  //TODO: item translator
 			if (itemInHand.Id == 410) { itemInHand = new ItemBlock(new Hopper()); }  //TODO: item translator
 			if (itemInHand.Id == 720) { itemInHand = new ItemBlock(new Campfire()); }  //TODO: item translator
+			if (itemInHand.Id == 331) { itemInHand = new ItemBlock(new RedstoneWire()); }  //TODO: item translator
 			if (itemInHand is ItemBlock)
 			{
 				Block block = GetBlock(blockCoordinates);

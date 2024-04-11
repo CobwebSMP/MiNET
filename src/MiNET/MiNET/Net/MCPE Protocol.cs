@@ -117,6 +117,7 @@ namespace MiNET.Net
 		void HandleMcpeEmoteList(McpeEmoteList message);
 		void HandleMcpePermissionRequest(McpePermissionRequest message);
 		void HandleMcpeSetInventoryOptions(McpeSetInventoryOptions message);
+		void HandleMcpeAnvilDamage(McpeAnvilDamage message);
 	}
 
 	public interface IMcpeClientMessageHandler
@@ -1048,6 +1049,8 @@ namespace MiNET.Net
 						return McpeSetInventoryOptions.CreateObject().Decode(buffer);
 					case 0xa0:
 						return McpePlayerFog.CreateObject().Decode(buffer);
+					case 0x8D:
+						return McpeAnvilDamage.CreateObject().Decode(buffer);
 				}
 			}
 
@@ -10878,7 +10881,58 @@ namespace MiNET.Net
 			fogstack = default(fogStack);
 
 		}
+	}
 
+	public partial class McpeAnvilDamage : Packet<McpeAnvilDamage>
+	{
+
+		public byte damageAmount; // = null;
+		public BlockCoordinates coordinates; // = null;
+
+		public McpeAnvilDamage()
+		{
+			Id = 0x8D;
+			IsMcpe = true;
+		}
+
+		protected override void EncodePacket()
+		{
+			base.EncodePacket();
+
+			BeforeEncode();
+
+			Write(damageAmount);
+			Write(coordinates);
+
+			AfterEncode();
+		}
+
+		partial void BeforeEncode();
+		partial void AfterEncode();
+
+		protected override void DecodePacket()
+		{
+			base.DecodePacket();
+
+			BeforeDecode();
+
+			damageAmount = ReadByte();
+			coordinates = ReadBlockCoordinates();
+
+			AfterDecode();
+		}
+
+		partial void BeforeDecode();
+		partial void AfterDecode();
+
+		protected override void ResetPacket()
+		{
+			base.ResetPacket();
+
+			damageAmount = default(byte);
+			coordinates = default(BlockCoordinates);
+
+		}
 	}
 
 }

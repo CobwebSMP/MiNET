@@ -2238,7 +2238,7 @@ namespace MiNET
 				HeadYaw = message.headYaw
 			};
 
-			IsFalling = verticalMove < 0 && !IsOnGround;
+			IsFalling = verticalMove < 0 && !IsOnGround && !IsGliding;
 
 			if (IsFalling)
 			{
@@ -3382,8 +3382,16 @@ namespace MiNET
 			lock (_sendChunkSync)
 			{
 				var chunkPosition = new ChunkCoordinates(position);
+				McpeWrapper chunk = null;
 
-				McpeWrapper chunk = Level.GetChunk(chunkPosition)?.GetBatch();
+				foreach (ChunkColumn cachedChunk in Level.GetLoadedChunks())
+				{
+					if (cachedChunk.X == chunkPosition.X && cachedChunk.Z == chunkPosition.Z)
+					{
+						chunk = cachedChunk.GetBatch();
+					}
+				}
+
 				if (!_chunksUsed.ContainsKey(chunkPosition))
 				{
 					_chunksUsed.Add(chunkPosition, chunk);
@@ -4221,6 +4229,12 @@ namespace MiNET
 		public virtual void HandleMcpeSetInventoryOptions(McpeSetInventoryOptions message)
 		{
 			Log.Debug($"InventoryOptions: leftTab={message.leftTab}, rightTab={message.rightTab}, filtering={message.filtering}, inventoryLayout={message.inventoryLayout}, craftingLayout={message.craftingLayout}");
+		}
+
+		public virtual void HandleMcpeAnvilDamage(McpeAnvilDamage message)
+		{
+			//TODO handle this.
+			Log.Debug($"Damaged anvil at {message.coordinates.X} {message.coordinates.Y} {message.coordinates.Z} Amount = {message.damageAmount}");
 		}
 
 	}

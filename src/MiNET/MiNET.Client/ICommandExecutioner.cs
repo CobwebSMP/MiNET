@@ -26,8 +26,6 @@
 using System;
 using System.Threading.Tasks;
 using log4net;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using MiNET.Blocks;
 using MiNET.Net;
 using MiNET.Utils;
 

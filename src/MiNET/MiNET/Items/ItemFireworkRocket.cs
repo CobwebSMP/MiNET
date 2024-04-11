@@ -29,6 +29,7 @@ using System.Numerics;
 using fNbt;
 using log4net;
 using MiNET.Entities.Projectiles;
+using MiNET.Sounds;
 using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -65,33 +66,19 @@ namespace MiNET.Items
 			}
 		}
 
-		//TODO: Enable this when we can figure out the difference between placing a block, and use item transactions :-(
-		//
-		//public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
-		//{
-		//	Random random = new Random();
-		//	var rocket = new FireworksRocket(player, world, this, random);
-		//	rocket.KnownPosition = (PlayerLocation) player.KnownPosition.Clone();
-		//	rocket.KnownPosition.Y += 1.62f;
-		//	rocket.BroadcastMovement = true;
-		//	rocket.DespawnOnImpact = true;
-		//	rocket.SpawnEntity();
-		//}
+		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
+		{
+			if (player.IsGliding)
+			{
+				var itemInHand = player.Inventory.GetItemInHand();
+				itemInHand.Count--;
+				player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
 
-		//TAG_Compound: 1 entries {
-		//	TAG_Compound("Fireworks"): 2 entries {
-		//		TAG_List("Explosions"): 1 entries {
-		//			TAG_Compound: 5 entries {
-		//				TAG_Byte_Array("FireworkColor"): [1 bytes]
-		//				TAG_Byte_Array("FireworkFade"): [0 bytes]
-		//				TAG_Byte("FireworkFlicker"): 0
-		//				TAG_Byte("FireworkTrail"): 0
-		//				TAG_Byte("FireworkType"): 0
-		//			}
-		//		}
-		//		TAG_Byte("Flight"): 1
-		//	}
-		//}
+				player.Knockback(player.KnownPosition.GetDirection() * 1.70f);
+
+				world.BroadcastSound(player.KnownPosition.ToVector3(), LevelSoundEventType.Launch);
+			}
+		}
 
 		public static NbtCompound ToNbt(FireworksData data)
 		{

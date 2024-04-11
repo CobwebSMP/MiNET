@@ -50,17 +50,17 @@ namespace MiNET.Blocks
 
 		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
-			world.BroadcastSound(blockCoordinates, LevelSoundEventType.BlockEndPortalFrameFill);
 			var itemInHand = player.Inventory.GetItemInHand();
-			if(itemInHand.Name == "minecraft:ender_eye")
+			if(itemInHand.Name == "minecraft:ender_eye" && EndPortalEyeBit == false)
 			{
 				EndPortalEyeBit = true;
 				world.SetBlock(this);
-			}
-			if (player.GameMode == GameMode.Survival)
-			{
-				itemInHand.Count--;
-				player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
+				world.BroadcastSound(blockCoordinates, LevelSoundEventType.BlockEndPortalFrameFill);
+				if (player.GameMode == GameMode.Survival)
+				{
+					itemInHand.Count--;
+					player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
+				}
 			}
 			return true;
 		}

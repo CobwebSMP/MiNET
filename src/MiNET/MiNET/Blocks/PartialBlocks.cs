@@ -779,7 +779,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1548,7 +1548,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3281,7 +3281,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4246,7 +4246,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5036,7 +5036,7 @@ namespace MiNET.Blocks
 
     public partial class HeavyWeightedPressurePlate  // 148 typeof=HeavyWeightedPressurePlate
     {
-        [StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
+        [StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5514,7 +5514,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6058,7 +6058,7 @@ namespace MiNET.Blocks
 
     public partial class LightWeightedPressurePlate  // 147 typeof=LightWeightedPressurePlate
     {
-        [StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
+        [StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8793,7 +8793,7 @@ namespace MiNET.Blocks
     {
         [StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
