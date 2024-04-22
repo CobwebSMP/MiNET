@@ -41,7 +41,6 @@ using LongString = System.String;
 using MiNET.Utils.Metadata;
 using MiNET.Utils.Vectors;
 using MiNET.Utils.Nbt;
-using MiNET.Net;
 
 namespace MiNET.Net
 {
@@ -2217,6 +2216,7 @@ namespace MiNET.Net
 		public bool forceServerPacks; // = null;
 		public ResourcePackInfos behahaviorpackinfos; // = null;
 		public TexturePackInfos texturepacks; // = null;
+		public uint cndUrls; // = null;
 
 		public McpeResourcePacksInfo()
 		{
@@ -2236,7 +2236,7 @@ namespace MiNET.Net
 			Write(forceServerPacks);
 			Write(behahaviorpackinfos);
 			Write(texturepacks);
-			WriteUnsignedVarInt(0);
+			WriteUnsignedVarInt(cndUrls);
 
 			AfterEncode();
 		}
@@ -2256,6 +2256,7 @@ namespace MiNET.Net
 			forceServerPacks = ReadBool();
 			behahaviorpackinfos = ReadResourcePackInfos();
 			texturepacks = ReadTexturePackInfos();
+			cndUrls = ReadUnsignedVarInt();
 
 			AfterDecode();
 		}
@@ -2273,6 +2274,7 @@ namespace MiNET.Net
 			forceServerPacks=default(bool);
 			behahaviorpackinfos=default(ResourcePackInfos);
 			texturepacks=default(TexturePackInfos);
+			cndUrls= default(uint);
 		}
 
 	}
@@ -3655,7 +3657,7 @@ namespace MiNET.Net
 			WriteSignedVarInt(amplifier);
 			Write(particles);
 			WriteSignedVarInt(duration);
-			WriteUnsignedVarLong(20);
+			Write(tick);
 
 			AfterEncode();
 		}
@@ -3675,7 +3677,7 @@ namespace MiNET.Net
 			amplifier = ReadSignedVarInt();
 			particles = ReadBool();
 			duration = ReadSignedVarInt();
-			tick = ReadUnsignedVarLong();
+			tick = ReadLong();
 
 			AfterDecode();
 		}
@@ -4361,7 +4363,7 @@ namespace MiNET.Net
 
 			WriteUnsignedVarLong(runtimeEntityId);
 			Write(velocity);
-			WriteUnsignedVarLong(20);
+			WriteUnsignedVarLong(tick);
 
 			AfterEncode();
 		}
@@ -8869,6 +8871,8 @@ namespace MiNET.Net
 	public partial class McpeLevelEventGeneric : Packet<McpeLevelEventGeneric>
 	{
 
+		public int eventId; // = null;
+		public Nbt eventData; // = null;
 
 		public McpeLevelEventGeneric()
 		{
@@ -8882,6 +8886,8 @@ namespace MiNET.Net
 
 			BeforeEncode();
 
+			WriteSignedVarInt(eventId);
+			Write(eventData);
 
 			AfterEncode();
 		}
@@ -8895,6 +8901,8 @@ namespace MiNET.Net
 
 			BeforeDecode();
 
+			eventId = ReadSignedVarInt();
+			eventData = ReadNbt();
 
 			AfterDecode();
 		}
@@ -8906,6 +8914,8 @@ namespace MiNET.Net
 		{
 			base.ResetPacket();
 
+			eventId = default(int);
+			eventData = default(Nbt);
 		}
 
 	}

@@ -257,6 +257,25 @@ namespace MiNET
 			{
 				Item existingItem = Slots[si];
 
+				if (item.Id == existingItem.Id && item.Metadata == existingItem.Metadata)
+				{
+					int remainingCount = 64 - existingItem.Count;
+
+					if (remainingCount > 0)
+					{
+						int itemsToAdd = Math.Min(remainingCount, item.Count);
+						Slots[si].Count += (byte) itemsToAdd;
+						item.Count -= (byte) itemsToAdd;
+						if (update) SendSetSlot(si);
+						if (item.Count == 0) return true;
+					}
+				}
+			}
+
+			for (int si = 0; si < Slots.Count; si++)
+			{
+				Item existingItem = Slots[si];
+
 				if (existingItem is ItemAir || existingItem.Id == 0 || existingItem.Id == -1)
 				{
 					Slots[si] = item;

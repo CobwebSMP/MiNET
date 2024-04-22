@@ -3227,8 +3227,13 @@ namespace MiNET
 			}
 
 			Block block = Level.GetBlock(message.x, message.y, message.z);
-			Log.Debug($"Picked block {block.Name} from blockstate {block.GetRuntimeId()}. Expected block to be in slot {message.selectedSlot}");
-			Item item = block.GetItem();
+			Log.Debug($"Picked block {block.Id}:{block.Metadata} from blockstate {block.GetRuntimeId()}. Expected block to be in slot {message.selectedSlot}");
+			var id = block.Id;
+			if (id > 255)
+			{
+				id = -(id - 255);
+			}
+			Item item = ItemFactory.GetItem((short) id, block.Metadata, 1);
 			if (item is ItemBlock blockItem)
 			{
 				Log.Debug($"Have BlockItem with block state {blockItem.Block.GetRuntimeId()}");

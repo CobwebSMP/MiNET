@@ -260,6 +260,7 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeMobEffect(McpeMobEffect message)
 		{
+			Log.Warn($"I got effect: {message.runtimeEntityId} / {message.eventId} / {message.effectId} / {message.amplifier} / {message.particles} / {message.duration} / {message.tick}");
 		}
 
 		public virtual void HandleMcpeUpdateAttributes(McpeUpdateAttributes message)
