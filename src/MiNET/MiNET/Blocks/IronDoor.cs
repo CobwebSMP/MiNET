@@ -29,38 +29,10 @@ using MiNET.Worlds;
 
 namespace MiNET.Blocks
 {
-	public partial class IronDoor : Block
+	public partial class IronDoor : DoorBase
 	{
 		public IronDoor() : base(71)
 		{
-			IsTransparent = true;
-			BlastResistance = 25;
-			Hardness = 5;
-		}
-
-		protected override bool CanPlace(Level world, Player player, BlockCoordinates blockCoordinates, BlockCoordinates targetCoordinates, BlockFace face)
-		{
-			return world.GetBlock(blockCoordinates).IsReplaceable && world.GetBlock(blockCoordinates + Level.Up).IsReplaceable;
-		}
-
-		public override void BreakBlock(Level level, BlockFace face, bool silent = false)
-		{
-			// Remove door
-			if (UpperBlockBit) // Is Upper?
-			{
-				level.SetAir(Coordinates + Level.Down);
-			}
-			else
-			{
-				level.SetAir(Coordinates + Level.Up);
-			}
-
-			base.BreakBlock(level, face, silent);
-		}
-
-		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
-		{
-			return true;
 		}
 	}
 }

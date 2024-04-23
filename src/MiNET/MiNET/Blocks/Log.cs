@@ -41,6 +41,44 @@ namespace MiNET.Blocks
 
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
+			switch (ItemBlock.GetPillarAxisFromFace(face))
+			{
+				case BlockAxis.X:
+					PillarAxis = "x";
+					break;
+				case BlockAxis.Y:
+					PillarAxis = "y";
+					break;
+				case BlockAxis.Z:
+					PillarAxis = "z";
+					break;
+			}
+			return false;
+		}
+
+		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
+		{
+			var itemInHand = player.Inventory.GetItemInHand();
+
+			if (itemInHand is ItemAxe)
+			{
+				switch (OldLogType)
+				{
+					case "oak":
+						world.SetBlock(new StrippedOakLog { Coordinates = Coordinates, PillarAxis = PillarAxis});
+						break;
+					case "spruce":
+						world.SetBlock(new StrippedSpruceLog { Coordinates = Coordinates, PillarAxis = PillarAxis });
+						break;
+					case "birch":
+						world.SetBlock(new StrippedBirchLog { Coordinates = Coordinates, PillarAxis = PillarAxis });
+						break;
+					case "jungle":
+						world.SetBlock(new StrippedJungleLog { Coordinates = Coordinates, PillarAxis = PillarAxis });
+						break;
+				}
+				return true;
+			}
 			return false;
 		}
 

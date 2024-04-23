@@ -46,8 +46,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 662;
-		public const string GameVersion = "1.20.70";
+		public const int ProtocolVersion = 671;
+		public const string GameVersion = "1.20.80";
 	}
 
 	public interface IMcpeMessageHandler
@@ -2288,6 +2288,7 @@ namespace MiNET.Net
 		public string gameVersion; // = null;
 		public Experiments experiments; // = null;
 		public bool experimentsPreviouslyToggled; // = null;
+		public bool hasEditorPacks; // = null;
 
 		public McpeResourcePackStack()
 		{
@@ -2307,6 +2308,7 @@ namespace MiNET.Net
 			Write(gameVersion);
 			Write(experiments);
 			Write(experimentsPreviouslyToggled);
+			Write(hasEditorPacks);
 
 			AfterEncode();
 		}
@@ -2326,6 +2328,7 @@ namespace MiNET.Net
 			gameVersion = ReadString();
 			experiments = ReadExperiments();
 			experimentsPreviouslyToggled = ReadBool();
+			hasEditorPacks = ReadBool();
 
 			AfterDecode();
 		}
@@ -2343,6 +2346,7 @@ namespace MiNET.Net
 			gameVersion=default(string);
 			experiments=default(Experiments);
 			experimentsPreviouslyToggled=default(bool);
+			hasEditorPacks=default(bool);
 		}
 
 	}

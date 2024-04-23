@@ -24,6 +24,7 @@
 #endregion
 using System;
 using System.Numerics;
+using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -58,6 +59,18 @@ namespace MiNET.Blocks
 				15 or 9 or 10 or 11 or 12 or 13 => true,
 				_ => false
 			};
+			switch (ItemBlock.GetPillarAxisFromFace(face))
+			{
+				case BlockAxis.X:
+					PillarAxis = "x";
+					break;
+				case BlockAxis.Y:
+					PillarAxis = "y";
+					break;
+				case BlockAxis.Z:
+					PillarAxis = "z";
+					break;
+			}
 			return false;
 		}
 

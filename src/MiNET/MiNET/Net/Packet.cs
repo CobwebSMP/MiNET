@@ -2753,6 +2753,7 @@ namespace MiNET.Net
 						Write(rec.Id);
 						Write(rec.Block);
 						WriteUnsignedVarInt(0); // priority
+						Write(true);  //todo: whats this?
 						WriteVarInt(UniqueId); // unique id
 						if(!RecipeManager.resultMapLocked){ RecipeManager.resultMap.Add(UniqueId, rec.Result[0]); }
 						break;

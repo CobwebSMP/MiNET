@@ -344,6 +344,8 @@ namespace MiNET.Blocks
 
 	public partial class Concrete // 236 typeof=Concrete
 	{
+		public override string Name => "minecraft:concrete";
+
 		[StateEnum("green", "orange", "light_blue", "black", "red", "yellow", "blue", "brown", "lime", "pink", "gray", "purple", "magenta", "cyan", "white", "silver")]
 		public string Color { get; set; } = "white";
 
@@ -372,6 +374,8 @@ namespace MiNET.Blocks
 
 	public partial class ConcretePowder // 237 typeof=ConcretePowder
 	{
+		public override string Name => "minecraft:concrete_powder";
+
 		[StateEnum("light_blue", "gray", "pink", "red", "silver", "white", "cyan", "magenta", "brown", "lime", "purple", "orange", "yellow", "blue", "black", "green")]
 		public string Color { get; set; } = "white";
 
@@ -400,6 +404,8 @@ namespace MiNET.Blocks
 
 	public partial class Wool // 35 typeof=Wool
 	{
+		public override string Name => "minecraft:wool";
+
 		[StateEnum("light_blue", "gray", "orange", "red", "silver", "green", "pink", "black", "yellow", "brown", "blue", "cyan", "purple", "white", "lime", "magenta")]
 		public string Color { get; set; } = "white";
 
@@ -428,6 +434,8 @@ namespace MiNET.Blocks
 
 	public partial class StainedGlass // 241 typeof=StainedGlass
 	{
+		public override string Name => "minecraft:stained_glass";
+
 		[StateEnum("brown", "purple", "light_blue", "cyan", "silver", "black", "pink", "orange", "white", "green", "magenta", "gray", "blue", "lime", "red", "yellow")]
 		public string Color { get; set; } = "white";
 
@@ -456,6 +464,8 @@ namespace MiNET.Blocks
 
 	public partial class StainedGlassPane // 160 typeof=StainedGlassPane
 	{
+		public override string Name => "minecraft:stained_glass_pane";
+
 		[StateEnum("black", "lime", "yellow", "light_blue", "white", "purple", "pink", "red", "magenta", "orange", "green", "silver", "gray", "blue", "cyan", "brown")]
 		public string Color { get; set; } = "white";
 
@@ -484,6 +494,8 @@ namespace MiNET.Blocks
 
 	public partial class Carpet // 171 typeof=Carpet
 	{
+		public override string Name => "minecraft:carpet";
+
 		[StateEnum("magenta", "blue", "silver", "red", "yellow", "light_blue", "white", "lime", "pink", "green", "purple", "black", "cyan", "gray", "orange", "brown")]
 		public string Color { get; set; } = "white";
 
@@ -512,6 +524,8 @@ namespace MiNET.Blocks
 
 	public partial class StainedHardenedClay // 159 typeof=StainedHardenedClay
 	{
+		public override string Name => "minecraft:stained_hardened_clay";
+
 		[StateEnum("pink", "gray", "lime", "red", "blue", "cyan", "green", "light_blue", "orange", "black", "yellow", "magenta", "brown", "white", "silver", "purple")]
 		public string Color { get; set; } = "white";
 
@@ -540,6 +554,7 @@ namespace MiNET.Blocks
 
 	public partial class Wood // 467 typeof=Wood
 	{
+		public override string Name => "minecraft:wood";
 		public string woodType { get; set; } = "oak";
 		public string PillarAxis { get; set; } = "y";
 		public bool StrippedBit { get; set; } = false;
@@ -678,6 +693,7 @@ namespace MiNET.Blocks
 
 	public partial class UndyedShulkerBox // 205 typeof=UndyedShulkerBox
 	{
+		public override string Name => "minecraft:undyed_shulker_box";
 		public string blockName { get; set; } = "minecraft:undyed_shulker_box";
 		public override void SetState(List<IBlockState> states)
 		{
@@ -701,7 +717,8 @@ namespace MiNET.Blocks
 
 	public partial class AcaciaButton  // 395 typeof=AcaciaButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:acacia_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -734,7 +751,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaDoor  // 196 typeof=AcaciaDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:acacia_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -777,7 +795,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaFenceGate  // 187 typeof=AcaciaFenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:acacia_fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -814,7 +833,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaPressurePlate : PressurePlateBase // 405 typeof=AcaciaPressurePlate
 	{
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:acacia_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
         
         public AcaciaPressurePlate() : base(405)
         {
@@ -846,7 +866,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaStairs  // 163 typeof=AcaciaStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:acacia_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -878,7 +899,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaStandingSign  // 445 typeof=AcaciaStandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:acacia_standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -905,7 +927,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaTrapdoor  // 400 typeof=AcaciaTrapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:acacia_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -942,7 +965,8 @@ namespace MiNET.Blocks
 
     public partial class AcaciaWallSign  // 446 typeof=AcaciaWallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:acacia_wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -969,7 +993,8 @@ namespace MiNET.Blocks
 
     public partial class ActivatorRail  // 126 typeof=ActivatorRail
     {
-        [StateBit] public  bool RailDataBit { get; set; } = false;
+		public override string Name => "minecraft:activator_rail";
+		[StateBit] public  bool RailDataBit { get; set; } = false;
         [StateRange(0, 5)] public  int RailDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -1001,8 +1026,8 @@ namespace MiNET.Blocks
 
     public partial class Air  // 0 typeof=Air
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:air";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -1021,10 +1046,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Allow : Block // 0 typeof=Air
-    {
-
-        public override void SetState(List<IBlockState> states)
+    public partial class Allow : Block // 210 typeof=Allow
+	{
+		public override string Name => "minecraft:allow";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -1045,7 +1070,8 @@ namespace MiNET.Blocks
 
     public partial class AndesiteStairs  // 426 typeof=AndesiteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:andesite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -1077,6 +1103,7 @@ namespace MiNET.Blocks
 
     public partial class Anvil  // 145 typeof=Anvil
     {
+		public override string Name => "minecraft:anvil";
 		public  string Damage { get; set; } = "undamaged";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
@@ -1109,7 +1136,8 @@ namespace MiNET.Blocks
 
     public partial class Bamboo : Block // 418 typeof=Bamboo
     {
-        [StateBit] public  bool AgeBit { get; set; } = false;
+		public override string Name => "minecraft:bamboo";
+		[StateBit] public  bool AgeBit { get; set; } = false;
         [StateEnum("small_leaves","large_leaves","no_leaves")]
         public  string BambooLeafSize { get; set; } = "";
         [StateEnum("thin","thick")]
@@ -1153,7 +1181,8 @@ namespace MiNET.Blocks
 
     public partial class BambooSapling : Block // 419 typeof=BambooSapling
     {
-        [StateBit] public  bool AgeBit { get; set; } = false;
+		public override string Name => "minecraft:bamboo_sapling";
+		[StateBit] public  bool AgeBit { get; set; } = false;
         [StateEnum("spruce","birch","jungle","acacia","dark_oak","oak")]
         public  string SaplingType { get; set; } = "";
         
@@ -1191,7 +1220,8 @@ namespace MiNET.Blocks
 
     public partial class Barrel : Block // 458 typeof=Barrel
     {
-        public int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:barrel";
+		public int FacingDirection { get; set; } = 2;
         public bool OpenBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
@@ -1223,8 +1253,8 @@ namespace MiNET.Blocks
 
     public partial class Barrier : Block // 416 typeof=Barrier
     {
-        
-        public Barrier() : base(416)
+		public override string Name => "minecraft:barrier";
+		public Barrier() : base(416)
         {
             IsGenerated = true;
         }
@@ -1250,8 +1280,8 @@ namespace MiNET.Blocks
 
     public partial class Beacon  // 138 typeof=Beacon
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:beacon";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -1272,7 +1302,8 @@ namespace MiNET.Blocks
 
     public partial class Bed  // 26 typeof=Bed
     {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
+		public override string Name => "minecraft:bed";
+		[StateRange(0, 3)] public  int Direction { get; set; } = 0;
         [StateBit] public  bool HeadPieceBit { get; set; } = false;
         [StateBit] public  bool OccupiedBit { get; set; } = false;
 
@@ -1309,7 +1340,8 @@ namespace MiNET.Blocks
 
     public partial class Bedrock  // 7 typeof=Bedrock
     {
-        [StateBit] public  bool InfiniburnBit { get; set; } = false;
+		public override string Name => "minecraft:bedrock";
+		[StateBit] public  bool InfiniburnBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1334,73 +1366,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class BeeNest  // 0 typeof=Air
-    {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
-        [StateRange(0, 5)] public  int HoneyLevel { get; set; } = 0;
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateInt s when s.Name == "direction":
-                        Direction = s.Value;
-                        break;
-                    case BlockStateInt s when s.Name == "honey_level":
-                        HoneyLevel = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:bee_nest";
-            record.Id = 0;
-            record.States.Add(new BlockStateInt {Name = "direction", Value = Direction});
-            record.States.Add(new BlockStateInt {Name = "honey_level", Value = HoneyLevel});
-            return record;
-        } // method
-    } // class
-
-    public partial class Beehive  // 0 typeof=Air
-    {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
-        [StateRange(0, 5)] public  int HoneyLevel { get; set; } = 0;
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateInt s when s.Name == "direction":
-                        Direction = s.Value;
-                        break;
-                    case BlockStateInt s when s.Name == "honey_level":
-                        HoneyLevel = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:beehive";
-            record.Id = 0;
-            record.States.Add(new BlockStateInt {Name = "direction", Value = Direction});
-            record.States.Add(new BlockStateInt {Name = "honey_level", Value = HoneyLevel});
-            return record;
-        } // method
-    } // class
-
     public partial class Beetroot  // 244 typeof=Beetroot
     {
-        [StateRange(0, 7)] public override int Growth { get; set; } = 0;
+		public override string Name => "minecraft:beetroot";
+		[StateRange(0, 7)] public override int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1427,7 +1396,8 @@ namespace MiNET.Blocks
 
     public partial class Bell : Block // 461 typeof=Bell
     {
-        [StateEnum("standing","hanging","side","multiple")]
+		public override string Name => "minecraft:bell";
+		[StateEnum("standing","hanging","side","multiple")]
         public  string Attachment { get; set; } = "standing";
         [StateRange(0, 3)] public  int Direction { get; set; } = 0;
         [StateBit] public  bool ToggleBit { get; set; } = false;
@@ -1470,7 +1440,8 @@ namespace MiNET.Blocks
 
     public partial class BirchButton  // 396 typeof=BirchButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:birch_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -1503,7 +1474,8 @@ namespace MiNET.Blocks
 
     public partial class BirchDoor  // 194 typeof=BirchDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:birch_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -1546,7 +1518,8 @@ namespace MiNET.Blocks
 
     public partial class BirchFenceGate  // 184 typeof=BirchFenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:birch_fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -1583,7 +1556,8 @@ namespace MiNET.Blocks
 
     public partial class BirchPressurePlate : PressurePlateBase // 406 typeof=BirchPressurePlate
 	{
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:birch_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
         
         public BirchPressurePlate() : base(406)
         {
@@ -1615,7 +1589,8 @@ namespace MiNET.Blocks
 
     public partial class BirchStairs  // 135 typeof=BirchStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:birch_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -1647,7 +1622,8 @@ namespace MiNET.Blocks
 
     public partial class BirchStandingSign  // 441 typeof=BirchStandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:birch_standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1674,7 +1650,8 @@ namespace MiNET.Blocks
 
     public partial class BirchTrapdoor  // 401 typeof=BirchTrapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:birch_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -1711,7 +1688,8 @@ namespace MiNET.Blocks
 
     public partial class BirchWallSign  // 442 typeof=BirchWallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:birch_wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1738,7 +1716,8 @@ namespace MiNET.Blocks
 
     public partial class BlackGlazedTerracotta  // 235 typeof=BlackGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:black_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1765,6 +1744,7 @@ namespace MiNET.Blocks
 
     public partial class BlastFurnace  // 451 typeof=BlastFurnace
     {
+		public override string Name => "minecraft:blast_furnace";
 		[StateRange(0, 5)] public int Direction { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -1792,7 +1772,8 @@ namespace MiNET.Blocks
 
     public partial class BlueGlazedTerracotta  // 231 typeof=BlueGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:blue_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -1819,8 +1800,8 @@ namespace MiNET.Blocks
 
     public partial class BlueIce : Block // 266 typeof=BlueIce
     {
-        
-        public BlueIce() : base(266)
+		public override string Name => "minecraft:blue_ice";
+		public BlueIce() : base(266)
         {
             IsGenerated = true;
         }
@@ -1846,7 +1827,8 @@ namespace MiNET.Blocks
 
     public partial class BoneBlock : Block // 216 typeof=BoneBlock
     {
-        [StateRange(0, 3)] public  int Deprecated { get; set; } = 0;
+		public override string Name => "minecraft:bone_block";
+		[StateRange(0, 3)] public  int Deprecated { get; set; } = 0;
         [StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "x";
         
@@ -1884,8 +1866,8 @@ namespace MiNET.Blocks
 
     public partial class Bookshelf  // 47 typeof=Bookshelf
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:bookshelf";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -1904,9 +1886,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class BorderBlock  // 0 typeof=Air
-    {
-        [StateEnum("none","short","tall")]
+    public partial class BorderBlock  // 212 typeof=BorderBlock
+	{
+		public override string Name => "minecraft:border_block";
+		[StateEnum("none","short","tall")]
         public  string WallConnectionTypeEast { get; set; } = "none";
         [StateEnum("none","short","tall")]
         public  string WallConnectionTypeNorth { get; set; } = "none";
@@ -1957,7 +1940,8 @@ namespace MiNET.Blocks
 
     public partial class BrewingStand  // 379 typeof=BrewingStand
 	{
-        [StateBit] public  bool BrewingStandSlotABit { get; set; } = false;
+		public override string Name => "minecraft:brewing_stand";
+		[StateBit] public  bool BrewingStandSlotABit { get; set; } = false;
         [StateBit] public  bool BrewingStandSlotBBit { get; set; } = false;
         [StateBit] public  bool BrewingStandSlotCBit { get; set; } = false;
 
@@ -1994,8 +1978,8 @@ namespace MiNET.Blocks
 
     public partial class BrickBlock  // 45 typeof=BrickBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:brick_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2016,7 +2000,8 @@ namespace MiNET.Blocks
 
     public partial class BrickStairs  // 108 typeof=BrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -2048,7 +2033,8 @@ namespace MiNET.Blocks
 
     public partial class BrownGlazedTerracotta  // 232 typeof=BrownGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:brown_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2075,8 +2061,8 @@ namespace MiNET.Blocks
 
     public partial class BrownMushroom  // 39 typeof=BrownMushroom
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:brown_mushroom";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2097,7 +2083,8 @@ namespace MiNET.Blocks
 
     public partial class BrownMushroomBlock  // 99 typeof=BrownMushroomBlock
     {
-        [StateRange(0, 15)] public  int HugeMushroomBits { get; set; } = 0;
+		public override string Name => "minecraft:brown_mushroom_block";
+		[StateRange(0, 15)] public  int HugeMushroomBits { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2124,7 +2111,7 @@ namespace MiNET.Blocks
 
     public partial class BubbleColumn : Block // 415 typeof=BubbleColumn
     {
-        [StateBit] public  bool DragDown { get; set; } = false;
+		[StateBit] public  bool DragDown { get; set; } = false;
         
         public BubbleColumn() : base(415)
         {
@@ -2156,7 +2143,8 @@ namespace MiNET.Blocks
 
     public partial class Cactus  // 81 typeof=Cactus
     {
-        [StateRange(0, 15)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:cactus";
+		[StateRange(0, 15)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2183,7 +2171,8 @@ namespace MiNET.Blocks
 
     public partial class Cake  // 92 typeof=Cake
     {
-        [StateRange(0, 6)] public  int BiteCounter { get; set; } = 0;
+		public override string Name => "minecraft:cake";
+		[StateRange(0, 6)] public  int BiteCounter { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2208,31 +2197,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Camera  // 0 typeof=Air
-    {
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:camera";
-            record.Id = 0;
-            return record;
-        } // method
-    } // class
-
     public partial class Campfire : Block // 464 typeof=Campfire
     {
-        [StateBit] public  bool Extinguished { get; set; } = false;
+		public override string Name => "minecraft:campfire";
+		[StateBit] public  bool Extinguished { get; set; } = false;
         [StateEnum("south","west","north","east")]
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
@@ -2270,7 +2238,8 @@ namespace MiNET.Blocks
 
     public partial class Carrots  // 141 typeof=Carrots
     {
-        [StateRange(0, 7)] public override int Growth { get; set; } = 0;
+		public override string Name => "minecraft:carrots";
+		[StateRange(0, 7)] public override int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2297,8 +2266,8 @@ namespace MiNET.Blocks
 
     public partial class CartographyTable : Block // 455 typeof=CartographyTable
     {
-        
-        public CartographyTable() : base(455)
+		public override string Name => "minecraft:cartography_table";
+		public CartographyTable() : base(455)
         {
             IsGenerated = true;
         }
@@ -2322,14 +2291,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class CarvedPumpkin : Block // 410 typeof=CarvedPumpkin
+    public partial class CarvedPumpkin // 410 typeof=CarvedPumpkin
     {
+		public override string Name => "minecraft:carved_pumpkin";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
-
-		public CarvedPumpkin() : base(410)
-        {
-            IsGenerated = true;
-        }
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2356,7 +2321,8 @@ namespace MiNET.Blocks
 
     public partial class Cauldron : Block // 465 typeof=Block
     {
-        [StateEnum("water","powder_snow","lava")]
+		public override string Name => "minecraft:cauldron";
+		[StateEnum("water","powder_snow","lava")]
         public  string CauldronLiquid { get; set; } = "water";
         [StateRange(0, 6)] public  int FillLevel { get; set; } = 0;
 
@@ -2387,9 +2353,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Chain  // 0 typeof=Air
-    {
-        [StateEnum("y","x","z")]
+    public partial class Chain  // 541 typeof=Chain
+	{
+		public override string Name => "minecraft:chain";
+		[StateEnum("y","x","z")]
         public  string PillarAxis { get; set; } = "y";
 
         public override void SetState(List<IBlockState> states)
@@ -2417,7 +2384,8 @@ namespace MiNET.Blocks
 
     public partial class ChainCommandBlock : Block // 189 typeof=ChainCommandBlock
     {
-        [StateBit] public  bool ConditionalBit { get; set; } = false;
+		public override string Name => "minecraft:chain_command_block";
+		[StateBit] public  bool ConditionalBit { get; set; } = false;
         [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         
         public ChainCommandBlock() : base(189)
@@ -2452,73 +2420,9 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class ChemicalHeat : Block // 192 typeof=ChemicalHeat
-    {
-        
-        public ChemicalHeat() : base(192)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:chemical_heat";
-            record.Id = 192;
-            return record;
-        } // method
-    } // class
-
-    public partial class ChemistryTable : Block // 238 typeof=ChemistryTable
-    {
-        [StateEnum("compound_creator","material_reducer","element_constructor","lab_table")]
-        public  string ChemistryTableType { get; set; } = "compound_creator";
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
-        
-        public ChemistryTable() : base(238)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateString s when s.Name == "chemistry_table_type":
-                        ChemistryTableType = s.Value;
-                        break;
-                    case BlockStateInt s when s.Name == "direction":
-                        Direction = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:chemistry_table";
-            record.Id = 238;
-            record.States.Add(new BlockStateString {Name = "chemistry_table_type", Value = ChemistryTableType});
-            record.States.Add(new BlockStateInt {Name = "direction", Value = Direction});
-            return record;
-        } // method
-    } // class
-
     public partial class Chest  // 54 typeof=Chest
     {
+		public override string Name => "minecraft:chest";
 		[StateRange(0, 5)] public int FacingDirection { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -2547,7 +2451,8 @@ namespace MiNET.Blocks
 
     public partial class ChorusFlower  // 200 typeof=ChorusFlower
     {
-        [StateRange(0, 5)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:chorus_flower";
+		[StateRange(0, 5)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2574,8 +2479,8 @@ namespace MiNET.Blocks
 
     public partial class ChorusPlant  // 240 typeof=ChorusPlant
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:chorus_plant";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2596,8 +2501,8 @@ namespace MiNET.Blocks
 
     public partial class Clay  // 82 typeof=Clay
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:clay";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2618,8 +2523,8 @@ namespace MiNET.Blocks
 
     public partial class CoalBlock  // 173 typeof=CoalBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:coal_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2640,8 +2545,8 @@ namespace MiNET.Blocks
 
     public partial class CoalOre  // 16 typeof=CoalOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:coal_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2662,8 +2567,8 @@ namespace MiNET.Blocks
 
     public partial class Cobblestone  // 4 typeof=Cobblestone
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:cobblestone";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -2714,7 +2619,8 @@ namespace MiNET.Blocks
 
 	public partial class Cocoa  // 127 typeof=Cocoa
     {
-        [StateRange(0, 2)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:cocoa";
+		[StateRange(0, 2)] public  int Age { get; set; } = 0;
         [StateRange(0, 3)] public  int Direction { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -2744,85 +2650,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class ColoredTorchBp : Block // 204 typeof=ColoredTorchBp
-    {
-        [StateBit] public  bool ColorBit { get; set; } = false;
-        [StateEnum("west","east","north","south","top","unknown")]
-        public  string TorchFacingDirection { get; set; } = "";
-        
-        public ColoredTorchBp() : base(204)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateByte s when s.Name == "color_bit":
-                        ColorBit = Convert.ToBoolean(s.Value);
-                        break;
-                    case BlockStateString s when s.Name == "torch_facing_direction":
-                        TorchFacingDirection = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:colored_torch_bp";
-            record.Id = 204;
-            record.States.Add(new BlockStateByte {Name = "color_bit", Value = Convert.ToByte(ColorBit)});
-            record.States.Add(new BlockStateString {Name = "torch_facing_direction", Value = TorchFacingDirection});
-            return record;
-        } // method
-    } // class
-
-    public partial class ColoredTorchRg : Block // 202 typeof=ColoredTorchRg
-    {
-        [StateBit] public  bool ColorBit { get; set; } = false;
-        [StateEnum("west","east","north","south","top","unknown")]
-        public  string TorchFacingDirection { get; set; } = "";
-        
-        public ColoredTorchRg() : base(202)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateByte s when s.Name == "color_bit":
-                        ColorBit = Convert.ToBoolean(s.Value);
-                        break;
-                    case BlockStateString s when s.Name == "torch_facing_direction":
-                        TorchFacingDirection = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:colored_torch_rg";
-            record.Id = 202;
-            record.States.Add(new BlockStateByte {Name = "color_bit", Value = Convert.ToByte(ColorBit)});
-            record.States.Add(new BlockStateString {Name = "torch_facing_direction", Value = TorchFacingDirection});
-            return record;
-        } // method
-    } // class
-
     public partial class CommandBlock : Block // 137 typeof=CommandBlock
     {
-        [StateBit] public  bool ConditionalBit { get; set; } = false;
+		public override string Name => "minecraft:command_block";
+		[StateBit] public  bool ConditionalBit { get; set; } = false;
         [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         
         public CommandBlock() : base(137)
@@ -2859,7 +2690,8 @@ namespace MiNET.Blocks
 
     public partial class Composter : Block // 468 typeof=Composter
     {
-        [StateRange(0, 8)] public int ComposterFillLevel { get; set; } = 0;
+		public override string Name => "minecraft:composter";
+		[StateRange(0, 8)] public int ComposterFillLevel { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -2886,8 +2718,8 @@ namespace MiNET.Blocks
 
     public partial class Conduit : Block // 412 typeof=Conduit
     {
-        
-        public Conduit() : base(412)
+		public override string Name => "minecraft:conduit";
+		public Conduit() : base(412)
         {
             IsGenerated = true;
         }
@@ -2913,7 +2745,8 @@ namespace MiNET.Blocks
 
     public partial class CoralBlock : Block // 387 typeof=CoralBlock
     {
-        [StateEnum("pink","purple","red","yellow","blue")]
+		public override string Name => "minecraft:coral_block";
+		[StateEnum("pink","purple","red","yellow","blue")]
         public  string CoralColor { get; set; } = "";
         [StateBit] public  bool DeadBit { get; set; } = false;
         
@@ -2951,7 +2784,8 @@ namespace MiNET.Blocks
 
     public partial class CoralFan : Block // 388 typeof=CoralFan
     {
-        [StateEnum("pink","purple","red","yellow","blue")]
+		public override string Name => "minecraft:coral_fan";
+		[StateEnum("pink","purple","red","yellow","blue")]
         public  string CoralColor { get; set; } = "";
         [StateRange(0, 1)] public  int CoralFanDirection { get; set; } = 0;
         
@@ -2989,7 +2823,8 @@ namespace MiNET.Blocks
 
     public partial class CoralFanDead : Block // 389 typeof=CoralFanDead
     {
-        [StateEnum("pink","purple","red","yellow","blue")]
+		public override string Name => "minecraft:coral_fan_dead";
+		[StateEnum("pink","purple","red","yellow","blue")]
         public  string CoralColor { get; set; } = "";
         [StateRange(0, 1)] public  int CoralFanDirection { get; set; } = 0;
         
@@ -3027,7 +2862,8 @@ namespace MiNET.Blocks
 
     public partial class CoralFanHang : Block // 390 typeof=CoralFanHang
     {
-        [StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
+		public override string Name => "minecraft:coral_fan_hang";
+		[StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
         [StateBit] public  bool CoralHangTypeBit { get; set; } = false;
         [StateBit] public  bool DeadBit { get; set; } = false;
         
@@ -3069,7 +2905,8 @@ namespace MiNET.Blocks
 
     public partial class CoralFanHang2 : Block // 391 typeof=CoralFanHang2
     {
-        [StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
+		public override string Name => "minecraft:coral_fan_hang2";
+		[StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
         [StateBit] public  bool CoralHangTypeBit { get; set; } = false;
         [StateBit] public  bool DeadBit { get; set; } = false;
         
@@ -3111,7 +2948,8 @@ namespace MiNET.Blocks
 
     public partial class CoralFanHang3 : Block // 392 typeof=CoralFanHang3
     {
-        [StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
+		public override string Name => "minecraft:coral_fan_hang3";
+		[StateRange(0, 3)] public  int CoralDirection { get; set; } = 0;
         [StateBit] public  bool CoralHangTypeBit { get; set; } = false;
         [StateBit] public  bool DeadBit { get; set; } = false;
         
@@ -3154,8 +2992,8 @@ namespace MiNET.Blocks
 
     public partial class CraftingTable  // 58 typeof=CraftingTable
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:crafting_table";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3176,7 +3014,8 @@ namespace MiNET.Blocks
 
     public partial class CyanGlazedTerracotta  // 229 typeof=CyanGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:cyan_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3203,7 +3042,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakButton  // 397 typeof=DarkOakButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:dark_oak_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -3236,7 +3076,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakDoor  // 197 typeof=DarkOakDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:dark_oak_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -3279,7 +3120,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakFenceGate  // 186 typeof=DarkOakFenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:dark_oak_fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -3316,7 +3158,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakPressurePlate : PressurePlateBase // 407 typeof=DarkOakPressurePlate
 	{
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:dark_oak_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
         
         public DarkOakPressurePlate() : base(407)
         {
@@ -3348,7 +3191,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakStairs  // 164 typeof=DarkOakStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:dark_oak_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -3380,7 +3224,8 @@ namespace MiNET.Blocks
 
     public partial class DarkOakTrapdoor  // 402 typeof=DarkOakTrapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:dark_oak_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -3417,7 +3262,8 @@ namespace MiNET.Blocks
 
     public partial class DarkPrismarineStairs  // 258 typeof=DarkPrismarineStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:dark_prismarine_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -3449,7 +3295,8 @@ namespace MiNET.Blocks
 
     public partial class DarkoakStandingSign  // 447 typeof=DarkoakStandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:darkoak_standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3476,7 +3323,8 @@ namespace MiNET.Blocks
 
     public partial class DarkoakWallSign  // 448 typeof=DarkoakWallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:darkoak_wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3503,7 +3351,8 @@ namespace MiNET.Blocks
 
     public partial class DaylightDetector  // 151 typeof=DaylightDetector
     {
-        [StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:daylight_detector";
+		[StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3530,7 +3379,8 @@ namespace MiNET.Blocks
 
     public partial class DaylightDetectorInverted  // 178 typeof=DaylightDetectorInverted
     {
-        [StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:daylight_detector_inverted";
+		[StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -3557,8 +3407,8 @@ namespace MiNET.Blocks
 
     public partial class Deadbush  // 32 typeof=Deadbush
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:deadbush";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3577,10 +3427,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Deny  // 0 typeof=Air
+    public partial class Deny  // 211 typeof=Deny
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:deny";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3601,7 +3451,8 @@ namespace MiNET.Blocks
 
     public partial class DetectorRail  // 28 typeof=DetectorRail
     {
-        [StateBit] public  bool RailDataBit { get; set; } = false;
+		public override string Name => "minecraft:detector_rail";
+		[StateBit] public  bool RailDataBit { get; set; } = false;
         [StateRange(0, 5)] public  int RailDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -3633,8 +3484,8 @@ namespace MiNET.Blocks
 
     public partial class DiamondBlock  // 57 typeof=DiamondBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:diamond_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3655,8 +3506,8 @@ namespace MiNET.Blocks
 
     public partial class DiamondOre  // 56 typeof=DiamondOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:diamond_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3677,7 +3528,8 @@ namespace MiNET.Blocks
 
     public partial class DioriteStairs  // 425 typeof=DioriteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:diorite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -3709,7 +3561,8 @@ namespace MiNET.Blocks
 
     public partial class Dirt  // 3 typeof=Dirt
     {
-        [StateEnum("normal","coarse")]
+		public override string Name => "minecraft:dirt";
+		[StateEnum("normal","coarse")]
         public  string DirtType { get; set; } = "normal";
 
         public override void SetState(List<IBlockState> states)
@@ -3737,7 +3590,8 @@ namespace MiNET.Blocks
 
     public partial class Dispenser  // 23 typeof=Dispenser
     {
-        public int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:dispenser";
+		public int FacingDirection { get; set; } = 2;
         public bool TriggeredBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
@@ -3769,7 +3623,8 @@ namespace MiNET.Blocks
 
     public partial class DoublePlant  // 175 typeof=DoublePlant
     {
-        [StateEnum("syringa","grass","fern","rose","paeonia","sunflower")]
+		public override string Name => "minecraft:double_plant";
+		[StateEnum("syringa","grass","fern","rose","paeonia","sunflower")]
         public  string DoublePlantType { get; set; } = "grass";
         [StateBit] public bool UpperBlockBit { get; set; } = false;
 
@@ -3837,8 +3692,8 @@ namespace MiNET.Blocks
 
 	public partial class DragonEgg  // 122 typeof=DragonEgg
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:dragon_egg";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3859,8 +3714,8 @@ namespace MiNET.Blocks
 
     public partial class DriedKelpBlock : Block // 394 typeof=DriedKelpBlock
     {
-        
-        public DriedKelpBlock() : base(394)
+		public override string Name => "minecraft:dried_kelp";
+		public DriedKelpBlock() : base(394)
         {
             IsGenerated = true;
         }
@@ -3886,7 +3741,8 @@ namespace MiNET.Blocks
 
     public partial class Dropper  // 125 typeof=Dropper
     {
-        public int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:dropper";
+		public int FacingDirection { get; set; } = 2;
         public bool TriggeredBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
@@ -3916,37 +3772,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-	public partial class Chalkboard : Block // 230 typeof=Chalkboard
-	{
-
-		public Chalkboard() : base(230)
-		{
-			IsGenerated = true;
-		}
-
-		public override void SetState(List<IBlockState> states)
-		{
-			foreach (var state in states)
-			{
-				switch (state)
-				{
-				} // switch
-			} // foreach
-		} // method
-
-		public override BlockStateContainer GetState()
-		{
-			var record = new BlockStateContainer();
-			record.Name = "minecraft:chalkboard";
-			record.Id = 230;
-			return record;
-		} // method
-	} // class
-
 	public partial class EmeraldBlock  // 133 typeof=EmeraldBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:emerald_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3967,8 +3796,8 @@ namespace MiNET.Blocks
 
     public partial class EmeraldOre  // 129 typeof=EmeraldOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:emerald_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -3989,8 +3818,8 @@ namespace MiNET.Blocks
 
     public partial class EnchantingTable  // 116 typeof=EnchantingTable
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:enchanting_table";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4011,7 +3840,8 @@ namespace MiNET.Blocks
 
     public partial class EndBrickStairs  // 433 typeof=EndBrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:end_brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -4043,8 +3873,8 @@ namespace MiNET.Blocks
 
     public partial class EndBricks  // 206 typeof=EndBricks
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:end_bricks";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4065,8 +3895,8 @@ namespace MiNET.Blocks
 
     public partial class EndGateway  // 209 typeof=EndGateway
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:end_gateway";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4087,8 +3917,8 @@ namespace MiNET.Blocks
 
     public partial class EndPortal  // 119 typeof=EndPortal
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:end_portal";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4109,7 +3939,8 @@ namespace MiNET.Blocks
 
     public partial class EndPortalFrame  // 120 typeof=EndPortalFrame
     {
-        public  bool EndPortalEyeBit { get; set; } = false;
+		public override string Name => "minecraft:end_portal_frame";
+		public  bool EndPortalEyeBit { get; set; } = false;
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
 		public override void SetState(List<IBlockState> states)
@@ -4141,7 +3972,9 @@ namespace MiNET.Blocks
 
     public partial class EndRod  // 208 typeof=EndRod
     {
-        public int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:end_rod";
+
+		public int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4168,8 +4001,8 @@ namespace MiNET.Blocks
 
     public partial class EndStone  // 121 typeof=EndStone
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:end_stone";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4190,6 +4023,7 @@ namespace MiNET.Blocks
 
     public partial class EnderChest  // 130 typeof=EnderChest
     {
+		public override string Name => "minecraft:ender_chest";
 		[StateRange(0, 5)] public int FacingDirection { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -4217,7 +4051,8 @@ namespace MiNET.Blocks
 
     public partial class Farmland  // 60 typeof=Farmland
     {
-        [StateRange(0, 7)] public  int MoisturizedAmount { get; set; } = 0;
+		public override string Name => "minecraft:farmland";
+		[StateRange(0, 7)] public  int MoisturizedAmount { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4244,7 +4079,8 @@ namespace MiNET.Blocks
 
     public partial class FenceGate  // 107 typeof=FenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -4281,7 +4117,8 @@ namespace MiNET.Blocks
 
     public partial class Fire  // 51 typeof=Fire
     {
-        [StateRange(0, 15)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:fire";
+		[StateRange(0, 15)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4308,8 +4145,8 @@ namespace MiNET.Blocks
 
     public partial class FletchingTable : Block // 456 typeof=FletchingTable
     {
-        
-        public FletchingTable() : base(456)
+		public override string Name => "minecraft:fletching_table";
+		public FletchingTable() : base(456)
         {
             IsGenerated = true;
         }
@@ -4335,7 +4172,8 @@ namespace MiNET.Blocks
 
     public partial class FlowerPot  // 140 typeof=FlowerPot
     {
-        [StateBit] public  bool UpdateBit { get; set; } = false;
+		public override string Name => "minecraft:flower_pot";
+		[StateBit] public  bool UpdateBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4362,7 +4200,8 @@ namespace MiNET.Blocks
 
     public partial class FlowingLava  // 10 typeof=FlowingLava
     {
-        [StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
+		public override string Name => "minecraft:flowing_lava";
+		[StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4389,7 +4228,8 @@ namespace MiNET.Blocks
 
     public partial class FlowingWater  // 8 typeof=FlowingWater
     {
-        [StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
+		public override string Name => "minecraft:flowing_water";
+		[StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4414,9 +4254,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Frame  // 0 typeof=Air
-    {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+    public partial class Frame  // 199 typeof=Frame
+	{
+		public override string Name => "minecraft:frame";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         [StateBit] public  bool ItemFrameMapBit { get; set; } = false;
         [StateBit] public  bool ItemFramePhotoBit { get; set; } = false;
 
@@ -4453,7 +4294,8 @@ namespace MiNET.Blocks
 
     public partial class FrostedIce  // 207 typeof=FrostedIce
     {
-        [StateRange(0, 3)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:frosted_ice";
+		[StateRange(0, 3)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4480,6 +4322,7 @@ namespace MiNET.Blocks
 
     public partial class Furnace  // 61 typeof=Furnace
     {
+		public override string Name => "minecraft:furnace";
 		[StateRange(0, 5)] public int Direction { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -4507,8 +4350,8 @@ namespace MiNET.Blocks
 
     public partial class Glass  // 20 typeof=Glass
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:glass";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4529,8 +4372,8 @@ namespace MiNET.Blocks
 
     public partial class GlassPane  // 102 typeof=GlassPane
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:glass_pane";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4551,8 +4394,8 @@ namespace MiNET.Blocks
 
     public partial class Glowingobsidian  // 246 typeof=Glowingobsidian
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:glowingobsidian";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4573,8 +4416,8 @@ namespace MiNET.Blocks
 
     public partial class Glowstone  // 89 typeof=Glowstone
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:glowstone";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4595,8 +4438,8 @@ namespace MiNET.Blocks
 
     public partial class GoldBlock  // 41 typeof=GoldBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:gold_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4617,8 +4460,8 @@ namespace MiNET.Blocks
 
     public partial class GoldOre  // 14 typeof=GoldOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:gold_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4639,7 +4482,8 @@ namespace MiNET.Blocks
 
     public partial class GoldenRail  // 27 typeof=GoldenRail
     {
-        [StateBit] public  bool RailDataBit { get; set; } = false;
+		public override string Name => "minecraft:golden_rail";
+		[StateBit] public  bool RailDataBit { get; set; } = false;
         [StateRange(0, 5)] public  int RailDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -4671,7 +4515,8 @@ namespace MiNET.Blocks
 
     public partial class GraniteStairs  // 424 typeof=GraniteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:granite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -4703,8 +4548,8 @@ namespace MiNET.Blocks
 
     public partial class Grass  // 2 typeof=Grass
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:grass";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4725,8 +4570,8 @@ namespace MiNET.Blocks
 
     public partial class GrassPath  // 198 typeof=GrassPath
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:grass_path";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4747,8 +4592,8 @@ namespace MiNET.Blocks
 
     public partial class Gravel  // 13 typeof=Gravel
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:gravel";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -4769,7 +4614,8 @@ namespace MiNET.Blocks
 
     public partial class GrayGlazedTerracotta  // 227 typeof=GrayGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:gray_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4796,7 +4642,8 @@ namespace MiNET.Blocks
 
     public partial class GreenGlazedTerracotta  // 233 typeof=GreenGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:green_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -4823,7 +4670,8 @@ namespace MiNET.Blocks
 
     public partial class Grindstone : Block // 450 typeof=Grindstone
     {
-        [StateEnum("standing","hanging","side","multiple")]
+		public override string Name => "minecraft:grindstone";
+		[StateEnum("standing","hanging","side","multiple")]
         public  string Attachment { get; set; } = "standing";
         [StateRange(0, 3)] public  int Direction { get; set; } = 0;
         
@@ -4859,130 +4707,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class HardGlass : Block // 253 typeof=HardGlass
-    {
-        
-        public HardGlass() : base(253)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:hard_glass";
-            record.Id = 253;
-            return record;
-        } // method
-    } // class
-
-    public partial class HardGlassPane : Block // 190 typeof=HardGlassPane
-    {
-        
-        public HardGlassPane() : base(190)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:hard_glass_pane";
-            record.Id = 190;
-            return record;
-        } // method
-    } // class
-
-    public partial class HardStainedGlass : Block // 254 typeof=HardStainedGlass
-    {
-        [StateEnum("white","orange","magenta","light_blue","yellow","lime","pink","gray","silver","cyan","purple","blue","brown","green","red","black")]
-        public  string Color { get; set; } = "white";
-        
-        public HardStainedGlass() : base(254)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateString s when s.Name == "color":
-                        Color = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:hard_stained_glass";
-            record.Id = 254;
-            record.States.Add(new BlockStateString {Name = "color", Value = Color});
-            return record;
-        } // method
-    } // class
-
-    public partial class HardStainedGlassPane : Block // 191 typeof=HardStainedGlassPane
-    {
-        [StateEnum("white","orange","magenta","light_blue","yellow","lime","pink","gray","silver","cyan","purple","blue","brown","green","red","black")]
-        public  string Color { get; set; } = "white";
-        
-        public HardStainedGlassPane() : base(191)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateString s when s.Name == "color":
-                        Color = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:hard_stained_glass_pane";
-            record.Id = 191;
-            record.States.Add(new BlockStateString {Name = "color", Value = Color});
-            return record;
-        } // method
-    } // class
-
     public partial class HardenedClay  // 172 typeof=HardenedClay
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:hardened_clay";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5003,7 +4731,8 @@ namespace MiNET.Blocks
 
     public partial class HayBlock  // 170 typeof=HayBlock
     {
-        [StateRange(0, 3)] public  int Deprecated { get; set; } = 0;
+		public override string Name => "minecraft:hay_block";
+		[StateRange(0, 3)] public  int Deprecated { get; set; } = 0;
         [StateEnum("x","z","y")]
         public string PillarAxis { get; set; } = "x";
 
@@ -5036,7 +4765,8 @@ namespace MiNET.Blocks
 
     public partial class HeavyWeightedPressurePlate  // 148 typeof=HeavyWeightedPressurePlate
     {
-        [StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:heavy_weighted_pressure_plate";
+		[StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5061,53 +4791,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class HoneyBlock  // 0 typeof=Air
-    {
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:honey_block";
-            record.Id = 0;
-            return record;
-        } // method
-    } // class
-
-    public partial class HoneycombBlock  // 0 typeof=Air
-    {
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:honeycomb_block";
-            record.Id = 0;
-            return record;
-        } // method
-    } // class
-
     public partial class Hopper  // 154 typeof=Hopper
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:hopper";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         [StateBit] public  bool ToggleBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
@@ -5139,8 +4826,9 @@ namespace MiNET.Blocks
 
     public partial class Ice  // 79 typeof=Ice
     {
+		public override string Name => "minecraft:ice";
 
-        public override void SetState(List<IBlockState> states)
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5161,8 +4849,8 @@ namespace MiNET.Blocks
 
     public partial class InfoUpdate : Block // 248 typeof=InfoUpdate
     {
-        
-        public InfoUpdate() : base(248)
+		public override string Name => "minecraft:infoupdate";
+		public InfoUpdate() : base(248)
         {
             IsGenerated = true;
         }
@@ -5188,8 +4876,8 @@ namespace MiNET.Blocks
 
     public partial class InfoUpdate2 : Block // 249 typeof=InfoUpdate2
     {
-        
-        public InfoUpdate2() : base(249)
+		public override string Name => "minecraft:infoupdate2";
+		public InfoUpdate2() : base(249)
         {
             IsGenerated = true;
         }
@@ -5215,8 +4903,8 @@ namespace MiNET.Blocks
 
     public partial class InvisibleBedrock  // 95 typeof=InvisibleBedrock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:invisible_bedrock";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5237,8 +4925,8 @@ namespace MiNET.Blocks
 
     public partial class IronBars  // 101 typeof=IronBars
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:iron_bars";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5259,8 +4947,8 @@ namespace MiNET.Blocks
 
     public partial class IronBlock  // 42 typeof=IronBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:iron_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5281,10 +4969,11 @@ namespace MiNET.Blocks
 
     public partial class IronDoor  // 71 typeof=IronDoor
     {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
-        [StateBit] public  bool DoorHingeBit { get; set; } = false;
-        [StateBit] public  bool OpenBit { get; set; } = false;
-        [StateBit] public  bool UpperBlockBit { get; set; } = false;
+		public override string Name => "minecraft:iron_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
+        [StateBit] public override bool DoorHingeBit { get; set; } = false;
+        [StateBit] public override bool OpenBit { get; set; } = false;
+        [StateBit] public override bool UpperBlockBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5323,8 +5012,8 @@ namespace MiNET.Blocks
 
     public partial class IronOre  // 15 typeof=IronOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:iron_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5345,9 +5034,10 @@ namespace MiNET.Blocks
 
     public partial class IronTrapdoor  // 167 typeof=IronTrapdoor
     {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
-        [StateBit] public  bool OpenBit { get; set; } = false;
-        [StateBit] public  bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:iron_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
+        [StateBit] public override bool OpenBit { get; set; } = false;
+        [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5380,42 +5070,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Jigsaw  // 0 typeof=Air
-    {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
-        [StateRange(0, 3)] public  int Rotation { get; set; } = 1;
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateInt s when s.Name == "facing_direction":
-                        FacingDirection = s.Value;
-                        break;
-                    case BlockStateInt s when s.Name == "rotation":
-                        Rotation = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:jigsaw";
-            record.Id = 0;
-            record.States.Add(new BlockStateInt {Name = "facing_direction", Value = FacingDirection});
-            record.States.Add(new BlockStateInt {Name = "rotation", Value = Rotation});
-            return record;
-        } // method
-    } // class
-
     public partial class Jukebox  // 84 typeof=Jukebox
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:jukebox";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5436,7 +5094,8 @@ namespace MiNET.Blocks
 
     public partial class JungleButton  // 398 typeof=JungleButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:jungle_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -5469,7 +5128,8 @@ namespace MiNET.Blocks
 
     public partial class JungleDoor  // 195 typeof=JungleDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:jungle_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -5512,7 +5172,8 @@ namespace MiNET.Blocks
 
     public partial class JungleFenceGate  // 185 typeof=JungleFenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:jungle_fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -5549,7 +5210,8 @@ namespace MiNET.Blocks
 
     public partial class JunglePressurePlate : PressurePlateBase // 408 typeof=JunglePressurePlate
 	{
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:jungle_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
         
         public JunglePressurePlate() : base(408)
         {
@@ -5581,7 +5243,8 @@ namespace MiNET.Blocks
 
     public partial class JungleStairs  // 136 typeof=JungleStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:jungle_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -5613,7 +5276,8 @@ namespace MiNET.Blocks
 
     public partial class JungleStandingSign  // 443 typeof=JungleStandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:jungle_standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5640,7 +5304,8 @@ namespace MiNET.Blocks
 
     public partial class JungleTrapdoor  // 403 typeof=JungleTrapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:jungle_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -5677,7 +5342,8 @@ namespace MiNET.Blocks
 
     public partial class JungleWallSign  // 444 typeof=JungleWallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:jungle_wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5704,7 +5370,8 @@ namespace MiNET.Blocks
 
     public partial class Kelp : Block // 393 typeof=Kelp
     {
-        [StateRange(0, 25)] public  int KelpAge { get; set; } = 0;
+		public override string Name => "minecraft:kelp";
+		[StateRange(0, 25)] public  int KelpAge { get; set; } = 0;
         
         public Kelp() : base(393)
         {
@@ -5736,7 +5403,8 @@ namespace MiNET.Blocks
 
     public partial class Ladder  // 65 typeof=Ladder
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:ladder";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5763,7 +5431,8 @@ namespace MiNET.Blocks
 
     public partial class Lantern : Block // 463 typeof=Lantern
     {
-        [StateBit] public  bool Hanging { get; set; } = false;
+		public override string Name => "minecraft:lantern";
+		[StateBit] public  bool Hanging { get; set; } = false;
         
         public Lantern() : base(463)
         {
@@ -5795,8 +5464,8 @@ namespace MiNET.Blocks
 
     public partial class LapisBlock  // 22 typeof=LapisBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:lapis_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5817,8 +5486,8 @@ namespace MiNET.Blocks
 
     public partial class LapisOre  // 21 typeof=LapisOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:lapis_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -5839,7 +5508,8 @@ namespace MiNET.Blocks
 
     public partial class Lava  // 11 typeof=Lava
     {
-        [StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
+		public override string Name => "minecraft:lava";
+		[StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -5866,7 +5536,9 @@ namespace MiNET.Blocks
 
     public partial class Leaves  // 18 typeof=Leaves
     {
-        [StateEnum("oak","spruce","birch","jungle")]
+		public override string Name => "minecraft:leaves";
+
+		[StateEnum("oak","spruce","birch","jungle")]
         public  string OldLeafType { get; set; } = "oak";
         [StateBit] public  bool PersistentBit { get; set; } = false;
         [StateBit] public  bool UpdateBit { get; set; } = false;
@@ -5904,7 +5576,9 @@ namespace MiNET.Blocks
 
     public partial class Leaves2  // 161 typeof=Leaves2
     {
-        [StateEnum("dark_oak","acacia")]
+		public override string Name => "minecraft:leaves2";
+
+		[StateEnum("dark_oak","acacia")]
         public  string NewLeafType { get; set; } = "acacia";
         [StateBit] public  bool PersistentBit { get; set; } = false;
         [StateBit] public  bool UpdateBit { get; set; } = false;
@@ -5942,6 +5616,7 @@ namespace MiNET.Blocks
 
     public partial class Lectern : Block // 449 typeof=Lectern
     {
+		public override string Name => "minecraft:lectern";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 		public  bool PoweredBit { get; set; } = false;
 
@@ -5971,7 +5646,8 @@ namespace MiNET.Blocks
 
     public partial class Lever  // 69 typeof=Lever
     {
-        public string LeverDirection { get; set; } = "down_east_west";
+		public override string Name => "minecraft:lever";
+		public string LeverDirection { get; set; } = "down_east_west";
 		public bool OpenBit { get; set; } = false;
 
 		public override void SetState(List<IBlockState> states)
@@ -6002,36 +5678,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class LightBlock  // 0 typeof=Air
-    {
-        [StateRange(0, 15)] public  int BlockLightLevel { get; set; } = 0;
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateInt s when s.Name == "block_light_level":
-                        BlockLightLevel = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:light_block";
-            record.Id = 0;
-            record.States.Add(new BlockStateInt {Name = "block_light_level", Value = BlockLightLevel});
-            return record;
-        } // method
-    } // class
-
     public partial class LightBlueGlazedTerracotta  // 223 typeof=LightBlueGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:light_blue_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6058,7 +5708,8 @@ namespace MiNET.Blocks
 
     public partial class LightWeightedPressurePlate  // 147 typeof=LightWeightedPressurePlate
     {
-        [StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:light_weighted_pressure_plate";
+		[StateRange(0, 15)] public override int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6085,7 +5736,8 @@ namespace MiNET.Blocks
 
     public partial class LimeGlazedTerracotta  // 225 typeof=LimeGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:lime_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6112,6 +5764,7 @@ namespace MiNET.Blocks
 
     public partial class LitBlastFurnace  // 469 typeof=LitBlastFurnace
     {
+		public override string Name => "minecraft:lit_blast_furnace";
 		[StateRange(0, 5)] public int Direction { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -6139,6 +5792,7 @@ namespace MiNET.Blocks
 
     public partial class LitFurnace  // 62 typeof=LitFurnace
     {
+		public override string Name => "minecraft:lit_furnace";
 		[StateRange(0, 5)] public int Direction { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -6166,6 +5820,7 @@ namespace MiNET.Blocks
 
     public partial class LitPumpkin  // 91 typeof=LitPumpkin
     {
+		public override string Name => "minecraft:lit_pumpkin";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
 		public override void SetState(List<IBlockState> states)
@@ -6193,8 +5848,8 @@ namespace MiNET.Blocks
 
     public partial class LitRedstoneLamp  // 124 typeof=LitRedstoneLamp
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:lit_redstone_lamp";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6215,8 +5870,8 @@ namespace MiNET.Blocks
 
     public partial class LitRedstoneOre  // 74 typeof=LitRedstoneOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:lit_redstone_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6237,6 +5892,7 @@ namespace MiNET.Blocks
 
     public partial class LitSmoker : Block // 454 typeof=LitSmoker
     {
+		public override string Name => "minecraft:lit_smoker";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
 		public LitSmoker() : base(454)
@@ -6269,7 +5925,8 @@ namespace MiNET.Blocks
 
     public partial class Loom  // 459 typeof=Loom
     {
-        [StateRange(0, 3)] public  int Direction { get; set; } = 0;
+		public override string Name => "minecraft:loom";
+		[StateRange(0, 3)] public  int Direction { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6296,7 +5953,8 @@ namespace MiNET.Blocks
 
     public partial class MagentaGlazedTerracotta  // 222 typeof=MagentaGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:magenta_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6323,8 +5981,9 @@ namespace MiNET.Blocks
 
     public partial class Magma : Block // 213 typeof=Magma
     {
-        
-        public Magma() : base(213)
+		public override string Name => "minecraft:magma";
+
+		public Magma() : base(213)
         {
             IsGenerated = true;
         }
@@ -6350,8 +6009,8 @@ namespace MiNET.Blocks
 
     public partial class MelonBlock  // 103 typeof=MelonBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:melon_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6372,7 +6031,8 @@ namespace MiNET.Blocks
 
     public partial class MelonStem  // 105 typeof=MelonStem
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:melon_stem";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         [StateRange(0, 7)] public  int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6404,8 +6064,8 @@ namespace MiNET.Blocks
 
     public partial class MobSpawner  // 52 typeof=MobSpawner
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:mob_spawner";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6426,7 +6086,8 @@ namespace MiNET.Blocks
 
     public partial class MonsterEgg  // 97 typeof=MonsterEgg
     {
-        [StateEnum("cobblestone","stone_brick","mossy_stone_brick","cracked_stone_brick","chiseled_stone_brick","stone")]
+		public override string Name => "minecraft:monster_egg";
+		[StateEnum("cobblestone","stone_brick","mossy_stone_brick","cracked_stone_brick","chiseled_stone_brick","stone")]
         public  string MonsterEggStoneType { get; set; } = "stone";
 
         public override void SetState(List<IBlockState> states)
@@ -6454,8 +6115,8 @@ namespace MiNET.Blocks
 
     public partial class MossyCobblestone  // 48 typeof=MossyCobblestone
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:mossy_cobblestone";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6476,7 +6137,8 @@ namespace MiNET.Blocks
 
     public partial class MossyCobblestoneStairs  // 434 typeof=MossyCobblestoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:mossy_cobblestone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6508,7 +6170,8 @@ namespace MiNET.Blocks
 
     public partial class MossyStoneBrickStairs  // 430 typeof=MossyStoneBrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:mossy_stone_brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6538,37 +6201,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class MovingBlock : Block // 250 typeof=MovingBlock
-    {
-        
-        public MovingBlock() : base(250)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:moving_block";
-            record.Id = 250;
-            return record;
-        } // method
-    } // class
-
     public partial class Mycelium  // 110 typeof=Mycelium
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:mycelium";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6589,8 +6225,8 @@ namespace MiNET.Blocks
 
     public partial class NetherBrick  // 112 typeof=NetherBrick
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:nether_brick";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6611,8 +6247,8 @@ namespace MiNET.Blocks
 
     public partial class NetherBrickFence  // 113 typeof=NetherBrickFence
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:nether_brick_fence";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6633,7 +6269,8 @@ namespace MiNET.Blocks
 
     public partial class NetherBrickStairs  // 114 typeof=NetherBrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:nether_brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6666,7 +6303,8 @@ namespace MiNET.Blocks
 
     public partial class NetherWart  // 115 typeof=NetherWart
     {
-        [StateRange(0, 3)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:nether_wart";
+		[StateRange(0, 3)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6693,8 +6331,8 @@ namespace MiNET.Blocks
 
     public partial class NetherWartBlock : Block // 214 typeof=NetherWartBlock
     {
-        
-        public NetherWartBlock() : base(214)
+		public override string Name => "minecraft:nether_wart_block";
+		public NetherWartBlock() : base(214)
         {
             IsGenerated = true;
         }
@@ -6721,8 +6359,8 @@ namespace MiNET.Blocks
 
     public partial class Netherrack  // 87 typeof=Netherrack
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:netherrack";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6741,31 +6379,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Netherreactor  // 247 typeof=Netherreactor
-    {
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:netherreactor";
-            record.Id = 247;
-            return record;
-        } // method
-    } // class
-
     public partial class NormalStoneStairs  // 435 typeof=NormalStoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:normal_stone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6797,8 +6414,8 @@ namespace MiNET.Blocks
 
     public partial class Noteblock  // 25 typeof=Noteblock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:noteblock";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6819,7 +6436,8 @@ namespace MiNET.Blocks
 
     public partial class OakStairs  // 53 typeof=OakStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:oak_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -6885,8 +6503,8 @@ namespace MiNET.Blocks
 
 	public partial class Obsidian  // 49 typeof=Obsidian
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:obsidian";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6907,7 +6525,8 @@ namespace MiNET.Blocks
 
     public partial class OrangeGlazedTerracotta  // 221 typeof=OrangeGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:orange_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6934,8 +6553,9 @@ namespace MiNET.Blocks
 
     public partial class PackedIce  // 174 typeof=PackedIce
     {
+		public override string Name => "minecraft:packed_ice";
 
-        public override void SetState(List<IBlockState> states)
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -6956,7 +6576,8 @@ namespace MiNET.Blocks
 
     public partial class PinkGlazedTerracotta  // 226 typeof=PinkGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:pink_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -6983,7 +6604,8 @@ namespace MiNET.Blocks
 
     public partial class Piston  // 33 typeof=Piston
     {
-        public int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:piston";
+		public int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7010,7 +6632,8 @@ namespace MiNET.Blocks
 
     public partial class PistonArmCollision  // 34 typeof=PistonArmCollision
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:piston_arm_collision";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7067,8 +6690,8 @@ namespace MiNET.Blocks
 
     public partial class Podzol  // 243 typeof=Podzol
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:podzol";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7089,7 +6712,8 @@ namespace MiNET.Blocks
 
     public partial class PolishedAndesiteStairs  // 429 typeof=PolishedAndesiteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:polished_andesite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7122,7 +6746,8 @@ namespace MiNET.Blocks
 
     public partial class PolishedDioriteStairs  // 428 typeof=PolishedDioriteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:polished_diorite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7154,7 +6779,8 @@ namespace MiNET.Blocks
 
     public partial class PolishedGraniteStairs  // 427 typeof=PolishedGraniteStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:polished_granite_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7186,7 +6812,8 @@ namespace MiNET.Blocks
 
     public partial class Portal  // 90 typeof=Portal
     {
-        [StateEnum("x","z","unknown")]
+		public override string Name => "minecraft:portal";
+		[StateEnum("x","z","unknown")]
         public  string PortalAxis { get; set; } = "x";
 
         public override void SetState(List<IBlockState> states)
@@ -7214,7 +6841,8 @@ namespace MiNET.Blocks
 
     public partial class Potatoes  // 142 typeof=Potatoes
     {
-        [StateRange(0, 7)] public override int Growth { get; set; } = 0;
+		public override string Name => "minecraft:potatoes";
+		[StateRange(0, 7)] public override int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7241,6 +6869,7 @@ namespace MiNET.Blocks
 
     public partial class PoweredComparator  // 150 typeof=PoweredComparator
     {
+		public override string Name => "minecraft:powered_comparator";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 		[StateBit] public  bool OutputLitBit { get; set; } = false;
         [StateBit] public  bool OutputSubtractBit { get; set; } = false;
@@ -7278,6 +6907,7 @@ namespace MiNET.Blocks
 
     public partial class PoweredRepeater  // 94 typeof=PoweredRepeater
     {
+		public override string Name => "minecraft:powered_repeater";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 		[StateRange(0, 3)] public  int RepeaterDelay { get; set; } = 0;
 
@@ -7310,6 +6940,7 @@ namespace MiNET.Blocks
 
 	public partial class Prismarine // 168 typeof=Prismarine
 	{
+		public override string Name => "minecraft:prismarine";
 		[StateEnum("dark", "default", "bricks")]
 		public string PrismarineBlockType { get; set; } = "default";
 
@@ -7338,7 +6969,8 @@ namespace MiNET.Blocks
 
 	public partial class PrismarineBricksStairs  // 259 typeof=PrismarineBricksStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:prismarine_bricks_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7370,7 +7002,8 @@ namespace MiNET.Blocks
 
     public partial class PrismarineStairs  // 257 typeof=PrismarineStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:prismarine_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7402,6 +7035,7 @@ namespace MiNET.Blocks
 
     public partial class Pumpkin  // 86 typeof=Pumpkin
     {
+		public override string Name => "minecraft:pumpkin";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
 		public override void SetState(List<IBlockState> states)
@@ -7429,7 +7063,8 @@ namespace MiNET.Blocks
 
     public partial class PumpkinStem  // 104 typeof=PumpkinStem
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:pumpkin_stem";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         [StateRange(0, 7)] public  int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7461,7 +7096,8 @@ namespace MiNET.Blocks
 
     public partial class PurpleGlazedTerracotta  // 219 typeof=PurpleGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:purple_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7488,7 +7124,8 @@ namespace MiNET.Blocks
 
     public partial class PurpurBlock  // 201 typeof=PurpurBlock
     {
-        [StateEnum("default","chiseled","lines","smooth")]
+		public override string Name => "minecraft:purpur_block";
+		[StateEnum("default","chiseled","lines","smooth")]
         public  string ChiselType { get; set; } = "";
         [StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "";
@@ -7522,7 +7159,8 @@ namespace MiNET.Blocks
 
     public partial class PurpurStairs  // 203 typeof=PurpurStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:purpur_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7554,6 +7192,7 @@ namespace MiNET.Blocks
 
 	public partial class QuartzBlock // 155 typeof=QuartzBlock
 	{
+		public override string Name => "minecraft:quartz_block";
 		[StateEnum("smooth", "default", "lines", "chiseled")]
 		public string ChiselType { get; set; } = "default";
 		[StateEnum("x", "z", "y")]
@@ -7589,8 +7228,8 @@ namespace MiNET.Blocks
 
 	public partial class QuartzOre  // 153 typeof=QuartzOre
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:quartz_ore";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7611,7 +7250,8 @@ namespace MiNET.Blocks
 
     public partial class QuartzStairs  // 156 typeof=QuartzStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:quartz_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7643,7 +7283,8 @@ namespace MiNET.Blocks
 
     public partial class Rail  // 66 typeof=Rail
     {
-        [StateRange(0, 9)] public  int RailDirection { get; set; } = 0;
+		public override string Name => "minecraft:rail";
+		[StateRange(0, 9)] public  int RailDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7670,7 +7311,8 @@ namespace MiNET.Blocks
 
     public partial class RedFlower  // 38 typeof=RedFlower
     {
-        [StateEnum("orchid","allium","houstonia","tulip_red","tulip_orange","tulip_white","tulip_pink","oxeye","cornflower","lily_of_the_valley","poppy")]
+		public override string Name => "minecraft:red_flower";
+		[StateEnum("orchid","allium","houstonia","tulip_red","tulip_orange","tulip_white","tulip_pink","oxeye","cornflower","lily_of_the_valley","poppy")]
         public  string FlowerType { get; set; } = "";
 
         public override void SetState(List<IBlockState> states)
@@ -7698,7 +7340,8 @@ namespace MiNET.Blocks
 
     public partial class RedGlazedTerracotta  // 234 typeof=RedGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:red_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7725,8 +7368,8 @@ namespace MiNET.Blocks
 
     public partial class RedMushroom  // 40 typeof=RedMushroom
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:red_mushroom";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7747,7 +7390,8 @@ namespace MiNET.Blocks
 
     public partial class RedMushroomBlock  // 100 typeof=RedMushroomBlock
     {
-        [StateRange(0, 15)] public  int HugeMushroomBits { get; set; } = 0;
+		public override string Name => "minecraft:red_mushroom_block";
+		[StateRange(0, 15)] public  int HugeMushroomBits { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7774,8 +7418,8 @@ namespace MiNET.Blocks
 
     public partial class RedNetherBrick : Block // 215 typeof=RedNetherBrick
     {
-        
-        public RedNetherBrick() : base(215)
+		public override string Name => "minecraft:red_nether_brick";
+		public RedNetherBrick() : base(215)
         {
             IsGenerated = true;
         }
@@ -7801,7 +7445,8 @@ namespace MiNET.Blocks
 
     public partial class RedNetherBrickStairs  // 439 typeof=RedNetherBrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:red_nether_brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7833,7 +7478,8 @@ namespace MiNET.Blocks
 
     public partial class RedSandstone  // 179 typeof=RedSandstone
     {
-        [StateEnum("default","heiroglyphs","cut","smooth")]
+		public override string Name => "minecraft:red_sandstone";
+		[StateEnum("default","heiroglyphs","cut","smooth")]
         public  string SandStoneType { get; set; } = "default";
 
         public override void SetState(List<IBlockState> states)
@@ -7861,7 +7507,8 @@ namespace MiNET.Blocks
 
     public partial class RedSandstoneStairs  // 180 typeof=RedSandstoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:red_sandstone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -7893,8 +7540,8 @@ namespace MiNET.Blocks
 
     public partial class RedstoneBlock  // 152 typeof=RedstoneBlock
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:redstone_block";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7915,8 +7562,8 @@ namespace MiNET.Blocks
 
     public partial class RedstoneLamp  // 123 typeof=RedstoneLamp
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:redstone_lamp";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7937,8 +7584,9 @@ namespace MiNET.Blocks
 
     public partial class RedstoneOre  // 73 typeof=RedstoneOre
     {
+		public override string Name => "minecraft:redstone_ore";
 
-        public override void SetState(List<IBlockState> states)
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -7959,7 +7607,8 @@ namespace MiNET.Blocks
 
     public partial class RedstoneTorch  // 76 typeof=RedstoneTorch
     {
-        public string TorchFacingDirection { get; set; } = "top";
+		public override string Name => "minecraft:redstone_torch";
+		public string TorchFacingDirection { get; set; } = "top";
 
         public override void SetState(List<IBlockState> states)
         {
@@ -7986,7 +7635,8 @@ namespace MiNET.Blocks
 
     public partial class RedstoneWire  // 55 typeof=RedstoneWire
     {
-        [StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:redstone_wire";
+		[StateRange(0, 15)] public  int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8013,7 +7663,8 @@ namespace MiNET.Blocks
 
     public partial class Reeds  // 83 typeof=Reeds
     {
-        [StateRange(0, 15)] public  int Age { get; set; } = 0;
+		public override string Name => "minecraft:reeds";
+		[StateRange(0, 15)] public  int Age { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8040,7 +7691,8 @@ namespace MiNET.Blocks
 
     public partial class RepeatingCommandBlock : Block // 188 typeof=RepeatingCommandBlock
     {
-        [StateBit] public  bool ConditionalBit { get; set; } = false;
+		public override string Name => "minecraft:repeating_command_block";
+		[StateBit] public  bool ConditionalBit { get; set; } = false;
         [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
         
         public RepeatingCommandBlock() : base(188)
@@ -8105,7 +7757,8 @@ namespace MiNET.Blocks
 
     public partial class Sand  // 12 typeof=Sand
     {
-        [StateEnum("normal","red")]
+		public override string Name => "minecraft:sand";
+		[StateEnum("normal","red")]
         public  string SandType { get; set; } = "normal";
 
         public override void SetState(List<IBlockState> states)
@@ -8133,6 +7786,7 @@ namespace MiNET.Blocks
 
 	public partial class Sandstone // 24 typeof=Sandstone
 	{
+		public override string Name => "minecraft:sandstone";
 		[StateEnum("default", "smooth", "cut", "heiroglyphs")]
 		public string SandStoneType { get; set; } = "default";
 
@@ -8161,7 +7815,8 @@ namespace MiNET.Blocks
 
 	public partial class SandstoneStairs  // 128 typeof=SandstoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:sandstone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8193,7 +7848,8 @@ namespace MiNET.Blocks
 
     public partial class Sapling  // 6 typeof=Sapling
     {
-        [StateBit] public  bool AgeBit { get; set; } = false;
+		public override string Name => "minecraft:sapling";
+		[StateBit] public  bool AgeBit { get; set; } = false;
         [StateEnum("spruce","birch","jungle","acacia","dark_oak","oak")]
         public  string SaplingType { get; set; } = "oak";
 
@@ -8226,7 +7882,8 @@ namespace MiNET.Blocks
 
     public partial class Scaffolding : Block // 420 typeof=Scaffolding
     {
-        [StateRange(0, 7)] public  int Stability { get; set; } = 0;
+		public override string Name => "minecraft:scaffolding";
+		[StateRange(0, 7)] public  int Stability { get; set; } = 0;
         [StateBit] public  bool StabilityCheck { get; set; } = false;
         
         public Scaffolding() : base(420)
@@ -8263,8 +7920,8 @@ namespace MiNET.Blocks
 
     public partial class SeaLantern  // 169 typeof=SeaLantern
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:sea_lantern";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -8285,7 +7942,8 @@ namespace MiNET.Blocks
 
     public partial class SeaPickle : Block // 411 typeof=SeaPickle
     {
-        [StateRange(0, 3)] public  int ClusterCount { get; set; } = 0;
+		public override string Name => "minecraft:sea_pickle";
+		[StateRange(0, 3)] public  int ClusterCount { get; set; } = 0;
         [StateBit] public  bool DeadBit { get; set; } = false;
         
         public SeaPickle() : base(411)
@@ -8322,7 +7980,8 @@ namespace MiNET.Blocks
 
     public partial class Seagrass : Block // 385 typeof=Seagrass
     {
-        [StateEnum("double_top","double_bot","default")]
+		public override string Name => "minecraft:seagrass";
+		[StateEnum("double_top","double_bot","default")]
         public  string SeaGrassType { get; set; } = "default";
         
         public Seagrass() : base(385)
@@ -8356,7 +8015,8 @@ namespace MiNET.Blocks
 
     public partial class SilverGlazedTerracotta  // 228 typeof=SilverGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:silver_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8383,7 +8043,8 @@ namespace MiNET.Blocks
 
     public partial class Skull  // 144 typeof=Skull
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:skull";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8410,8 +8071,8 @@ namespace MiNET.Blocks
 
     public partial class Slime  // 165 typeof=Slime
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:slime";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -8432,8 +8093,8 @@ namespace MiNET.Blocks
 
     public partial class SmithingTable : Block // 457 typeof=SmithingTable
     {
-        
-        public SmithingTable() : base(457)
+		public override string Name => "minecraft:smithing_table";
+		public SmithingTable() : base(457)
         {
             IsGenerated = true;
         }
@@ -8459,6 +8120,7 @@ namespace MiNET.Blocks
 
     public partial class Smoker : Block // 453 typeof=Smoker
     {
+		public override string Name => "minecraft:smoker";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 
 		public override void SetState(List<IBlockState> states)
@@ -8486,7 +8148,8 @@ namespace MiNET.Blocks
 
     public partial class SmoothQuartzStairs  // 440 typeof=SmoothQuartzStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:smooth_quartz_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8518,7 +8181,8 @@ namespace MiNET.Blocks
 
     public partial class SmoothRedSandstoneStairs  // 431 typeof=SmoothRedSandstoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:smooth_red_sandstone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8550,7 +8214,8 @@ namespace MiNET.Blocks
 
     public partial class SmoothSandstoneStairs  // 432 typeof=SmoothSandstoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:smooth_sandstone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8582,8 +8247,8 @@ namespace MiNET.Blocks
 
     public partial class SmoothStone : Block // 438 typeof=SmoothStone
     {
-        
-        public SmoothStone() : base(438)
+		public override string Name => "minecraft:smooth_stone";
+		public SmoothStone() : base(438)
         {
             IsGenerated = true;
         }
@@ -8609,8 +8274,8 @@ namespace MiNET.Blocks
 
     public partial class Snow  // 80 typeof=Snow
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:snow";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -8631,7 +8296,8 @@ namespace MiNET.Blocks
 
     public partial class SnowLayer  // 78 typeof=SnowLayer
     {
-        [StateBit] public  bool CoveredBit { get; set; } = false;
+		public override string Name => "minecraft:snow_layer";
+		[StateBit] public  bool CoveredBit { get; set; } = false;
         [StateRange(0, 7)] public  int Height { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8664,8 +8330,8 @@ namespace MiNET.Blocks
 
     public partial class SoulSand  // 88 typeof=SoulSand
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:soul_sand";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -8687,7 +8353,8 @@ namespace MiNET.Blocks
 
     public partial class Sponge  // 19 typeof=Sponge
     {
-        [StateEnum("dry","wet")]
+		public override string Name => "minecraft:sponge";
+		[StateEnum("dry","wet")]
         public  string SpongeType { get; set; } = "dry";
 
         public override void SetState(List<IBlockState> states)
@@ -8715,7 +8382,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceButton  // 399 typeof=SpruceButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:spruce_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -8748,7 +8416,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceDoor  // 193 typeof=SpruceDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:spruce_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -8791,7 +8460,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceFenceGate  // 183 typeof=SpruceFenceGate
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:spruce_fence_gate";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public  bool InWallBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
 
@@ -8828,7 +8498,8 @@ namespace MiNET.Blocks
 
     public partial class SprucePressurePlate : PressurePlateBase // 409 typeof=SprucePressurePlate
 	{
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:spruce_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
         
         public SprucePressurePlate() : base(409)
         {
@@ -8860,7 +8531,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceStairs  // 134 typeof=SpruceStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:spruce_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -8892,7 +8564,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceStandingSign  // 436 typeof=SpruceStandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:spruce_standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8919,7 +8592,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceTrapdoor  // 404 typeof=SpruceTrapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:spruce_trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -8956,7 +8630,8 @@ namespace MiNET.Blocks
 
     public partial class SpruceWallSign  // 437 typeof=SpruceWallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:spruce_wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8983,7 +8658,8 @@ namespace MiNET.Blocks
 
     public partial class StandingBanner  // 176 typeof=StandingBanner
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:standing_banner";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9010,7 +8686,8 @@ namespace MiNET.Blocks
 
     public partial class StandingSign  // 63 typeof=StandingSign
     {
-        [StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
+		public override string Name => "minecraft:standing_sign";
+		[StateRange(0, 15)] public  int GroundSignDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9036,8 +8713,9 @@ namespace MiNET.Blocks
     } // class
 
     public partial class StickyPiston  // 29 typeof=StickyPiston
-    {
-        public int FacingDirection { get; set; } = 2;
+	{
+		public override string Name => "minecraft:sticky_piston";
+		public int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9062,9 +8740,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class StickyPistonArmCollision  // 0 typeof=Air
-    {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+    public partial class StickyPistonArmCollision  // 472 typeof=StickyPistonArmCollision
+	{
+		public override string Name => "minecraft:sticky_piston_arm_collision";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9091,6 +8770,7 @@ namespace MiNET.Blocks
 
 	public partial class Stone // 1 typeof=Stone
 	{
+		public override string Name => "minecraft:stone";
 		[StateEnum("andesite_smooth", "diorite_smooth", "granite", "diorite", "stone", "granite_smooth", "andesite")]
 		public string StoneType { get; set; } = "stone";
 
@@ -9119,7 +8799,8 @@ namespace MiNET.Blocks
 
 	public partial class StoneBrickStairs  // 109 typeof=StoneBrickStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:stone_brick_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -9151,7 +8832,8 @@ namespace MiNET.Blocks
 
     public partial class StoneButton  // 77 typeof=StoneButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:stone_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -9184,7 +8866,8 @@ namespace MiNET.Blocks
 
     public partial class StonePressurePlate  // 70 typeof=StonePressurePlate
     {
-        public int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:stone_pressure_plate";
+		public int RedstoneSignal { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9211,7 +8894,8 @@ namespace MiNET.Blocks
 
     public partial class StoneStairs  // 67 typeof=StoneStairs
     {
-        [StateBit] public override bool UpsideDownBit { get; set; } = false;
+		public override string Name => "minecraft:stone_stairs";
+		[StateBit] public override bool UpsideDownBit { get; set; } = false;
         [StateRange(0, 3)] public override int WeirdoDirection { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
@@ -9273,6 +8957,7 @@ namespace MiNET.Blocks
 
 	public partial class Stonecutter  // 245 typeof=Stonecutter
     {
+		public override string Name => "minecraft:stonecutter";
 		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
@@ -9294,6 +8979,7 @@ namespace MiNET.Blocks
 
     public partial class StonecutterBlock : Block // 452 typeof=StonecutterBlock
     {
+		public override string Name => "minecraft:stonecutter_block";
 		[StateRange(0, 5)] public int Direction { get; set; } = 2;
 
 		public StonecutterBlock() : base(452)
@@ -9326,7 +9012,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedAcaciaLog : Block // 263 typeof=StrippedAcaciaLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_acacia_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedAcaciaLog() : base(263)
@@ -9359,7 +9046,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedBirchLog : Block // 261 typeof=StrippedBirchLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_birch_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedBirchLog() : base(261)
@@ -9393,7 +9081,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedDarkOakLog : Block // 264 typeof=StrippedDarkOakLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_dark_oak_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedDarkOakLog() : base(264)
@@ -9426,7 +9115,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedJungleLog : Block // 262 typeof=StrippedJungleLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_jungle_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedJungleLog() : base(262)
@@ -9459,7 +9149,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedOakLog : Block // 265 typeof=StrippedOakLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_oak_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedOakLog() : base(265)
@@ -9492,7 +9183,8 @@ namespace MiNET.Blocks
 
     public partial class StrippedSpruceLog : Block // 260 typeof=StrippedSpruceLog
     {
-        [StateEnum("x","z","y")]
+		public override string Name => "minecraft:stripped_spruce_log";
+		[StateEnum("x","z","y")]
         public  string PillarAxis { get; set; } = "y";
         
         public StrippedSpruceLog() : base(260)
@@ -9525,7 +9217,8 @@ namespace MiNET.Blocks
 
     public partial class StructureBlock  // 252 typeof=StructureBlock
     {
-        [StateEnum("save","load","corner","invalid","export","data")]
+		public override string Name => "minecraft:structure_block";
+		[StateEnum("save","load","corner","invalid","export","data")]
         public  string StructureBlockType { get; set; } = "";
 
         public override void SetState(List<IBlockState> states)
@@ -9551,9 +9244,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class StructureVoid  // 0 typeof=Air
-    {
-        [StateEnum("void","air")]
+    public partial class StructureVoid  // 217 typeof=StructureVoid
+	{
+		public override string Name => "minecraft:structure_void";
+		[StateEnum("void","air")]
         public  string StructureVoidType { get; set; } = "void";
 
         public override void SetState(List<IBlockState> states)
@@ -9581,7 +9275,8 @@ namespace MiNET.Blocks
 
     public partial class SweetBerryBush : Block // 462 typeof=SweetBerryBush
     {
-        [StateRange(0, 7)] public  int Growth { get; set; } = 0;
+		public override string Name => "minecraft:sweet_berry_bush";
+		[StateRange(0, 7)] public  int Growth { get; set; } = 0;
         
         public SweetBerryBush() : base(462)
         {
@@ -9613,7 +9308,8 @@ namespace MiNET.Blocks
 
     public partial class Tallgrass  // 31 typeof=Tallgrass
     {
-        [StateEnum("default","tall","fern","snow")]
+		public override string Name => "minecraft:tallgrass";
+		[StateEnum("default","tall","fern","snow")]
         public  string TallGrassType { get; set; } = "default";
 
         public override void SetState(List<IBlockState> states)
@@ -9642,7 +9338,8 @@ namespace MiNET.Blocks
 
     public partial class Tnt  // 46 typeof=Tnt
     {
-        [StateBit] public  bool AllowUnderwaterBit { get; set; } = false;
+		public override string Name => "minecraft:tnt";
+		[StateBit] public  bool AllowUnderwaterBit { get; set; } = false;
         [StateBit] public  bool ExplodeBit { get; set; } = false;
 
         public override void SetState(List<IBlockState> states)
@@ -9674,7 +9371,8 @@ namespace MiNET.Blocks
 
     public partial class Torch  // 50 typeof=Torch
     {
-        [StateEnum("west","east","north","south","top","unknown")]
+		public override string Name => "minecraft:torch";
+		[StateEnum("west","east","north","south","top","unknown")]
         public  string TorchFacingDirection { get; set; } = "";
 
         public override void SetState(List<IBlockState> states)
@@ -9702,7 +9400,8 @@ namespace MiNET.Blocks
 
     public partial class Trapdoor  // 96 typeof=Trapdoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:trapdoor";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpsideDownBit { get; set; } = false;
 
@@ -9739,6 +9438,7 @@ namespace MiNET.Blocks
 
     public partial class TrappedChest  // 146 typeof=TrappedChest
     {
+		public override string Name => "minecraft:trapped_chest";
 		[StateRange(0, 5)] public int FacingDirection { get; set; } = 2;
 
 		public override void SetState(List<IBlockState> states)
@@ -9766,7 +9466,8 @@ namespace MiNET.Blocks
 
     public partial class TripWire  // 132 typeof=TripWire
     {
-        [StateBit] public  bool AttachedBit { get; set; } = false;
+		public override string Name => "minecraft:trip_wire";
+		[StateBit] public  bool AttachedBit { get; set; } = false;
         [StateBit] public  bool DisarmedBit { get; set; } = false;
         [StateBit] public  bool PoweredBit { get; set; } = false;
         [StateBit] public  bool SuspendedBit { get; set; } = false;
@@ -9808,7 +9509,8 @@ namespace MiNET.Blocks
 
     public partial class TripwireHook  // 131 typeof=TripwireHook
     {
-        [StateBit] public  bool AttachedBit { get; set; } = false;
+		public override string Name => "minecraft:tripwire_hook";
+		[StateBit] public  bool AttachedBit { get; set; } = false;
         [StateRange(0, 3)] public  int Direction { get; set; } = 0;
         [StateBit] public  bool PoweredBit { get; set; } = false;
 
@@ -9845,7 +9547,8 @@ namespace MiNET.Blocks
 
     public partial class TurtleEgg : Block // 414 typeof=TurtleEgg
     {
-        [StateEnum("cracked","max_cracked","no_cracks")]
+		public override string Name => "minecraft:turtle_egg";
+		[StateEnum("cracked","max_cracked","no_cracks")]
         public  string CrackedState { get; set; } = "";
         [StateEnum("one_egg","two_egg","three_egg","four_egg")]
         public  string TurtleEggCount { get; set; } = "";
@@ -9882,43 +9585,10 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-
-    public partial class UnderwaterTorch : Block // 239 typeof=UnderwaterTorch
-    {
-        [StateEnum("west","east","north","south","top","unknown")]
-        public  string TorchFacingDirection { get; set; } = "";
-        
-        public UnderwaterTorch() : base(239)
-        {
-            IsGenerated = true;
-        }
-
-        public override void SetState(List<IBlockState> states)
-        {
-            foreach (var state in states)
-            {
-                switch(state)
-                {
-                    case BlockStateString s when s.Name == "torch_facing_direction":
-                        TorchFacingDirection = s.Value;
-                        break;
-                } // switch
-            } // foreach
-        } // method
-
-        public override BlockStateContainer GetState()
-        {
-            var record = new BlockStateContainer();
-            record.Name = "minecraft:underwater_torch";
-            record.Id = 239;
-            record.States.Add(new BlockStateString {Name = "torch_facing_direction", Value = TorchFacingDirection});
-            return record;
-        } // method
-    } // class
-
     public partial class UnlitRedstoneTorch  // 75 typeof=UnlitRedstoneTorch
     {
-        public string TorchFacingDirection { get; set; } = "top";
+		public override string Name => "minecraft:unlit_redstone_torch";
+		public string TorchFacingDirection { get; set; } = "top";
 
         public override void SetState(List<IBlockState> states)
         {
@@ -9945,6 +9615,7 @@ namespace MiNET.Blocks
 
     public partial class UnpoweredComparator  // 149 typeof=UnpoweredComparator
     {
+		public override string Name => "minecraft:unpowered_comparator";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 		[StateBit] public  bool OutputLitBit { get; set; } = false;
         [StateBit] public  bool OutputSubtractBit { get; set; } = false;
@@ -9982,6 +9653,7 @@ namespace MiNET.Blocks
 
     public partial class UnpoweredRepeater  // 93 typeof=UnpoweredRepeater
     {
+		public override string Name => "minecraft:unpowered_repeater";
 		[StateRange(0, 3)] public int Direction { get; set; } = 0;
 		[StateRange(0, 3)] public  int RepeaterDelay { get; set; } = 0;
 
@@ -10014,7 +9686,8 @@ namespace MiNET.Blocks
 
     public partial class Vine  // 106 typeof=Vine
     {
-        [StateRange(0, 15)] public  int VineDirectionBits { get; set; } = 0;
+		public override string Name => "minecraft:vine";
+		[StateRange(0, 15)] public  int VineDirectionBits { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10041,7 +9714,8 @@ namespace MiNET.Blocks
 
     public partial class WallBanner  // 177 typeof=WallBanner
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:wall_banner";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10068,7 +9742,8 @@ namespace MiNET.Blocks
 
     public partial class WallSign  // 68 typeof=WallSign
     {
-        [StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:wall_sign";
+		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10095,7 +9770,8 @@ namespace MiNET.Blocks
 
     public partial class Water  // 9 typeof=Water
     {
-        [StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
+		public override string Name => "minecraft:water";
+		[StateRange(0, 15)] public override int LiquidDepth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10122,8 +9798,8 @@ namespace MiNET.Blocks
 
     public partial class Waterlily  // 111 typeof=Waterlily
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:waterlily";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -10144,8 +9820,8 @@ namespace MiNET.Blocks
 
     public partial class Web  // 30 typeof=Web
     {
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:web";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -10167,7 +9843,8 @@ namespace MiNET.Blocks
 
     public partial class Wheat  // 59 typeof=Wheat
     {
-        [StateRange(0, 7)] public override int Growth { get; set; } = 0;
+		public override string Name => "minecraft:wheat";
+		[StateRange(0, 7)] public override int Growth { get; set; } = 0;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10194,7 +9871,8 @@ namespace MiNET.Blocks
 
     public partial class WhiteGlazedTerracotta  // 220 typeof=WhiteGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:white_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10221,8 +9899,8 @@ namespace MiNET.Blocks
 
     public partial class WitherRose  // 471 typeof=WitherRose
 	{
-
-        public override void SetState(List<IBlockState> states)
+		public override string Name => "minecraft:wither_rose";
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -10244,7 +9922,8 @@ namespace MiNET.Blocks
 
     public partial class WoodenButton  // 143 typeof=WoodenButton
     {
-        [StateBit] public override bool ButtonPressedBit { get; set; } = false;
+		public override string Name => "minecraft:wooden_button";
+		[StateBit] public override bool ButtonPressedBit { get; set; } = false;
         [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
@@ -10277,7 +9956,8 @@ namespace MiNET.Blocks
 
     public partial class WoodenDoor  // 64 typeof=WoodenDoor
     {
-        [StateRange(0, 3)] public override int Direction { get; set; } = 0;
+		public override string Name => "minecraft:wooden_door";
+		[StateRange(0, 3)] public override int Direction { get; set; } = 0;
         [StateBit] public override bool DoorHingeBit { get; set; } = false;
         [StateBit] public override bool OpenBit { get; set; } = false;
         [StateBit] public override bool UpperBlockBit { get; set; } = false;
@@ -10320,7 +10000,8 @@ namespace MiNET.Blocks
 
     public partial class WoodenPressurePlate : PressurePlateBase  // 72 typeof=WoodenPressurePlate
     {
-        public override int RedstoneSignal { get; set; } = 0;
+		public override string Name => "minecraft:wooden_pressure_plate";
+		public override int RedstoneSignal { get; set; } = 0;
 
 		public WoodenPressurePlate() : base(72)
 		{
@@ -10387,8 +10068,9 @@ namespace MiNET.Blocks
 
 	public partial class YellowFlower  // 37 typeof=YellowFlower
     {
+		public override string Name => "minecraft:yellow_flower";
 
-        public override void SetState(List<IBlockState> states)
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -10409,7 +10091,8 @@ namespace MiNET.Blocks
 
     public partial class YellowGlazedTerracotta  // 224 typeof=YellowGlazedTerracotta
     {
-        [StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+		public override string Name => "minecraft:yellow_glazed_terracotta";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
         public override void SetState(List<IBlockState> states)
         {
@@ -10436,6 +10119,7 @@ namespace MiNET.Blocks
 
 	public partial class Coral // 387 typeof=CoralBlock
 	{
+		public override string Name => "minecraft:coral_block";
 		[StateEnum("pink", "purple", "red", "yellow", "blue")]
 		public string CoralColor { get; set; } = "";
 		[StateBit] public bool DeadBit { get; set; } = false;
@@ -10471,14 +10155,7 @@ namespace MiNET.Blocks
 	public partial class Deny : Block { public Deny() : base(211) { IsGenerated = true; } }
 	public partial class StructureVoid : Block { public StructureVoid() : base(217) { IsGenerated = true; } }
 	public partial class BorderBlock : Block { public BorderBlock() : base(212) { IsGenerated = true; } }
-	public partial class Camera : Block { public Camera() : base(242) { IsGenerated = true; } }
-	public partial class Jigsaw : Block { public Jigsaw() : base(466) { IsGenerated = true; } }
-	public partial class LightBlock : Block { public LightBlock() : base(470) { IsGenerated = true; } }
 	public partial class StickyPistonArmCollision : Block { public StickyPistonArmCollision() : base(472) { IsGenerated = true; } }
-	public partial class BeeNest : Block { public BeeNest() : base(473) { IsGenerated = true; } }
-	public partial class Beehive : Block { public Beehive() : base(474) { IsGenerated = true; } }
-	public partial class HoneyBlock : Block { public HoneyBlock() : base(475) { IsGenerated = true; } }
-	public partial class HoneycombBlock : Block { public HoneycombBlock() : base(476) { IsGenerated = true; } }
 	public partial class Chain : Block { public Chain() : base(541) { IsGenerated = true; } }
 
 }

@@ -23,6 +23,11 @@
 
 #endregion
 
+using MiNET.Utils.Vectors;
+using System.Numerics;
+using MiNET.Worlds;
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class HayBlock : Block
@@ -32,6 +37,23 @@ namespace MiNET.Blocks
 			BlastResistance = 2.5f;
 			Hardness = 0.5f;
 			IsFlammable = true;
+		}
+
+		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
+		{
+			switch (ItemBlock.GetPillarAxisFromFace(face))
+			{
+				case BlockAxis.X:
+					PillarAxis = "x";
+					break;
+				case BlockAxis.Y:
+					PillarAxis = "y";
+					break;
+				case BlockAxis.Z:
+					PillarAxis = "z";
+					break;
+			}
+			return false;
 		}
 	}
 }

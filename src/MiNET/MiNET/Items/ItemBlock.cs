@@ -80,6 +80,18 @@ namespace MiNET.Items
 			};
 		}
 
+		public static int GetReverseFacingDirectionFromEntity(Entity entity)
+		{
+			return entity.GetDirectionEmum() switch
+			{
+				Entity.Direction.South => 5,
+				Entity.Direction.West => 3,
+				Entity.Direction.North => 4,
+				Entity.Direction.East => 2,
+				_ => throw new ArgumentOutOfRangeException()
+			};
+		}
+
 		public static BlockAxis GetPillarAxisFromFace(BlockFace face)
 		{
 			return face switch

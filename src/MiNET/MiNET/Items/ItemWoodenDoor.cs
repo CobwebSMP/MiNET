@@ -142,7 +142,7 @@ namespace MiNET.Items
 
 	public class ItemIronDoor : ItemWoodenDoor
 	{
-		public ItemIronDoor() : base("minecraft:iron_door", 330)
+		public ItemIronDoor() : base("minecraft:iron_door", 330, 71)
 		{
 		}
 	}

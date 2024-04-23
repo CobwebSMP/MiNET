@@ -39,8 +39,40 @@ namespace MiNET.Blocks
 			IsFlammable = true;
 		}
 
+		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
+		{
+			var itemInHand = player.Inventory.GetItemInHand();
+
+			if (itemInHand is ItemAxe)
+			{
+				switch (NewLogType)
+				{
+					case "acacia":
+						world.SetBlock(new StrippedAcaciaLog { Coordinates = Coordinates, PillarAxis = PillarAxis });
+						break;
+					case "dark_oak":
+						world.SetBlock(new StrippedDarkOakLog { Coordinates = Coordinates, PillarAxis = PillarAxis });
+						break;
+				}
+				return true;
+			}
+			return false;
+		}
+
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
+			switch (ItemBlock.GetPillarAxisFromFace(face))
+			{
+				case BlockAxis.X:
+					PillarAxis = "x";
+					break;
+				case BlockAxis.Y:
+					PillarAxis = "y";
+					break;
+				case BlockAxis.Z:
+					PillarAxis = "z";
+					break;
+			}
 			return false;
 		}
 

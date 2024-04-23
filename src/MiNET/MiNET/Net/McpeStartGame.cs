@@ -35,6 +35,7 @@ namespace MiNET.Net
 
 		public int generator; // = null;
 		public int gamemode; // = null;
+		public bool hardcoreEnabled; // = null;
 		public int difficulty; // = null;
 		public int x; // = null;
 		public int y; // = null;
@@ -91,6 +92,7 @@ namespace MiNET.Net
 
 			packet.WriteSignedVarInt(generator);
 			packet.WriteSignedVarInt(gamemode);
+			packet.Write(false); //hardcore
 			packet.WriteSignedVarInt(difficulty);
 
 			packet.WriteSignedVarInt(x);
@@ -150,6 +152,7 @@ namespace MiNET.Net
 
 			generator = packet.ReadSignedVarInt();
 			gamemode = packet.ReadSignedVarInt();
+			hardcoreEnabled = packet.ReadBool();
 			difficulty = packet.ReadSignedVarInt();
 
 			x = packet.ReadSignedVarInt();

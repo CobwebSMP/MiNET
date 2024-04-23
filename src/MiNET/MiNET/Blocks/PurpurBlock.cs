@@ -23,6 +23,11 @@
 
 #endregion
 
+using MiNET.Items;
+using MiNET.Utils.Vectors;
+using System.Numerics;
+using MiNET.Worlds;
+
 namespace MiNET.Blocks
 {
 	public partial class PurpurBlock : Block
@@ -31,6 +36,23 @@ namespace MiNET.Blocks
 		{
 			BlastResistance = 30;
 			Hardness = 1.5f;
+		}
+
+		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
+		{
+			switch (ItemBlock.GetPillarAxisFromFace(face))
+			{
+				case BlockAxis.X:
+					PillarAxis = "x";
+					break;
+				case BlockAxis.Y:
+					PillarAxis = "y";
+					break;
+				case BlockAxis.Z:
+					PillarAxis = "z";
+					break;
+			}
+			return false;
 		}
 	}
 }
