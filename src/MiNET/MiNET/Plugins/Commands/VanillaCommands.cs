@@ -708,9 +708,9 @@ namespace MiNET.Plugins.Commands
 
 		[Command(Name = "fog", Description = "Change level fog settings")]
 		[Authorize(Permission = 4)]
-		public void fog(Player commander, mode action, string fogID)
+		public void fog(Player commander, fogMode action, string fogID)
 		{
-			if (action == mode.push)
+			if (action == fogMode.push)
 			{
 				McpePlayerFog msg = McpePlayerFog.CreateObject();
 				msg.fogstack = new fogStack(fogID);
@@ -718,7 +718,7 @@ namespace MiNET.Plugins.Commands
 				commander.Level.fog = fogID;
 				commander.SendMessage("Fog setting was added successfully");
 			}
-			else if(action == mode.remove)
+			else if(action == fogMode.remove)
 			{
 				McpePlayerFog msg = McpePlayerFog.CreateObject();
 				msg.fogstack = new fogStack("minecraft:fog_default");
@@ -728,7 +728,7 @@ namespace MiNET.Plugins.Commands
 			}
 		}
 
-		public enum mode
+		public enum fogMode
 		{
 			remove, push
 		}

@@ -298,7 +298,7 @@ namespace MiNET
 				order.runtimeEntityId = EntityManager.EntityIdSelf;
 				order.item = GetItemInHand();
 				order.selectedSlot = (byte) InHandSlot;
-				order.slot = (byte) (InHandSlot + HotbarSize);
+				order.slot = (byte) InHandSlot;
 				Player.SendPacket(order);
 			}
 
@@ -306,7 +306,7 @@ namespace MiNET
 			broadcast.runtimeEntityId = Player.EntityId;
 			broadcast.item = GetItemInHand();
 			broadcast.selectedSlot = (byte) InHandSlot;
-			broadcast.slot = (byte) (InHandSlot + HotbarSize);
+			broadcast.slot = (byte) InHandSlot;
 			Player.Level?.RelayBroadcast(Player, broadcast);
 		}
 

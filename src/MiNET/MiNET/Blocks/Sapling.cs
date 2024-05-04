@@ -54,6 +54,22 @@ namespace MiNET.Blocks
 			return false;
 		}
 
+		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
+		{
+			var itemInHand = player.Inventory.GetItemInHand();
+			SaplingType = itemInHand.Metadata switch
+			{
+				0 => "oak",
+				1 => "spruce",
+				2 => "birch",
+				3 => "jungle",
+				4 => "acacia",
+				5 => "dark_oak",
+				_ => throw new ArgumentOutOfRangeException()
+			};
+			return false;
+		}
+
 		public override bool Interact(Level level, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
 			if (player.Inventory.GetItemInHand() is ItemDye inHand && inHand.Metadata == 15)

@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using log4net;
 using MiNET.Items;
 using MiNET.Utils;
@@ -125,6 +126,18 @@ namespace MiNET.Blocks
 			// check up
 			if (FindLog(level, coord.BlockUp(), visited, distance + 1)) return true;
 
+			return false;
+		}
+
+		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
+		{
+			var itemInHand = player.Inventory.GetItemInHand();
+			NewLeafType = itemInHand.Metadata switch
+			{
+				0 => "acacia",
+				1 => "dark_oak",
+				_ => throw new ArgumentOutOfRangeException()
+			};
 			return false;
 		}
 	}

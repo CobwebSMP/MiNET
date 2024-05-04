@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     - name: Restore dependencies
       working-directory: src/MiNET/MiNET.Console
       run: dotnet restore
@@ -38,5 +38,5 @@ jobs:
         file: src/MiNET/MiNET.Console/minet.zip
         asset_name: MiNET.zip
         tag: ${{ github.ref }}
-        release_name: MiNET-CobwebSMP 1.13.0.10 (1.20.80)
+        release_name: MiNET-CobwebSMP 1.13.0.11 (1.20.80)
         body: ${{ github.event.head_commit.message }}

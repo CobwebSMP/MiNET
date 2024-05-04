@@ -30,7 +30,6 @@ using log4net;
 using MiNET.Crafting;
 using MiNET.Items;
 using MiNET.Utils;
-using Newtonsoft.Json.Linq;
 
 namespace MiNET
 {
@@ -344,8 +343,11 @@ namespace MiNET
 			{
 				SetContainerItem(destination.ContainerId, destination.Slot, destItem);
 			}
-
-			if (destination.ContainerId == 22)
+			if (destination.ContainerId == 6 || source.ContainerId == 6)
+			{
+				_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
+			}
+			else if (destination.ContainerId == 22)
 			{
 				if (Enum.IsDefined(typeof(ItemType), GetContainerItem(21, 14).ItemType) && !(GetContainerItem(22, 15) is ItemAir))
 				{
@@ -430,6 +432,11 @@ namespace MiNET
 			if (source.ContainerId == 22 || source.ContainerId == 23)
 			{
 				Enchantment.SendEmptyEnchantments(_player);
+			}
+
+			if (source.ContainerId == 6)
+			{
+				_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
 			}
 
 			stackResponses.Add(new StackResponseContainerInfo

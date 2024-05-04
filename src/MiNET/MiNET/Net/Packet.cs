@@ -2753,7 +2753,7 @@ namespace MiNET.Net
 						Write(rec.Id);
 						Write(rec.Block);
 						WriteUnsignedVarInt(0); // priority
-						Write(true);  //todo: whats this?
+						Write(true);  // symmetric
 						WriteVarInt(UniqueId); // unique id
 						if(!RecipeManager.resultMapLocked){ RecipeManager.resultMap.Add(UniqueId, rec.Result[0]); }
 						break;
@@ -2861,6 +2861,7 @@ namespace MiNET.Net
 							Log.Debug($"3 {recipe.Id}");
 							recipe.Block = ReadString(); // block?
 							ReadUnsignedVarInt(); // priority
+							ReadBool(); // symetric
 							recipe.UniqueId = ReadVarInt(); // unique id
 							recipes.Add(recipe);
 							Log.Error($"Shaped: {recipe.Id} | {recipe.Block} | {width} | {height} | {resultCount} | {recipe.UniqueId}");
@@ -3411,7 +3412,7 @@ namespace MiNET.Net
 			var listSize = ReadInt();
 			for (int i = 0; i < listSize; i++)
 			{
-				mapData.mapData.Add(new pixels { pixel = ReadUnsignedVarInt(), index = ReadShort()});
+				mapData.mapData.Add(new pixelsData { pixel = ReadUnsignedVarInt(), index = ReadShort()});
 			}
 			return mapData;
 		}

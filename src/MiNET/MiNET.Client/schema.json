@@ -37215,6 +37215,52 @@
     ]
   },
   {
+    "Command": "bamboo [\"age_bit\" = false, \"bamboo_leaf_size\" = \"no_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ]
+  },
+  {
+    "Command": "bamboo [\"age_bit\" = false, \"bamboo_leaf_size\" = \"no_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 1,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ]
+  },
+  {
     "Command": "bamboo [\"age_bit\" = false, \"bamboo_leaf_size\" = \"small_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
     "Name": "minecraft:bamboo",
     "Id": 418,
@@ -37307,10 +37353,79 @@
     ]
   },
   {
+    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"no_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 6,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ]
+  },
+  {
+    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"no_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 7,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ]
+  },
+  {
     "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"small_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
     "Name": "minecraft:bamboo",
     "Id": 418,
-    "Data": 10,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "small_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ]
+  },
+  {
+    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"small_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 9,
     "States": [
       {
         "Type": "1",
@@ -37330,7 +37445,30 @@
     ]
   },
   {
-    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"small_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
+    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"large_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
+    "Name": "minecraft:bamboo",
+    "Id": 418,
+    "Data": 10,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "age_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_leaf_size",
+        "Value": "large_leaves"
+      },
+      {
+        "Type": "8",
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ]
+  },
+  {
+    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"large_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
     "Name": "minecraft:bamboo",
     "Id": 418,
     "Data": 11,
@@ -37353,53 +37491,7 @@
     ]
   },
   {
-    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"large_leaves\", \"bamboo_stalk_thickness\" = \"thin\"]",
-    "Name": "minecraft:bamboo",
-    "Id": 418,
-    "Data": 12,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "bamboo_leaf_size",
-        "Value": "no_leaves"
-      },
-      {
-        "Type": "8",
-        "Name": "bamboo_stalk_thickness",
-        "Value": "thin"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo [\"age_bit\" = true, \"bamboo_leaf_size\" = \"large_leaves\", \"bamboo_stalk_thickness\" = \"thick\"]",
-    "Name": "minecraft:bamboo",
-    "Id": 418,
-    "Data": 13,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "bamboo_leaf_size",
-        "Value": "small_leaves"
-      },
-      {
-        "Type": "8",
-        "Name": "bamboo_stalk_thickness",
-        "Value": "thin"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"oak\"]",
+    "Command": "bamboo_sapling [\"age_bit\" = false]",
     "Name": "minecraft:bamboo_sapling",
     "Id": 419,
     "Data": 0,
@@ -37417,7 +37509,7 @@
     ]
   },
   {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"oak\"]",
+    "Command": "bamboo_sapling [\"age_bit\" = true]",
     "Name": "minecraft:bamboo_sapling",
     "Id": 419,
     "Data": 1,
@@ -37431,186 +37523,6 @@
         "Type": "8",
         "Name": "sapling_type",
         "Value": "oak"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"spruce\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 2,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "0"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "birch"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"spruce\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 3,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "jungle"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"birch\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 4,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "0"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "acacia"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"birch\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 5,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "dark_oak"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"jungle\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 8,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "0"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "jungle"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"jungle\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 9,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "jungle"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"acacia\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 10,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "0"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "acacia"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"acacia\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 11,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "acacia"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = false, \"sapling_type\" = \"dark_oak\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 12,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "0"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "dark_oak"
-      }
-    ]
-  },
-  {
-    "Command": "bamboo_sapling [\"age_bit\" = true, \"sapling_type\" = \"dark_oak\"]",
-    "Name": "minecraft:bamboo_sapling",
-    "Id": 419,
-    "Data": 13,
-    "States": [
-      {
-        "Type": "1",
-        "Name": "age_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "8",
-        "Name": "sapling_type",
-        "Value": "dark_oak"
       }
     ]
   },

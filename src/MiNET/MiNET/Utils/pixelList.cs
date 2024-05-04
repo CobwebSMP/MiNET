@@ -4,9 +4,9 @@ namespace MiNET.Utils
 {
 	public class pixelList
 	{
-		public List<pixels> mapData = new List<pixels>();
+		public List<pixelsData> mapData = new List<pixelsData>();
 	}
-	public class pixels
+	public class pixelsData
 	{
 		public uint pixel;
 		public short index;

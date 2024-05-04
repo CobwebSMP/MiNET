@@ -335,126 +335,125 @@ namespace MiNET.Entities
 		public enum DataFlags
 		{
 			OnFire = 0,
-			Sneaking,
-			Riding,
-			Sprinting,
-			UsingItem,
-			Invisible,
-			Tempted,
-			InLove,
-
-			Saddled,
-			Powered,
-			Ignited,
-			Baby,
-			Converting,
-			Critcal,
-			ShowName,
-			AlwaysShowName,
-
-			NoAi,
-			Silent,
-			WallClimbing,
-
-			CanClimb,
-			CanSwim,
-			CanFly,
-			Walker,
-
-			Resting,
-			Sitting,
-			Angry,
-			Interested,
-			Charged,
-
-			Tamed,
-			Orphaned,
-			Leashed,
-			Sheared,
-			FlagAllFlying,
-			Elder,
-			Moving,
-			Breathing,
-			Chested,
-
-			Stackable,
-			Showbase,
-			Rearing,
-			Vibrating,
-			Idling,
-			EvokerSpell,
-			ChargeAttack,
-			WasdControlled,
-			CanPowerJump,
-			CanDash,
-			Linger,
-			HasCollision,
-			AffectedByGravity,
-			FireImmune,
-			Dancing,
-			Enchanted,
-			TridentRope,
-			PrivateInventory,
-			Transforming,
-			SpinAttack,
-			Swimming,
-			Bribed,
-			Pregnant,
-			LayingEgg,
-			RiderCanPick,
-			TransistionSettings,
-			Eating,
-			LayingDown,
-			Sneezing,
-			Trusting,
-			Rolling,
-			Scared,
-			InScaffolding,
-			OverScaffolding,
-			FallInScaffolding,
-			Blocking,
-			TransistionBlocking,
-			BlockedWithShield,
-			BlockedWithDamagedShield,
-			Sleeping,
-			GrowingUp,
-			TradeInterest,
-			DoorBreaking,
-			ObstructionBreaking,
-			DoorOpening,
-			IsIllagerCaptain,
-			Stunned,
-			Roaring,
-			DelayedAttack,
-			AvoidingMobs,
-			AvoidingBlocks,
-			FacingTargetToAttack,
-			HiddenInvisible,
-			InUI,
-			Stalking,
-			Emoting,
-			Celebriting,
-			Admiring,
-			Celebriting2,
-			OutOfControl,
-			RamAttack,
-			FakeDead,
-			InAscendableBlock,
-			OverDescendableBlock,
-			Cooking,
-			EatingMob,
-			GoalJump,
-			Emerging,
-			Sniffing,
-			Digging,
-			SonicBoom,
-			DashCooldown,
-			PushToClosestSpace,
-			Scenting,
-			Rising,
-			FeelingHappy,
-			Searching,
-			Crawling
+			Sneaking = 1,
+			Riding = 2,
+			Sprinting = 3,
+			UsingItem = 4,
+			Invisible = 5,
+			Tempted = 6,
+			InLove = 7,
+			Saddled = 8,
+			Powered = 9,
+			Ignited = 10,
+			Baby = 11,
+			Converting = 12,
+			Critcal = 13,
+			ShowName = 14,
+			AlwaysShowName = 15,
+			NoAi = 16,
+			Silent = 17,
+			WallClimbing = 18,
+			CanClimb = 19,
+			CanSwim = 20,
+			CanFly = 21,
+			Walker = 22,
+			Resting = 23,
+			Sitting = 24,
+			Angry = 25,
+			Interested = 26,
+			Charged = 27,
+			Tamed = 28,
+			Orphaned = 29,
+			Leashed = 30,
+			Sheared = 31,
+			FlagAllFlying = 32,
+			Elder = 33,
+			Moving = 34,
+			Breathing = 35,
+			Chested = 36,
+			Stackable = 37,
+			Showbase = 38,
+			Rearing = 39,
+			Vibrating = 40,
+			Idling = 41,
+			EvokerSpell = 42,
+			ChargeAttack = 43,
+			WasdControlled = 44,
+			CanPowerJump = 45,
+			CanDash = 46,
+			Linger = 47,
+			HasCollision = 48,
+			AffectedByGravity = 49,
+			FireImmune = 50,
+			Dancing = 51,
+			Enchanted = 52,
+			TridentRope = 53,
+			PrivateInventory = 54,
+			Transforming = 55,
+			SpinAttack = 56,
+			Swimming = 57,
+			Bribed = 58,
+			Pregnant = 59,
+			LayingEgg = 60,
+			RiderCanPick = 61,
+			TransistionSettings = 62,
+			Eating = 63,
+			LayingDown = 64,
+			Sneezing = 65,
+			Trusting = 66,
+			Rolling = 67,
+			Scared = 68,
+			InScaffolding = 69,
+			OverScaffolding = 70,
+			FallInScaffolding = 71,
+			Blocking = 72,
+			TransistionBlocking = 73,
+			BlockedWithShield = 74,
+			BlockedWithDamagedShield = 75,
+			Sleeping = 76,
+			GrowingUp = 77,
+			TradeInterest = 78,
+			DoorBreaking = 79,
+			ObstructionBreaking = 80,
+			DoorOpening = 81,
+			IsIllagerCaptain = 82,
+			Stunned = 83,
+			Roaring = 84,
+			DelayedAttack = 85,
+			AvoidingMobs = 86,
+			AvoidingBlocks = 87,
+			FacingTargetToAttack = 88,
+			HiddenInvisible = 89,
+			InUI = 90,
+			Stalking = 91,
+			Emoting = 92,
+			Celebriting = 93,
+			Admiring = 94,
+			Celebriting2 = 95,
+			OutOfControl = 96,
+			RamAttack = 97,
+			FakeDead = 98,
+			InAscendableBlock = 99,
+			OverDescendableBlock = 100,
+			Cooking = 101,
+			EatingMob = 102,
+			GoalJump = 103,
+			Emerging = 104,
+			Sniffing = 105,
+			Digging = 106,
+			SonicBoom = 107,
+			DashCooldown = 108,
+			PushToClosestSpace = 109,
+			Scenting = 110,
+			Rising = 111,
+			FeelingHappy = 112,
+			Searching = 113,
+			Crawling = 114,
+			Timer1 = 115,
+			Timer2 = 116,
+			Timer3 = 117,
+			BodyRotationBlocked = 118,
+			Count = 119
 		}
 
 		protected virtual BitArray GetFlags()
@@ -462,7 +461,6 @@ namespace MiNET.Entities
 			BitArray bits = new BitArray(64);
 			bits[(int) DataFlags.OnFire] = HealthManager.IsOnFire;
 			bits[(int) DataFlags.Sneaking] = IsSneaking;
-			bits[(int) DataFlags.Swimming] = IsSwimming;
 			bits[(int) DataFlags.Riding] = IsRiding;
 			bits[(int) DataFlags.Sprinting] = IsSprinting;
 			bits[(int) DataFlags.UsingItem] = IsUsingItem;
@@ -481,6 +479,7 @@ namespace MiNET.Entities
 			bits[(int) DataFlags.Silent] = IsSilent;
 			bits[(int) DataFlags.WallClimbing] = IsWallClimbing;
 			bits[(int) DataFlags.CanClimb] = CanClimb;
+
 			bits[(int) DataFlags.Walker] = IsWalker;
 			bits[(int) DataFlags.Resting] = IsResting;
 			bits[(int) DataFlags.Sitting] = IsSitting;
@@ -488,6 +487,7 @@ namespace MiNET.Entities
 			bits[(int) DataFlags.Interested] = IsInterested;
 			bits[(int) DataFlags.Charged] = IsCharged;
 			bits[(int) DataFlags.Tamed] = IsTamed;
+
 			bits[(int) DataFlags.Leashed] = IsLeashed;
 			bits[(int) DataFlags.Sheared] = IsSheared;
 			bits[(int) DataFlags.FlagAllFlying] = IsGliding;
@@ -496,15 +496,18 @@ namespace MiNET.Entities
 			bits[(int) DataFlags.Breathing] = IsBreathing;
 			bits[(int) DataFlags.Chested] = IsChested;
 			bits[(int) DataFlags.Stackable] = IsStackable;
-			bits[(int) DataFlags.Idling] = IsIdling;
+
 			bits[(int) DataFlags.Rearing] = IsRearing;
 			bits[(int) DataFlags.Vibrating] = IsVibrating;
+			bits[(int) DataFlags.Idling] = IsIdling;
+
+			bits[(int) DataFlags.WasdControlled] = IsWasdControlled;
+			bits[(int) DataFlags.CanPowerJump] = CanPowerJump;
 
 			bits[(int) DataFlags.HasCollision] = HasCollision;
 			bits[(int) DataFlags.AffectedByGravity] = IsAffectedByGravity;
 
-			bits[(int) DataFlags.WasdControlled] = IsWasdControlled;
-			bits[(int) DataFlags.CanPowerJump] = CanPowerJump;
+			bits[(int) DataFlags.Swimming] = IsSwimming;
 
 			return bits;
 		}

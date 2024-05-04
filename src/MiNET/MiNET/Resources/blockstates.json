@@ -38167,6 +38167,54 @@
   },
   {
     "Id": 418,
+    "Data": 0,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6056,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 0
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
+    "Data": 1,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6057,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 0
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
     "Data": 2,
     "Name": "minecraft:bamboo",
     "RuntimeId": 6058,
@@ -38263,57 +38311,9 @@
   },
   {
     "Id": 418,
-    "Data": 10,
+    "Data": 6,
     "Name": "minecraft:bamboo",
-    "RuntimeId": 6064,
-    "States": [
-      {
-        "Type": 1,
-        "Name": "age_bit",
-        "Value": 1
-      },
-      {
-        "Type": 8,
-        "Name": "bamboo_leaf_size",
-        "Value": "small_leaves"
-      },
-      {
-        "Type": 8,
-        "Name": "bamboo_stalk_thickness",
-        "Value": "thick"
-      }
-    ],
-    "ItemInstance": null
-  },
-  {
-    "Id": 418,
-    "Data": 11,
-    "Name": "minecraft:bamboo",
-    "RuntimeId": 6065,
-    "States": [
-      {
-        "Type": 1,
-        "Name": "age_bit",
-        "Value": 1
-      },
-      {
-        "Type": 8,
-        "Name": "bamboo_leaf_size",
-        "Value": "large_leaves"
-      },
-      {
-        "Type": 8,
-        "Name": "bamboo_stalk_thickness",
-        "Value": "thick"
-      }
-    ],
-    "ItemInstance": null
-  },
-  {
-    "Id": 418,
-    "Data": 12,
-    "Name": "minecraft:bamboo",
-    "RuntimeId": 6066,
+    "RuntimeId": 6062,
     "States": [
       {
         "Type": 1,
@@ -38335,9 +38335,33 @@
   },
   {
     "Id": 418,
-    "Data": 13,
+    "Data": 7,
     "Name": "minecraft:bamboo",
-    "RuntimeId": 6067,
+    "RuntimeId": 6063,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 1
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "no_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
+    "Data": 8,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6064,
     "States": [
       {
         "Type": 1,
@@ -38353,6 +38377,116 @@
         "Type": 8,
         "Name": "bamboo_stalk_thickness",
         "Value": "thin"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
+    "Data": 9,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6065,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 1
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "small_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
+    "Data": 10,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6066,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 1
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "large_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thin"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 418,
+    "Data": 11,
+    "Name": "minecraft:bamboo",
+    "RuntimeId": 6067,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 1
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_leaf_size",
+        "Value": "large_leaves"
+      },
+      {
+        "Type": 8,
+        "Name": "bamboo_stalk_thickness",
+        "Value": "thick"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 419,
+    "Data": 0,
+    "Name": "minecraft:bamboo_sapling",
+    "RuntimeId": 13260,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 0
+      },
+      {
+        "Type": 8,
+        "Name": "sapling_type",
+        "Value": "oak"
+      }
+    ],
+    "ItemInstance": null
+  },
+  {
+    "Id": 419,
+    "Data": 1,
+    "Name": "minecraft:bamboo_sapling",
+    "RuntimeId": 13261,
+    "States": [
+      {
+        "Type": 1,
+        "Name": "age_bit",
+        "Value": 1
+      },
+      {
+        "Type": 8,
+        "Name": "sapling_type",
+        "Value": "oak"
       }
     ],
     "ItemInstance": null

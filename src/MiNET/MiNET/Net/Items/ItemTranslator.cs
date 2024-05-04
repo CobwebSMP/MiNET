@@ -214,13 +214,13 @@ namespace MiNET.Net.Items
 		}
 	}
 
-	public class metaToName<metaId, name> :
-		Dictionary<metaId, name>
+	public class metaToName<metaId, metaName> :
+		Dictionary<metaId, metaName>
 	{
 	}
 
-	public class metaToName<map, meta, name> :
-		Dictionary<map, metaToName<meta, name>>
+	public class metaToName<metaMap, metaId, metaName> :
+		Dictionary<metaMap, metaToName<metaId, metaName>>
 	{
 	}
 

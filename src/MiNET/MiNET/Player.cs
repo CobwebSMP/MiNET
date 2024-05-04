@@ -842,10 +842,12 @@ namespace MiNET
 				}
 				case PlayerAction.StartItemUse:
 				{
+					IsUsingItem = true;
 					break;
 				}
 				case PlayerAction.StopItemUse:
 				{
+					IsUsingItem = false;
 					break;
 				}
 				case PlayerAction.StartFlying:
@@ -862,8 +864,6 @@ namespace MiNET
 					throw new ArgumentOutOfRangeException(nameof(message.actionId));
 				}
 			}
-
-			IsUsingItem = false;
 
 			BroadcastSetEntityData();
 		}
@@ -2817,6 +2817,8 @@ namespace MiNET
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+			IsUsingItem = false;
+			BroadcastSetEntityData();
 
 			HandleTransactionRecords(transaction.TransactionRecords);
 		}
@@ -2835,6 +2837,11 @@ namespace MiNET
 				case McpeInventoryTransaction.ItemUseAction.Use:
 				{
 					itemInHand.UseItem(Level, this, transaction.Position);
+					if (itemInHand is not ItemBlock)
+					{
+						IsUsingItem = true;
+						BroadcastSetEntityData();
+					}
 					break;
 				}
 				case McpeInventoryTransaction.ItemUseAction.Destroy:
@@ -4151,6 +4158,7 @@ namespace MiNET
 			{
 				Level.RelayBroadcast(this, receivers, mcpePlayerArmorEquipment);
 			}
+			Level.BroadcastSound((BlockCoordinates)KnownPosition, LevelSoundEventType.ArmorEquipGeneric);
 		}
 
 		public override void DespawnFromPlayers(Player[] players)

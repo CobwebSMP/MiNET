@@ -273,6 +273,7 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeMobEquipment(McpeMobEquipment message)
 		{
+			/*Log.Warn($"Entity with {message.runtimeEntityId} is holding {message.item.Name}");*/
 		}
 
 		public virtual void HandleMcpeMobArmorEquipment(McpeMobArmorEquipment message)
@@ -289,6 +290,25 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeSetEntityData(McpeSetEntityData message)
 		{
+			/*if (message.metadata[0] == null) { return; }
+			MetadataLong metadataLong = message.metadata[0] as MetadataLong;
+			byte[] bytes = BitConverter.GetBytes(metadataLong.Value);
+			BitArray bits = new BitArray(bytes);
+			Log.Warn($"Got entity metadata flags from value: {metadataLong.Value}");
+			Log.Warn($"start =============================================");
+			for (int i = 0; i < Enum.GetValues(typeof(DataFlags)).Length; i++)
+			{
+				DataFlags flag = (DataFlags) i;
+				if (i < 64)
+				{
+					Log.Warn($"{flag}: {bits[i]}");
+				}
+				else
+				{
+					Log.Warn($"{flag}: {bits[i - 64]}");
+				}
+			}
+			Log.Warn($"end =============================================");*/
 		}
 
 		public virtual void HandleMcpeSetEntityMotion(McpeSetEntityMotion message)
