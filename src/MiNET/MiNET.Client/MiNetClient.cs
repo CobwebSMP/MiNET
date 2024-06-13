@@ -235,6 +235,8 @@ namespace MiNET.Client
 
 		public CommandPermission UserPermission { get; set; }
 
+		public PermissionLevel permissionLevel { get; set; }
+
 		public AutoResetEvent PlayerStatusChangedWaitHandle = new AutoResetEvent(false);
 
 		public bool HasSpawned { get; set; }

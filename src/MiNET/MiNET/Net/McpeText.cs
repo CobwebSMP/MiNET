@@ -33,6 +33,7 @@ namespace MiNET.Net
 		public string xuid; // = null
 		public string platformChatId; // = null
 		public string[] parameters; // = null
+		public string filteredMessage; // = null
 
 		partial void AfterEncode()
 		{
@@ -72,6 +73,7 @@ namespace MiNET.Net
 
 			Write(xuid);
 			Write(platformChatId);
+			Write(filteredMessage);
 		}
 
 		public override void Reset()
@@ -119,6 +121,7 @@ namespace MiNET.Net
 
 			xuid = ReadString();
 			platformChatId = ReadString();
+			filteredMessage = ReadString();
 		}
 	}
 }

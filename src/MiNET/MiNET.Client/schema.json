@@ -3099,7 +3099,7 @@
     "States": []
   },
   {
-    "Command": "tallgrass [\"tall_grass_type\" = \"default\"]",
+    "Command": "short_grass",
     "Name": "minecraft:tallgrass",
     "Id": 31,
     "Data": 0,
@@ -3112,7 +3112,7 @@
     ]
   },
   {
-    "Command": "tallgrass [\"tall_grass_type\" = \"tall\"]",
+    "Command": "fern",
     "Name": "minecraft:tallgrass",
     "Id": 31,
     "Data": 1,
@@ -3121,32 +3121,6 @@
         "Type": "8",
         "Name": "tall_grass_type",
         "Value": "fern"
-      }
-    ]
-  },
-  {
-    "Command": "tallgrass [\"tall_grass_type\" = \"fern\"]",
-    "Name": "minecraft:tallgrass",
-    "Id": 31,
-    "Data": 2,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "tall_grass_type",
-        "Value": "tall"
-      }
-    ]
-  },
-  {
-    "Command": "tallgrass [\"tall_grass_type\" = \"snow\"]",
-    "Name": "minecraft:tallgrass",
-    "Id": 31,
-    "Data": 3,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "tall_grass_type",
-        "Value": "snow"
       }
     ]
   },

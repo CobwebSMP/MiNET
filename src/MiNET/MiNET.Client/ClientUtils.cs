@@ -82,8 +82,8 @@ namespace MiNET.Client
 							int blocksPerWord = (int) Math.Floor(32f / bitsPerBlock);
 							int wordsPerChunk = (int) Math.Ceiling(4096f / blocksPerWord);
 							uint wordsPer = (uint) Math.Ceiling(4096f / blocksPerWord);
-							if (Log.IsTraceEnabled())
-								Log.Trace($"New section {chunkIndex}, " +
+
+							Log.Debug($"New section {chunkIndex}, " +
 										$"version={version}, " +
 										$"storageSize={storageSize}, " +
 										$"storageIndex={storageIndex}, " +
@@ -103,6 +103,7 @@ namespace MiNET.Client
 									return null;
 
 								words[i] = (uint) ((byte) stream.ReadByte()) | (uint) ((byte) stream.ReadByte()) << 8 | (uint) ((byte) stream.ReadByte()) << 16 | (uint) ((byte) stream.ReadByte()) << 24;
+								Log.Debug($"bitsPerBlock {words[i]}");
 							}
 
 							var paletteCount = 1;
@@ -194,12 +195,12 @@ namespace MiNET.Client
 					int borderBlock = (byte)VarInt.ReadSInt32(stream);
 					if (borderBlock != 0)
 					{
-						Log.Warn($"??? Got borderblock with value {borderBlock}.");
+						//Log.Warn($"??? Got borderblock with value {borderBlock}.");
 
 						int len = (int) (stream.Length - stream.Position);
 						var bytes = new byte[len];
 						stream.Read(bytes, 0, len);
-						Log.Warn($"Data to read for border blocks\n{Packet.HexDump(new ReadOnlyMemory<byte>(bytes))}");
+						//Log.Warn($"Data to read for border blocks\n{Packet.HexDump(new ReadOnlyMemory<byte>(bytes))}");
 
 						//byte[] buf = new byte[borderBlock];
 						//int len = stream.Read(buf, 0, borderBlock);

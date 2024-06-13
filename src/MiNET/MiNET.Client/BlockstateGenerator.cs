@@ -15,6 +15,7 @@ namespace MiNET.Client
 		public static List<Schema> Schemas = new List<Schema>();
 		public static Dictionary<int, Schema> blockPosition = new Dictionary<int, Schema>();
 		public static bool customMode = false;
+		public static bool running = false;
 		public static int customId = 0;
 		public static int customData = 0;
 
@@ -48,6 +49,8 @@ namespace MiNET.Client
 		public static void init()
 		{
 			BlockPalette = new BlockPalette();
+			running = true;
+			Log.Warn("[McpeLevelChunk] Chunk reading disabled by BlockstateGenerator\n");
 		}
 
 		public static void createContainer(string name, uint blockRuntime, int id, int data, List<schemaStates> states)
@@ -88,6 +91,8 @@ namespace MiNET.Client
 			{
 				Log.Warn($"Completed successfully. All blockstates exported to 'newResources/blockstates.json'");
 			}
+			running = false;
+			Log.Warn("[McpeLevelChunk] Chunk reading enabled by BlockstateGenerator\n");
 		}
 
 		private static List<IBlockState> createState(string name, string value, string type)

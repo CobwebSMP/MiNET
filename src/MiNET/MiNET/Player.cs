@@ -522,15 +522,6 @@ namespace MiNET
 			}
 		}
 
-		public void HandleMcpeTickSync(McpeTickSync message)
-		{
-			var msg = McpeTickSync.CreateObject();
-			msg.requestTime = message.requestTime;
-			msg.responseTime = message.responseTime;
-
-			SendPacket(msg);
-		}
-
 		public virtual void HandleMcpeSetEntityData(McpeSetEntityData message)
 		{
 			// Only used by EDU NPC so far.

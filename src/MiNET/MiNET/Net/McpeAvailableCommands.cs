@@ -28,7 +28,6 @@ using System.Collections.Generic;
 using System.Linq;
 using log4net;
 using MiNET.Plugins;
-using Version = MiNET.Plugins.Version;
 
 namespace MiNET.Net
 {
@@ -48,200 +47,122 @@ namespace MiNET.Net
 
 		public CommandSet CommandSet { get; set; }
 
+		public List<Command> CommandList { get; set; } = new List<Command>();
+
 		partial void AfterDecode()
 		{
-			CommandSet = new CommandSet();
-			var stringValues = new List<string>();
+			uint enumValueCount = ReadUnsignedVarInt();
+			for (int i = 0; i < enumValueCount; i++)
 			{
-				uint count = ReadUnsignedVarInt();
-				Log.Debug($"String values {count}");
-				for (int i = 0; i < count; i++)
-				{
-					string str = ReadString();
-					Log.Debug($"{i} - {str}");
-					stringValues.Add(str);
-				}
-			}
-			int stringValuesCount = stringValues.Count();
-
-			{
-				uint count = ReadUnsignedVarInt();
-				Log.Debug($"Postfix values {count}");
-				for (int i = 0; i < count; i++)
-				{
-					string s = ReadString();
-					Log.Debug(s);
-				}
+				string str = ReadString();
 			}
 
-			EnumData[] enums;
+			uint chainedValueCount = ReadUnsignedVarInt();
+			for (int i = 0; i < chainedValueCount; i++)
 			{
-				uint count = ReadUnsignedVarInt();
-				enums = new EnumData[count];
-				Log.Debug($"Enum indexes {count}");
+				string str = ReadString();
+			}
 
-				for (int i = 0; i < count; i++)
+			uint postfixCount = ReadUnsignedVarInt();
+			for (int i = 0; i < postfixCount; i++)
+			{
+				string str = ReadString();
+			}
+
+			uint enumDataCount = ReadUnsignedVarInt();
+			for (int i = 0; i < enumDataCount; i++)
+			{
+				string str = ReadString();
+				uint valuesCount = ReadUnsignedVarInt();
+				int enumValue = 0;
+				for (int a = 0; a < valuesCount; a++)
 				{
-					string enumName = ReadString();
-					uint enumValueCount = ReadUnsignedVarInt();
-					string[] enumValues = new string[enumValueCount];
-					
-					Log.Debug($"{i} - {enumName}:{enumValueCount}");
-					for (int j = 0; j < enumValueCount; j++)
+					if (enumValueCount <= byte.MaxValue)
 					{
-						int idx;
-						if (stringValuesCount <= byte.MaxValue)
-						{
-							idx = ReadByte();
-						}
-						else if (stringValuesCount <= short.MaxValue)
-						{
-							idx = ReadShort();
-						}
-						else
-						{
-							idx = ReadInt();
-						}
-
-						enumValues[j] = stringValues[idx];
-						Log.Debug($"{enumName}, {idx} - {stringValues[idx]}");
+						enumValue = ReadByte();
 					}
-
-					enums[i] = new EnumData(enumName, enumValues);
-				}
-			}
-
-			{
-				uint count = ReadUnsignedVarInt();
-				Log.Debug($"Commands definitions {count}");
-				for (int i = 0; i < count; i++)
-				{
-					Command command = new Command();
-					command.Versions = new Version[1];
-					string commandName = ReadString();
-					string description = ReadString();
-					int flags = ReadShort();
-					int permissions = ReadByte();
-
-					command.Name = commandName;
-
-					Version version = new Version();
-					version.Description = description;
-
-					int aliasEnumIndex = ReadInt();
-
-					uint overloadCount = ReadUnsignedVarInt();
-					version.Overloads = new Dictionary<string, Overload>();
-					for (int j = 0; j < overloadCount; j++)
+					else if (enumValueCount <= short.MaxValue)
 					{
-						Overload overload = new Overload();
-						overload.Input = new Input();
-						
-						uint parameterCount = ReadUnsignedVarInt();
-						overload.Input.Parameters = new Parameter[parameterCount];
-						Log.Debug($"{commandName}, {description}, flags={flags}, {((CommandPermission) permissions)}, alias={aliasEnumIndex}, overloads={overloadCount}, params={parameterCount}");
-						for (int k = 0; k < parameterCount; k++)
-						{
-							string commandParamName = ReadString();
-							var paramType = ReadInt();
-							var optional = ReadBool();
-							var paramFlags = ReadByte();
-							/*int tmp = ReadShort();
-							int tmp1 = ReadShort();
-							bool isEnum = (tmp1 & 0x30) == 0x30;
-							bool isSoftEnum = (tmp1 & 0x0410) == 0x0410;
-							int commandParamType = -1;
-							int commandParamEnumIndex = -1;
-							int commandParamSoftEnumIndex = -1;
-							int commandParamPostfixIndex = -1;
-							if ((tmp1 & 0x0030) == 0x0030)
-							{
-								commandParamEnumIndex = tmp & 0xffff;
-							}
-							else if ((tmp1 & 0x0410) == 0x0410)
-							{
-								commandParamType = tmp & 0xffff;
-								commandParamSoftEnumIndex = tmp & 0xffff;
-							}
-							else if ((tmp1 & 0x100) == 0x100)
-							{
-								commandParamPostfixIndex = tmp & 0xffff;
-							}
-							else if ((tmp1 & 0x10) == 0x10)
-							{
-								commandParamType = tmp & 0xffff;
-							}
-							else
-							{
-								Log.Warn("No parameter style read (enum, valid, postfix)");
-							}*/
-
-							//bool optional = ReadBool();
-							//byte unknown = ReadByte();
-
-							Parameter parameter = new Parameter()
-							{
-								Name = commandParamName,
-								Optional = optional,
-								Type = GetParameterTypeName((paramType & 0xffff))
-							};
-
-							overload.Input.Parameters[k] = parameter;
-
-							if ((paramType & 0x200000) != 0) //Enum
-							{
-								var paramEnum = enums[paramType & 0xffff];
-								parameter.EnumValues = paramEnum.Values;
-								parameter.EnumType = paramEnum.Name;
-								parameter.Type = "stringenum";
-							}
-							else if ((paramType & 0x1000000) != 0) //Postfix
-							{
-								var paramEnum = enums[paramType & 0xffff];
-								parameter.EnumValues = paramEnum.Values;
-								parameter.EnumType = paramEnum.Name;
-								parameter.Type = "stringenum";
-							}
-							
-							//Log.Debug($"\t{commandParamName}, 0x{tmp:X4}, 0x{tmp1:X4}, {isEnum}, {isSoftEnum}, {(GetParameterTypeName(commandParamType))}, {commandParamEnumIndex}, {commandParamSoftEnumIndex}, {commandParamPostfixIndex}, {optional}, {unknown}");
-						}
-						
-						version.Overloads.Add(j.ToString(), overload);
+						enumValue = ReadShort();
 					}
-					
-					command.Versions[0] = version;
-					CommandSet.Add(commandName, command);
-				}
-			}
-			{
-				// Soft enums?
-
-				uint count = ReadUnsignedVarInt();
-				Log.Debug($"Soft enums {count}");
-				for (int i = 0; i < count; i++)
-				{
-					string enumName = ReadString();
-					Log.Debug($"Soft Enum {enumName}");
-					uint valCount = ReadUnsignedVarInt();
-					for (int j = 0; j < valCount; j++)
+					else
 					{
-						Log.Debug($"\t{enumName} value:{ReadString()}");
+						enumValue = ReadInt();
 					}
 				}
 			}
 
+			uint chainedValueData = ReadUnsignedVarInt();
+			for (int i = 0; i < chainedValueData; i++)
 			{
-				// constraints
-				uint count = ReadUnsignedVarInt();
-				Log.Debug($"Constraints {count}");
-				for (int i = 0; i < count; i++)
+				string str = ReadString();
+				uint valuesCount = ReadUnsignedVarInt();
+				for (int a = 0; a < valuesCount; a++)
 				{
-					Log.Debug($"Constraint: {ReadInt()} _ {ReadInt()}");
-					uint someCount = ReadUnsignedVarInt();
-					for (int j = 0; j < someCount; j++)
+					short subcommandData1 = ReadShort();
+					short subcommandData2 = ReadShort();
+				}
+			}
+
+			uint commandCount = ReadUnsignedVarInt();
+			for (int i = 0; i < commandCount; i++)
+			{
+				string name = ReadString();
+				string description = ReadString();
+				short flags = ReadShort();
+				byte permission = ReadByte();
+				int alias = ReadInt();
+
+				uint subcmdIndex = ReadUnsignedVarInt();
+				for (int a = 0; a < subcmdIndex; a++)
+				{
+					short index = ReadShort();
+				}
+
+				uint overloads = ReadUnsignedVarInt();
+				for (int a = 0; a < overloads; a++)
+				{
+					bool changing = ReadBool();
+					uint parametrs = ReadUnsignedVarInt();
+					for (int b = 0; b < parametrs; b++)
 					{
-						Log.Debug($"\tUnknown byte: {ReadByte()}");
+						string prameterName = ReadString();
+						int symbol = ReadInt();
+						bool optional = ReadBool();
+						byte options = ReadByte();
 					}
+				}
+
+				Plugins.Version data = new Plugins.Version();
+				data.Description = description;
+
+				Command command = new Command();
+				command.Name = name;
+				command.Versions = [data];
+
+				CommandList.Add(command);
+			}
+
+			uint softEnumCount = ReadUnsignedVarInt();
+			for (int a = 0; a < softEnumCount; a++)
+			{
+				string enumName = ReadString();
+				uint optionCount = ReadUnsignedVarInt();
+				for (int b = 0; b < optionCount; b++)
+				{
+					string value = ReadString();
+				}
+			}
+
+			uint constraintsCount = ReadUnsignedVarInt();
+			for (int a = 0; a < constraintsCount; a++)
+			{
+				int symbol = ReadInt();
+				int symbolValue = ReadInt();
+				uint constraintIndices = ReadUnsignedVarInt();
+				for (int b = 0; b < constraintIndices; b++)
+				{
+					byte index = ReadByte();
 				}
 			}
 		}

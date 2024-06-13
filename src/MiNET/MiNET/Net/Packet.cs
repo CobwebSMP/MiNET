@@ -864,7 +864,7 @@ namespace MiNET.Net
 				Item item = ReadItem(false);
 				item.NetworkId = (int)networkId;
 				metadata.Add(item);
-				Log.Debug(item);
+				//Log.Debug(item);
 			}
 
 			return metadata;
@@ -897,7 +897,7 @@ namespace MiNET.Net
 				Item item = ReadItem(this is not McpeCreativeContent);
 				item.NetworkId = networkId;
 				metadata.Add(item);
-				Log.Debug(item);
+				//Log.Debug(item);
 			}
 
 			return metadata;
@@ -1026,7 +1026,7 @@ namespace MiNET.Net
 					{
 						byte slot = ReadByte();
 						rr.Slots.Add(slot);
-						Log.Debug($"RequestId:{requestId}, containerId:{rr.ContainerId}, slot:{slot}");
+						//Log.Debug($"RequestId:{requestId}, containerId:{rr.ContainerId}, slot:{slot}");
 					}
 					requestRecords.Add(rr);
 				}
@@ -1334,19 +1334,19 @@ namespace MiNET.Net
 			var requests = new ItemStackRequests();
 
 			var c = ReadUnsignedVarInt();
-			Log.Debug($"Count: {c}");
+			//Log.Debug($"Count: {c}");
 			for (int i = 0; i < c; i++)
 			{
 				var actions = new ItemStackActionList();
 				actions.RequestId = ReadSignedVarInt();
-				Log.Debug($"Request ID: {actions.RequestId}");
+				//Log.Debug($"Request ID: {actions.RequestId}");
 
 				uint count = ReadUnsignedVarInt();
-				Log.Debug($"Count: {count}");
+				//Log.Debug($"Count: {count}");
 				for (int j = 0; j < count; j++)
 				{
 					var actionType = (McpeItemStackRequest.ActionType) ReadByte();
-					Log.Debug($"Action type: {actionType}");
+					//Log.Debug($"Action type: {actionType}");
 					switch (actionType)
 					{
 						case McpeItemStackRequest.ActionType.Take:
@@ -2086,11 +2086,6 @@ namespace MiNET.Net
 				var legacyId = ReadShort();
 				var component = ReadBool();
 
-				if (name == "minecraft:shield")
-				{
-					Log.Warn($"Got shield with runtime id {runtimeId}, legacy {legacyId}");
-				}
-
 				result.Add(new Itemstate
 				{
 					Id = legacyId,
@@ -2101,7 +2096,7 @@ namespace MiNET.Net
 
 			var fileNameItemstates = "newResources/itemstates.json";
 			File.WriteAllText(fileNameItemstates, JsonConvert.SerializeObject(result, Formatting.Indented));
-
+			Log.Warn("Received item runtime ids exported to newResources/itemstates.json\n");
 			return result;
 		}
 
@@ -2724,6 +2719,7 @@ namespace MiNET.Net
 						Write(rec.Id);
 						Write(rec.Block);
 						WriteSignedVarInt(0); // priority
+						Write((byte) 1); // recipe unlocking requirement 1 - always unlocked
 						WriteVarInt(UniqueId); // unique id
 						if(!RecipeManager.resultMapLocked){ RecipeManager.resultMap.Add(UniqueId, rec.Result[0]); }
 						break;
@@ -2754,6 +2750,7 @@ namespace MiNET.Net
 						Write(rec.Block);
 						WriteUnsignedVarInt(0); // priority
 						Write(true);  // symmetric
+						Write((byte) 1); // recipe unlocking requirement 1 - always unlocked
 						WriteVarInt(UniqueId); // unique id
 						if(!RecipeManager.resultMapLocked){ RecipeManager.resultMap.Add(UniqueId, rec.Result[0]); }
 						break;
@@ -2796,13 +2793,13 @@ namespace MiNET.Net
 			var recipes = new Recipes();
 
 			int count = (int) ReadUnsignedVarInt();
-			Log.Trace($"Reading {count} recipes");
+			Log.Warn($"[McpeCraftingData] Received {count} recipes");
 
 			for (int i = 0; i < count; i++)
 			{
 				int recipeType = ReadSignedVarInt();
 
-				Log.Trace($"Read recipe no={i} type={recipeType}");
+				//Log.Trace($"Read recipe no={i} type={recipeType}");
 
 				if (recipeType < 0 /*|| len == 0*/)
 				{
@@ -2830,17 +2827,28 @@ namespace MiNET.Net
 							recipe.Id = ReadUUID(); // Id
 							recipe.Block = ReadString(); // block?
 							ReadSignedVarInt(); // priority
+							var unlockReq = ReadByte(); // unlock
+							if (unlockReq == 0)
+							{
+								var ingredientCount = ReadVarInt();
+								for (int a = 0; a < ingredientCount; a++)
+								{
+									ReadRecipeData();
+								}
+							}
 							recipe.UniqueId = ReadVarInt(); // unique id
 							//recipes.Add(recipe);
-							Log.Error("Read shapeless recipe");
+							//Log.Error("Read shapeless recipe");
+							Log.Debug($"Shapeless: {recipe.Id} | {recipe.Block} | {ingrediensCount}  | {resultCount} | {recipe.UniqueId}");
 							break;
 						}
 					case Shaped:
 						{
-							ReadString(); // some unique id
+							var uniqueid = ReadString(); // some unique id
+							//Log.Debug($"shaped u id {uniqueid}");
 							int width = ReadSignedVarInt(); // Width
 							int height = ReadSignedVarInt(); // Height
-							Log.Debug($"1 {width} {height}");
+							//Log.Debug($"1 {width} {height}");
 							var recipe = new ShapedRecipe(width, height);
 							if (width > 3 || height > 3)
 								throw new Exception("Wrong number of ingredience. Width=" + width + ", height=" + height);
@@ -2852,33 +2860,42 @@ namespace MiNET.Net
 								}
 							}
 							int resultCount = ReadVarInt(); // 1?
-							Log.Debug($"2 {resultCount}");
+							//Log.Debug($"2 {resultCount}");
 							for (int j = 0; j < resultCount; j++)
 							{
 								recipe.Result.Add(ReadItem(false));
 							}
 							recipe.Id = ReadUUID(); // Id
-							Log.Debug($"3 {recipe.Id}");
+							//Log.Debug($"3 {recipe.Id}");
 							recipe.Block = ReadString(); // block?
 							ReadUnsignedVarInt(); // priority
-							ReadBool(); // symetric
+							var symetric = ReadBool(); // symetric
+							var unlockReq = ReadByte(); // unlock
+							if (unlockReq == 0)
+							{
+								var ingredientCount = ReadVarInt();
+								for (int a = 0; a < ingredientCount; a++)
+								{
+									ReadRecipeData();
+								}
+							}
 							recipe.UniqueId = ReadVarInt(); // unique id
 							recipes.Add(recipe);
-							Log.Error($"Shaped: {recipe.Id} | {recipe.Block} | {width} | {height} | {resultCount} | {recipe.UniqueId}");
+							Log.Debug($"Shaped: {recipe.Id} | {recipe.Block} | {width} | {height} | {resultCount} | {recipe.UniqueId} | {symetric} | {unlockReq}");
 							break;
 						}
 					case Furnace:
 						{
 							var recipe = new SmeltingRecipe();
 							short id = (short) ReadSignedVarInt(); // input (with metadata)
-							Log.Debug($"item id{id}");
+							//Log.Debug($"item id{id}");
 							Item result = ReadItem(false); // Result
 							recipe.Block = ReadString(); // block?
 							recipe.Input = ItemFactory.GetItem(id, 0);
 							recipe.Result = result;
 							//recipes.Add(recipe);
-							Log.Error("Read furnace recipe");
-							Log.Error($"Input={id}, meta={""} Item={result.Id}, Meta={result.Metadata}");
+							//Log.Error("Read furnace recipe");
+							Log.Debug($"Furnace Input={id}, meta={""} Item={result.Id}, Meta={result.Metadata}");
 							break;
 						}
 					case FurnaceData:
@@ -2892,8 +2909,8 @@ namespace MiNET.Net
 							recipe.Input = ItemFactory.GetItem(id, meta);
 							recipe.Result = result;
 							//recipes.Add(recipe);
-							Log.Error("Read smelting recipe");
-							//Log.Error($"Input={id}, meta={meta} Item={result.Id}, Meta={result.Metadata}");
+							//Log.Error("Read smelting recipe");
+							Log.Debug($"Smelting Input={id}, meta={meta} Item={result.Id}, Meta={result.Metadata}");
 							break;
 						}
 					case Multi:
@@ -2951,8 +2968,7 @@ namespace MiNET.Net
 							recipe.Block = ReadString(); // block?
 							ReadSignedVarInt(); // priority
 							recipe.UniqueId = ReadVarInt(); // unique id
-															//recipes.Add(recipe);
-															//Log.Error("Read shaped recipe");
+							//recipes.Add(recipe);
 							break;
 						}
 					case SmithingTrim:
@@ -2965,7 +2981,7 @@ namespace MiNET.Net
 							recipe.Block = ReadString();
 							recipe.UniqueId = ReadVarInt();
 							//recipes.Add(recipe);
-							Log.Error($"SmithingTrimRecipe: {recipe.RecipeId} | {recipe.Template} | {recipe.Input} | {recipe.Addition} | {recipe.Block} | {recipe.UniqueId}");
+							Log.Debug($"SmithingTrimRecipe: {recipe.RecipeId} | {recipe.Template} | {recipe.Input} | {recipe.Addition} | {recipe.Block} | {recipe.UniqueId}");
 							break;
 						}
 					case SmithingTransform:
@@ -2979,7 +2995,7 @@ namespace MiNET.Net
 							recipe.Block = ReadString(); // block?
 							recipe.UniqueId = ReadVarInt(); // unique id
 							//recipes.Add(recipe);
-							Log.Error($"SmithingTransformRecipe: {recipe.RecipeId} | {recipe.Template} | {recipe.Input} | {recipe.Addition} | {recipe.Block} | {recipe.UniqueId}");
+							Log.Debug($"SmithingTransformRecipe: {recipe.RecipeId} | {recipe.Template} | {recipe.Input} | {recipe.Addition} | {recipe.Block} | {recipe.UniqueId}");
 							break;
 						}
 					default:
@@ -2989,7 +3005,7 @@ namespace MiNET.Net
 				}
 			}
 
-			Log.Trace($"Done reading {count} recipes");
+			Log.Warn($"[McpeCraftingData] Done reading {count} recipes\n");
 
 			return recipes;
 		}
@@ -3020,13 +3036,13 @@ namespace MiNET.Net
 		public Item ReadRecipeData()
 		{
 			short type = ReadByte();
-			Log.Debug($"recipe type {type}");
+			//Log.Debug($"recipe type {type}");
 			if (type == 1)
 			{
 				short id = ReadShort();
 				short meta = ReadShort();
 				short count = (short) ReadSignedVarInt();
-				Log.Debug($"Used desc data {id} ; {meta} ; {count}");
+				//Log.Debug($"Used desc data {id} ; {meta} ; {count}");
 				return ItemFactory.GetItem(id, meta, count);
 			}
 			else if (type == 2)
@@ -3034,32 +3050,31 @@ namespace MiNET.Net
 				string expression = ReadString();
 				int version = ReadByte();
 				short count = (short) ReadSignedVarInt();
-				Log.Debug($"Used desc data {expression} ; {version} {count}");
+				//Log.Debug($"Used desc data {expression} ; {version} {count}");
 				return ItemFactory.GetItem(ItemFactory.GetItemIdByName(expression));
 			}
 			else if (type == 3)
 			{
 				string sId = ReadString();
 				short count = (short) ReadSignedVarInt();
-				Log.Debug($"Used desc data {sId} ; {count}");
+				//Log.Debug($"Used desc data {sId} ; {count}");
 				return ItemFactory.GetItem(sId, 0, count);
 			}
 			else if (type == 4)
 			{
 				string sId = ReadString();
 				short meta = ReadShort();
-				Log.Debug($"Used desc data {sId} ; {meta}");
+				//Log.Debug($"Used desc data {sId} ; {meta}");
 				return new ItemAir();
 			}
 			else if (type == 5)
 			{
 				string stri = ReadString();
-				short count = (short) ReadSignedVarInt();
-				Log.Debug($"Used desc data {stri} {count}");
+				//Log.Debug($"Used desc data {stri} {count}");
 				ItemFactory.GetItem(ItemFactory.GetItemIdByName(stri));
 			}
 			short coun = (short) ReadSignedVarInt();
-			Log.Debug($"Used desc data 0 ; {coun}");
+			//Log.Debug($"Used desc data 0 ; {coun}");
 			return new ItemAir();
 		}
 
@@ -3069,7 +3084,7 @@ namespace MiNET.Net
 			if (type == -1)
 			{
 			}
-			Log.Debug($"Used desc type {type}");
+			//Log.Debug($"Used desc type {type}");
 			return new ItemAir();
 		}
 

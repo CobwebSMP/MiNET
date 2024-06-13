@@ -64,8 +64,29 @@ namespace MiNET.Client
 
 		public override void HandleMcpeDisconnect(McpeDisconnect message)
 		{
-			Log.InfoFormat("Disconnect {1}: {0}", message.message, Client.Username);
-
+			Log.Warn("[Disconnect Screen] ");
+			switch (message.message.ToString())
+			{
+				case "disconnectionScreen.notAuthenticated":
+					Log.Warn("You need to authenticate to Xbox Live services to join this server.");
+					break;
+				case "disconnectionScreen.invalidSkin":
+					Log.Warn("Invalid skin.");
+					break;
+				case "disconnectionScreen.serverFull":
+				case "disconnectionScreen.serverFull.title":
+					Log.Warn("Server is full.");
+					break;
+				case "disconnectionScreen.resourcePack":
+					Log.Warn("Resource pack error.");
+					break;
+				case "disconnectionScreen.badPacket":
+					Log.Warn("Client sent invalid packet.");
+					break;
+				default:
+					Log.Warn($"Server requested disconnect with message {message.message.ToString()}");
+					break;
+			}
 			base.HandleMcpeDisconnect(message);
 		}
 
@@ -184,6 +205,12 @@ namespace MiNET.Client
 
 		public override void HandleMcpeCreativeContent(McpeCreativeContent message)
 		{
+			Log.Warn($"[McpeCreativeContent] Received {message.input.Count} creative items");
+			foreach (var item in message.input)
+			{
+				//Log.Warn($"Got item: {item.Name} ({item.Id} : {item.Metadata})");
+			}
+			Log.Warn($"[McpeCreativeContent] Done reading {message.input.Count} creative items\n");
 		}
 
 		public override void HandleMcpeAddItemEntity(McpeAddItemEntity message)
@@ -207,19 +234,6 @@ namespace MiNET.Client
 			Client.NetworkEntityId = message.entityIdSelf;
 			Client.SpawnPoint = message.spawn;
 			Client.CurrentLocation = new PlayerLocation(Client.SpawnPoint, message.rotation.X, message.rotation.X, message.rotation.Y);
-
-			Log.Warn($"Got position from startgame packet: {Client.CurrentLocation}");
-
-			var settings = new JsonSerializerSettings
-			{
-				PreserveReferencesHandling = PreserveReferencesHandling.Arrays,
-				TypeNameHandling = TypeNameHandling.Auto,
-				Formatting = Formatting.Indented,
-				DefaultValueHandling = DefaultValueHandling.Include
-			};
-
-			var fileNameItemstates = "newResources/itemstates.json";
-			File.WriteAllText(fileNameItemstates, JsonConvert.SerializeObject(message.itemstates, settings));
 
 			LogGamerules(message.levelSettings.gamerules);
 
@@ -591,9 +605,11 @@ namespace MiNET.Client
 				Client.Chunks.GetOrAdd(new ChunkCoordinates(message.chunkX, message.chunkZ), coordinates =>
 				{
 					Log.Debug($"Chunk X={message.chunkX}, Z={message.chunkZ}, size={message.chunkData.Length}, Count={Client.Chunks.Count}");
-
-					ChunkColumn chunk = null;
-					try
+					if (BlockstateGenerator.running == false){ Console.WriteLine($"[McpeLevelChunk] Got chunk | X: {message.chunkX,-4} | Z: {message.chunkZ,-4} |"); ; }
+						//broken, chunkData have weird values. Expected header something like: 09 01 02 08
+						//Log.Debug($"{Packet.HexDump(message.Bytes)}");
+						ChunkColumn chunk = null;
+					/*try
 					{
 						chunk = ClientUtils.DecodeChunkColumn((int) message.subChunkCount, message.chunkData);
 						if (chunk != null)
@@ -611,7 +627,7 @@ namespace MiNET.Client
 					catch (Exception e)
 					{
 						Log.Error("Reading chunk", e);
-					}
+					}*/
 
 					return chunk;
 				});
@@ -649,19 +665,12 @@ namespace MiNET.Client
 
 		public override void HandleMcpeAvailableCommands(McpeAvailableCommands message)
 		{
-			//{
-			//	dynamic json = JObject.Parse(message.commands);
-
-			//	//if (Log.IsDebugEnabled) Log.Debug($"Command JSON:\n{json}");
-			//	string fileName = Path.GetTempPath() + "AvailableCommands_" + Guid.NewGuid() + ".json";
-			//	Log.Info($"Writing commands to filename: {fileName}");
-			//	File.WriteAllText(fileName, message.commands);
-			//}
-			//{
-			//	dynamic json = JObject.Parse(message.unknown);
-
-			//	//if (Log.IsDebugEnabled) Log.Debug($"Command (unknown) JSON:\n{json}");
-			//}
+			Log.Warn($"[McpeAvailableCommands] Received {message.CommandList.Count} commnands");
+			foreach (var command in message.CommandList)
+			{
+				//Log.Warn($"Got command: {command.Name} - {command.Versions[0].Description}");
+			}
+			Log.Warn($"[McpeAvailableCommands] Done reading {message.CommandList.Count} commnands\n");
 		}
 
 		public override void HandleMcpeResourcePackChunkData(McpeResourcePackChunkData message)

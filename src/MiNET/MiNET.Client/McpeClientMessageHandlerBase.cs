@@ -238,10 +238,6 @@ namespace MiNET.Client
 		{
 		}
 
-		public virtual void HandleMcpeTickSync(McpeTickSync message)
-		{
-		}
-
 		public virtual void HandleMcpeLevelSoundEventOld(McpeLevelSoundEventOld message)
 		{
 		}
@@ -738,7 +734,7 @@ namespace MiNET.Client
 		/// <inheritdoc />
 		public void HandleMcpeUpdateAbilities(McpeUpdateAbilities message)
 		{
-			
+			Client.permissionLevel = (PermissionLevel) message.playerPermissions;
 		}
 
 		/// <inheritdoc />

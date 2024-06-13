@@ -108,7 +108,7 @@ namespace MiNET.Client
 			SendCommand(client, $"/setblock 0 50 0 cobblestone"); //hack to place air
 			await Task.Delay(4000); //delay just to read this /|\
 			SetGameRules(caller);
-			SendCommand(client, $"/tp TheGrey 0 52 0");
+			SendCommand(client, $"/tp TheGrey 0 352 0");
 			await Task.Delay(500);
 
 			var x = 0;
@@ -138,7 +138,7 @@ namespace MiNET.Client
 					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");
 					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");  //TODO find out why sometimes at random time and random block are not placed
 					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");
-					SendCommand(client, $"/tp TheGrey {x} 52 0");
+					SendCommand(client, $"/tp TheGrey {x} 352 0");
 					if (!BlockstateGenerator.blockPosition.ContainsKey(x)) { BlockstateGenerator.blockPosition.Add(x, block); }
 					x += 2;
 					tp++;
@@ -172,7 +172,6 @@ namespace MiNET.Client
 				BlockstateGenerator.blockPosition.Remove(message.coordinates.X);
 				if (state.Name == "minecraft:barrier")
 				{
-
 					BlockstateGenerator.write();
 				}
 				if (state.Id == BlockstateGenerator.customId && state.Data == BlockstateGenerator.customData && BlockstateGenerator.customMode)
@@ -186,7 +185,7 @@ namespace MiNET.Client
 		{
 			foreach (var block in message.layerZeroUpdates)
 			{
-				//Log.Error($"layer2 {block.BlockRuntimeId} {block.Coordinates.X} {block.Coordinates.Y} {block.Coordinates.Z}");
+				//Log.Error($"layer0 {block.BlockRuntimeId} {block.Coordinates.X} {block.Coordinates.Y} {block.Coordinates.Z}");
 				if (BlockstateGenerator.blockPosition.TryGetValue(block.Coordinates.X, out var state) && block.Coordinates.Y == 50 && block.Coordinates.Z == 0 && !BlockstateGenerator.BlockPalette.ContainsKey((int)block.BlockRuntimeId))
 				{
 					Log.Warn($"Got runtimeID for {state.Name} (id: {state.Id} data: {state.Data})");

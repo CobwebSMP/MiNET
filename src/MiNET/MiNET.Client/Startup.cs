@@ -31,6 +31,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
+using MiNET.Net;
 using MiNET.Utils;
 using MiNET.Utils.Vectors;
 
@@ -54,13 +55,6 @@ namespace MiNET.Client
 			BlockstateGenerator.preInit();
 
 			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 19132), "TheGrey");
-			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 19132), "TheGrey");
-			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 19132), "TheGrey");
-			//var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("test.pmmp.io").AddressList[0], 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.4"), 19162), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("213.89.103.206"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			//var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("yodamine.com").AddressList[0], 19132), "TheGrey");
-			//var client = new MiNetClient(new IPEndPoint(IPAddress.Loopback, 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
 
 			client.MessageHandler = new BedrockTraceHandler(client);
 
@@ -77,15 +71,14 @@ namespace MiNET.Client
 
 			Console.WriteLine($"... YEAH! FOUND SERVER! It's at {info.serverEndPoint}, \"{info.serverName}\"");
 
-			if (!client.Connection.TryConnect(info.serverEndPoint))
+			if (!client.Connection.TryConnect(info.serverEndPoint))    
 			{
 				Console.WriteLine($"Failed to connect to server at {info.serverEndPoint}");
 				return;
 			}
 
-			Console.WriteLine("Waiting for spawn...");
+			Log.Debug("Waiting for spawn...");
 			client.PlayerStatusChangedWaitHandle.WaitOne();
-			Console.WriteLine("... spawned");
 
 			client.HasSpawned = true;
 
@@ -93,95 +86,88 @@ namespace MiNET.Client
 
 			Action<Task, string> doSendCommand = BotHelpers.DoSendCommand(client);
 
-			Task.Run(BotHelpers.DoWaitForSpawn(client))
-				.ContinueWith(t => doSendCommand(t, $"/me says \"I spawned at {client.CurrentLocation}\""))
-				//.ContinueWith(task =>
-				//{
-				//	var request = new McpeCommandRequest();
-				//	request.command = "/setblock ~ ~-1 ~ log 0 replace";
-				//	request.unknownUuid = new UUID(Guid.NewGuid().ToString());
-				//	client.SendPacket(request);
+			Thread.Sleep(4000);
+			Log.Warn($"Client spawned at X: {client.CurrentLocation.X}, Y: {client.CurrentLocation.Y}, Z: {client.CurrentLocation.Z}");
+			while (true)
+			{
+				Log.Warn("Do [command] and Enter to execute function. /help to print available functions.");
+				string command = Console.ReadLine();
+				doCommand(command, client);
+			}
+		}
 
-				//	var coord =  (BlockCoordinates) client.CurrentLocation;
-				//	var pick = McpeBlockPickRequest.CreateObject();
-				//	pick.x = coord.X;
-				//	pick.y = coord.Y;
-				//	pick.z = coord.Z;
-				//	client.SendPacket(request);
-				//})
+		static void doCommand(string command, MiNetClient client)
+		{
+			string[] cmd = command.Split(' ');
+			switch (cmd[0])
+			{
+				case "/tp":
+					teleport(client, Int32.Parse(cmd[1]), Int32.Parse(cmd[2]), Int32.Parse(cmd[3]));
+					break;
+				case "/blockstates":
+					blockstates(client);
+					break;
+				case "/viewdistance":
+					chunkRadius(client, Int32.Parse(cmd[1]));
+					break;
+				case "/exit":
+					disconnectCmd(client);
+					break;
+				case "/help":
+					helpCmd();
+					break;
+				default:
+					Log.Warn("Unknown command. /help to print available functions.");
+					break;
+			}
+		}
 
-				//.ContinueWith(t => BotHelpers.DoMobEquipment(client)(t, new ItemBlock(new Cobblestone(), 0) {Count = 64}, 0))
-				//.ContinueWith(t => BotHelpers.DoMoveTo(client)(t, new PlayerLocation(client.CurrentLocation.ToVector3() - new Vector3(0, 1, 0), 180, 180, 180)))
-				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(40, 5.62f, -20, 180, 180, 180)))
-				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(0, 5.62, 0, 180 + 45, 180 + 45, 180)))
-				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(0, 5.62, 0, 180 + 45, 180 + 45, 180)))
-				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(22, 5.62, 40, 180 + 45, 180 + 45, 180)))
-				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180)))
-				.ContinueWith(t => doSendCommand(t, "/me says \"Hi guys! It is I!!\""))
-				//.ContinueWith(t => Task.Delay(500).Wait())
-				//.ContinueWith(t => doSendCommand(t, "/summon sheep"))
-				//.ContinueWith(t => Task.Delay(500).Wait())
-				//.ContinueWith(t => doSendCommand(t, "/kill @e[type=sheep]"))
-				.ContinueWith(t => Task.Delay(5000).Wait())
-				//.ContinueWith(t =>
-				//{
-				//	Random rnd = new Random();
-				//	while (true)
-				//	{
-				//		doMoveTo(t, new PlayerLocation(rnd.Next(10, 40), 5.62f, rnd.Next(-50, -10), 180, 180, 180));
-				//		//doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180));
-				//		doMoveTo(t, new PlayerLocation(rnd.Next(40, 50), 5.62f, rnd.Next(0, 20), 180, 180, 180));
-				//	}
-				//})
-				;
+		static void teleport(MiNetClient client, int x, int y, int z)
+		{
+			var request = McpeCommandRequest.CreateObject();
+			request.command = $"/tp TheGrey {x} {y} {z}";
+			request.commandType = 0;
+			request.unknownUuid = new UUID(Guid.NewGuid().ToString());
+			request.isinternal = false;
+			request.version = 36;
+			client.SendPacket(request);
+		}
 
-			//string fileName = Path.GetTempPath() + "MobSpawns_" + Guid.NewGuid() + ".txt";
-			//FileStream file = File.OpenWrite(fileName);
-			//Log.Info($"Writing mob spawns to file:\n{fileName}");
-			//_mobWriter = new IndentedTextWriter(new StreamWriter(file));
-			//Task.Run(BotHelpers.DoWaitForSpawn(client))
-			//	.ContinueWith(task =>
-			//	{
-			//		foreach (EntityType entityType in Enum.GetValues(typeof(EntityType)))
-			//		{
-			//			if (entityType == EntityType.Wither) continue;
-			//			if (entityType == EntityType.Dragon) continue;
-			//			if (entityType == EntityType.Slime) continue;
-
-			//			string entityName = entityType.ToString();
-			//			entityName = Regex.Replace(entityName, "([A-Z])", "_$1").TrimStart('_').ToLower();
-			//			{
-			//				string command = $"/summon {entityName}";
-			//				McpeCommandRequest request = new McpeCommandRequest();
-			//				request.command = command;
-			//				request.unknownUuid = new UUID(Guid.NewGuid().ToString());
-			//				client.SendPackage(request);
-			//			}
-
-			//			Task.Delay(500).Wait();
-
-			//			{
-			//				McpeCommandRequest request = new McpeCommandRequest();
-			//				request.command = $"/kill @e[type={entityName}]";
-			//				request.unknownUuid = new UUID(Guid.NewGuid().ToString());
-			//				client.SendPackage(request);
-			//			}
-			//		}
-
-			//		{
-			//			McpeCommandRequest request = new McpeCommandRequest();
-			//			request.command = $"/kill @e[type=!player]";
-			//			request.unknownUuid = new UUID(Guid.NewGuid().ToString());
-			//			client.SendPackage(request);
-			//		}
-
-			//	});
-
-			Console.WriteLine("<Enter> to exit!");
-			Console.ReadLine();
+		static void disconnectCmd(MiNetClient client)
+		{
 			if (client.IsConnected) client.SendDisconnectionNotification();
 			Thread.Sleep(50);
 			client.StopClient();
+		}
+
+		static void helpCmd()
+		{
+			Log.Warn("======== Client functions ========\n");
+			Log.Warn("/blockstates - Generate new blockstate runtime ids according to schema.json");
+			Log.Warn("/exit - Disconnect from the server");
+			Log.Warn("/help - Display this info");
+			Log.Warn("/tp <x:int> <y:int> <z:int> - Teleport client to specific position");
+			Log.Warn("/viewdistance <chunkdistance:int> - Change view distance");
+		}
+
+		static void chunkRadius(MiNetClient client, int radius)
+		{
+			var packet = McpeRequestChunkRadius.CreateObject();
+			client.ChunkRadius = radius;
+			packet.chunkRadius = client.ChunkRadius;
+			client.SendPacket(packet);
+		}
+
+		static void blockstates(MiNetClient client)
+		{
+			if (client.permissionLevel == PermissionLevel.Operator)
+			{
+				client.SendChat("blockstates");
+			}
+			else
+			{
+				Log.Warn("Error: Client need OP permissions. Type /op thegrey in BSD console");
+			}
 		}
 	}
 }

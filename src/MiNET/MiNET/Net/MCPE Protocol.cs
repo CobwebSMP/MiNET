@@ -43,8 +43,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 671;
-		public const string GameVersion = "1.20.80";
+		public const int ProtocolVersion = 685;
+		public const string GameVersion = "1.21.0";
 	}
 
 	public interface IMcpeMessageHandler
@@ -58,7 +58,6 @@ namespace MiNET.Net
 		void HandleMcpeMoveEntity(McpeMoveEntity message);
 		void HandleMcpeMovePlayer(McpeMovePlayer message);
 		void HandleMcpeRiderJump(McpeRiderJump message);
-		void HandleMcpeTickSync(McpeTickSync message);
 		void HandleMcpeLevelSoundEventOld(McpeLevelSoundEventOld message);
 		void HandleMcpeEntityEvent(McpeEntityEvent message);
 		void HandleMcpeInventoryTransaction(McpeInventoryTransaction message);
@@ -136,7 +135,6 @@ namespace MiNET.Net
 		void HandleMcpeRiderJump(McpeRiderJump message);
 		void HandleMcpeUpdateBlock(McpeUpdateBlock message);
 		void HandleMcpeAddPainting(McpeAddPainting message);
-		void HandleMcpeTickSync(McpeTickSync message);
 		void HandleMcpeLevelSoundEventOld(McpeLevelSoundEventOld message);
 		void HandleMcpeLevelEvent(McpeLevelEvent message);
 		void HandleMcpeBlockEvent(McpeBlockEvent message);
@@ -320,9 +318,6 @@ namespace MiNET.Net
 					break;
 				case McpeAddPainting msg:
 					_messageHandler.HandleMcpeAddPainting(msg);
-					break;
-				case McpeTickSync msg:
-					_messageHandler.HandleMcpeTickSync(msg);
 					break;
 				case McpeLevelSoundEventOld msg:
 					_messageHandler.HandleMcpeLevelSoundEventOld(msg);
@@ -776,7 +771,7 @@ namespace MiNET.Net
 					case 0x16:
 						return McpeAddPainting.CreateObject().Decode(buffer);
 					case 0x17:
-						return McpeTickSync.CreateObject().Decode(buffer);
+						//Deprecated McpeTickSync
 					case 0x18:
 						return McpeLevelSoundEventOld.CreateObject().Decode(buffer);
 					case 0x19:
@@ -2599,7 +2594,6 @@ namespace MiNET.Net
 		protected override void EncodePacket()
 		{
 			base.EncodePacket();
-
 			BeforeEncode();
 
 			Write(uuid);
@@ -3340,57 +3334,6 @@ namespace MiNET.Net
 
 	}
 
-	public partial class McpeTickSync : Packet<McpeTickSync>
-	{
-
-		public long requestTime; // = null;
-		public long responseTime; // = null;
-
-		public McpeTickSync()
-		{
-			Id = 0x17;
-			IsMcpe = true;
-		}
-
-		protected override void EncodePacket()
-		{
-			base.EncodePacket();
-
-			BeforeEncode();
-
-			Write(requestTime);
-			Write(responseTime);
-
-			AfterEncode();
-		}
-
-		partial void BeforeEncode();
-		partial void AfterEncode();
-
-		protected override void DecodePacket()
-		{
-			base.DecodePacket();
-
-			BeforeDecode();
-
-			requestTime = ReadLong();
-			responseTime = ReadLong();
-
-			AfterDecode();
-		}
-
-		partial void BeforeDecode();
-		partial void AfterDecode();
-
-		protected override void ResetPacket()
-		{
-			base.ResetPacket();
-
-			requestTime=default(long);
-			responseTime=default(long);
-		}
-
-	}
 
 	public partial class McpeLevelSoundEventOld : Packet<McpeLevelSoundEventOld>
 	{
@@ -4774,6 +4717,7 @@ namespace MiNET.Net
 			BeforeEncode();
 
 			Write(windowId);
+			Write((byte) 0);
 			Write(server);
 
 			AfterEncode();
@@ -4789,6 +4733,7 @@ namespace MiNET.Net
 			BeforeDecode();
 
 			windowId = ReadByte();
+			ReadByte();
 			server = ReadBool();
 
 			AfterDecode();
@@ -8902,7 +8847,11 @@ namespace MiNET.Net
 			BeforeDecode();
 
 			eventId = ReadSignedVarInt();
-			eventData = ReadNbt();
+			//eventData = ReadNbt(); todo wrong
+			for (byte i = 0; i < 60; i++) //shhhh
+			{
+				ReadByte();
+			}
 
 			AfterDecode();
 		}

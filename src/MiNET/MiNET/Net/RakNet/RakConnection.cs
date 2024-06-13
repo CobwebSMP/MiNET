@@ -54,6 +54,7 @@ namespace MiNET.Net.RakNet
 		public           ConnectionInfo                               ConnectionInfo { get; }
 
 		public bool FoundServer => _rakOfflineHandler.HaveServer;
+		private bool isListening = true;
 
 		public bool AutoConnect
 		{
@@ -184,7 +185,7 @@ namespace MiNET.Net.RakNet
 				if (listener == null) return;
 
 				_listener = null;
-				listener.Close();
+				isListening = false;
 			}
 			catch (Exception e)
 			{
@@ -260,7 +261,7 @@ namespace MiNET.Net.RakNet
 		{
 			var listener = (UdpClient) state;
 
-			while (true)
+			while (isListening)
 			{
 				// Check if we already closed the server
 				if (listener?.Client == null) return;
@@ -324,6 +325,8 @@ namespace MiNET.Net.RakNet
 					return;
 				}
 			}
+
+			listener.Close();
 		}
 
 		private void ReceiveDatagram(ReadOnlyMemory<byte> receivedBytes, IPEndPoint clientEndpoint)

@@ -9319,7 +9319,14 @@ namespace MiNET.Blocks
                 switch(state)
                 {
                     case BlockStateString s when s.Name == "tall_grass_type":
-                        TallGrassType = s.Value;
+						if (s.Value == "tall")
+						{
+							TallGrassType = "default";
+						}
+						else
+						{
+							TallGrassType = s.Value;
+						}
                         break;
                 } // switch
             } // foreach

@@ -222,7 +222,9 @@ namespace MiNET.Net
 		public int playerGamemode; // = null;
 		public Vector3 spawn; // = null;
 		public Vector2 rotation; // = null;
-		
+		public string serverId; // = null;
+		public string worldId; // = null;
+		public string scenarioId; // = null;
 		public string levelId; // = null;
 		public string worldName; // = null;
 		public string premiumWorldTemplateId; // = null;
@@ -255,7 +257,9 @@ namespace MiNET.Net
 			
 			LevelSettings s = levelSettings ?? new LevelSettings();
 			s.Write(this);
-			
+			Write(serverId);
+			Write(worldId);
+			Write(scenarioId);
 			Write(levelId);
 			Write(worldName);
 			Write(premiumWorldTemplateId);
@@ -294,7 +298,11 @@ namespace MiNET.Net
 
 			levelSettings = new LevelSettings();
 			levelSettings.Read(this);
-			
+
+			serverId = ReadString();
+			worldId = ReadString();
+			scenarioId = ReadString();
+
 			levelId = ReadString();
 			worldName = ReadString();
 			premiumWorldTemplateId = ReadString();
@@ -340,6 +348,9 @@ namespace MiNET.Net
 			spawn=default(Vector3);
 			rotation=default(Vector2);
 			levelSettings = default;
+			serverId=default(string);
+			worldId=default(string);
+			scenarioId=default(string);
 			levelId=default(string);
 			worldName=default(string);
 			premiumWorldTemplateId=default(string);
