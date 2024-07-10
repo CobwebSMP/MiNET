@@ -530,7 +530,7 @@ namespace MiNET
 			IMcpeMessageHandler messageHandler = server.CreatePlayer(_session, _playerInfo);
 			_bedrockHandler.Handler = messageHandler; // Replace current message handler with real one.
 
-			if (_playerInfo.ProtocolVersion != McpeProtocolInfo.ProtocolVersion)
+			if (_playerInfo.ProtocolVersion != McpeProtocolInfo.ProtocolVersion && _playerInfo.ProtocolVersion != McpeProtocolInfo.v1_21_2)
 			{
 				Log.Warn($"Wrong version ({_playerInfo.ProtocolVersion}) of Minecraft. Upgrade to join this server.");
 				_session.Disconnect($"Wrong version ({_playerInfo.ProtocolVersion}) of Minecraft. This server requires {McpeProtocolInfo.ProtocolVersion}");

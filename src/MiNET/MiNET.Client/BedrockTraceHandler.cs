@@ -206,11 +206,25 @@ namespace MiNET.Client
 		public override void HandleMcpeCreativeContent(McpeCreativeContent message)
 		{
 			Log.Warn($"[McpeCreativeContent] Received {message.input.Count} creative items");
+			FileStream file = File.OpenWrite("newResources/creativeInventory.txt");
+			var writer = new IndentedTextWriter(new StreamWriter(file), "\t");
+			writer.WriteLine($"//Minecraft Bedrock Edition {McpeProtocolInfo.GameVersion} Creative Inventory");
 			foreach (var item in message.input)
 			{
 				//Log.Warn($"Got item: {item.Name} ({item.Id} : {item.Metadata})");
+				if (item.ExtraData == null)
+				{
+					writer.WriteLine($"new Item({item.Id}, {item.Metadata}),");
+				}
+				else
+				{
+					writer.WriteLine($"new Item({item.Id}, {item.Metadata}){{ ExtraData = {item.ExtraData}}},");
+				}
 			}
 			Log.Warn($"[McpeCreativeContent] Done reading {message.input.Count} creative items\n");
+			writer.Flush();
+			file.Close();
+			Log.Warn("Received creative items exported to newResources/creativeInventory.txt\n");
 		}
 
 		public override void HandleMcpeAddItemEntity(McpeAddItemEntity message)
@@ -458,7 +472,7 @@ namespace MiNET.Client
 		{
 			if (Client.IsEmulator) return;
 
-			string fileName = Path.GetTempPath() + "Recipes_" + Guid.NewGuid() + ".txt";
+			string fileName = "newResources/recipes.txt";
 			Log.Info("Writing recipes to filename: " + fileName);
 			FileStream file = File.OpenWrite(fileName);
 
@@ -569,6 +583,7 @@ namespace MiNET.Client
 
 			writer.Flush();
 			file.Close();
+			Log.Warn("Received recipes exported to newResources/recipes.txt\n");
 			//Environment.Exit(0);
 		}
 
@@ -723,7 +738,8 @@ namespace MiNET.Client
 
 			var root = message.namedtag.NbtFile.RootTag;
 			//Log.Debug($"\n{root}");
-			File.WriteAllText(Path.Combine(Path.GetTempPath(), "Biomes_" + Guid.NewGuid() + ".txt"), root.ToString());
+			File.WriteAllText("newResources/biomes.txt", root.ToString());
+			Log.Warn("Received biome definitions exported to newResources/biomes.txt\n");
 		}
 
 		public override void HandleMcpeNetworkChunkPublisherUpdate(McpeNetworkChunkPublisherUpdate message)

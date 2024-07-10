@@ -25,11 +25,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace MiNET.Utils.Skins
 {
@@ -87,7 +87,7 @@ namespace MiNET.Utils.Skins
 		public string GeometryName { get; set; }
 		public string GeometryData { get; set; }
 		public string GeometryDataVersion { get; set; }
-		
+
 		public string ArmSize { get; set; }
 
 		public string SkinColor { get; set; }
@@ -103,11 +103,12 @@ namespace MiNET.Utils.Skins
 
 		public static byte[] GetTextureFromFile(string filename)
 		{
-			Bitmap bitmap = new Bitmap(filename);
+			var bitmap = Image.Load<Rgba32>(filename);// new Image<Rgba32>(filename);
 
 			var size = bitmap.Height * bitmap.Width * 4;
 
-			if (size != 0x2000 && size != 0x4000 && size != 0x10000) return null;
+			if (size != 0x2000 && size != 0x4000 && size != 0x10000)
+				return null;
 
 			byte[] bytes = new byte[size];
 
@@ -116,7 +117,7 @@ namespace MiNET.Utils.Skins
 			{
 				for (int x = 0; x < bitmap.Width; x++)
 				{
-					var color = bitmap.GetPixel(x, y);
+					var color = bitmap[x, y];
 					bytes[i++] = color.R;
 					bytes[i++] = color.G;
 					bytes[i++] = color.B;
@@ -134,15 +135,7 @@ namespace MiNET.Utils.Skins
 			int width = size == 0x10000 ? 128 : 64;
 			var height = size == 0x2000 ? 32 : (size == 0x4000 ? 64 : 128);
 
-			var bitmap = new Bitmap(width, height);
-
-			BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
-
-			int bytesPerPixel = Bitmap.GetPixelFormatSize(bitmap.PixelFormat) / 8;
-			int byteCount = bmpData.Stride * bitmap.Height;
-			byte[] rgbValues = new byte[byteCount];
-
-			System.Runtime.InteropServices.Marshal.Copy(bmpData.Scan0, rgbValues, 0, byteCount);
+			var bitmap = new Image<Rgba32>(width, height);
 
 			int i = 0;
 			for (int y = 0; y < bitmap.Height; y++)
@@ -154,18 +147,9 @@ namespace MiNET.Utils.Skins
 					byte b = bytes[i++];
 					byte a = bytes[i++];
 
-					int index = y * bmpData.Stride + x * bytesPerPixel;
-
-					rgbValues[index] = r;
-					rgbValues[index + 1] = g;
-					rgbValues[index + 2] = b;
-					if (bytesPerPixel == 4) { rgbValues[index + 3] = a; }
+					bitmap[x, y] = new Rgba32(r, g, b, a);
 				}
 			}
-
-			System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, bmpData.Scan0, byteCount);
-
-			bitmap.UnlockBits(bmpData);
 
 			bitmap.Save(filename);
 		}
@@ -190,7 +174,7 @@ namespace MiNET.Utils.Skins
 			settings.MissingMemberHandling = MissingMemberHandling.Error;
 			//settings.Formatting = Formatting.Indented;
 			settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-			settings.Converters.Add(new StringEnumConverter {NamingStrategy = new CamelCaseNamingStrategy()});
+			settings.Converters.Add(new StringEnumConverter { NamingStrategy = new CamelCaseNamingStrategy() });
 
 			return JsonConvert.SerializeObject(geometryModel, settings);
 		}

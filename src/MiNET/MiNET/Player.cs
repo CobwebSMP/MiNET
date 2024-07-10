@@ -2177,7 +2177,7 @@ namespace MiNET
 
 			if (string.IsNullOrEmpty(text)) return;
 
-			Level.BroadcastMessage(text, sender: this);
+			Level.BroadcastMessage($"<{Username}> {text}", sender: this);
 		}
 
 		private int _lastOrderingIndex;

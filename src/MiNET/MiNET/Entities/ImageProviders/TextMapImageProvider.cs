@@ -23,22 +23,33 @@
 
 #endregion
 
-using System.Drawing;
-using System.Drawing.Imaging;
 using MiNET.Net;
 using MiNET.Utils;
+using SixLabors.Fonts;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Drawing.Processing;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using RectangleF = System.Drawing.RectangleF;
 
 namespace MiNET.Entities.ImageProviders
 {
 	public class TextMapImageProvider : IMapImageProvider
 	{
+		private static FontCollection _fontCollection;
 		private static Font _font = null;
-		
+
 		static TextMapImageProvider()
 		{
-			_font = new Font("Arial", 9);
+			_fontCollection = new FontCollection();
+			_fontCollection.AddSystemFonts();
+
+			if (_fontCollection.TryGet("Arial", out var family))
+			{
+				_font = family.CreateFont(9);
+			}
 		}
-		
+
 		public string Text { get; set; }
 
 		public TextMapImageProvider(string text = "")
@@ -78,39 +89,30 @@ namespace MiNET.Entities.ImageProviders
 
 		private static byte[] DrawText(MapInfo map, string text)
 		{
-			using (var bitmap = new Bitmap(map.Col, map.Row))
+			var bitmap = new Image<Rgba32>(map.Col, map.Row);
+			var rectf = new RectangleF(0, 0, map.Col, map.Row);
+
+			bitmap.Mutate(
+				x =>
+				{
+					x.DrawText(text, _font, SixLabors.ImageSharp.Color.AntiqueWhite, new PointF(0, 0));
+				});
+
+			byte[] bytes = new byte[bitmap.Height * bitmap.Width * 4];
+
+			int i = 0;
+			for (int y = 0; y < bitmap.Height; y++)
 			{
-				using (Graphics graphics = Graphics.FromImage(bitmap))
+				for (int x = 0; x < bitmap.Width; x++)
 				{
-					graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-					graphics.DrawString(text, _font, Brushes.AntiqueWhite, new PointF(0, 0));
+					var color = bitmap[x, y];
+					bytes[i++] = color.R;
+					bytes[i++] = color.G;
+					bytes[i++] = color.B;
+					bytes[i++] = 0xff;
 				}
-
-				Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-				BitmapData bmpData = bitmap.LockBits(rect, ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
-				int bytesPerPixel = Bitmap.GetPixelFormatSize(bitmap.PixelFormat) / 8;
-				int byteCount = bmpData.Stride * bitmap.Height;
-				byte[] bytes = new byte[byteCount];
-
-				System.Runtime.InteropServices.Marshal.Copy(bmpData.Scan0, bytes, 0, byteCount);
-
-				bitmap.UnlockBits(bmpData);
-
-				for (int i = 0; i < bytes.Length; i += bytesPerPixel)
-				{
-					byte b = bytes[i];
-					byte g = bytes[i + 1];
-					byte r = bytes[i + 2];
-					byte a = bytes[i + 3];
-					bytes[i] = r;
-					bytes[i + 1] = g;
-					bytes[i + 2] = b;
-					bytes[i + 3] = a;
-				}
-
-				return bytes;
 			}
+			return bytes;
 		}
 	}
 }

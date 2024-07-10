@@ -45,7 +45,7 @@ using MiNET.LevelDB;
 using MiNET.Utils;
 using MiNET.Utils.IO;
 using MiNET.Utils.Vectors;
-using Org.BouncyCastle.Asn1.Cms;
+using Newtonsoft.Json;
 
 namespace MiNET.Worlds
 {
@@ -174,7 +174,7 @@ namespace MiNET.Worlds
 			sw.Stop();
 
 			ChunkColumn chunkColumn = null;
-			if (version != null && version.First() >= 10)
+			if (version != null && version.First() >= 7)
 			{
 				chunkColumn = new ChunkColumn
 				{
@@ -217,10 +217,9 @@ namespace MiNET.Worlds
 
 				//Log.Debug($"Read chunk from LevelDB {coordinates.X}, {coordinates.Z} in {sw.ElapsedMilliseconds} ms.");
 
-				if (blockEntityBytes != null)
+				if (blockEntityBytes != null && version.First() >= 10)
 				{
 					Memory<byte> data = blockEntityBytes.AsMemory();
-
 					var file = new NbtFile
 					{
 						BigEndian = false,
@@ -238,6 +237,17 @@ namespace MiNET.Worlds
 
 						chunkColumn.SetBlockEntity(new BlockCoordinates(x, y, z), (NbtCompound) blockEntityTag);
 					} while (position < data.Length);
+				}
+				else
+				{   //todo find out how to get block entities on chunk format 7
+					//Memory<byte> data = blockEntityBytes.AsMemory();
+					//string jsonString = System.Text.Encoding.UTF8.GetString(data.Span);
+					//LegacyBlockEntities info = JsonConvert.DeserializeObject<LegacyBlockEntities>(jsonString);
+					//if (info != null)
+					//{
+					//Log.Warn(info.IsEmpty);
+					//Log.Warn(info.Length);
+					//}
 				}
 			}
 
@@ -265,6 +275,12 @@ namespace MiNET.Worlds
 			//Log.Debug($"Read chunk {coordinates.X}, {coordinates.Z} in {sw.ElapsedMilliseconds} ms. Was generated: {isGenerated}");
 
 			return chunkColumn;
+		}
+
+		public class LegacyBlockEntities
+		{
+			public int Length { get; set; }
+			public bool IsEmpty { get; set; }
 		}
 
 		internal void ParseSection(SubChunk section, ReadOnlyMemory<byte> data)
