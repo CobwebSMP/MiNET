@@ -120,6 +120,7 @@ namespace MiNET.Entities.World
 			new Explosion(Level,
 					new BlockCoordinates((int) Math.Floor(KnownPosition.X), (int) Math.Floor(KnownPosition.Y), (int) Math.Floor(KnownPosition.Z)), 4, Fire)
 				.Explode();
+			Level.BroadcastSound(KnownPosition.ToVector3(), LevelSoundEventType.Explode);
 		}
 	}
 }

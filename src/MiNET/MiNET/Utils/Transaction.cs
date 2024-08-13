@@ -49,6 +49,7 @@ namespace MiNET.Utils
 		public byte ContainerId { get; set; }
 		public byte Slot { get; set; }
 		public int StackNetworkId  { get; set; }
+		public int DynamicId { get; set; }
 	}
 
 	public class TakeAction : ItemStackAction
@@ -108,6 +109,7 @@ namespace MiNET.Utils
 	public class CraftAction : ItemStackAction
 	{
 		public uint RecipeNetworkId { get; set; }
+		public byte ClientPredictedResult { get; set; }
 	}
 
 	public class CraftAutoAction : ItemStackAction
@@ -120,6 +122,7 @@ namespace MiNET.Utils
 	public class CraftCreativeAction : ItemStackAction
 	{
 		public uint CreativeItemNetworkId { get; set; }
+		public byte ClientPredictedResult { get; set; }
 	}
 
 	public class CraftRecipeOptionalAction : ItemStackAction
@@ -222,6 +225,7 @@ namespace MiNET.Utils
 	public class ItemUseTransaction : Transaction
 	{
 		public McpeInventoryTransaction.ItemUseAction ActionType { get; set; }
+		public McpeInventoryTransaction.TriggerType TriggerType { get; set; }
 		public BlockCoordinates Position { get; set; }
 		public int Face { get; set; }
 		public int Slot { get; set; }
@@ -229,6 +233,7 @@ namespace MiNET.Utils
 		public Vector3 FromPosition { get; set; }
 		public Vector3 ClickPosition { get; set; }
 		public uint BlockRuntimeId { get; set; }
+		public byte ClientPredictedResult { get; set; }
 	}
 	public class ItemUseOnEntityTransaction : Transaction
 	{
@@ -278,5 +283,11 @@ namespace MiNET.Utils
 	public class CraftTransactionRecord : TransactionRecord
 	{
 		public McpeInventoryTransaction.CraftingAction Action { get; set; }
+	}
+
+	public class FullContainerName
+	{
+		public byte ContainerId { get; set; }
+		public int DynamicId { get; set; } = 0;
 	}
 }

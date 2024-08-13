@@ -10024,7 +10024,7 @@
       {
         "Type": "8",
         "Name": "stone_brick_type",
-        "Value": "default"
+        "Value": "smooth"
       }
     ]
   },
@@ -10064,19 +10064,6 @@
         "Type": "8",
         "Name": "stone_brick_type",
         "Value": "chiseled"
-      }
-    ]
-  },
-  {
-    "Command": "stonebrick [\"stone_brick_type\" = \"smooth\"]",
-    "Name": "minecraft:stonebrick",
-    "Id": 98,
-    "Data": 4,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "stone_brick_type",
-        "Value": "smooth"
       }
     ]
   },
@@ -31429,7 +31416,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "tube_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 0,
@@ -31452,7 +31439,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "brain_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 1,
@@ -31475,7 +31462,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_tube_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 2,
@@ -31498,7 +31485,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_brain_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 3,
@@ -31521,7 +31508,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "tube_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 4,
@@ -31544,7 +31531,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "brain_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 5,
@@ -31567,7 +31554,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_tube_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 6,
@@ -31590,7 +31577,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_brain_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 7,
@@ -31613,7 +31600,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "tube_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 8,
@@ -31636,7 +31623,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "brain_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 9,
@@ -31659,7 +31646,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_tube_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 10,
@@ -31682,7 +31669,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_brain_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 11,
@@ -31705,7 +31692,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "tube_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 12,
@@ -31728,7 +31715,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "brain_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 13,
@@ -31751,7 +31738,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_tube_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 14,
@@ -31774,7 +31761,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_brain_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang",
     "Id": 390,
     "Data": 15,
@@ -31797,7 +31784,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "bubble_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 0,
@@ -31820,7 +31807,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "fire_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 1,
@@ -31843,7 +31830,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_bubble_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 2,
@@ -31866,7 +31853,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_fire_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 3,
@@ -31889,7 +31876,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "bubble_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 4,
@@ -31912,7 +31899,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "fire_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 5,
@@ -31935,7 +31922,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_bubble_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 6,
@@ -31958,7 +31945,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_fire_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 7,
@@ -31981,7 +31968,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "bubble_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 8,
@@ -32004,7 +31991,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "fire_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 9,
@@ -32027,7 +32014,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_bubble_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 10,
@@ -32050,7 +32037,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_fire_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 11,
@@ -32073,7 +32060,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "bubble_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 12,
@@ -32096,7 +32083,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
+    "Command": "fire_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 13,
@@ -32119,7 +32106,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_bubble_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 14,
@@ -32142,7 +32129,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang2 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
+    "Command": "dead_fire_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang2",
     "Id": 391,
     "Data": 15,
@@ -32165,7 +32152,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "horn_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 0,
@@ -32188,30 +32175,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 1,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "0"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "0"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_horn_coral_wall_fan [\"coral_direction\" = 0]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 2,
@@ -32234,30 +32198,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 0, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 3,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "0"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "1"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "horn_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 4,
@@ -32280,30 +32221,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 5,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "0"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_horn_coral_wall_fan [\"coral_direction\" = 1]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 6,
@@ -32326,30 +32244,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 1, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 7,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "1"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "horn_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 8,
@@ -32372,30 +32267,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 9,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "2"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "0"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_horn_coral_wall_fan [\"coral_direction\" = 2]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 10,
@@ -32418,30 +32290,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 2, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 11,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "2"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "1"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = false]",
+    "Command": "horn_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 12,
@@ -32464,30 +32313,7 @@
     ]
   },
   {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = false]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 13,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "3"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "0"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = false, \"dead_bit\" = true]",
+    "Command": "dead_horn_coral_wall_fan [\"coral_direction\" = 3]",
     "Name": "minecraft:coral_fan_hang3",
     "Id": 392,
     "Data": 14,
@@ -32501,29 +32327,6 @@
         "Type": "1",
         "Name": "coral_hang_type_bit",
         "Value": "0"
-      },
-      {
-        "Type": "1",
-        "Name": "dead_bit",
-        "Value": "1"
-      }
-    ]
-  },
-  {
-    "Command": "coral_fan_hang3 [\"coral_direction\" = 3, \"coral_hang_type_bit\" = true, \"dead_bit\" = true]",
-    "Name": "minecraft:coral_fan_hang3",
-    "Id": 392,
-    "Data": 15,
-    "States": [
-      {
-        "Type": "3",
-        "Name": "coral_direction",
-        "Value": "3"
-      },
-      {
-        "Type": "1",
-        "Name": "coral_hang_type_bit",
-        "Value": "1"
       },
       {
         "Type": "1",

@@ -25,7 +25,6 @@
 
 using System.Numerics;
 using MiNET.BlockEntities;
-using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -57,6 +56,7 @@ namespace MiNET.Blocks
 		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
 			player.OpenInventory(blockCoordinates);
+			world.BroadcastSound(blockCoordinates, LevelSoundEventType.ShulkerboxOpen);
 
 			return true;
 		}

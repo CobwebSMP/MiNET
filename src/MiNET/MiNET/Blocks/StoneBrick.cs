@@ -37,7 +37,7 @@ namespace MiNET.Blocks
 
 		public override Item GetSmelt()
 		{
-			if (StoneBrickType == "default")
+			if (StoneBrickType == "smooth")
 			{
 				return ItemFactory.GetItem(98, 2);
 			}

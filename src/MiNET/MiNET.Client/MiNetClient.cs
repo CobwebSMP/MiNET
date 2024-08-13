@@ -689,7 +689,11 @@ namespace MiNET.Client
 			List<Entity.DataFlags> flags = new List<Entity.DataFlags>();
 			foreach (var val in Enum.GetValues(typeof(Entity.DataFlags)))
 			{
-				if (bits[(int) val]) flags.Add((Entity.DataFlags) val);
+				int index = (int) val;
+				if (index < bits.Count && bits[index])
+				{
+					flags.Add((Entity.DataFlags) val);
+				}
 			}
 
 			StringBuilder sb = new StringBuilder();

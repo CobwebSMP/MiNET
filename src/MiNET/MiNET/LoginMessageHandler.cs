@@ -76,7 +76,7 @@ namespace MiNET
 
 		public virtual void HandleMcpeRequestNetworkSettings(McpeRequestNetworkSettings message)
 		{
-			Log.Warn(message.protocolVersion);
+			//Log.Warn(message.protocolVersion);
 			//_playerInfo.ProtocolVersion = message.protocolVersion;
 			/*if (_playerInfo.ProtocolVersion < McpeProtocolInfo.ProtocolVersion || _playerInfo.ProtocolVersion > 65535)
 			{
@@ -530,7 +530,7 @@ namespace MiNET
 			IMcpeMessageHandler messageHandler = server.CreatePlayer(_session, _playerInfo);
 			_bedrockHandler.Handler = messageHandler; // Replace current message handler with real one.
 
-			if (_playerInfo.ProtocolVersion != McpeProtocolInfo.ProtocolVersion && _playerInfo.ProtocolVersion != McpeProtocolInfo.v1_21_2)
+			if (_playerInfo.ProtocolVersion != McpeProtocolInfo.ProtocolVersion)
 			{
 				Log.Warn($"Wrong version ({_playerInfo.ProtocolVersion}) of Minecraft. Upgrade to join this server.");
 				_session.Disconnect($"Wrong version ({_playerInfo.ProtocolVersion}) of Minecraft. This server requires {McpeProtocolInfo.ProtocolVersion}");

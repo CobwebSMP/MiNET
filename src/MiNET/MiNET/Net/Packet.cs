@@ -983,6 +983,7 @@ namespace MiNET.Net
 					break;
 				case ItemUseTransaction t:
 					WriteUnsignedVarInt((uint) t.ActionType);
+					WriteUnsignedVarInt((uint) t.TriggerType);
 					Write(t.Position);
 					WriteSignedVarInt(t.Face);
 					WriteSignedVarInt(t.Slot);
@@ -990,6 +991,7 @@ namespace MiNET.Net
 					Write(t.FromPosition);
 					Write(t.ClickPosition);
 					WriteUnsignedVarInt(t.BlockRuntimeId);
+					Write(t.ClientPredictedResult);
 					break;
 				case ItemUseOnEntityTransaction t:
 					WriteUnsignedVarLong(t.EntityId);
@@ -1087,14 +1089,16 @@ namespace MiNET.Net
 					transaction = new ItemUseTransaction()
 					{
 						ActionType = (McpeInventoryTransaction.ItemUseAction) ReadVarInt(),
+						TriggerType = (McpeInventoryTransaction.TriggerType) ReadVarInt(),
 						Position = ReadBlockCoordinates(),
 						Face = ReadSignedVarInt(),
 						Slot = ReadSignedVarInt(),
 						Item = ReadItem(),
 						FromPosition = ReadVector3(),
 						ClickPosition = ReadVector3(),
-						BlockRuntimeId = ReadUnsignedVarInt()
-					};
+						BlockRuntimeId = ReadUnsignedVarInt(),
+						ClientPredictedResult = ReadByte()
+			};
 					break;
 				case McpeInventoryTransaction.TransactionType.ItemUseOnEntity:
 					transaction = new ItemUseOnEntityTransaction()
@@ -1127,21 +1131,37 @@ namespace MiNET.Net
 
 		public StackRequestSlotInfo ReadStackRequestSlotInfo()
 		{
-			var containerId    = (byte) ReadByte();
+			var containerName  = readFullContainerName();
 			var slot           = (byte) ReadByte();
 			var stackNetworkId = ReadSignedVarInt();
-
+			//Log.Warn("ContainerId | Slot | DynamicID | NetworkId");
+			//Log.Warn($"{containerName.ContainerId} | {slot} | {containerName.DynamicId} | {stackNetworkId}");
 			return new StackRequestSlotInfo()
 			{
-				ContainerId = containerId,
+				ContainerId = containerName.ContainerId,
 				Slot = slot,
-				StackNetworkId = stackNetworkId
+				StackNetworkId = stackNetworkId,
+				DynamicId = containerName.DynamicId
 			};
+		}
+
+		public FullContainerName readFullContainerName()
+		{
+			var name = new FullContainerName();
+			name.ContainerId = ReadByte();
+			name.DynamicId = ReadInt();
+			return name;
+		}
+
+		public void Write(FullContainerName name)
+		{
+			Write(name.ContainerId);
+			Write(name.DynamicId);
 		}
 		
 		public void Write(StackRequestSlotInfo slotInfo)
 		{
-			Write(slotInfo.ContainerId);
+			Write(new FullContainerName() { ContainerId = slotInfo.ContainerId, DynamicId = slotInfo.DynamicId});
 			Write(slotInfo.Slot);
 			WriteSignedVarInt(slotInfo.StackNetworkId);
 		}
@@ -1219,13 +1239,13 @@ namespace MiNET.Net
 
 						case PlaceIntoBundleAction ta:
 						{
-							Write((byte) McpeItemStackRequest.ActionType.PlaceIntoBundle);
+							Write((byte) McpeItemStackRequest.ActionType.PlaceIntoBundleDeprecated);
 							break;
 						}
 						
 						case TakeFromBundleAction ta:
 						{
-							Write((byte) McpeItemStackRequest.ActionType.TakeFromBundle);
+							Write((byte) McpeItemStackRequest.ActionType.TakeFromBundleDeprecated);
 							break;
 						}
 						
@@ -1247,6 +1267,7 @@ namespace MiNET.Net
 						{
 							Write((byte) McpeItemStackRequest.ActionType.CraftRecipe);
 							WriteUnsignedVarInt(ta.RecipeNetworkId);
+							Write(ta.ClientPredictedResult);
 							break;
 						}
 
@@ -1267,6 +1288,7 @@ namespace MiNET.Net
 						{
 							Write((byte) McpeItemStackRequest.ActionType.CraftCreative);
 							WriteUnsignedVarInt(ta.CreativeItemNetworkId);
+							Write(ta.ClientPredictedResult);
 							break;
 						}
 
@@ -1334,19 +1356,19 @@ namespace MiNET.Net
 			var requests = new ItemStackRequests();
 
 			var c = ReadUnsignedVarInt();
-			//Log.Debug($"Count: {c}");
+			//Log.Warn($"Count: {c}");
 			for (int i = 0; i < c; i++)
 			{
 				var actions = new ItemStackActionList();
 				actions.RequestId = ReadSignedVarInt();
-				//Log.Debug($"Request ID: {actions.RequestId}");
+				//Log.Warn($"Request ID: {actions.RequestId}");
 
 				uint count = ReadUnsignedVarInt();
-				//Log.Debug($"Count: {count}");
+				//Log.Warn($"Count: {count}");
 				for (int j = 0; j < count; j++)
 				{
 					var actionType = (McpeItemStackRequest.ActionType) ReadByte();
-					//Log.Debug($"Action type: {actionType}");
+					//Log.Warn($"Action type: {actionType}");
 					switch (actionType)
 					{
 						case McpeItemStackRequest.ActionType.Take:
@@ -1408,14 +1430,14 @@ namespace MiNET.Net
 							break;
 						}
 
-						case McpeItemStackRequest.ActionType.PlaceIntoBundle:
+						case McpeItemStackRequest.ActionType.PlaceIntoBundleDeprecated:
 						{
 							var action = new PlaceIntoBundleAction();
 							actions.Add(action);
 							break;
 						}
 
-						case McpeItemStackRequest.ActionType.TakeFromBundle:
+						case McpeItemStackRequest.ActionType.TakeFromBundleDeprecated:
 						{
 							var action = new TakeFromBundleAction();
 							actions.Add(action);
@@ -1439,6 +1461,7 @@ namespace MiNET.Net
 						{
 							var action = new CraftAction();
 							action.RecipeNetworkId = ReadUnsignedVarInt();
+							action.ClientPredictedResult = ReadByte();
 							actions.Add(action);
 							break;
 						}
@@ -1459,6 +1482,7 @@ namespace MiNET.Net
 						{
 							var action = new CraftCreativeAction();
 							action.CreativeItemNetworkId = ReadUnsignedVarInt();
+							action.ClientPredictedResult = ReadByte();
 							actions.Add(action);
 							break;
 						}
@@ -1475,7 +1499,6 @@ namespace MiNET.Net
 							var action = new GrindstoneStackRequestAction();
 							action.RecipeNetworkId = ReadUnsignedVarInt();
 							action.RepairCost = ReadVarInt();
-							
 							actions.Add(action);
 							break;
 						}
@@ -1531,7 +1554,7 @@ namespace MiNET.Net
 				WriteUnsignedVarInt((uint) stackResponse.ResponseContainerInfos.Count);
 				foreach (StackResponseContainerInfo containerInfo in stackResponse.ResponseContainerInfos)
 				{
-					Write(containerInfo.ContainerId);
+					Write(new FullContainerName() { ContainerId = containerInfo.ContainerId, DynamicId = 0 });
 					WriteUnsignedVarInt((uint) containerInfo.Slots.Count);
 					foreach (StackResponseSlotInfo slot in containerInfo.Slots)
 					{
@@ -1566,8 +1589,8 @@ namespace MiNET.Net
 				for (int sub = 0; sub < subCount; sub++)
 				{
 					var containerInfo = new StackResponseContainerInfo();
-					containerInfo.ContainerId = ReadByte();
-
+					var name = readFullContainerName();
+					containerInfo.ContainerId = name.ContainerId;
 					var slotCount = ReadUnsignedVarInt();
 					containerInfo.Slots = new List<StackResponseSlotInfo>();
 					
@@ -2283,13 +2306,14 @@ namespace MiNET.Net
 			return layers;
 		}
 
-			public void Write(EntityLink link)
+		public void Write(EntityLink link)
 		{
 			WriteVarLong(link.FromEntityId);
 			WriteVarLong(link.ToEntityId);
 			Write((byte)link.Type);
 			Write(link.Immediate);
 			Write(link.CausedByRider);
+			Write(link.VehicleAngularVelocity);
 		}
 
 		public EntityLink ReadEntityLink()
@@ -2299,8 +2323,9 @@ namespace MiNET.Net
 			var type = (EntityLink.EntityLinkType) ReadByte();
 			var immediate = ReadBool();
 			var causedByRider = ReadBool();
+			var vehicleAngularVelocity = ReadFloat();
 
-			return new EntityLink(from, to, type, immediate, causedByRider);
+			return new EntityLink(from, to, type, immediate, causedByRider, vehicleAngularVelocity);
 		}
 		
 		public void Write(EntityLinks links)
@@ -2378,6 +2403,7 @@ namespace MiNET.Net
 				Write(info.SubPackName);
 				Write(info.ContentIdentity);
 				Write(info.HasScripts);
+				Write(info.isAddon);
 				Write(info.RtxEnabled);
 			}
 		}
@@ -2398,6 +2424,7 @@ namespace MiNET.Net
 				var subpackName     = ReadString();
 				var contentIdentity = ReadString();
 				var hasScripts      = ReadBool();
+				var isAddon         = ReadBool();
 				var rtxEnabled      = ReadBool();
 				
 				info.UUID = id;
@@ -2407,6 +2434,7 @@ namespace MiNET.Net
 				info.ContentKey = encryptionKey;
 				info.SubPackName = subpackName;
 				info.ContentIdentity = contentIdentity;
+				info.isAddon = isAddon;
 				info.RtxEnabled = rtxEnabled;
 				
 				packInfos.Add(info);
@@ -2434,6 +2462,7 @@ namespace MiNET.Net
 				Write(info.SubPackName);
 				Write(info.ContentIdentity);
 				Write(info.HasScripts);
+				Write(info.isAddon);
 			}
 		}
 
@@ -2454,7 +2483,8 @@ namespace MiNET.Net
 				var subpackName = ReadString();
 				var contentIdentity = ReadString();
 				var hasScripts = ReadBool();
-				
+				var isAddon = ReadBool();
+
 				info.UUID = id;
 				info.Version = version;
 				info.Size = size;
@@ -2462,7 +2492,8 @@ namespace MiNET.Net
 				info.SubPackName = subpackName;
 				info.ContentIdentity = contentIdentity;
 				info.HasScripts = hasScripts;
-				
+				info.isAddon = isAddon;
+
 				packInfos.Add(info);
 			}
 

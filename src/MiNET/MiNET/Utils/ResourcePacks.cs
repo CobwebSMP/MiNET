@@ -67,6 +67,8 @@ namespace MiNET.Utils
 		///		HasScripts specifies if the texture packs has any scripts in it. A client will only download the behaviour pack if it supports scripts, which, up to 1.11, only includes Windows 10.
 		/// </summary>
 		public bool   HasScripts      { get; set; }
+
+		public bool isAddon { get; set; }
 	}
 
 	public class TexturePackInfos : List<TexturePackInfo>

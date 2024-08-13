@@ -43,9 +43,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 685;
-		public const int v1_21_2 = 686;
-		public const string GameVersion = "1.21.0";
+		public const int ProtocolVersion = 712;
+		public const string GameVersion = "1.21.20";
 	}
 
 	public interface IMcpeMessageHandler
@@ -2150,6 +2149,7 @@ namespace MiNET.Net
 		public bool hideDisconnectReason; // = null;
 		public string message; // = null;
 		public uint failReason; // = null;
+		public string filteredMessage; // = null
 
 		public McpeDisconnect()
 		{
@@ -2166,6 +2166,7 @@ namespace MiNET.Net
 			WriteUnsignedVarInt(0); //todo
 			Write(hideDisconnectReason);
 			Write(message);
+			Write(filteredMessage);
 
 			AfterEncode();
 		}
@@ -2182,6 +2183,7 @@ namespace MiNET.Net
 			failReason = ReadUnsignedVarInt();
 			hideDisconnectReason = ReadBool();
 			message = ReadString();
+			filteredMessage = ReadString();
 
 			AfterDecode();
 		}
@@ -3752,6 +3754,13 @@ namespace MiNET.Net
 			ItemInteract = 2,
 		}
 
+		public enum TriggerType
+		{
+			Unknown = 0,
+			PlayerInput = 1,
+			SimulationTick = 2,
+		}
+
 		public Transaction transaction; // = null;
 
 		public McpeInventoryTransaction()
@@ -3869,6 +3878,7 @@ namespace MiNET.Net
 		public Item chestplate; // = null;
 		public Item leggings; // = null;
 		public Item boots; // = null;
+		public Item body; // = null;
 
 		public McpeMobArmorEquipment()
 		{
@@ -3887,6 +3897,7 @@ namespace MiNET.Net
 			Write(chestplate);
 			Write(leggings);
 			Write(boots);
+			Write(body);
 
 			AfterEncode();
 		}
@@ -3905,6 +3916,7 @@ namespace MiNET.Net
 			chestplate = ReadItem();
 			leggings = ReadItem();
 			boots = ReadItem();
+			body = ReadItem();
 
 			AfterDecode();
 		}
@@ -3921,6 +3933,7 @@ namespace MiNET.Net
 			chestplate=default(Item);
 			leggings=default(Item);
 			boots=default(Item);
+			body = default(Item);
 		}
 
 	}
@@ -4814,6 +4827,7 @@ namespace MiNET.Net
 
 		public uint inventoryId; // = null;
 		public ItemStacks input; // = null;
+		public uint dynamicSlotId; // = null;
 
 		public McpeInventoryContent()
 		{
@@ -4829,6 +4843,7 @@ namespace MiNET.Net
 
 			WriteUnsignedVarInt(inventoryId);
 			Write(input);
+			WriteUnsignedVarInt(0); //not sure what is dynamic slot, but: 0 - not dynamic; inventoryId - dynamic
 
 			AfterEncode();
 		}
@@ -4844,6 +4859,7 @@ namespace MiNET.Net
 
 			inventoryId = ReadUnsignedVarInt();
 			input = ReadItemStacks();
+			dynamicSlotId = ReadUnsignedVarInt();
 
 			AfterDecode();
 		}
@@ -4857,6 +4873,7 @@ namespace MiNET.Net
 
 			inventoryId=default(uint);
 			input=default(ItemStacks);
+			dynamicSlotId = default(uint);
 		}
 
 	}
@@ -4866,6 +4883,7 @@ namespace MiNET.Net
 
 		public uint inventoryId; // = null;
 		public uint slot; // = null;
+		public uint dynamicSlotId; // = null;
 		public Item item; // = null;
 
 		public McpeInventorySlot()
@@ -4882,6 +4900,7 @@ namespace MiNET.Net
 
 			WriteUnsignedVarInt(inventoryId);
 			WriteUnsignedVarInt(slot);
+			WriteUnsignedVarInt(0);
 			Write(item);
 
 			AfterEncode();
@@ -4898,6 +4917,7 @@ namespace MiNET.Net
 
 			inventoryId = ReadUnsignedVarInt();
 			slot = ReadUnsignedVarInt();
+			dynamicSlotId = ReadUnsignedVarInt();
 			item = ReadItem();
 
 			AfterDecode();
@@ -4912,7 +4932,8 @@ namespace MiNET.Net
 
 			inventoryId=default(uint);
 			slot=default(uint);
-			item=default(Item);
+			dynamicSlotId=default(uint);
+			item =default(Item);
 		}
 
 	}
@@ -9558,8 +9579,8 @@ namespace MiNET.Net
 			Destroy = 4,
 			Consume = 5,
 			Create = 6,
-			PlaceIntoBundle = 7,
-			TakeFromBundle = 8,
+			PlaceIntoBundleDeprecated = 7,
+			TakeFromBundleDeprecated = 8,
 			LabTableCombine = 9,
 			BeaconPayment = 10,
 			MineBlock = 11,

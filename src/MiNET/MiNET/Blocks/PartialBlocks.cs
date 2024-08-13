@@ -8930,7 +8930,7 @@ namespace MiNET.Blocks
         public override string Name => "minecraft:stonebrick";
 
         [StateEnum("smooth","default","chiseled","cracked","mossy")]
-        public string StoneBrickType { get; set; } = "default";
+        public string StoneBrickType { get; set; } = "smooth";
 
         public override void SetState(List<IBlockState> states)
         {
@@ -8940,7 +8940,11 @@ namespace MiNET.Blocks
                 {
                     case BlockStateString s when s.Name == "stone_brick_type":
                         StoneBrickType = s.Value;
-                        break;
+						if (s.Value == "default")
+						{
+							StoneBrickType = "smooth";
+						}
+						break;
                 } // switch
             } // foreach
         } // method

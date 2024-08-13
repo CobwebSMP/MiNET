@@ -25,7 +25,6 @@
 
 using System.Numerics;
 using log4net;
-using MiNET.BlockEntities;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -56,7 +55,13 @@ namespace MiNET.Blocks
 		{
 			Log.Debug($"Opening chest inventory at {blockCoordinates}");
 			player.OpenInventory(blockCoordinates);
-
+			if (this is Chest || this is TrappedChest)
+			{
+				world.BroadcastSound(blockCoordinates, LevelSoundEventType.ChestOpen);
+			}else if (this is EnderChest)
+			{
+				world.BroadcastSound(blockCoordinates, LevelSoundEventType.EnderchestOpen);
+			}
 			return true;
 		}
 	}

@@ -1352,7 +1352,6 @@ namespace MiNET.Worlds
 			if (blockEntity != null)
 			{
 				BlockEntities.Remove(blockEntity);
-				Log.Error("NOT NULL");
 			}
 			else
 			{

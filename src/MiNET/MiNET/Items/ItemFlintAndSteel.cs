@@ -31,7 +31,7 @@ using log4net;
 using MiNET.Blocks;
 using MiNET.Entities;
 using MiNET.Entities.World;
-using MiNET.Utils;
+using MiNET.Sounds;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -53,9 +53,12 @@ namespace MiNET.Items
 		public override void PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
 			var block = world.GetBlock(blockCoordinates);
+			world.BroadcastSound(blockCoordinates, LevelSoundEventType.Ignite);
 			if (block is Tnt)
 			{
 				world.SetAir(block.Coordinates);
+				var sound = new Sound((short) LevelEventType.SoundFuse, blockCoordinates);
+				sound.Spawn(world);
 				new PrimedTnt(world)
 				{
 					KnownPosition = new PlayerLocation
