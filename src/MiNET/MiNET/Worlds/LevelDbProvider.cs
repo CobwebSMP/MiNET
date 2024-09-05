@@ -61,7 +61,7 @@ namespace MiNET.Worlds
 		public LevelInfoBedrock LevelInfo { get; private set; }
 		public bool IsCaching { get; } = true;
 		public bool Locked { get; set; } = false;
-		public IWorldGenerator MissingChunkProvider { get; set; }
+		public IWorldGenerator MissingChunkProvider { get; set; } = new SuperflatGenerator(Dimension.Overworld);
 		public Dimension Dimension { get; set; } = Dimension.Overworld;
 
 		public LevelDbProvider(Database db = null)

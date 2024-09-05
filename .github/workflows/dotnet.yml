@@ -38,5 +38,5 @@ jobs:
         file: src/MiNET/MiNET.Console/minet.zip
         asset_name: MiNET.zip
         tag: ${{ github.ref }}
-        release_name: MiNET-CobwebSMP 1.13.0.14 (1.21.20)
+        release_name: MiNET-CobwebSMP 1.13.0.16 (1.21.20)
         body: ${{ github.event.head_commit.message }}

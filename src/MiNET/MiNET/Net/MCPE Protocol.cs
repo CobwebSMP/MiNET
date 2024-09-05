@@ -4368,6 +4368,7 @@ namespace MiNET.Net
 		public long riderId; // = null;
 		public byte linkType; // = null;
 		public byte unknown; // = null;
+		public float vehicleAngularVelocity; // = null;
 
 		public McpeSetEntityLink()
 		{
@@ -4386,6 +4387,7 @@ namespace MiNET.Net
 			Write(linkType);
 			Write(unknown);
 			Write(false);
+			Write(vehicleAngularVelocity);
 
 			AfterEncode();
 		}
@@ -4403,6 +4405,7 @@ namespace MiNET.Net
 			riderId = ReadSignedVarLong();
 			linkType = ReadByte();
 			unknown = ReadByte();
+			vehicleAngularVelocity = ReadFloat();
 
 			AfterDecode();
 		}
@@ -4418,6 +4421,7 @@ namespace MiNET.Net
 			riderId=default(long);
 			linkType=default(byte);
 			unknown=default(byte);
+			vehicleAngularVelocity=default(float);
 		}
 
 	}
@@ -5533,6 +5537,7 @@ namespace MiNET.Net
 			WriteSignedVarInt(dimension);
 			Write(position);
 			Write(respawn);
+			Write(false);
 
 			AfterEncode();
 		}
@@ -6949,6 +6954,7 @@ namespace MiNET.Net
 		public int fadeOutTime; // = null;
 		public string xuid; // = null;
 		public string platformOnlineId; // = null;
+		public string filteredString; // = null;
 
 		public McpeSetTitle()
 		{
@@ -6969,6 +6975,7 @@ namespace MiNET.Net
 			WriteSignedVarInt(fadeOutTime);
 			Write(xuid);
 			Write(platformOnlineId);
+			Write(filteredString);
 
 			AfterEncode();
 		}
@@ -6989,6 +6996,7 @@ namespace MiNET.Net
 			fadeOutTime = ReadSignedVarInt();
 			xuid = ReadString();
 			platformOnlineId = ReadString();
+			filteredString = ReadString();
 
 			AfterDecode();
 		}

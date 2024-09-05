@@ -109,13 +109,14 @@ namespace MiNET.Utils
 	public class CraftAction : ItemStackAction
 	{
 		public uint RecipeNetworkId { get; set; }
-		public byte ClientPredictedResult { get; set; }
+		public byte TimesCrafted { get; set; }
 	}
 
 	public class CraftAutoAction : ItemStackAction
 	{
 		public uint RecipeNetworkId { get; set; }
-		public byte craftCount { get; set; }
+		public byte TimesCrafted { get; set; }
+		public byte TimesCrafted2 { get; set; }
 		public List<Item> Ingredients { get; set; } = new List<Item>();
 	}
 
@@ -183,6 +184,7 @@ namespace MiNET.Utils
 	public class StackResponseContainerInfo
 	{
 		public byte ContainerId { get; set; }
+		public int DynamicId { get; set; }
 		public List<StackResponseSlotInfo> Slots { get; set; } = new List<StackResponseSlotInfo>();
 	}
 
@@ -233,7 +235,7 @@ namespace MiNET.Utils
 		public Vector3 FromPosition { get; set; }
 		public Vector3 ClickPosition { get; set; }
 		public uint BlockRuntimeId { get; set; }
-		public byte ClientPredictedResult { get; set; }
+		public uint ClientPredictedResult { get; set; }
 	}
 	public class ItemUseOnEntityTransaction : Transaction
 	{

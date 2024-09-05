@@ -23,16 +23,15 @@
 
 #endregion
 
-using MiNET.Blocks;
+using System.Numerics;
 using MiNET.Net;
-using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
 namespace MiNET.Particles
 {
 	public class DestroyBlockParticle : LegacyParticle
 	{
-		public DestroyBlockParticle(Level level, BlockCoordinates coordinates, uint runtimeid) : base(0, level)
+		public DestroyBlockParticle(Level level, Vector3 coordinates, uint runtimeid) : base(0, level)
 		{
 			Data = (int) runtimeid;
 			Position = coordinates;
@@ -41,7 +40,7 @@ namespace MiNET.Particles
 		public override void Spawn()
 		{
 			McpeLevelEvent particleEvent = McpeLevelEvent.CreateObject();
-			particleEvent.eventId = 2001;
+			particleEvent.eventId = (int)LevelEventType.ParticlesDestroyBlock;
 			particleEvent.position = Position;
 			particleEvent.data = Data;
 			Level.RelayBroadcast(particleEvent);

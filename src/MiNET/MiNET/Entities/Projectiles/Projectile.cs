@@ -30,7 +30,6 @@ using log4net;
 using MiNET.Blocks;
 using MiNET.Net;
 using MiNET.Particles;
-using MiNET.Utils;
 using MiNET.Utils.Metadata;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -117,7 +116,7 @@ namespace MiNET.Entities.Projectiles
 
 			bool collided = false;
 			Block collidedWithBlock = null;
-			if (entityCollided != null)
+			if (entityCollided != null && Damage >= 0)
 			{
 				double speed = Math.Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y + Velocity.Z * Velocity.Z);
 				double damage = Math.Ceiling(speed * Damage);
@@ -146,10 +145,14 @@ namespace MiNET.Entities.Projectiles
 
 				entityCollided.HealthManager.TakeHit(this, (int) damage, DamageCause.Projectile);
 				entityCollided.HealthManager.LastDamageSource = Shooter;
-
 				OnHitEntity(entityCollided);
 				DespawnEntity();
 				return;
+			}else if (entityCollided != null && Damage == -1)
+			{
+				entityCollided.HealthManager.LastDamageSource = Shooter;
+				OnHitEntity(entityCollided);
+				DespawnEntity();
 			}
 			else
 			{
@@ -221,12 +224,15 @@ namespace MiNET.Entities.Projectiles
 
 		private Entity CheckEntityCollide(Vector3 position, Vector3 direction)
 		{
-			Ray2 ray = new Ray2 {x = position, d = Vector3.Normalize(direction)};
+			float Distance = 2.0f;
+
+			Vector3 offsetPosition = position + Vector3.Normalize(direction) * Distance;
+
+			Ray2 ray = new Ray2 { x = offsetPosition, d = Vector3.Normalize(direction) };
 
 			var entities = Level.Entities.Values.Concat(Level.GetSpawnedPlayers()).OrderBy(entity => Vector3.Distance(position, entity.KnownPosition.ToVector3()));
 			foreach (Entity entity in entities)
 			{
-				if (entity == Shooter) continue;
 				if (entity == this) continue;
 				if (entity is Projectile) continue; // This should actually be handled for some projectiles
 				if (entity is Player player && player.GameMode == GameMode.Spectator) continue;

@@ -1097,7 +1097,7 @@ namespace MiNET.Net
 						FromPosition = ReadVector3(),
 						ClickPosition = ReadVector3(),
 						BlockRuntimeId = ReadUnsignedVarInt(),
-						ClientPredictedResult = ReadByte()
+						ClientPredictedResult = ReadUnsignedVarInt()
 			};
 					break;
 				case McpeInventoryTransaction.TransactionType.ItemUseOnEntity:
@@ -1267,7 +1267,7 @@ namespace MiNET.Net
 						{
 							Write((byte) McpeItemStackRequest.ActionType.CraftRecipe);
 							WriteUnsignedVarInt(ta.RecipeNetworkId);
-							Write(ta.ClientPredictedResult);
+							Write(ta.TimesCrafted);
 							break;
 						}
 
@@ -1275,7 +1275,8 @@ namespace MiNET.Net
 						{
 							Write((byte) McpeItemStackRequest.ActionType.CraftRecipeAuto);
 							WriteUnsignedVarInt(ta.RecipeNetworkId);
-							Write(ta.craftCount);
+							Write(ta.TimesCrafted2);
+							Write(ta.TimesCrafted);
 							Write((byte)ta.Ingredients.Count);
 							foreach (Item item in ta.Ingredients)
 							{
@@ -1461,7 +1462,7 @@ namespace MiNET.Net
 						{
 							var action = new CraftAction();
 							action.RecipeNetworkId = ReadUnsignedVarInt();
-							action.ClientPredictedResult = ReadByte();
+							action.TimesCrafted = ReadByte();
 							actions.Add(action);
 							break;
 						}
@@ -1469,7 +1470,8 @@ namespace MiNET.Net
 						{
 							var action = new CraftAutoAction();
 							action.RecipeNetworkId = ReadUnsignedVarInt();
-							action.craftCount = ReadByte();
+							action.TimesCrafted2 = ReadByte();
+							action.TimesCrafted = ReadByte();
 							var cou = ReadByte();
 							for (var a = 0; a < cou; a++)
 							{
@@ -1554,7 +1556,7 @@ namespace MiNET.Net
 				WriteUnsignedVarInt((uint) stackResponse.ResponseContainerInfos.Count);
 				foreach (StackResponseContainerInfo containerInfo in stackResponse.ResponseContainerInfos)
 				{
-					Write(new FullContainerName() { ContainerId = containerInfo.ContainerId, DynamicId = 0 });
+					Write(new FullContainerName() { ContainerId = containerInfo.ContainerId, DynamicId = containerInfo.DynamicId });
 					WriteUnsignedVarInt((uint) containerInfo.Slots.Count);
 					foreach (StackResponseSlotInfo slot in containerInfo.Slots)
 					{
@@ -1591,6 +1593,7 @@ namespace MiNET.Net
 					var containerInfo = new StackResponseContainerInfo();
 					var name = readFullContainerName();
 					containerInfo.ContainerId = name.ContainerId;
+					containerInfo.DynamicId = name.DynamicId;
 					var slotCount = ReadUnsignedVarInt();
 					containerInfo.Slots = new List<StackResponseSlotInfo>();
 					

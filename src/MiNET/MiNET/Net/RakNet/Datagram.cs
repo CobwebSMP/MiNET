@@ -294,7 +294,10 @@ namespace MiNET.Net.RakNet
 			if (message.IsMcpe) Log.Error($"Got bedrock message in unexpected place {message.GetType().Name}");
 
 			int maxPayloadSizeNoSplit = mtuSize - RakOfflineHandler.UdpHeaderSize - 4 - GetHeaderSize(message.ReliabilityHeader, false);
+			int orderingIndex = 0;
 			bool split = encodedMessage.Length >= maxPayloadSizeNoSplit;
+
+			if (message.ReliabilityHeader.Reliability == Reliability.ReliableOrdered) orderingIndex = Interlocked.Increment(ref session.OrderingIndex);
 
 			List<(int @from, int length)> splits = ArraySplit(encodedMessage.Length, mtuSize - RakOfflineHandler.UdpHeaderSize - 4 /*datagram header*/ - GetHeaderSize(message.ReliabilityHeader, split));
 			int count = splits.Count;
@@ -305,10 +308,10 @@ namespace MiNET.Net.RakNet
 				messagePart.ReliabilityHeader.Reliability = message.ReliabilityHeader.Reliability;
 				messagePart.ReliabilityHeader.ReliableMessageNumber = Interlocked.Increment(ref session.ReliableMessageNumber);
 				messagePart.ReliabilityHeader.OrderingChannel = 0;
-				messagePart.ReliabilityHeader.OrderingIndex = message.ReliabilityHeader.OrderingIndex;
+				messagePart.ReliabilityHeader.OrderingIndex = orderingIndex;
 				messagePart.ReliabilityHeader.HasSplit = false;
 				messagePart.Buffer = encodedMessage;
-
+				//Log.Warn($"1 part: {message.ReliabilityHeader.OrderingIndex} for {session.Username}");
 				return new List<MessagePart>(1) {messagePart};
 			}
 
@@ -326,13 +329,13 @@ namespace MiNET.Net.RakNet
 				messagePart.ReliabilityHeader.Reliability = message.ReliabilityHeader.Reliability;
 				messagePart.ReliabilityHeader.ReliableMessageNumber = Interlocked.Increment(ref session.ReliableMessageNumber);
 				messagePart.ReliabilityHeader.OrderingChannel = 0;
-				messagePart.ReliabilityHeader.OrderingIndex = message.ReliabilityHeader.OrderingIndex;
+				messagePart.ReliabilityHeader.OrderingIndex = orderingIndex;
 				messagePart.ReliabilityHeader.HasSplit = count > 1;
 				messagePart.ReliabilityHeader.PartCount = count;
 				messagePart.ReliabilityHeader.PartId = splitId;
 				messagePart.ReliabilityHeader.PartIndex = index++;
 				messagePart.Buffer = encodedMessage.Slice(span.@from, span.length);
-
+				//Log.Warn($"split part: {message.ReliabilityHeader.OrderingIndex} for {session.Username}");
 				messageParts.Add(messagePart);
 			}
 

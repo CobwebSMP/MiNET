@@ -596,8 +596,6 @@ namespace MiNET.Net.RakNet
 					Reliability reliability = message.ReliabilityHeader.Reliability;
 					if (reliability == Reliability.Undefined) reliability = Reliability.Reliable; // Questionable practice
 
-					if (reliability == Reliability.ReliableOrdered) message.ReliabilityHeader.OrderingIndex = Interlocked.Increment(ref OrderingIndex);
-
 					preppedSendList.Add(message);
 					//await _packetSender.SendPacketAsync(this, message);
 				}
@@ -639,9 +637,6 @@ namespace MiNET.Net.RakNet
 				Reliability reliability = message.ReliabilityHeader.Reliability;
 				if (reliability == Reliability.Undefined)
 					reliability = Reliability.Reliable; // Questionable practice
-
-				if (reliability == Reliability.ReliableOrdered)
-					message.ReliabilityHeader.OrderingIndex = Interlocked.Increment(ref OrderingIndex);
 
 				_packetSender.SendPacketAsync(this, message).Wait();
 			}

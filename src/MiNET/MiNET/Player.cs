@@ -653,8 +653,6 @@ namespace MiNET
 			Level.RelayBroadcast(this, msg);
 		}
 
-		Action _dimensionFunc;
-
 		/// <summary>
 		///     Handles the player action.
 		/// </summary>
@@ -771,12 +769,7 @@ namespace MiNET
 				}
 				case PlayerAction.DimensionChangeAck:
 				{
-					if (_dimensionFunc != null)
-					{
-						_dimensionFunc();
-						_dimensionFunc = null;
-					}
-
+					SendPlayerStatus(3);
 					break;
 				}
 				case PlayerAction.WorldImmutable:
@@ -1119,6 +1112,7 @@ namespace MiNET
 
 				SpawnPosition = (PlayerLocation) (SpawnPosition ?? Level.SpawnPoint).Clone();
 				KnownPosition = (PlayerLocation) SpawnPosition.Clone();
+				NameTag = (string) Username.Clone();
 
 				// Check if the user already exist, that case bumpt the old one
 				Level.RemoveDuplicatePlayers(Username, ClientId);
@@ -1451,40 +1445,20 @@ namespace MiNET
 
 		public virtual void Teleport(PlayerLocation newPosition)
 		{
-			if (!Monitor.TryEnter(_teleportSync)) return;
+			KnownPosition = newPosition;
+			LastUpdatedTime = DateTime.UtcNow;
 
-			try
-			{
-				bool oldNoAi = NoAi;
-				SetNoAi(true);
+			var packet = McpeMovePlayer.CreateObject();
+			packet.runtimeEntityId = EntityManager.EntityIdSelf;
+			packet.x = newPosition.X;
+			packet.y = newPosition.Y + 1.62f;
+			packet.z = newPosition.Z;
+			packet.yaw = newPosition.Yaw;
+			packet.headYaw = newPosition.HeadYaw;
+			packet.pitch = newPosition.Pitch;
+			packet.mode = 1;
 
-				if (!IsChunkInCache(newPosition))
-				{
-					// send teleport straight up, no chunk loading
-					SetPosition(new PlayerLocation
-					{
-						X = KnownPosition.X,
-						Y = 4000,
-						Z = KnownPosition.Z,
-						Yaw = 91,
-						Pitch = 28,
-						HeadYaw = 91,
-					});
-
-					ForcedSendChunk(newPosition);
-				}
-
-				// send teleport to spawn
-				SetPosition(newPosition);
-
-				SetNoAi(oldNoAi);
-			}
-			finally
-			{
-				Monitor.Exit(_teleportSync);
-			}
-
-			MiNetServer.FastThreadPool.QueueUserWorkItem(SendChunksForKnownPosition);
+			SendPacket(packet);
 		}
 
 		private bool IsChunkInCache(PlayerLocation position)
@@ -1916,16 +1890,6 @@ namespace MiNET
 				toLevel = levelFunc();
 			}
 
-			SetPosition(new PlayerLocation
-			{
-				X = KnownPosition.X,
-				Y = 4000,
-				Z = KnownPosition.Z,
-				Yaw = 91,
-				Pitch = 28,
-				HeadYaw = 91,
-			});
-
 			Action transferFunc = delegate
 			{
 				if (useLoadingScreen)
@@ -1954,10 +1918,7 @@ namespace MiNET
 
 				CleanCache();
 
-				ForcedSendChunk(SpawnPosition);
-
-				// send teleport to spawn
-				SetPosition(SpawnPosition);
+				ForcedSendChunk(Level.SpawnPoint);
 
 				MiNetServer.FastThreadPool.QueueUserWorkItem(() =>
 				{
@@ -1974,18 +1935,10 @@ namespace MiNET
 						postSpawnAction?.Invoke();
 					});
 				});
+				SetPosition(SpawnPosition);
 			};
 
-
-			if (useLoadingScreen)
-			{
-				_dimensionFunc = transferFunc;
-				ForcedSendEmptyChunks();
-			}
-			else
-			{
-				transferFunc();
-			}
+			transferFunc();
 		}
 
 		protected virtual void SendChangeDimension(Dimension dimension, bool respawn = false, Vector3 position = new Vector3())
@@ -2177,7 +2130,7 @@ namespace MiNET
 
 			if (string.IsNullOrEmpty(text)) return;
 
-			Level.BroadcastMessage($"<{Username}> {text}", sender: this);
+			Level.BroadcastMessage(text, sender: this);
 		}
 
 		private int _lastOrderingIndex;

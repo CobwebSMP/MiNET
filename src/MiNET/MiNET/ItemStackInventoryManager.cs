@@ -47,14 +47,14 @@ namespace MiNET
 		public virtual List<StackResponseContainerInfo> HandleItemStackActions(int requestId, ItemStackActionList actions)
 		{
 			var stackResponses = new List<StackResponseContainerInfo>();
-			uint recipeNetworkId = 0;
+			byte TimesCrafted = 1;
 			foreach (ItemStackAction stackAction in actions)
 			{
 				switch (stackAction)
 				{
 					case CraftAction craftAction:
 					{
-						recipeNetworkId = ProcessCraftAction(craftAction);
+						TimesCrafted = ProcessCraftAction(craftAction);
 						break;
 					}
 					case CraftAutoAction CraftAuto:
@@ -80,7 +80,7 @@ namespace MiNET
 					}
 					case CraftResultDeprecatedAction craftResultDeprecatedAction:
 					{
-						ProcessCraftResultDeprecatedAction(craftResultDeprecatedAction);
+						ProcessCraftResultDeprecatedAction(craftResultDeprecatedAction, TimesCrafted);
 						break;
 					}
 					case TakeAction takeAction:
@@ -405,16 +405,26 @@ namespace MiNET
 		{
 			byte count = action.Count;
 			Item sourceItem;
+			Item destinationItem;
 			Item destItem;
 			StackRequestSlotInfo source = action.Source;
 			StackRequestSlotInfo destination = action.Destination;
 
 			sourceItem = GetContainerItem(source.ContainerId, source.Slot);
-			Log.Debug($"Take {sourceItem}");
+			destinationItem = GetContainerItem(destination.ContainerId, destination.Slot);
 
-			if (sourceItem.Count == count || sourceItem.Count - count <= 0)
+
+			if (source.ContainerId == 60 && sourceItem.Id == destinationItem.Id)
 			{
-				destItem = sourceItem;
+				destItem = (Item) destinationItem.Clone();
+				destItem.Count += count;
+				destItem.UniqueId = Environment.TickCount;
+			}
+			else if (source.ContainerId != 60 && sourceItem.Count == count)
+			{
+				destItem = (Item) sourceItem.Clone();
+				destItem.Count = (byte)(destinationItem.Count + count);
+				destItem.UniqueId = Environment.TickCount;
 				sourceItem = new ItemAir();
 				sourceItem.UniqueId = 0;
 				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
@@ -422,9 +432,10 @@ namespace MiNET
 			else
 			{
 				destItem = (Item) sourceItem.Clone();
-				sourceItem.Count -= count;
 				destItem.Count = count;
 				destItem.UniqueId = Environment.TickCount;
+				sourceItem.Count -= count;
+				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
 			}
 
 			SetContainerItem(destination.ContainerId, destination.Slot, destItem);
@@ -469,15 +480,12 @@ namespace MiNET
 			});
 		}
 
-		protected virtual void ProcessCraftResultDeprecatedAction(CraftResultDeprecatedAction action)
+		protected virtual void ProcessCraftResultDeprecatedAction(CraftResultDeprecatedAction action, byte TimesCrafted)
 		{
-			//BUG: Won't work proper with anvil anymore.
 			if (GetContainerItem(59, 50).UniqueId > 0) return;
-
-			//TODO: We only use this for anvils right now. Until we fixed the anvil merge ourselves.
 			Item craftingResult = action.ResultItems.FirstOrDefault();
 			if (craftingResult == null) return;
-			
+			craftingResult.Count = (byte)(craftingResult.Count * TimesCrafted);
 			craftingResult.UniqueId = Environment.TickCount;
 			SetContainerItem(59, 50, craftingResult);
 		}
@@ -486,14 +494,20 @@ namespace MiNET
 		{
 		}
 
-		protected virtual uint ProcessCraftAction(CraftAction action)
+		protected virtual byte ProcessCraftAction(CraftAction action)
 		{
-			return action.RecipeNetworkId;
+			return action.TimesCrafted;
+			/*RecipeManager.resultMap.TryGetValue((int) action.RecipeNetworkId, out Item item);
+			Item craftedItem = ItemFactory.GetItem(item.Id, item.Metadata, item.Count);
+			craftedItem.Count = (byte) ((item.Count + GetContainerItem(59, 0).Count) * action.TimesCrafted);
+			Log.Error(GetContainerItem(59, 0).Id);
+			Log.Error(GetContainerItem(59, 0).Count);
+			SetContainerItem(59, 0, craftedItem);*/
 		}
 		protected virtual void ProcessCraftAuto(CraftAutoAction action)
 		{
 			RecipeManager.resultMap.TryGetValue((int)action.RecipeNetworkId, out Item item);
-			_player.Inventory.UiInventory.Slots[50] = ItemFactory.GetItem(item.Id, item.Metadata, item.Count * action.craftCount);
+			_player.Inventory.UiInventory.Slots[50] = ItemFactory.GetItem(item.Id, item.Metadata, item.Count * action.TimesCrafted);
 		}
 
 		protected virtual void ProcessCraftCreativeAction(CraftCreativeAction action)

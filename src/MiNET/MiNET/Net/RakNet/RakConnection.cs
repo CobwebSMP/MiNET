@@ -436,7 +436,7 @@ namespace MiNET.Net.RakNet
 
 			EnqueueAck(rakSession, datagram.Header.DatagramSequenceNumber);
 
-			if (Log.IsVerboseEnabled()) Log.Verbose($"Receive datagram #{datagram.Header.DatagramSequenceNumber} for {_endpoint}");
+			//Log.Debug($"Receive datagram #{datagram.Header.DatagramSequenceNumber} for {_endpoint}");
 
 			HandleDatagram(rakSession, datagram);
 			datagram.PutPool();
@@ -551,6 +551,7 @@ namespace MiNET.Net.RakNet
 
 			foreach ((int start, int end) range in ack.ranges)
 			{
+				//Log.Debug($"ACK: #{range.start} - #{range.end}");
 				Interlocked.Increment(ref connectionInfo.NumberOfAckReceive);
 
 				for (int i = range.start; i <= range.end; i++)
@@ -679,7 +680,7 @@ namespace MiNET.Net.RakNet
 					datagramTimeout = Math.Min(datagramTimeout, 3000);
 					datagramTimeout = Math.Max(datagramTimeout, 100);
 
-					if (datagram.RetransmitImmediate || elapsedTime >= datagramTimeout)
+					if (datagram.RetransmitImmediate || elapsedTime >= datagramTimeout/2)
 					{
 						if (!session.Evicted && session.WaitingForAckQueue.TryRemove(datagram.Header.DatagramSequenceNumber, out _))
 						{
@@ -758,6 +759,8 @@ namespace MiNET.Net.RakNet
 				Log.Warn($"Datagram sequence unexpectedly existed in the ACK/NAK queue already {datagram.Header.DatagramSequenceNumber.IntValue()}");
 				datagram.PutPool();
 			}
+
+			//Log.Debug($"Send datagram #{datagram.Header.DatagramSequenceNumber} for {session.Username}");
 
 			//lock (session.SyncRoot)
 			{

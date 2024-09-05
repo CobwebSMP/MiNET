@@ -819,80 +819,47 @@ namespace MiNET.Worlds
 
 			if (players.Length <= 1 && entities.Length == 0) return;
 
-			//if (now - _lastBroadcast < TimeSpan.FromMilliseconds(50)) return;
-
 			DateTime lastSendTime = _lastSendTime;
 			_lastSendTime = DateTime.UtcNow;
 
-			//using (MemoryStream stream = new MemoryStream())
+			int playerMoveCount = 0;
+			int entiyMoveCount = 0;
+
+			List<Packet> movePackets = new List<Packet>();
+
+			foreach (var player in players)
 			{
-				int playerMoveCount = 0;
-				int entiyMoveCount = 0;
-
-				List<Packet> movePackets = new List<Packet>();
-
-				foreach (var player in players)
+				if (now - player.LastUpdatedTime <= now - lastSendTime)
 				{
-					if (now - player.LastUpdatedTime <= now - lastSendTime)
+					var knownPosition = (PlayerLocation) player.KnownPosition.Clone();
+
+					McpeMoveEntityDelta move = McpeMoveEntityDelta.CreateObject();
+					move.runtimeEntityId = player.EntityId;
+					move.prevSentPosition = player.LastSentPosition;
+					move.currentPosition = new PlayerLocation(player.KnownPosition.X, player.KnownPosition.Y + 1.62f, player.KnownPosition.Z, player.KnownPosition.HeadYaw, player.KnownPosition.Yaw, player.KnownPosition.Pitch);
+					move.isOnGround = player.IsWalker && player.IsOnGround;
+					if (move.SetFlags())
 					{
-						var knownPosition = (PlayerLocation) player.KnownPosition.Clone();
-
-						var move = McpeMovePlayer.CreateObject();
-						move.runtimeEntityId = player.EntityId;
-						move.x = knownPosition.X;
-						move.y = knownPosition.Y + 1.62f;
-						move.z = knownPosition.Z;
-						move.pitch = knownPosition.Pitch;
-						move.yaw = knownPosition.Yaw;
-						move.headYaw = knownPosition.HeadYaw;
-						move.mode = (byte) (player.Vehicle == 0 ? 0 : 3);
-						move.onGround = !player.IsGliding && player.IsOnGround;
-						move.otherRuntimeEntityId = player.Vehicle;
-						movePackets.Add(move);
-						playerMoveCount++;
+						RelayBroadcast(move);
 					}
+					movePackets.Add(move);
+					playerMoveCount++;
 				}
-
-				//foreach (var entity in entities)
-				//{
-				//	if (entity.LastUpdatedTime >= lastSendTime)
-				//	{
-				//		{
-				//			McpeMoveEntity moveEntity = McpeMoveEntity.CreateObject();
-				//			moveEntity.entityId = entity.EntityId;
-				//			moveEntity.position = (PlayerLocation)entity.KnownPosition.Clone();
-				//			moveEntity.position.Y += entity.PositionOffset;
-				//			byte[] bytes = moveEntity.Encode();
-				//			BatchUtils.WriteLength(stream, bytes.Length);
-				//			stream.Write(bytes, 0, bytes.Length);
-				//			moveEntity.PutPool();
-				//		}
-				//		{
-				//			McpeSetEntityMotion entityMotion = McpeSetEntityMotion.CreateObject();
-				//			entityMotion.entityId = entity.EntityId;
-				//			entityMotion.velocity = entity.Velocity;
-				//			byte[] bytes = entityMotion.Encode();
-				//			BatchUtils.WriteLength(stream, bytes.Length);
-				//			stream.Write(bytes, 0, bytes.Length);
-				//			entityMotion.PutPool();
-				//		}
-				//		entiyMoveCount++;
-				//	}
-				//}
-
-				if (playerMoveCount == 0 && entiyMoveCount == 0) return;
-
-				if (players.Length == 1 && entiyMoveCount == 0) return;
-
-				if (movePackets.Count == 0) return;
-				//McpeWrapper batch = BatchUtils.CreateBatchPacket(new Memory<byte>(stream.GetBuffer(), 0, (int) stream.Length), CompressionLevel.Optimal, false);
-				var batch = McpeWrapper.CreateObject(players.Length);
-				batch.ReliabilityHeader.Reliability = Reliability.ReliableOrdered;
-				batch.payload = Compression.CompressPacketsForWrapper(movePackets, CompressionLevel.Fastest, true);
-				batch.Encode();
-				foreach (Player player in players) MiNetServer.FastThreadPool.QueueUserWorkItem(() => player.SendPacket(batch));
-				_lastBroadcast = DateTime.UtcNow;
+				player.LastSentPosition = (PlayerLocation) player.KnownPosition.Clone();
 			}
+
+			if (playerMoveCount == 0 && entiyMoveCount == 0) return;
+
+			if (players.Length == 1 && entiyMoveCount == 0) return;
+
+			if (movePackets.Count == 0) return;
+
+			var batch = McpeWrapper.CreateObject(players.Length);
+			batch.ReliabilityHeader.Reliability = Reliability.ReliableOrdered;
+			batch.payload = Compression.CompressPacketsForWrapper(movePackets, CompressionLevel.Fastest, true);
+			batch.Encode();
+			foreach (Player player in players) MiNetServer.FastThreadPool.QueueUserWorkItem(() => player.SendPacket(batch));
+			_lastBroadcast = DateTime.UtcNow;
 		}
 
 		public void RelayBroadcast<T>(T message) where T : Packet<T>, new()
@@ -1492,7 +1459,7 @@ namespace MiNET.Worlds
 				//Log.Error(drops);
 			}
 
-			if ((player != null && player.GameMode == GameMode.Survival) || (player == null && GameMode == GameMode.Survival))
+			if ((player != null && player.GameMode == GameMode.Survival && DoTiledrops) || (player == null && GameMode == GameMode.Survival && DoTiledrops))
 			{
 				foreach (Item drop in drops)
 				{
