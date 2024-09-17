@@ -475,7 +475,6 @@ namespace MiNET
 					PlayerPackDataB = packInfosB;
 				}
 				packInfo.texturepacks = packInfos;
-				packInfo.behahaviorpackinfos = packInfosB;
 			}
 			SendPacket(packInfo);
 		}
@@ -487,7 +486,6 @@ namespace MiNET
 			
 			if (_serverHaveResources)
 			{
-				packStack.mustAccept = Config.GetProperty("ForceResourcePacks", false);
 				var packVersions = new ResourcePackIdVersions();
 				var packVersionsB = new ResourcePackIdVersions();
 				foreach (var packData in PlayerPackData)
@@ -544,7 +542,7 @@ namespace MiNET
 				if (message.unknown0 == 0)
 				{
 					MetadataDictionary metadata = new MetadataDictionary();
-					metadata[42] = new MetadataString(message.unknown1);
+					//metadata[42] = new MetadataString(message.unknown1); todo whats this
 					entity.SetEntityData(metadata);
 				}
 			}
@@ -2504,11 +2502,11 @@ namespace MiNET
 					return;
 				}
 
-				if (Log.IsDebugEnabled) Log.Debug($"Player {Username} called set equipment with held hotbar slot {message.selectedSlot} with item {message.item}");
+				if (Log.IsDebugEnabled) Log.Debug($"Player {Username} called set equipment with held hotbar slot {message.selectedSlot} with item {message.item}, RuntimeID: {message.item.RuntimeId}");
 
 				Inventory.SetHeldItemSlot(selectedHotbarSlot, false);
 				if (Log.IsDebugEnabled)
-					Log.Debug($"Player {Username} now holding {Inventory.GetItemInHand()}");
+					Log.Debug($"Player {Username} now holding {Inventory.GetItemInHand()} RuntimeID: {Inventory.GetItemInHand().RuntimeId}");
 			}
 			else if (message.windowsId == 119)
 			{
@@ -3283,7 +3281,8 @@ namespace MiNET
 			levelSettings.permissionLevel = (byte) PermissionLevel;
 			levelSettings.gameVersion = "";
 			levelSettings.hasEduFeaturesEnabled = true;
-			
+			levelSettings.onlySpawnV1Villagers = false;
+
 			var startGame = McpeStartGame.CreateObject();
 			startGame.levelSettings = levelSettings;
 			startGame.entityIdSelf = EntityId;
@@ -3291,7 +3290,6 @@ namespace MiNET
 			startGame.playerGamemode = (int) GameMode;
 			startGame.spawn = SpawnPosition;
 			startGame.rotation = new Vector2(KnownPosition.HeadYaw, KnownPosition.Pitch);
-			
 			startGame.levelId = "1m0AAMIFIgA=";
 			startGame.worldName = Level.LevelName;
 			startGame.premiumWorldTemplateId = "";
@@ -3733,7 +3731,6 @@ namespace MiNET
 		{
 			var metadata = base.GetMetadata();
 			metadata[(int) MetadataFlags.NameTag] = new MetadataString(NameTag ?? Username);
-			metadata[(int) MetadataFlags.ButtonText] = new MetadataString(ButtonText ?? string.Empty);
 			metadata[(int) MetadataFlags.PlayerFlags] = new MetadataByte((byte) (IsSleeping ? 0b10 : 0));
 			metadata[(int) MetadataFlags.BedPosition] = new MetadataIntCoordinates((int) SpawnPosition.X, (int) SpawnPosition.Y, (int) SpawnPosition.Z);
 

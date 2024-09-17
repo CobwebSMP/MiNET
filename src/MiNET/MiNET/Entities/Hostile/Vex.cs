@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -23,6 +23,7 @@
 
 #endregion
 
+using MiNET.Items;
 using MiNET.Utils;
 using MiNET.Utils.Metadata;
 using MiNET.Worlds;
@@ -39,40 +40,7 @@ namespace MiNET.Entities.Hostile
 
 		public override MetadataDictionary GetMetadata()
 		{
-			MetadataDictionary metadata = new MetadataDictionary();
-			metadata[0] = new MetadataLong(4398046511104); // 1000000000000000000000000000000000000000000; 
-			metadata[1] = new MetadataInt(1);
-			metadata[2] = new MetadataInt(0);
-			metadata[3] = new MetadataByte(0);
-			metadata[4] = new MetadataString("");
-			metadata[5] = new MetadataLong(-1);
-			metadata[7] = new MetadataShort(300);
-			metadata[8] = new MetadataInt(0);
-			metadata[9] = new MetadataByte(0);
-			metadata[10] = new MetadataByte(0);
-			metadata[22] = new MetadataByte(0);
-			metadata[38] = new MetadataLong(0);
-			metadata[39] = new MetadataFloat(1f);
-			metadata[43] = new MetadataShort(300);
-			metadata[44] = new MetadataInt(0);
-			metadata[45] = new MetadataByte(0);
-			metadata[46] = new MetadataInt(0);
-			metadata[47] = new MetadataInt(0);
-			metadata[54] = new MetadataFloat(0.4f);
-			metadata[55] = new MetadataFloat(0.8f);
-			metadata[58] = new MetadataByte(0);
-			metadata[59] = new MetadataFloat(0f);
-			metadata[60] = new MetadataFloat(0f);
-			metadata[70] = new MetadataByte(0);
-			metadata[71] = new MetadataString("");
-			metadata[72] = new MetadataString("");
-			metadata[73] = new MetadataByte(1);
-			metadata[74] = new MetadataByte(0);
-			metadata[75] = new MetadataInt(0);
-			metadata[76] = new MetadataInt(0);
-			metadata[77] = new MetadataInt(0);
-			metadata[78] = new MetadataInt(-1);
-
+			MetadataDictionary metadata = base.GetMetadata();
 			return metadata;
 		}
 	}

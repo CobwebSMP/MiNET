@@ -53,8 +53,6 @@ namespace MiNET.Entities.Passive
 		public override MetadataDictionary GetMetadata()
 		{
 			MetadataDictionary metadata = base.GetMetadata();
-			metadata[18] = new MetadataByte((byte) CatType);
-
 			return metadata;
 		}
 	}

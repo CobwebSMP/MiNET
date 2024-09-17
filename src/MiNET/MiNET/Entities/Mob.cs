@@ -65,6 +65,8 @@ namespace MiNET.Entities
 
 		public Entity Target { get; private set; }
 
+		public int breedTime { get; set; }
+
 		public Mob(EntityType entityTypeId, Level level) : base(entityTypeId, level)
 		{
 			Width = Length = 0.6;

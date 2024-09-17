@@ -23,6 +23,7 @@
 
 #endregion
 
+using System;
 using MiNET.Net;
 using MiNET.Utils;
 
@@ -82,17 +83,19 @@ namespace MiNET.Entities.ImageProviders
 
 		private byte[] GenerateColors(MapInfo map)
 		{
-			byte[] bytes = new byte[map.Col * map.Row * 4];
+			Random random = new Random();
 
+			byte[] bytes = new byte[map.Col * map.Row * 4];
 			int i = 0;
+
 			for (byte y = 0; y < map.Col; y++)
 			{
 				for (byte x = 0; x < map.Row; x++)
 				{
-					bytes[i++] = 255; // R
-					bytes[i++] = 0; // G
-					bytes[i++] = 0; // B
-					bytes[i++] = 0xff; // A
+					bytes[i++] = (byte) random.Next(256);
+					bytes[i++] = (byte) random.Next(256);
+					bytes[i++] = (byte) random.Next(256);
+					bytes[i++] = 0xff;
 				}
 			}
 

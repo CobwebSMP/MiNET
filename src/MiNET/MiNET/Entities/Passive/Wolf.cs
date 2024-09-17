@@ -29,13 +29,12 @@ using log4net;
 using MiNET.Entities.Behaviors;
 using MiNET.Items;
 using MiNET.Particles;
-using MiNET.Utils;
 using MiNET.Utils.Metadata;
 using MiNET.Worlds;
 
 namespace MiNET.Entities.Passive
 {
-	public class Wolf : PassiveMob
+	public class Wolf : PassiveMob  //ok
 	{
 		private static readonly ILog Log = LogManager.GetLogger(typeof(Wolf));
 
@@ -51,45 +50,77 @@ namespace MiNET.Entities.Passive
 			HealthManager.MaxHealth = 80;
 			HealthManager.ResetHealth();
 			Speed = 0.3;
-
 			AttackDamage = 2;
+			IsInLove = false;
 
-			TargetBehaviors.Add(new HurtByTargetBehavior(this));
-			TargetBehaviors.Add(new FindAttackableEntityTargetBehavior<Sheep>(this, 16));
-			TargetBehaviors.Add(new FindAttackableEntityTargetBehavior<Rabbit>(this, 16));
-			//TargetBehaviors.Add(new FindAttackableEntityTargetBehavior<Fox>(this, 16));
+			TargetBehaviors.Add(new FindAttackableEntityTargetBehavior<Sheep>(this, 15));
+			TargetBehaviors.Add(new FindAttackableEntityTargetBehavior<Rabbit>(this, 15));
 
 			Behaviors.Add(new SittingBehavior(this));
-			//Behaviors.Add(new JumpAttackBehavior(this, 1.0));
+			Behaviors.Add(new PanicBehavior(this, 60, Speed, 1.4));
 			Behaviors.Add(new MeleeAttackBehavior(this, 1.0, 16));
-			Behaviors.Add(new OwnerHurtByTargetBehavior(this));
-			Behaviors.Add(new OwnerHurtTargetBehavior(this));
 			Behaviors.Add(new FollowOwnerBehavior(this, 20, 1.0));
-			Behaviors.Add(new WanderBehavior(this, 1.0));
-			Behaviors.Add(new LookAtPlayerBehavior(this, 8.0));
-			Behaviors.Add(new RandomLookaroundBehavior(this));
+			Behaviors.Add(new FollowAdultBehavior(this)); // NEW! This Behavior makes baby wolf follow adult wolf.
+
+			//chance based
+			Behaviors.Add(new WanderBehavior(this, 1.0, 30));
+			Behaviors.Add(new RandomLookaroundBehavior(this, 20));
+			Behaviors.Add(new LookAtEntityBehavior(this, 4, 30)); // NEW! This Behavior makes entities to look at other entities.
+			Behaviors.Add(new LookAtPlayerBehavior(this, 4, 30));
+			Behaviors.Add(new BreedingBehavior(this, 10)); // NEW! This Behavior allows mob breeding.
 		}
 
 		public override void DoInteraction(int actionId, Player player)
 		{
 			if (IsTamed)
 			{
+				var item = player.Inventory.GetItemInHand();
 				if (Owner == player)
 				{
-					IsSitting = !IsSitting;
+					if (item is ItemDye)
+					{
+						var color = ItemDye.toColorCode(item.Metadata);
+						if (color != 255 && color != CollarColor)
+						{
+							CollarColor = color;
+							item.Count--;
+						}
+						else if (color == CollarColor)
+						{
+							IsSitting = !IsSitting;
+						}
+					}
+					else if (item is ItemChicken or ItemCookedChicken or ItemBeef or ItemCookedBeef or ItemPorkchop or ItemCookedPorkchop or ItemMuttonRaw or ItemCookedMutton)
+					{
+
+					}
+					else
+					{
+						IsSitting = !IsSitting;
+					}
 					BroadcastSetEntityData();
 				}
 				else
 				{
-					// Hmm?
+					LegacyParticle particle = new HeartParticle(Level);
+					particle.Position = KnownPosition + new Vector3(0, (float) (Height + 0.85d), 0);
+					particle.Spawn();
+				}
+				if (item is ItemChicken or ItemCookedChicken or ItemBeef or ItemCookedBeef or ItemPorkchop or ItemCookedPorkchop or ItemMuttonRaw or ItemCookedMutton )
+				{
+					item.Count--;
+					if (!IsBaby)
+					{
+						IsInLove = true;
+						breedTime = 400;
+						BroadcastSetEntityData();
+					}
 				}
 			}
 			else
 			{
 				if (player.Inventory.GetItemInHand() is ItemBone)
 				{
-					Log.Debug($"Wolf taming attempt by {player.Username}");
-
 					player.Inventory.RemoveItems(new ItemBone().Id, 1);
 
 					var random = new Random();
@@ -108,9 +139,6 @@ namespace MiNET.Entities.Passive
 							particle.Position = KnownPosition + new Vector3(0, (float) (Height + 0.85d), 0);
 							particle.Spawn();
 						}
-
-
-						Log.Debug($"Wolf is now tamed by {player.Username}");
 					}
 					else
 					{
@@ -125,32 +153,36 @@ namespace MiNET.Entities.Passive
 			}
 		}
 
+		public override void OnTick(Entity[] entities)
+		{
+			base.OnTick(entities);
+			if (breedTime > 0 && IsInLove == true)
+			{
+				if (breedTime % 20 == 0)
+				{
+					LegacyParticle particle = new HeartParticle(Level);
+					particle.Position = KnownPosition + new Vector3(0, (float) (Height + 0.85d), 0);
+					particle.Spawn();
+				}
+				breedTime--;
+			}
+			else if (breedTime < 2 && breedTime != 0)
+			{
+				breedTime = 0;
+				IsInLove = false;
+				BroadcastSetEntityData();
+			}
+		}
+
 		public override MetadataDictionary GetMetadata()
 		{
+			Scale = IsBaby ? 0.50f : 1.0;
 			MetadataDictionary metadata = base.GetMetadata();
-			metadata[1] = new MetadataInt(12);
-			metadata[2] = new MetadataInt(0);
 			metadata[(int) MetadataFlags.Color] = new MetadataByte(CollarColor);
-			//metadata[4] = new MetadataString("Testing");
 			if (Owner != null)
 			{
 				metadata[(int) MetadataFlags.Owner] = new MetadataLong(Owner.EntityId);
 			}
-			metadata[7] = new MetadataShort(300);
-			metadata[8] = new MetadataInt(0);
-			metadata[9] = new MetadataByte(0);
-			metadata[38] = new MetadataLong(0);
-			metadata[39] = new MetadataFloat(1.0f);
-			metadata[44] = new MetadataShort(300);
-			metadata[45] = new MetadataInt(0);
-			metadata[46] = new MetadataByte(0);
-			metadata[47] = new MetadataInt(0);
-			metadata[53] = new MetadataFloat(0.6f);
-			metadata[54] = new MetadataFloat(0.8f);
-			metadata[56] = new MetadataVector3(0, 0, 0);
-			metadata[57] = new MetadataByte(0);
-			metadata[58] = new MetadataFloat(0f);
-			metadata[59] = new MetadataFloat(0f);
 
 			return metadata;
 		}

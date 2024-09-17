@@ -136,11 +136,13 @@ namespace MiNET.Utils
 	{
 		public uint RecipeNetworkId { get; set; }
 		public int RepairCost { get; set; }
+		public byte TimesCrafted { get; set; }
 	}
 
 	public class LoomStackRequestAction : ItemStackAction
 	{
 		public string PatternId { get; set; }
+		public byte TimesCrafted { get; set; }
 	}
 
 	public class PlaceIntoBundleAction : ItemStackAction

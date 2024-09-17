@@ -338,5 +338,21 @@
 		"7": "minecraft:gray_wool",
 		"8": "minecraft:light_gray_wool",
 		"9": "minecraft:cyan_wool"
+	},
+	"minecraft:cobblestone_wall": {
+		"0": "minecraft:cobblestone_wall",
+		"1": "minecraft:mossy_cobblestone_wall",
+		"10": "minecraft:nether_brick_wall",
+		"11": "minecraft:red_nether_brick_wall",
+		"12": "minecraft:end_stone_brick_wall",
+		"13": "minecraft:prismarine_wall",
+		"2": "minecraft:granite_wall",
+		"3": "minecraft:diorite_wall",
+		"4": "minecraft:andesite_wall",
+		"5": "minecraft:sandstone_wall",
+		"6": "minecraft:red_sandstone_wall",
+		"7": "minecraft:stone_brick_wall",
+		"8": "minecraft:mossy_stone_brick_wall",
+		"9": "minecraft:brick_wall"
 	}
 }

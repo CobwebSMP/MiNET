@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -32,18 +32,22 @@ namespace MiNET.Entities.Behaviors
 		private readonly Mob _entity;
 		private double _rotation = 0;
 		private int _duration = 0;
+		private readonly int _chance;
 
-		public RandomLookaroundBehavior(Mob entity)
+		public RandomLookaroundBehavior(Mob entity, int chance = 40)
 		{
 			this._entity = entity;
+			_chance = chance;
 		}
 
 		public override bool ShouldStart()
 		{
-			var shouldStart = _entity.Level.Random.NextDouble() < 0.02;
-			if (!shouldStart) return false;
+			if (_entity.Level.Random.Next(_chance) != 0)
+			{
+				return false;
+			}
 
-			_duration = 20 + _entity.Level.Random.Next(20);
+			_duration = 10 + _entity.Level.Random.Next(20);
 			_rotation = _entity.Level.Random.Next(-180, 180);
 
 			return true;

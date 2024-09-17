@@ -26,18 +26,19 @@
 using System;
 using System.Linq;
 using System.Numerics;
+using MiNET.Particles;
 
 namespace MiNET.Entities.Behaviors
 {
-	public class LookAtPlayerBehavior : BehaviorBase
+	public class LookAtEntityBehavior : BehaviorBase
 	{
 		private readonly Mob _entity;
 		private readonly double _lookDistance;
 		private int _duration = 0;
-		private Player _player;
+		private Entity _otherEntity;
 		private readonly int _chance;
 
-		public LookAtPlayerBehavior(Mob entity, double lookDistance = 4.0, int chance = 20)
+		public LookAtEntityBehavior(Mob entity, double lookDistance = 4.0, int chance = 20)
 		{
 			this._entity = entity;
 			_lookDistance = lookDistance;
@@ -51,15 +52,21 @@ namespace MiNET.Entities.Behaviors
 				return false;
 			}
 
-			Player player = _entity.Level.GetSpawnedPlayers().OrderBy(p => Vector3.Distance(_entity.KnownPosition, p.KnownPosition.ToVector3()))
-				.FirstOrDefault(p => Vector3.Distance(_entity.KnownPosition, p.KnownPosition) < _lookDistance);
+			var entity = _entity.Level.Entities
+				.OrderBy(p => Vector3.Distance(_entity.KnownPosition, p.Value.KnownPosition))
+				.FirstOrDefault(p =>
+					p.Value != _entity
+					&& _entity.DistanceTo(p.Value) < _lookDistance).Value;
 
-			if (player == null) return false;
+			_otherEntity = entity;
+			_duration = 200 + _entity.Level.Random.Next(200);
 
-			_player = player;
-			_duration = 200 + _entity.Level.Random.Next(100);
+			if (entity == null)
+			{
+				return false;
+			}
 
-			return true;
+				return true;
 		}
 
 		public override bool CanContinue()
@@ -69,8 +76,8 @@ namespace MiNET.Entities.Behaviors
 
 		public override void OnTick(Entity[] entities)
 		{
-			var dx = _player.KnownPosition.X - _entity.KnownPosition.X;
-			var dz = _player.KnownPosition.Z - _entity.KnownPosition.Z;
+			var dx = _otherEntity.KnownPosition.X - _entity.KnownPosition.X;
+			var dz = _otherEntity.KnownPosition.Z - _entity.KnownPosition.Z;
 
 			double tanOutput = 90 - RadianToDegree(Math.Atan(dx / (dz)));
 			double thetaOffset = 270d;
@@ -81,7 +88,18 @@ namespace MiNET.Entities.Behaviors
 			var yaw = thetaOffset + tanOutput;
 
 			double bDiff = Math.Sqrt((dx * dx) + (dz * dz));
-			var dy = (_entity.KnownPosition.Y + _entity.Height) - (_player.KnownPosition.Y + 1.62);
+
+			double lookDir = 0;
+			if (_entity.IsBaby)
+			{
+				lookDir = _otherEntity.IsBaby ? _otherEntity.Height * 2 : _otherEntity.Height;
+			}
+			else
+			{
+				lookDir = _otherEntity.IsBaby ? _otherEntity.Height / 2 : _otherEntity.Height;
+			}
+
+			var dy = (_entity.KnownPosition.Y + _entity.Height) - (_otherEntity.KnownPosition.Y + lookDir);
 			double pitch = RadianToDegree(Math.Atan(dy / (bDiff)));
 
 			_entity.EntityDirection = (float) yaw;
@@ -93,7 +111,13 @@ namespace MiNET.Entities.Behaviors
 
 		public override void OnEnd()
 		{
-			_player = null;
+			if (_otherEntity.IsBaby && !_entity.IsBaby && _entity.Level.Random.Next(4) != 0)
+			{
+				LegacyParticle particle = new HeartParticle(_entity.Level);
+				particle.Position = _entity.KnownPosition + new Vector3(0, (float) (_entity.Height + 0.85d), 0);
+				particle.Spawn();
+			}
+			_otherEntity = null;
 			_entity.KnownPosition.Pitch = 0;
 			_entity.BroadcastMove(true);
 		}

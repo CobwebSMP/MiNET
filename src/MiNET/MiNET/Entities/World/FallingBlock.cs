@@ -60,43 +60,13 @@ namespace MiNET.Entities.World
 		public override MetadataDictionary GetMetadata()
 		{
 			var metadata = base.GetMetadata();
-
-			//MetadataDictionary metadata = new MetadataDictionary();
-			//metadata[0] = new MetadataLong(0); // 0
-			//metadata[1] = new MetadataInt(1);
 			metadata[(int) MetadataFlags.Variant] = new MetadataInt(_original);
-			//metadata[4] = new MetadataString("");
-			//metadata[5] = new MetadataLong(-1);
-			//metadata[7] = new MetadataShort(300);
-			//metadata[39] = new MetadataFloat(1f);
-			//metadata[44] = new MetadataShort(300);
-			//metadata[45] = new MetadataInt(0);
-			//metadata[46] = new MetadataByte(0);
-			//metadata[47] = new MetadataInt(0);
-			//metadata[53] = new MetadataFloat(0.98f);
-			//metadata[54] = new MetadataFloat(0.98f);
-			//metadata[56] = new MetadataVector3(0, 0, 0);
-			//metadata[57] = new MetadataByte(0);
-			//metadata[58] = new MetadataFloat(0f);
-			//metadata[59] = new MetadataFloat(0f);
 
 			return metadata;
 		}
 
 		public override void SpawnToPlayers(Player[] players)
 		{
-			//McpeUpdateBlockSynced updateBlock = McpeUpdateBlockSynced.CreateObject();
-			//updateBlock.coordinates = _original.Coordinates;
-			//updateBlock.blockRuntimeId = 0;
-			//updateBlock.blockPriority = 3;
-			//updateBlock.dataLayerId = 0;
-			//updateBlock.unknown0 = EntityId;
-			//updateBlock.unknown1 = 1;
-
-			//Level.RelayBroadcast(players, updateBlock);
-
-			//base.SpawnToPlayers(players);
-
 			foreach (var player in players)
 			{
 				var updateBlock = McpeUpdateBlockSynced.CreateObject();

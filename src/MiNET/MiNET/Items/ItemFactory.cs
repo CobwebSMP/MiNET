@@ -458,11 +458,8 @@ namespace MiNET.Items
 				Block block = BlockFactory.GetBlockById(blockId);
 				var runtimeId = BlockFactory.GetRuntimeId(blockId, (byte) metadata);
 
-				if (runtimeId < BlockFactory.BlockPalette.Count)
-				{
-					var blockState = BlockFactory.BlockPalette[(int) runtimeId];
-					block.SetState(blockState);
-				}
+				var blockState = BlockFactory.BlockPalette[(int) runtimeId];
+				block.SetState(blockState);
 
 				if (CustomBlockItemFactory == null)
 				{
@@ -554,7 +551,6 @@ namespace MiNET.Items
 	public class ItemBrewingStand : Item { public ItemBrewingStand() : base("minecraft:brewing_stand", 379) {} }
 	public class ItemRapidFertilizer : Item { public ItemRapidFertilizer() : base("minecraft:rapid_fertilizer", 449) {} } // what is this?
 	public class ItemGlisteningMelonSlice : Item { public ItemGlisteningMelonSlice() : base("minecraft:glistering_melon_slice", 382) {} }
-	public class ItemExperienceBottle : Item { public ItemExperienceBottle() : base("minecraft:experience_bottle", 384) {} }
 	public class ItemFireCharge : Item { public ItemFireCharge() : base("minecraft:fire_charge", 385) {} }
 	public class ItemWritableBook : Item { public ItemWritableBook() : base("minecraft:writable_book", 386) {} }
 	public class ItemEmerald : Item { public ItemEmerald() : base("minecraft:emerald", 388) {} }

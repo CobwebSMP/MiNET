@@ -43,8 +43,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 712;
-		public const string GameVersion = "1.21.20";
+		public const int ProtocolVersion = 729;
+		public const string GameVersion = "1.21.30";
 	}
 
 	public interface IMcpeMessageHandler
@@ -2208,8 +2208,6 @@ namespace MiNET.Net
 		public bool mustAccept; // = null;
 		public bool hasAddons; // = null;
 		public bool hasScripts; // = null;
-		public bool forceServerPacks; // = null;
-		public ResourcePackInfos behahaviorpackinfos; // = null;
 		public TexturePackInfos texturepacks; // = null;
 		public uint cndUrls; // = null;
 
@@ -2228,8 +2226,6 @@ namespace MiNET.Net
 			Write(mustAccept);
 			Write(false); //addons that we don't and won't have
 			Write(hasScripts);
-			Write(forceServerPacks);
-			Write(behahaviorpackinfos);
 			Write(texturepacks);
 			WriteUnsignedVarInt(cndUrls);
 
@@ -2248,8 +2244,6 @@ namespace MiNET.Net
 			mustAccept = ReadBool();
 			hasAddons = ReadBool();
 			hasScripts = ReadBool();
-			forceServerPacks = ReadBool();
-			behahaviorpackinfos = ReadResourcePackInfos();
 			texturepacks = ReadTexturePackInfos();
 			cndUrls = ReadUnsignedVarInt();
 
@@ -2266,8 +2260,6 @@ namespace MiNET.Net
 			mustAccept=default(bool);
 			hasAddons=default(bool);
 			hasScripts=default(bool);
-			forceServerPacks=default(bool);
-			behahaviorpackinfos=default(ResourcePackInfos);
 			texturepacks=default(TexturePackInfos);
 			cndUrls= default(uint);
 		}
@@ -4831,7 +4823,8 @@ namespace MiNET.Net
 
 		public uint inventoryId; // = null;
 		public ItemStacks input; // = null;
-		public uint dynamicSlotId; // = null;
+		public FullContainerName ContainerName = new FullContainerName();
+		public uint dynamicSlotSize; // = null;
 
 		public McpeInventoryContent()
 		{
@@ -4847,7 +4840,8 @@ namespace MiNET.Net
 
 			WriteUnsignedVarInt(inventoryId);
 			Write(input);
-			WriteUnsignedVarInt(0); //not sure what is dynamic slot, but: 0 - not dynamic; inventoryId - dynamic
+			Write(ContainerName);
+			WriteUnsignedVarInt(dynamicSlotSize);
 
 			AfterEncode();
 		}
@@ -4863,7 +4857,8 @@ namespace MiNET.Net
 
 			inventoryId = ReadUnsignedVarInt();
 			input = ReadItemStacks();
-			dynamicSlotId = ReadUnsignedVarInt();
+			ContainerName = readFullContainerName();
+			dynamicSlotSize = ReadUnsignedVarInt();
 
 			AfterDecode();
 		}
@@ -4877,7 +4872,8 @@ namespace MiNET.Net
 
 			inventoryId=default(uint);
 			input=default(ItemStacks);
-			dynamicSlotId = default(uint);
+			dynamicSlotSize=default(uint);
+			ContainerName=default(FullContainerName);
 		}
 
 	}
@@ -4887,7 +4883,8 @@ namespace MiNET.Net
 
 		public uint inventoryId; // = null;
 		public uint slot; // = null;
-		public uint dynamicSlotId; // = null;
+		public FullContainerName ContainerName = new FullContainerName();
+		public uint dynamicSlotSize; // = null;
 		public Item item; // = null;
 
 		public McpeInventorySlot()
@@ -4904,7 +4901,8 @@ namespace MiNET.Net
 
 			WriteUnsignedVarInt(inventoryId);
 			WriteUnsignedVarInt(slot);
-			WriteUnsignedVarInt(0);
+			Write(ContainerName);
+			WriteUnsignedVarInt(dynamicSlotSize);
 			Write(item);
 
 			AfterEncode();
@@ -4921,7 +4919,8 @@ namespace MiNET.Net
 
 			inventoryId = ReadUnsignedVarInt();
 			slot = ReadUnsignedVarInt();
-			dynamicSlotId = ReadUnsignedVarInt();
+			ContainerName = readFullContainerName();
+			dynamicSlotSize = ReadUnsignedVarInt();
 			item = ReadItem();
 
 			AfterDecode();
@@ -4936,8 +4935,9 @@ namespace MiNET.Net
 
 			inventoryId=default(uint);
 			slot=default(uint);
-			dynamicSlotId=default(uint);
-			item =default(Item);
+			ContainerName=default(FullContainerName);
+			dynamicSlotSize=default(uint);
+			item=default(Item);
 		}
 
 	}
@@ -10603,6 +10603,7 @@ namespace MiNET.Net
 		public string platformId; // = null;
 		public string emoteId; // = null;
 		public byte flags; // = null;
+		public long tick; // = null;
 
 		public McpeEmotePacket()
 		{
@@ -10621,6 +10622,7 @@ namespace MiNET.Net
 			Write(xuid);
 			Write(platformId);
 			Write(flags);
+			Write(tick);
 
 			AfterEncode();
 		}
@@ -10639,6 +10641,7 @@ namespace MiNET.Net
 			xuid = ReadString();
 			platformId = ReadString();
 			flags = ReadByte();
+			tick = ReadLong();
 
 			AfterDecode();
 		}
@@ -10654,6 +10657,7 @@ namespace MiNET.Net
 			xuid = default(string);
 			platformId = default(string);
 			emoteId = default(string);
+			tick = default(long);
 			flags = default(byte);
 		}
 

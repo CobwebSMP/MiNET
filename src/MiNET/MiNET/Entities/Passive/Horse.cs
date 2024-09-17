@@ -75,12 +75,10 @@ namespace MiNET.Entities.Passive
 
 		public override MetadataDictionary GetMetadata()
 		{
-			EatingHaystack = IsEating ? 32 : 0;
 			Scale = IsBaby ? 0.5582917f : 1.0;
 			var metadata = base.GetMetadata();
 			metadata[(int) MetadataFlags.Variant] = new MetadataInt(Variant);
 			metadata[(int) MetadataFlags.Markings] = new MetadataInt(Markings);
-			metadata[(int) MetadataFlags.EatingHaystack] = new MetadataInt(EatingHaystack);
 			if (IsTamed)
 			{
 				metadata[45] = new MetadataByte(12);

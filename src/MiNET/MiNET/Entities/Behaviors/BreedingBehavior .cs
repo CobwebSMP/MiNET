@@ -23,85 +23,96 @@
 
 #endregion
 
+using System.Linq;
 using System.Numerics;
 using AStarNavigator;
-using log4net;
 using MiNET.Entities.Passive;
 using MiNET.Utils.Vectors;
 
 namespace MiNET.Entities.Behaviors
 {
-	public class FollowOwnerBehavior : BehaviorBase
+	public class BreedingBehavior : BehaviorBase
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(TemptedBehavior));
+		private readonly Mob _entity;
+		private double _lookDistance;
+		private int _duration;
 
-		private readonly Wolf _entity;
-		private readonly double _lookDistance;
-		private readonly double _speedMultiplier;
-
-		public FollowOwnerBehavior(Wolf entity, double lookDistance, double speedMultiplier)
+		public BreedingBehavior(Mob entity, double lookDistance = 5.0)
 		{
 			_entity = entity;
 			_lookDistance = lookDistance;
-			_speedMultiplier = speedMultiplier;
 		}
 
 		public override bool ShouldStart()
 		{
-			if (_entity.Level.Random.Next(150) != 0 && _entity.DistanceTo(_entity.Owner) < 5)
-			{
-				return false;
-			}
-			if (!_entity.IsTamed) return false;
-			if (_entity.Owner == null) return false;
+			if (_entity.IsBaby || !_entity.IsInLove) return false;
 
 			return true;
-		}
-
-		public override bool CanContinue()
-		{
-			return ShouldStart();
 		}
 
 		private Path _currentPath;
 
 		public override void OnTick(Entity[] entities)
 		{
-			if (_entity.Owner == null) return;
-			Player owner = (Player) _entity.Owner;
+			var target = _entity.Level.Entities
+				.OrderBy(p => Vector3.Distance(_entity.KnownPosition, p.Value.KnownPosition))
+				.FirstOrDefault(p =>
+				p.Value != _entity
+				&& p.Value.IsInLove
+				&& !p.Value.IsBaby
+				&& _entity.DistanceTo(p.Value) < _lookDistance).Value;
 
-			var distanceToPlayer = _entity.DistanceTo(owner);
+			if (target == null)
+				return;
 
-			if (distanceToPlayer < 1.75)
+			_duration = 1000;
+
+			var distanceToEntity = _entity.DistanceTo(target);
+
+			if (distanceToEntity < 1)
 			{
 				_entity.Velocity = Vector3.Zero;
-				_entity.Controller.LookAt(owner);
+				_entity.Controller.LookAt(target);
+
+				//if (_entity.Level.Random.Next(15) == 0)
+				if (_entity.IsInLove)
+				{
+					var newPos = _entity.KnownPosition.Clone() as PlayerLocation;
+					var mob = new Wolf(_entity.Level) { IsBaby = true };
+					mob.KnownPosition = newPos + new Vector3(0, 0.5f, 0);
+					mob.NoAi = true;
+					mob.SpawnEntity();
+
+					_entity.IsInLove = false;
+					_entity.BroadcastSetEntityData();
+
+					target.IsInLove = false;
+					target.BroadcastSetEntityData();
+				}
 				return;
 			}
 
 			if (_currentPath == null || _currentPath.NoPath())
 			{
-				Log.Debug($"Search new solution");
 				var pathFinder = new Pathfinder();
-				_currentPath = pathFinder.FindPath(_entity, owner, _lookDistance);
+				_currentPath = pathFinder.FindPath(_entity, target, _lookDistance);
 			}
 
 			if (_currentPath.HavePath())
 			{
-				if (!_currentPath.GetNextTile(_entity, out Tile next)) return;
+				if (!_currentPath.GetNextTile(_entity, out Tile next))
+					return;
 
 				_entity.Controller.RotateTowards(new Vector3((float) next.X + 0.5f, _entity.KnownPosition.Y, (float) next.Y + 0.5f));
 
-				if (distanceToPlayer < 1.75)
+				if (distanceToEntity < 0.5f)
 				{
 					_entity.Velocity = Vector3.Zero;
 					_currentPath = null;
 				}
 				else
 				{
-					// else find path to player
-
-					var m = 2 - distanceToPlayer;
+					var m = 2 - distanceToEntity;
 					if (m <= 0)
 					{
 						m = 1;
@@ -110,18 +121,16 @@ namespace MiNET.Entities.Behaviors
 					{
 						m = m / 2.0;
 					}
-					//double m = 1;
-					_entity.Controller.MoveForward(_speedMultiplier * m, entities);
+					_entity.Controller.MoveForward(1 * m, entities);
 				}
 			}
 			else
 			{
-				Log.Debug($"Found no path solution");
 				_entity.Velocity = Vector3.Zero;
 				_currentPath = null;
 			}
 
-			_entity.Controller.LookAt(owner);
+			_entity.Controller.LookAt(target);
 		}
 
 		public override void OnEnd()
@@ -129,6 +138,12 @@ namespace MiNET.Entities.Behaviors
 			_entity.Velocity = Vector3.Zero;
 			_entity.KnownPosition.Pitch = 0;
 			_currentPath = null;
+		}
+
+
+		public override bool CanContinue()
+		{
+			return _duration-- > 0;
 		}
 	}
 }

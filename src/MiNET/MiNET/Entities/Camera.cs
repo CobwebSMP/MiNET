@@ -52,7 +52,7 @@ namespace MiNET.Entities
 		public override MetadataDictionary GetMetadata()
 		{
 			var metadata = base.GetMetadata();
-			metadata[40] = new MetadataString(InteractionLabel);
+			metadata[(int) MetadataFlags.NpcData] = new MetadataString(InteractionLabel);
 			return metadata;
 		}
 

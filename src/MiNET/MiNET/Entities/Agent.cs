@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -44,10 +44,10 @@ namespace MiNET.Entities
 		public override MetadataDictionary GetMetadata()
 		{
 			MetadataDictionary metadata = base.GetMetadata();
-			metadata[0] = new MetadataLong(549755846656); // 1000000000000000000000001000000000000000; AlwaysShowName
+			metadata[(int) MetadataFlags.EntityFlags] = new MetadataLong(549755846656); // 1000000000000000000000001000000000000000; AlwaysShowName
 			if (Owner != null)
 			{
-				metadata[5] = new MetadataLong(Owner.EntityId);
+				metadata[(int) MetadataFlags.Owner] = new MetadataLong(Owner.EntityId);
 			}
 			return metadata;
 		}

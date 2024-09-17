@@ -75,6 +75,31 @@ namespace MiNET.Entities.Behaviors
 			_entity.KnownPosition.Pitch = (float) pitch;
 		}
 
+		public void LookAt(PlayerLocation location)
+		{
+			Vector3 targetPos = location + new Vector3(0, 1, 0);
+			Vector3 entityPos = _entity.KnownPosition + new Vector3(0, (float) _entity.Height, 0) + _entity.GetHorizDir() * (float) _entity.Length / 2f;
+			var d = Vector3.Normalize(targetPos - entityPos);
+
+			var dx = d.X;
+			var dy = d.Y;
+			var dz = d.Z;
+
+			double tanOutput = 90 - RadianToDegree(Math.Atan(dx / (dz)));
+			double thetaOffset = 270d;
+			if (dz < 0)
+			{
+				thetaOffset = 90;
+			}
+			var yaw = /*ClampDegrees*/ (thetaOffset + tanOutput);
+
+			double pitch = RadianToDegree(-Math.Asin(dy));
+
+			_entity.KnownPosition.Yaw = (float) yaw;
+			_entity.KnownPosition.HeadYaw = (float) yaw;
+			_entity.KnownPosition.Pitch = (float) pitch;
+		}
+
 		public void RotateTowards(Vector3 targetPosition)
 		{
 			Vector3 entityPosition = _entity.KnownPosition;

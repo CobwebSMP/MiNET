@@ -74,8 +74,6 @@ namespace MiNET.Entities
 		public bool IsOutOfWater => !IsInWater;
 		public int PotionColor { get; set; }
 		public int Variant { get; set; }
-		public int EatingHaystack { get; set; }
-
 		public long Age { get; set; }
 		public double Scale { get; set; } = 1.0;
 		public virtual double Height { get; set; } = 1;
@@ -115,44 +113,143 @@ namespace MiNET.Entities
 		public enum MetadataFlags
 		{
 			EntityFlags = 0,
+			StructuralInt = 1,
 			Variant = 2,
 			Color = 3,
-			HideNameTag = 3,
 			NameTag = 4,
 			Owner = 5,
+			Target = 6,
 			AvailableAir = 7,
 			PotionColor = 8,
+			Unknown = 9,
+			Unknown2 = 10,
+			Hurt = 11,
+			HurtDirection = 12,
+			RowTimeLeft = 13,
+			RowTimeRight = 14,
 			ExperienceValue = 15,
-			EatingHaystack = 16,
-			FireworksType = 16,
-			MaybeAge = 24,
+			TileRuntimeId = 16,
+			Offset = 17,
+			CustomDisplay = 18,
+			Swell = 19,
+			OldSwel = 20,
+			SwellDirection = 21,
+			ChargeAmount = 22,
+			CarryBlockRumtimeId = 23,
+			EntityAge = 24,
+			UsingItem = 25,
 			PlayerFlags = 26,
+			PlayerIndex = 27,
 			BedPosition = 28,
-			Scale = 38, //todo still exist?
+			XPower = 29,
+			YPower = 30,
+			ZPower = 31,
+			AuxPower = 32,
+			FishX = 33,
+			FishY = 34,
+			FishAngle = 35,
+			AuxValueData = 36,
+			LeashHolder = 37,
+			Scale = 38,
+			HasNpc = 39,
+			NpcData = 40,
+			Actions = 41,
 			MaxAir = 42,
 			Markings = 43,
-			CollisionBoxWidth = 53, //todo still exist?
-			CollisionBoxHeight = 54, //todo still exist?
-
+			ContainerType = 44,
+			ContainerSize = 45,
+			ContainerStrenght = 46,
+			BlockTarget = 47,
+			InvulnerableTicks = 48,
+			TargetA = 49,
+			TargetB = 50,
+			TargetC = 51,
+			AerialAttack = 52,
+			CollisionBoxWidth = 53,
+			CollisionBoxHeight = 54,
 			DataFuseLength = 55,
-
 			RiderSeatPosition = 56,
 			RiderRotationLocked = 57,
 			RiderMaxRotation = 58,
 			RiderMinRotation = 59,
+			RiderRotationOffset = 60,
+			DataRadius = 61,
+			DataWaiting = 62,
+			DataParticle = 63,
+			PeekId = 64,
+			AttachFace = 65,
+			Attached = 66,
+			AttachPos = 67,
+			TradeTarget = 68,
+			Career = 69,
+			HasCommandBlock = 70,
+			CommandName = 71,
+			LastCommandOutput = 72,
+			TrackCommandOutput = 73,
+			Unknown5 = 74,
+			Strenght = 75,
+			MaxStrenght = 76,
+			DataCastingColor = 77,
+			DataLifetimeTicks = 78,
+			PoseIndex = 79,
+			DataTickOffset = 80,
 			AlwaysShowNameTag = 81,
-
-			EntityFlags2 = 91, // same treatment as 0 flags, perhaps
-
-			ButtonText = 99,
+			Color2Index = 82,
+			AuthorName = 83,
+			Score = 84,
+			BalloonAnchor = 86,
+			BubbleTime = 87,
+			Agent = 88,
+			SittingAmount = 89,
+			SittingAmountPrevious = 90,
+			EatingCounter = 91,
+			Unknown6 = 92,
+			LayingAmount = 93,
+			LayingAmountPrevious = 94,
+			DataDuration = 95,
+			DataSpawnTime = 96,
+			DataChangeRate = 97,
+			DataChangeOnPickup = 98,
+			DataPickupCount = 99,
+			InteractTect = 100,
+			TradeTier = 101,
+			MaxTradeTier = 102,
+			TradeExperience = 103,
+			SkinIn = 104,
+			SpawningFrames = 105,
+			CommandBockTickDelay = 106,
+			CommandBlockOnFirstTick = 107,
+			AmbientSoundInterval = 108,
+			AmbientSoundIntervalRange = 109,
+			AmbientSoundEventName = 110,
+			FallDamageMultiplier = 111,
+			NameRawText = 112,
+			CanRideTarget = 113,
+			LowCuredDiscount = 114,
+			HighCuredDiscount = 115,
+			NearbyCuredDiscount = 116,
+			NearbyCuredDiscountTime = 117,
+			Hitbox = 118,
+			IsBuoyant = 119,
+			FreezingEffectStrenght = 120,
+			BuoyancyData = 121,
+			GoatHornCount = 122,
+			BaseRuntimeId = 123,
+			MovementSoundDistanceOffset = 124,
+			HeartbeatSoundDistanceOffset = 125,
+			HeartbeatSoundEvent = 126,
+			LastDeathPosition = 127,
+			LastDeathDimension = 128,
+			HasDied = 129,
+			CollisionBox = 130,
+			VisibleMobEffects = 131,
+			Count = 132,
 		}
 
 		public virtual MetadataDictionary GetMetadata()
 		{
 			MetadataDictionary metadata = new MetadataDictionary();
 			metadata[(int) MetadataFlags.EntityFlags] = new MetadataLong(GetDataValue());
-			metadata[1] = new MetadataInt(1);
-			metadata[(int) MetadataFlags.HideNameTag] = new MetadataByte(!HideNameTag);
 			metadata[(int) MetadataFlags.NameTag] = new MetadataString(NameTag ?? string.Empty);
 			metadata[(int) MetadataFlags.AvailableAir] = new MetadataShort(HealthManager.Air);
 			metadata[(int) MetadataFlags.PotionColor] = new MetadataInt(PotionColor);
@@ -302,7 +399,6 @@ namespace MiNET.Entities
 		public bool IsBaby { get; set; }
 		public bool IsConverting { get; set; }
 		public bool IsCritical { get; set; }
-		public bool IsShowName => !HideNameTag;
 		public bool IsAlwaysShowName { get; set; }
 		public bool IsNoAi => NoAi;
 		public bool HaveAi => !NoAi;
@@ -453,7 +549,6 @@ namespace MiNET.Entities
 			Timer2 = 116,
 			Timer3 = 117,
 			BodyRotationBlocked = 118,
-			Count = 119
 		}
 
 		protected virtual BitArray GetFlags()
@@ -473,7 +568,7 @@ namespace MiNET.Entities
 			bits[(int) DataFlags.Baby] = IsBaby;
 			bits[(int) DataFlags.Converting] = IsConverting;
 			bits[(int) DataFlags.Critcal] = IsCritical;
-			bits[(int) DataFlags.ShowName] = IsShowName;
+			bits[(int) DataFlags.ShowName] = !HideNameTag;
 			bits[(int) DataFlags.AlwaysShowName] = IsAlwaysShowName;
 			bits[(int) DataFlags.NoAi] = IsNoAi;
 			bits[(int) DataFlags.Silent] = IsSilent;

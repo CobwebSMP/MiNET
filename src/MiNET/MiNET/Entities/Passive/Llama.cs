@@ -46,7 +46,7 @@ namespace MiNET.Entities.Passive
 		public override MetadataDictionary GetMetadata()
 		{
 			var metadata = base.GetMetadata();
-			metadata[2] = new MetadataInt(_type);
+			metadata[(int) MetadataFlags.Variant] = new MetadataInt(_type);
 			return metadata;
 		}
 

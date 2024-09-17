@@ -15354,7 +15354,7 @@
     "States": []
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"cobblestone\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "cobblestone_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 0,
@@ -15367,7 +15367,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"mossy_cobblestone\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "mossy_cobblestone_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 1,
@@ -15380,7 +15380,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"granite\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "granite_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 2,
@@ -15393,7 +15393,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"diorite\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "diorite_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 3,
@@ -15406,7 +15406,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"andesite\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "andesite_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 4,
@@ -15419,7 +15419,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"sandstone\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "sandstone_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 5,
@@ -15432,7 +15432,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"red_sandstone\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "red_sandstone_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 6,
@@ -15445,7 +15445,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"stone_brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "stone_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 7,
@@ -15458,7 +15458,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"mossy_stone_brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "mossy_stone_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 8,
@@ -15471,7 +15471,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 9,
@@ -15484,7 +15484,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"nether_brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "nether_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 10,
@@ -15497,7 +15497,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"red_nether_brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "red_nether_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 11,
@@ -15510,7 +15510,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"end_brick\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "end_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 12,
@@ -15523,7 +15523,7 @@
     ]
   },
   {
-    "Command": "cobblestone_wall [\"wall_block_type\" = \"prismarine\", \"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "prismarine_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 13,
@@ -24191,214 +24191,6 @@
     ]
   },
   {
-    "Command": "hard_stained_glass_pane [\"color\" = \"white\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 0,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "white"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"orange\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 1,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "orange"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"magenta\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 2,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "magenta"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"light_blue\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 3,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "light_blue"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"yellow\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 4,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "yellow"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"lime\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 5,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "lime"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"pink\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 6,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "pink"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"gray\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 7,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "gray"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"silver\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 8,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "silver"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"cyan\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 9,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "cyan"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"purple\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 10,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "purple"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"blue\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 11,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "blue"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"brown\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 12,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "brown"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"green\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 13,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "green"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"red\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 14,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "red"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass_pane [\"color\" = \"black\"]",
-    "Name": "minecraft:hard_stained_glass_pane",
-    "Id": 191,
-    "Data": 15,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "black"
-      }
-    ]
-  },
-  {
     "Command": "spruce_door [\"direction\" = 0, \"door_hinge_bit\" = false, \"open_bit\" = false, \"upper_block_bit\" = false]",
     "Name": "minecraft:spruce_door",
     "Id": 193,
@@ -27412,6 +27204,20 @@
     ]
   },
   {
+    "Command": "allow",
+    "Name": "minecraft:allow",
+    "Id": 210,
+    "Data": 0,
+    "States": []
+  },
+  {
+    "Command": "deny",
+    "Name": "minecraft:deny",
+    "Id": 211,
+    "Data": 0,
+    "States": []
+  },
+  {
     "Command": "magma",
     "Name": "minecraft:magma",
     "Id": 213,
@@ -29880,214 +29686,6 @@
         "Type": "8",
         "Name": "structure_block_type",
         "Value": "export"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"white\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 0,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "white"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"orange\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 1,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "orange"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"magenta\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 2,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "magenta"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"light_blue\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 3,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "light_blue"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"yellow\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 4,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "yellow"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"lime\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 5,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "lime"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"pink\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 6,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "pink"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"gray\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 7,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "gray"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"silver\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 8,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "silver"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"cyan\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 9,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "cyan"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"purple\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 10,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "purple"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"blue\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 11,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "blue"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"brown\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 12,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "brown"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"green\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 13,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "green"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"red\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 14,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "red"
-      }
-    ]
-  },
-  {
-    "Command": "hard_stained_glass [\"color\" = \"black\"]",
-    "Name": "minecraft:hard_stained_glass",
-    "Id": 254,
-    "Data": 15,
-    "States": [
-      {
-        "Type": "8",
-        "Name": "color",
-        "Value": "black"
       }
     ]
   },

@@ -23,37 +23,36 @@
 
 #endregion
 
+using System.Linq;
 using System.Numerics;
 using AStarNavigator;
-using log4net;
 using MiNET.Entities.Passive;
 using MiNET.Utils.Vectors;
 
 namespace MiNET.Entities.Behaviors
 {
-	public class FollowOwnerBehavior : BehaviorBase
+	public class FollowAdultBehavior : BehaviorBase
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(TemptedBehavior));
-
 		private readonly Wolf _entity;
-		private readonly double _lookDistance;
-		private readonly double _speedMultiplier;
 
-		public FollowOwnerBehavior(Wolf entity, double lookDistance, double speedMultiplier)
+		public FollowAdultBehavior(Wolf entity)
 		{
 			_entity = entity;
-			_lookDistance = lookDistance;
-			_speedMultiplier = speedMultiplier;
 		}
 
 		public override bool ShouldStart()
 		{
-			if (_entity.Level.Random.Next(150) != 0 && _entity.DistanceTo(_entity.Owner) < 5)
-			{
-				return false;
-			}
-			if (!_entity.IsTamed) return false;
-			if (_entity.Owner == null) return false;
+			if (!_entity.IsBaby) return false;
+
+			var target = _entity.Level.Entities
+				.OrderBy(p => Vector3.Distance(_entity.KnownPosition, p.Value.KnownPosition))
+				.FirstOrDefault(p =>
+				p.Value != _entity
+				&& p.Value is Wolf
+				&& !p.Value.IsBaby
+				&& _entity.DistanceTo(p.Value) < 20).Value;
+
+			if (target == null) return false;
 
 			return true;
 		}
@@ -67,23 +66,34 @@ namespace MiNET.Entities.Behaviors
 
 		public override void OnTick(Entity[] entities)
 		{
-			if (_entity.Owner == null) return;
-			Player owner = (Player) _entity.Owner;
+			var target = _entity.Level.Entities
+				.OrderBy(p => Vector3.Distance(_entity.KnownPosition, p.Value.KnownPosition))
+				.FirstOrDefault(p =>
+				p.Value != _entity
+				&& p.Value is Wolf
+				&& !p.Value.IsBaby
+				&& _entity.DistanceTo(p.Value) < 20).Value;
 
-			var distanceToPlayer = _entity.DistanceTo(owner);
+			if (target == null) return;
 
-			if (distanceToPlayer < 1.75)
+			if (_entity.Level.Random.Next(80) != 0 && _entity.DistanceTo(target) < 3)
+			{
+				return;
+			}
+
+			var distanceToEntity = _entity.DistanceTo(target);
+
+			if (distanceToEntity < 1.75)
 			{
 				_entity.Velocity = Vector3.Zero;
-				_entity.Controller.LookAt(owner);
+				_entity.Controller.LookAt(target);
 				return;
 			}
 
 			if (_currentPath == null || _currentPath.NoPath())
 			{
-				Log.Debug($"Search new solution");
 				var pathFinder = new Pathfinder();
-				_currentPath = pathFinder.FindPath(_entity, owner, _lookDistance);
+				_currentPath = pathFinder.FindPath(_entity, target, 20);
 			}
 
 			if (_currentPath.HavePath())
@@ -92,16 +102,14 @@ namespace MiNET.Entities.Behaviors
 
 				_entity.Controller.RotateTowards(new Vector3((float) next.X + 0.5f, _entity.KnownPosition.Y, (float) next.Y + 0.5f));
 
-				if (distanceToPlayer < 1.75)
+				if (distanceToEntity < 1.75)
 				{
 					_entity.Velocity = Vector3.Zero;
 					_currentPath = null;
 				}
 				else
 				{
-					// else find path to player
-
-					var m = 2 - distanceToPlayer;
+					var m = 2 - distanceToEntity;
 					if (m <= 0)
 					{
 						m = 1;
@@ -110,18 +118,41 @@ namespace MiNET.Entities.Behaviors
 					{
 						m = m / 2.0;
 					}
-					//double m = 1;
-					_entity.Controller.MoveForward(_speedMultiplier * m, entities);
+					_entity.Controller.MoveForward(1 * m, entities);
 				}
 			}
 			else
 			{
-				Log.Debug($"Found no path solution");
 				_entity.Velocity = Vector3.Zero;
 				_currentPath = null;
 			}
 
-			_entity.Controller.LookAt(owner);
+			_entity.Controller.LookAt(target);
+		}
+
+		private bool GetNextTile(out Tile next)
+		{
+			next = null;
+			if (_currentPath.NoPath()) return false;
+
+			next = _currentPath.First();
+
+			BlockCoordinates currPos = (BlockCoordinates) _entity.KnownPosition;
+			if ((int) next.X == currPos.X && (int) next.Y == currPos.Z)
+			{
+				_currentPath.Remove(next);
+
+				if (!GetNextTile(out next)) return false;
+			}
+
+			return true;
+		}
+
+		public double Distance(Player player, Tile tile)
+		{
+			Vector2 pos1 = new Vector2(player.KnownPosition.X, player.KnownPosition.Z);
+			Vector2 pos2 = new Vector2((float) tile.X, (float) tile.Y);
+			return (pos1 - pos2).Length();
 		}
 
 		public override void OnEnd()

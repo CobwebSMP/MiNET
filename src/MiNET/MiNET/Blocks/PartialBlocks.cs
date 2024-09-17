@@ -1063,7 +1063,7 @@ namespace MiNET.Blocks
         {
             var record = new BlockStateContainer();
             record.Name = "minecraft:allow";
-            record.Id = 0;
+            record.Id = 210;
             return record;
         } // method
     } // class
@@ -3444,7 +3444,7 @@ namespace MiNET.Blocks
         {
             var record = new BlockStateContainer();
             record.Name = "minecraft:deny";
-            record.Id = 0;
+            record.Id = 211;
             return record;
         } // method
     } // class
@@ -10163,7 +10163,6 @@ namespace MiNET.Blocks
 	} // class
 
 	public partial class Allow : Block { public Allow() : base(210) { IsGenerated = true; } }
-	public partial class Deny : Block { public Deny() : base(211) { IsGenerated = true; } }
 	public partial class StructureVoid : Block { public StructureVoid() : base(217) { IsGenerated = true; } }
 	public partial class BorderBlock : Block { public BorderBlock() : base(212) { IsGenerated = true; } }
 	public partial class StickyPistonArmCollision : Block { public StickyPistonArmCollision() : base(472) { IsGenerated = true; } }

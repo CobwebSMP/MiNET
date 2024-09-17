@@ -24,7 +24,6 @@
 #endregion
 
 using MiNET.Entities.Projectiles;
-using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -46,6 +45,9 @@ namespace MiNET.Items
 			egg.KnownPosition.Y += 1.62f;
 			egg.Velocity = egg.KnownPosition.GetDirection().Normalize() * (force);
 			egg.SpawnEntity();
+			world.BroadcastSound(player.KnownPosition, LevelSoundEventType.Throw, "minecraft:player");
+			var itemInHand = player.Inventory.GetItemInHand();
+			itemInHand.Count--;
 		}
 	}
 }

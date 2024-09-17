@@ -23,9 +23,9 @@
 
 #endregion
 
-using System;
 using System.Linq;
 using System.Numerics;
+using MiNET.Entities.Passive;
 using MiNET.Worlds;
 
 namespace MiNET.Entities.Behaviors
@@ -140,6 +140,7 @@ namespace MiNET.Entities.Behaviors
 		private readonly double _targetDistance;
 		private readonly int _attackChance;
 		private int _targetUnseenTicks = 0;
+		private Entity _misssedEntity;
 
 		public FindAttackableEntityTargetBehavior(Mob entity, double targetDistance = 16, int attackChance = 10)
 		{
@@ -150,7 +151,7 @@ namespace MiNET.Entities.Behaviors
 
 		public override bool ShouldStart()
 		{
-			if (_entity.Level.Random.Next(_attackChance) != 0)
+			if (_entity.Level.Random.Next(150) != 0)
 			{
 				return false;
 			}
@@ -162,6 +163,11 @@ namespace MiNET.Entities.Behaviors
 					&& p.Value is TEntity
 					&& !p.Value.HealthManager.IsDead
 					&& _entity.DistanceTo(p.Value) < _targetDistance).Value as TEntity;
+
+			if (target == _misssedEntity)
+			{
+				return false;
+			}
 
 			if (target == null)
 			{
@@ -183,12 +189,13 @@ namespace MiNET.Entities.Behaviors
 		{
 			// Give the poor entity a chance to survive
 			// Also makes it let go of unreachable targets
-			if (_entity.Level.Random.Next(_attackChance) == 0)
+			var target = _entity.Target;
+
+			if (_entity.Level.Random.Next(_attackChance * 10) == 0 && _entity.DistanceTo(target) > 4)
 			{
+				_misssedEntity = _entity.Target;
 				return false;
 			}
-
-			var target = _entity.Target;
 
 			if (target == null)
 				return false;
@@ -209,6 +216,15 @@ namespace MiNET.Entities.Behaviors
 			else if (_targetUnseenTicks++ > 60)
 			{
 				return false;
+			}
+
+			if (_entity is Wolf )
+			{
+				Wolf wolf = _entity as Wolf;
+				if (wolf.DistanceTo(wolf.Owner) > 10)
+				{
+					return false;
+				}
 			}
 
 			_entity.SetTarget(target); // This makes sense when we to attacked by targeting

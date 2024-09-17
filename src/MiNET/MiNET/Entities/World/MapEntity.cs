@@ -23,9 +23,9 @@
 
 #endregion
 
-using System;
 using log4net;
 using MiNET.Entities.ImageProviders;
+using MiNET.Items;
 using MiNET.Net;
 using MiNET.Utils;
 using MiNET.Worlds;
@@ -37,7 +37,6 @@ namespace MiNET.Entities.World
 		private static readonly ILog Log = LogManager.GetLogger(typeof(MapEntity));
 
 		public MapInfo MapInfo { get; set; }
-		public bool initialized { get; set; } = false;
 		public IMapImageProvider ImageProvider { get; set; }
 
 		public MapEntity(Level level, long mapId = EntityManager.EntityIdUndefined) : base(EntityType.None, level)
@@ -58,7 +57,7 @@ namespace MiNET.Entities.World
 				var mapInfo = new MapInfo
 				{
 					MapId = EntityId,
-					UpdateType = 0,
+					UpdateType = 2,
 					Scale = 0,
 					X = 0,
 					Z = 0,
@@ -96,15 +95,21 @@ namespace MiNET.Entities.World
 			{
 				MapInfo.Data = ImageProvider.GetData(MapInfo, false);
 			}
-			
-			MapInfo.UpdateType = initialized ? (byte) 2 : (byte) 8;
 
-			var mapInfo = (MapInfo) MapInfo.Clone();
+			MapInfo.UpdateType = 2;
 
-			var msg = McpeClientboundMapItemData.CreateObject();
-			msg.mapinfo = mapInfo;
-			Level.RelayBroadcast(msg);
-			initialized = true;
+			foreach (Player player in Level.GetSpawnedPlayers())
+			{
+				if (player.Inventory.GetItemInHand() is ItemMap)
+				{
+					var mapInfo = (MapInfo) MapInfo.Clone();
+					var msg = McpeClientboundMapItemData.CreateObject();
+
+					msg.mapinfo = mapInfo;
+					player.SendPacket(msg);
+				}
+			}
+
 			return;
 		}
 

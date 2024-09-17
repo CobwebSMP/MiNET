@@ -45,7 +45,7 @@ namespace MiNET.Entities.Behaviors
 
 		protected Vector3? _direction;
 
-		public WanderBehavior(Mob entity, double speedMultiplier, int chance = 120)
+		public WanderBehavior(Mob entity, double speedMultiplier, int chance = 20)
 		{
 			_entity = entity;
 			_speedMultiplier = speedMultiplier;
@@ -54,7 +54,10 @@ namespace MiNET.Entities.Behaviors
 
 		public override bool ShouldStart()
 		{
-			if (_entity.Level.Random.Next(_chance) != 0) return false;
+			if (_entity.Level.Random.Next(_chance) != 0)
+			{
+				return false;
+			}
 
 			BlockCoordinates? pos = FindRandomTargetBlock(_entity, 10, 7, _direction);
 
@@ -74,7 +77,7 @@ namespace MiNET.Entities.Behaviors
 			var currPos = (BlockCoordinates) _entity.KnownPosition;
 			if (currPos == _lastPosition)
 			{
-				if (_stallTime++ > 100) return false;
+				if (_stallTime++ > 150) return false;
 			}
 			else
 			{

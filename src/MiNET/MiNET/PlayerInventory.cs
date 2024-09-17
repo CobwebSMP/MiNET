@@ -26,9 +26,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using fNbt;
 using log4net;
 using MiNET.Blocks;
 using MiNET.Entities;
+using MiNET.Entities.World;
 using MiNET.Items;
 using MiNET.Net;
 using MiNET.Utils;
@@ -291,6 +293,21 @@ namespace MiNET
 		public virtual void SetHeldItemSlot(int selectedHotbarSlot, bool sendToPlayer = true)
 		{
 			InHandSlot = selectedHotbarSlot;
+
+			if (GetItemInHand() is ItemMap)
+			{
+				long mapUuid = GetItemInHand().ExtraData.Get<NbtLong>("map_uuid").Value;
+				if (Player.Level.TryGetEntity(mapUuid, out MapEntity mapEntity))
+				{
+					var mapInfo = mapEntity.MapInfo;
+					mapInfo.UpdateType = 8;
+
+					var msg = McpeClientboundMapItemData.CreateObject();
+					msg.mapinfo = mapInfo;
+
+					Player.SendPacket(msg);
+				}
+			}
 
 			if (sendToPlayer)
 			{

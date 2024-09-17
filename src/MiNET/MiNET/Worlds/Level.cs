@@ -1322,7 +1322,7 @@ namespace MiNET.Worlds
 			}
 			else
 			{
-				Log.Error("NULL");
+				//Log.Error("NULL");
 			}
 
 			chunk.RemoveBlockEntity(blockCoordinates);
@@ -1743,6 +1743,16 @@ namespace MiNET.Worlds
 			packet.soundId = (uint) sound;
 			packet.blockId = blockId;
 			RelayBroadcast(sender, packet);
+		}
+
+		public void BroadcastSound(PlayerLocation position, LevelSoundEventType sound, string entityType = null, bool isBabyMob = false) //todo use this for all entities
+		{
+			var packet = McpeLevelSoundEvent.CreateObject();
+			packet.position = position;
+			packet.soundId = (uint) sound;
+			packet.entityType = entityType;
+			packet.isBabyMob = isBabyMob;
+			RelayBroadcast(packet);
 		}
 	}
 

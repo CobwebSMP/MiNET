@@ -23,6 +23,7 @@
 
 #endregion
 
+using MiNET.BlockEntities;
 using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -45,6 +46,9 @@ namespace MiNET.Blocks
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
 			FacingDirection = ItemBlock.GetFacingDirectionFromEntity(player);
+
+			var chestBlockEntity = new ChestBlockEntity { Coordinates = Coordinates };
+			world.SetBlockEntity(chestBlockEntity);
 			return false;
 		}
 

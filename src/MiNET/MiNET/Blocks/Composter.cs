@@ -20,6 +20,12 @@ namespace MiNET.Blocks
 		{
 			//todo: level add possibility
 			if (!compostableIds.Contains(player.Inventory.GetItemInHand().Id)) { return true; }
+			doInteract(level, blockCoordinates);
+			return true;
+		}
+
+		public void doInteract(Level level, BlockCoordinates blockCoordinates)
+		{
 			if (ComposterFillLevel < 8)
 			{
 				ComposterFillLevel = ComposterFillLevel + 1;
@@ -35,7 +41,6 @@ namespace MiNET.Blocks
 			}
 			LegacyParticle particle = new VillagerHappy(level) { Position = new Vector3(Coordinates.X + 0.5f, Coordinates.Y + 1, Coordinates.Z + 0.5f) };
 			particle.Spawn();
-			return true;
 		}
 	}
 }

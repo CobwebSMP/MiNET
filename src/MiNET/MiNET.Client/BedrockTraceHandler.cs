@@ -103,12 +103,6 @@ namespace MiNET.Client
 				sb.AppendLine($"ID={info.UUID}, Version={info.Version}, Unknown={info.Size}");
 			}
 
-			sb.AppendLine("Behavior packs:");
-			foreach (ResourcePackInfo info in message.behahaviorpackinfos)
-			{
-				sb.AppendLine($"ID={info.UUID}, Version={info.Version}");
-			}
-
 			Log.Debug(sb.ToString());
 
 			base.HandleMcpeResourcePacksInfo(message);
@@ -183,9 +177,9 @@ namespace MiNET.Client
 
 		public override void HandleMcpeInventoryContent(McpeInventoryContent message)
 		{
-			CallPacketHandlers(message);
+			Log.Error($"Set container content on Window ID: 0x{message.inventoryId:x2}, Count: {message.input.Count}, ContainerName: {message.ContainerName.ContainerId} - {message.ContainerName.DynamicId}, dynamicSlotSize: {message.dynamicSlotSize}");
 
-			Log.Debug($"Set container content on Window ID: 0x{message.inventoryId:x2}, Count: {message.input.Count}");
+			CallPacketHandlers(message);
 
 			if (Client.IsEmulator) return;
 
@@ -214,11 +208,11 @@ namespace MiNET.Client
 				//Log.Warn($"Got item: {item.Name} ({item.Id} : {item.Metadata})");
 				if (item.ExtraData == null)
 				{
-					writer.WriteLine($"new Item({item.Id}, {item.Metadata}),");
+					writer.WriteLine($"new Item({item.Id}, {item.Metadata}){{ RuntimeId = {item.RuntimeId},");
 				}
 				else
 				{
-					writer.WriteLine($"new Item({item.Id}, {item.Metadata}){{ ExtraData = {item.ExtraData}}},");
+					writer.WriteLine($"new Item({item.Id}, {item.Metadata}){{ RuntimeId = {item.RuntimeId}, ExtraData = {item.ExtraData}}},");
 				}
 			}
 			Log.Warn($"[McpeCreativeContent] Done reading {message.input.Count} creative items\n");

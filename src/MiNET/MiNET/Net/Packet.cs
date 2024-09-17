@@ -897,7 +897,7 @@ namespace MiNET.Net
 				Item item = ReadItem(this is not McpeCreativeContent);
 				item.NetworkId = networkId;
 				metadata.Add(item);
-				//Log.Debug(item);
+				//Log.Warn(item);
 			}
 
 			return metadata;
@@ -1149,14 +1149,14 @@ namespace MiNET.Net
 		{
 			var name = new FullContainerName();
 			name.ContainerId = ReadByte();
-			name.DynamicId = ReadInt();
+			name.DynamicId = ReadByte();
 			return name;
 		}
 
 		public void Write(FullContainerName name)
 		{
 			Write(name.ContainerId);
-			Write(name.DynamicId);
+			Write((byte)name.DynamicId);
 		}
 		
 		public void Write(StackRequestSlotInfo slotInfo)
@@ -1306,6 +1306,7 @@ namespace MiNET.Net
 							Write((byte) McpeItemStackRequest.ActionType.CraftGrindstone);
 							WriteUnsignedVarInt(ta.RecipeNetworkId);
 							WriteVarInt(ta.RepairCost);
+							Write(ta.TimesCrafted);
 							break;
 						}
 						
@@ -1313,6 +1314,7 @@ namespace MiNET.Net
 						{
 							Write((byte) McpeItemStackRequest.ActionType.CraftLoom);
 							Write(ta.PatternId);
+							Write(ta.TimesCrafted);
 							break;
 						}
 
@@ -1362,14 +1364,14 @@ namespace MiNET.Net
 			{
 				var actions = new ItemStackActionList();
 				actions.RequestId = ReadSignedVarInt();
-				//Log.Warn($"Request ID: {actions.RequestId}");
+				Log.Warn($"Request ID: {actions.RequestId}");
 
 				uint count = ReadUnsignedVarInt();
-				//Log.Warn($"Count: {count}");
+				Log.Warn($"Count: {count}");
 				for (int j = 0; j < count; j++)
 				{
 					var actionType = (McpeItemStackRequest.ActionType) ReadByte();
-					//Log.Warn($"Action type: {actionType}");
+					Log.Warn($"Action type: {actionType}");
 					switch (actionType)
 					{
 						case McpeItemStackRequest.ActionType.Take:
@@ -1501,6 +1503,7 @@ namespace MiNET.Net
 							var action = new GrindstoneStackRequestAction();
 							action.RecipeNetworkId = ReadUnsignedVarInt();
 							action.RepairCost = ReadVarInt();
+							action.TimesCrafted = ReadByte();
 							actions.Add(action);
 							break;
 						}
@@ -1508,6 +1511,7 @@ namespace MiNET.Net
 						{
 							var action = new LoomStackRequestAction();
 							action.PatternId = ReadString();
+							action.TimesCrafted = ReadByte();
 							actions.Add(action);
 							break;
 						}
@@ -1962,6 +1966,8 @@ namespace MiNET.Net
 					MinValue = ReadFloat(),
 					MaxValue = ReadFloat(),
 					Value = ReadFloat(),
+					DefaultMinValue = ReadFloat(),
+					DefaultMaxValue = ReadFloat(),
 					Default = ReadFloat(),
 					Name = ReadString(),
 					Modifiers = ReadAttributeModifiers()
@@ -1980,6 +1986,8 @@ namespace MiNET.Net
 				Write(attribute.MinValue);
 				Write(attribute.MaxValue);
 				Write(attribute.Value);
+				Write(attribute.DefaultMinValue == 0.0f ? attribute.MinValue : attribute.DefaultMinValue); //hack to not to break plugins
+				Write(attribute.DefaultMaxValue == 0.0f ? attribute.MaxValue : attribute.DefaultMaxValue); //here too
 				Write(attribute.Default); // unknown
 				Write(attribute.Name);
 				Write(attribute.Modifiers);

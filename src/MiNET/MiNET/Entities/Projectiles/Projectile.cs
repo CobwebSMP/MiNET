@@ -28,6 +28,7 @@ using System.Linq;
 using System.Numerics;
 using log4net;
 using MiNET.Blocks;
+using MiNET.Entities.World;
 using MiNET.Net;
 using MiNET.Particles;
 using MiNET.Utils.Metadata;
@@ -85,7 +86,7 @@ namespace MiNET.Entities.Projectiles
 
 			if (Shooter != null)
 			{
-				metadata[5] = new MetadataLong(Shooter.EntityId);
+				metadata[(int) MetadataFlags.Owner] = new MetadataLong(Shooter.EntityId);
 			}
 
 			return metadata;
@@ -146,13 +147,13 @@ namespace MiNET.Entities.Projectiles
 				entityCollided.HealthManager.TakeHit(this, (int) damage, DamageCause.Projectile);
 				entityCollided.HealthManager.LastDamageSource = Shooter;
 				OnHitEntity(entityCollided);
-				DespawnEntity();
+				if (entityCollided is not ExperienceOrb) { DespawnEntity(); } //todo add collision values
 				return;
 			}else if (entityCollided != null && Damage == -1)
 			{
 				entityCollided.HealthManager.LastDamageSource = Shooter;
 				OnHitEntity(entityCollided);
-				DespawnEntity();
+				if (entityCollided is not ExperienceOrb) { DespawnEntity(); } //todo add collision values
 			}
 			else
 			{

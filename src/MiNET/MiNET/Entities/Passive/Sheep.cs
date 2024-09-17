@@ -59,7 +59,7 @@ namespace MiNET.Entities.Passive
 		public override MetadataDictionary GetMetadata()
 		{
 			var metadata = base.GetMetadata();
-			metadata[3] = new MetadataByte(_color);
+			metadata[(int) MetadataFlags.Color] = new MetadataByte(_color);
 			return metadata;
 		}
 

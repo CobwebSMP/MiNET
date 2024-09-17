@@ -69,10 +69,11 @@ namespace MiNET.Entities.Vehicles
 
 			// FOR PLAYER
 			MetadataDictionary metadata = player.GetMetadata();
-			metadata[57] = new MetadataVector3(0, 1.02001f, 0);
-			metadata[58] = new MetadataByte(1);
-			metadata[59] = new MetadataFloat(90f);
-			metadata[60] = new MetadataFloat(-90f);
+			metadata[(int) MetadataFlags.RiderSeatPosition] = new MetadataVector3(0, 1.02001f, 0);
+			metadata[(int) MetadataFlags.RiderRotationLocked] = new MetadataByte(1);
+			metadata[(int) MetadataFlags.RiderMaxRotation] = new MetadataFloat(90f);
+			metadata[(int) MetadataFlags.RiderMinRotation] = new MetadataFloat(-90f);
+			metadata[(int) MetadataFlags.RiderRotationOffset] = new MetadataFloat(-90f);
 
 			player.BroadcastSetEntityData(metadata);
 		}

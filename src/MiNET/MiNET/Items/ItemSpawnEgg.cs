@@ -72,7 +72,7 @@ namespace MiNET.Items
 					mob = new Sheep(world);
 					break;
 				case EntityType.Wolf:
-					mob = new Wolf(world) {Owner = player};
+					mob = new Wolf(world) {Owner = player, IsBaby = GetRandomBool()};
 					break;
 				case EntityType.Villager:
 					mob = new Villager(world);
@@ -202,6 +202,12 @@ namespace MiNET.Items
 				itemInHand.Count--;
 				player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
 			}
+		}
+
+		public static bool GetRandomBool()
+		{
+			Random random = new Random();
+			return random.Next(2) == 0;
 		}
 	}
 }

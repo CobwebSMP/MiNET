@@ -23,12 +23,55 @@
 
 #endregion
 
+using System.ComponentModel;
+
 namespace MiNET.Items
 {
 	public class ItemDye : Item
 	{
 		public ItemDye() : base("minecraft:dye", 351)
 		{
+		}
+
+		public static byte toColorCode(int metadata)
+		{
+			switch (metadata)
+			{
+				case 1: //red
+					return 14;
+				case 2: //green
+					return 13;
+				case 5: //purple
+					return 10;
+				case 6: //cyan
+					return 9;
+				case 7: //light_gray
+					return 8;
+				case 8: //gray
+					return 7;
+				case 9: //pink
+					return 6;
+				case 10: //lime
+					return 5;
+				case 11: //yellow
+					return 4;
+				case 12: //ligh_blue
+					return 3;
+				case 13: //magenta
+					return 2;
+				case 14: //orange
+					return 1;
+				case 16: //black
+					return 15;
+				case 17: //brown
+					return 12;
+				case 18: //blue
+					return 11;
+				case 19: //white
+					return 0;
+				default:
+					return 255;
+			}
 		}
 	}
 }
