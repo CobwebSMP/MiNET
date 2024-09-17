@@ -1364,14 +1364,14 @@ namespace MiNET.Net
 			{
 				var actions = new ItemStackActionList();
 				actions.RequestId = ReadSignedVarInt();
-				Log.Warn($"Request ID: {actions.RequestId}");
+				//Log.Warn($"Request ID: {actions.RequestId}");
 
 				uint count = ReadUnsignedVarInt();
-				Log.Warn($"Count: {count}");
+				//Log.Warn($"Count: {count}");
 				for (int j = 0; j < count; j++)
 				{
 					var actionType = (McpeItemStackRequest.ActionType) ReadByte();
-					Log.Warn($"Action type: {actionType}");
+					//Log.Warn($"Action type: {actionType}");
 					switch (actionType)
 					{
 						case McpeItemStackRequest.ActionType.Take:
