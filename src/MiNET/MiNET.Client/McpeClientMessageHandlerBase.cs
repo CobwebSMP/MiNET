@@ -782,6 +782,11 @@ namespace MiNET.Client
 		{
 
 		}
+
+		public virtual void HandleMcpeAnimateEntity(McpeAnimateEntity message)
+		{
+			Log.Warn($"Got entity animation {message.animationName}");
+		}
 	}
 
 	public class DefaultMessageHandler : McpeClientMessageHandlerBase

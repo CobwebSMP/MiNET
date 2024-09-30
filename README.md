@@ -2,7 +2,8 @@
 MiNET (CobwebSMP edition)
 =====
 [![Build status](https://github.com/CobwebSMP/MiNET/actions/workflows/dotnet.yml/badge.svg)](https://github.com/CobwebSMP/MiNET/actions/workflows/dotnet.yml)
-[![NuGet Version and Downloads count](https://buildstats.info/nuget/MiNET-CobwebSMP)](https://www.nuget.org/packages/MiNET-CobwebSMP/) 
+[![NuGet Version](https://img.shields.io/nuget/v/MiNET-CobwebSMP.svg) 
+[![Downloads count](https://img.shields.io/nuget/dt/MiNET-CobwebSMP.svg) 
 
 ## What is this?
 
@@ -16,7 +17,14 @@ This is fork of [MiNET](https://github.com/NiclasOlofsson/MiNET), that includes 
  - And more
 
 ## Getting started
+Windows:
+
 Download minet.zip from [Releases](https://github.com/CobwebSMP/MiNET/releases), extract MiNET folder, run MiNET.Console.exe.
+This action will also create Worlds, Plugins and ResourcePacks folders.
+
+Linux:
+
+Download minet.zip from [Releases](https://github.com/CobwebSMP/MiNET/releases), extract MiNET folder, do "dotnet MiNET.Console.dll".
 This action will also create Worlds, Plugins and ResourcePacks folders.
 
 **Worlds** - You can load world LevelDB files exported with Minecraft Bedrock Edition 1.13 or converted to 1.13 format with [Chunker.app](https://chunker.app/). World data (level.dat, .... ) have to extracted in Worlds folder.
@@ -30,12 +38,10 @@ Since this software is used and maintained for our server purposes, this may not
 
 But if you found something you can always open an issue or pull request if you have solution.
 
-**Known problems** :
- - Saving isn't working properly, block entities may fail to save, blockstates may change values on save. Solution: Disable saving in server.conf.
-
 ## Plugins
 Here are few plugins for MiNET that you can try:
 
+ - [Chairs](https://github.com/CobwebSMP/Chairs)
  - [MiPermissionsNET](https://github.com/CupidonSauce173/MiPermissionsNET)
  - [WorldEdit](https://github.com/CobwebSMP/WorldEdit)
 

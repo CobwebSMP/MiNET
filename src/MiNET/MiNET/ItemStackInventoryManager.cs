@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using fNbt;
 using log4net;
 using MiNET.Crafting;
 using MiNET.Items;
@@ -44,7 +45,7 @@ namespace MiNET
 			_player = player;
 		}
 
-		public virtual List<StackResponseContainerInfo> HandleItemStackActions(int requestId, ItemStackActionList actions)
+		public virtual List<StackResponseContainerInfo> HandleItemStackActions(int requestId, ItemStackActionList actions, ref StackRequestSlotInfo updatedSlot)
 		{
 			var stackResponses = new List<StackResponseContainerInfo>();
 			byte TimesCrafted = 1;
@@ -75,7 +76,7 @@ namespace MiNET
 					}
 					case CraftRecipeOptionalAction craftRecipeOptionalAction:
 					{
-						ProcessCraftRecipeOptionalAction(craftRecipeOptionalAction);
+						ProcessCraftRecipeOptionalAction(craftRecipeOptionalAction, actions.filteredString);
 						break;
 					}
 					case CraftResultDeprecatedAction craftResultDeprecatedAction:
@@ -90,7 +91,7 @@ namespace MiNET
 					}
 					case PlaceAction placeAction:
 					{
-						ProcessPlaceAction(placeAction, stackResponses);
+						updatedSlot = ProcessPlaceAction(placeAction, stackResponses);
 						break;
 					}
 					case SwapAction swapAction:
@@ -160,10 +161,6 @@ namespace MiNET
 			StackRequestSlotInfo source = action.Source;
 
 			Item sourceItem = GetContainerItem(source.ContainerId, source.Slot);
-			if (source.ContainerId == 0) //anvil
-			{
-				ProcessAnvilAction(action);
-			}
 			sourceItem.Count -= count;
 			if (sourceItem.Count <= 0)
 			{
@@ -308,7 +305,7 @@ namespace MiNET
 			});
 		}
 
-		protected virtual void ProcessPlaceAction(PlaceAction action, List<StackResponseContainerInfo> stackResponses)
+		protected virtual StackRequestSlotInfo ProcessPlaceAction(PlaceAction action, List<StackResponseContainerInfo> stackResponses)
 		{
 			byte count = action.Count;
 			Item sourceItem;
@@ -398,7 +395,7 @@ namespace MiNET
 					}
 				}
 			});
-			_player.Inventory.SendSetSlot(destination.Slot);
+			return destination;
 		}
 
 		protected virtual void ProcessTakeAction(TakeAction action, List<StackResponseContainerInfo> stackResponses)
@@ -517,19 +514,130 @@ namespace MiNET
 			creativeItem = ItemFactory.GetItem(creativeItem.Id, creativeItem.Metadata);
 			creativeItem.Count = (byte) creativeItem.MaxStackSize;
 			creativeItem.UniqueId = Environment.TickCount;
-			creativeItem.ExtraData = InventoryUtils.CreativeInventoryItems[(int) action.CreativeItemNetworkId].ExtraData;
+			if (creativeItem.ExtraData == null)
+			{
+				creativeItem.ExtraData = InventoryUtils.CreativeInventoryItems[(int) action.CreativeItemNetworkId].ExtraData;
+			}
 			Log.Debug($"Creating {creativeItem}");
 			_player.Inventory.UiInventory.Slots[50] = creativeItem;
 		}
 
-		protected virtual void ProcessCraftRecipeOptionalAction(CraftRecipeOptionalAction action)
+		protected virtual void ProcessCraftRecipeOptionalAction(CraftRecipeOptionalAction action, List<string> strings)
 		{
-		}
-
-		protected virtual void ProcessAnvilAction(ConsumeAction action)
-		{
+			//todo xp cost and more testing
 			var sourceItem = GetContainerItem(13, 1);
-			_player.Inventory.UiInventory.Slots[50] = new Item(sourceItem.Id, 0, 1);
+			var secondItem = GetContainerItem(13, 2);
+
+			NbtCompound data = new NbtCompound(string.Empty);
+
+			if (secondItem != null)
+			{
+				if (sourceItem.ExtraData != null)
+				{
+					data = sourceItem.ExtraData.Clone() as NbtCompound;
+				}
+			}
+
+			if (secondItem is ItemEnchantedBook) // Enchanting mode
+			{
+				NbtList nbt = new NbtList("ench");
+
+				if (sourceItem.ExtraData.Get<NbtList>("ench") == null)
+				{
+					nbt = secondItem.ExtraData.Get<NbtList>("ench").Clone() as NbtList;
+				}
+				else
+				{
+					nbt = sourceItem.ExtraData.Get<NbtList>("ench").Clone() as NbtList;
+
+					foreach (NbtCompound ench in secondItem.ExtraData.Get<NbtList>("ench"))
+					{
+						nbt.Add(ench.Clone() as NbtCompound);
+					}
+					data.Remove("ench");
+				}
+
+				data.Add(nbt);
+			}
+			else if (secondItem is ItemBlock or ItemLeather or ItemIronIngot or ItemGoldIngot or ItemDiamond or ItemScute or ItemPhantomMembrane) // Repairing mode
+			{
+				int damage1 = data.Get<NbtInt>("Damage").Value;
+				int maxDurability = sourceItem.GetMaxUses();
+
+				int damaged = maxDurability - ((maxDurability - damage1) + (maxDurability / 4) * secondItem.Count);
+
+				data.Get<NbtInt>("Damage").Value = Math.Max(damaged, 0);
+			}
+			else if (secondItem is ItemAir)  // Renaming mode
+			{
+				//nothing, handled below
+			}
+			else if (secondItem is Item) // Combining mode
+			{
+				int damage1 = data.Get<NbtInt>("Damage").Value;
+				int damage2 = secondItem.ExtraData.Get<NbtInt>("Damage").Value;
+				int maxDurability = sourceItem.GetMaxUses();
+				int repairCost = data.Get<NbtInt>("RepairCost").Value;
+
+				if (maxDurability == 0)
+				{
+					maxDurability = sourceItem.Durability;
+				}
+
+				if (secondItem.ExtraData.Get<NbtList>("ench") != null)
+				{
+					NbtList nbt = new NbtList("ench");
+
+					if (sourceItem.ExtraData.Get<NbtList>("ench") == null)
+					{
+						nbt = secondItem.ExtraData.Get<NbtList>("ench").Clone() as NbtList;
+					}
+					else
+					{
+						nbt = sourceItem.ExtraData.Get<NbtList>("ench").Clone() as NbtList;
+
+						foreach (NbtCompound ench in secondItem.ExtraData.Get<NbtList>("ench"))
+						{
+							nbt.Add(ench.Clone() as NbtCompound);
+						}
+					}
+
+					data.Remove("ench");
+					data.Add(nbt);
+				}
+
+				repairCost = repairCost * 2;
+
+				var damaged = maxDurability - ((maxDurability - damage1) + (maxDurability - damage2) + (0.12 * maxDurability));
+
+				data.Get<NbtInt>("Damage").Value = Math.Max((int)damaged, 0);
+				data.Get<NbtInt>("RepairCost").Value = repairCost;
+
+				//_player.ExperienceManager.ExperienceLevel = _player.ExperienceManager.ExperienceLevel - repairCost;
+				//_player.ExperienceManager.SendAttributes();
+			}
+
+			if (strings.Count > 0) // Real renaming
+			{
+				NbtCompound nbt = new NbtCompound("display")
+				{
+					new NbtString("Name", strings[0]),
+				};
+
+				if (data.Contains("display"))
+				{
+					data.Remove("display");
+				}
+
+				data.Add(nbt);
+			}
+
+			var item = sourceItem.Clone() as Item;
+			item.Damage = data.Get<NbtInt>("Damage").Value;
+			item.UniqueId = Environment.TickCount;
+			item.ExtraData = data;
+
+			_player.Inventory.UiInventory.Slots[50] = item;
 		}
 
 		private Item GetContainerItem(int containerId, int slot)
@@ -572,6 +680,7 @@ namespace MiNET
 				case 24: // furnace
 				case 25: // furnace
 				case 26: // furnace
+				case 30: // shulkerbox
 				case 45: // blast furnace
 					if (_player._openInventory is Inventory inventory) item = inventory.GetSlot((byte) slot);
 					break;
@@ -629,6 +738,7 @@ namespace MiNET
 				case 24: // furnace
 				case 25: // furnace
 				case 26: // furnace
+				case 30: // shulkerbox
 				case 45: // blast furnace
 					if (_player._openInventory is Inventory inventory) inventory.SetSlot(_player, (byte) slot, item);
 					break;

@@ -32,6 +32,7 @@ namespace MiNET.Items
 			MaxStackSize = 1;
 			ItemType = ItemType.Leggings;
 			ItemMaterial = ItemMaterial.Diamond;
+			Durability = 495;
 		}
 	}
 }

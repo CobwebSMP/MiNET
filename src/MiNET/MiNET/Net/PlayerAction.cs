@@ -30,7 +30,6 @@ namespace MiNET.Net
 		StartBreak = 0,
 		AbortBreak = 1,
 		StopBreak = 2,
-
 		GetUpdatedBlock = 3,
 		DropItem = 4,
 		StartSleeping = 5,

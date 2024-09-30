@@ -1,79 +1,30 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
+using MiNET.Utils.Vectors;
 
 namespace MiNET.Net;
 
 public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 {
-	/// <summary>
-	///		Pitch and Yaw hold the rotation that the player reports it has.
-	/// </summary>
-	public float Pitch;
-	
-	/// <summary>
-	/// Pitch and Yaw hold the rotation that the player reports it has.
-	/// </summary>
-	public float Yaw;
-	
-	/// <summary>
-	///		Pitch and Yaw hold the rotation that the player reports it has.
-	/// </summary>
-	public float HeadYaw;
-	
-	/// <summary>
-	///		 Position holds the position that the player reports it has.
-	/// </summary>
-	public Vector3 Position;
-	
-	/// <summary>
-	///		MoveVector is a Vec2 that specifies the direction in which the player moved, as a combination of X/Z
-	///		values which are created using the WASD/controller stick state.
-	/// </summary>
-	public Vector2 MoveVector;
-	
-	/// <summary>
-	///		InputData is a combination of bit flags that together specify the way the player moved last tick.
-	/// </summary>
+	public PlayerLocation Position;
 	public AuthInputFlags InputFlags;
-	
-	/// <summary>
-	///  InputMode specifies the way that the client inputs data to the screen.
-	/// </summary>
 	public PlayerInputMode InputMode;
-	
-	/// <summary>
-	/// PlayMode specifies the way that the player is playing. 
-	/// </summary>
 	public PlayerPlayMode PlayMode;
-
-	/// <summary>
-	///		InteractionModel is a constant representing the interaction model the player is using. 
-	/// </summary>
 	public PlayerInteractionModel InteractionModel;
-	
-	/// <summary>
-	///		GazeDirection is the direction in which the player is gazing, when the PlayMode is PlayModeReality: In other words, when the player is playing in virtual reality.
-	/// </summary>
 	public Vector3 GazeDirection;
-	
-	/// <summary>
-	///		Tick is the server tick at which the packet was sent. It is used in relation to CorrectPlayerMovePrediction.
-	/// </summary>
 	public long Tick;
-	
-	/// <summary>
-	///		Delta was the delta between the old and the new position.
-	/// </summary>
 	public Vector3 Delta;
+	public PlayerBlockActions Actions;
 
 	public Vector2 AnalogMoveVector;
 
 	partial void AfterDecode()
 	{
-		Pitch = ReadFloat();
-		Yaw = ReadFloat();
-		Position = ReadVector3();
-		MoveVector = ReadVector2();
-		HeadYaw = ReadFloat();
+		var Rot = ReadVector2();
+		var Pos = ReadVector3();
+		ReadVector2(); // what move vector?
+		var HeadYaw = ReadFloat();
+		Position = new PlayerLocation(Pos.X, Pos.Y, Pos.Z, HeadYaw, Rot.Y, Rot.X);
 		InputFlags = (AuthInputFlags)ReadUnsignedVarLong();
 		InputMode = (PlayerInputMode)ReadUnsignedVarInt();
 		PlayMode = (PlayerPlayMode)ReadUnsignedVarInt();
@@ -87,9 +38,9 @@ public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 		Tick = ReadUnsignedVarLong();
 		Delta = ReadVector3();
 
-		if ((InputFlags & AuthInputFlags.PerformItemInteraction) != 0)
+		if ((InputFlags & AuthInputFlags.PerformBlockActions) != 0)
 		{
-			
+			Actions = ReadPlayerBlockActions();
 		}
 
 		AnalogMoveVector = ReadVector2();
@@ -97,14 +48,9 @@ public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 
 	partial void AfterEncode()
 	{
-		Write(Pitch);
-		Write(Yaw);
-		Write(Position);
-		Write(MoveVector);
-		Write(HeadYaw);
 		WriteUnsignedVarLong((long)InputFlags);
 		WriteUnsignedVarInt((uint)InputMode);
-		WriteUnsignedVarInt((uint) PlayMode);
+		WriteUnsignedVarInt((uint)PlayMode);
 		WriteUnsignedVarInt((uint)InteractionModel);
 
 		if (PlayMode == PlayerPlayMode.VR)
@@ -117,13 +63,10 @@ public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 		Write(AnalogMoveVector);
 	}
 
-	/// <inheritdoc />
 	public override void Reset()
 	{
 		base.Reset();
-		Pitch = Yaw = HeadYaw = 0f;
-		MoveVector = Vector2.Zero;
-		Position = Vector3.Zero;
+		Position = default(PlayerLocation);
 		InputFlags = 0;
 		InputMode = PlayerInputMode.Mouse;
 		PlayMode = PlayerPlayMode.Normal;
@@ -159,5 +102,17 @@ public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 		Touch = 0,
 		Crosshair = 1,
 		Classic = 2
+	}
+
+	public class PlayerBlockActions
+	{
+		public List<PlayerBlockActionData> PlayerBlockAction = new List<PlayerBlockActionData>();
+	}
+
+	public class PlayerBlockActionData
+	{
+		public PlayerAction PlayerActionType;
+		public BlockCoordinates BlockCoordinates;
+		public int Facing;
 	}
 }

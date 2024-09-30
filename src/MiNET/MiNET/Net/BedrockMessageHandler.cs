@@ -246,6 +246,9 @@ namespace MiNET.Net
 				case McpeAnvilDamage msg:
 					handler.HandleMcpeAnvilDamage(msg);
 					break;
+				case McpePlayerAuthInput msg:
+					handler.HandleMcpePlayerAuthInput(msg);
+					break;
 
 				default:
 				{

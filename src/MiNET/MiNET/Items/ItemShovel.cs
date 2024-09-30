@@ -24,9 +24,9 @@
 #endregion
 
 using System.Numerics;
+using fNbt;
 using MiNET.Blocks;
 using MiNET.Entities;
-using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -38,6 +38,7 @@ namespace MiNET.Items
 		{
 			MaxStackSize = 1;
 			ItemType = ItemType.Shovel;
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
@@ -60,22 +61,22 @@ namespace MiNET.Items
 			{
 				case ItemDamageReason.BlockBreak:
 				{
-					Metadata++;
-					return Metadata >= GetMaxUses() - 1;
+					Damage++;
+					return Damage >= GetMaxUses() - 1;
 				}
 				case ItemDamageReason.BlockInteract:
 				{
 					if (block is Grass)
 					{
-						Metadata++;
-						return Metadata >= GetMaxUses() - 1;
+						Damage++;
+						return Damage >= GetMaxUses() - 1;
 					}
 					return false;
 				}
 				case ItemDamageReason.EntityAttack:
 				{
-					Metadata += 2;
-					return Metadata >= GetMaxUses() - 1;
+					Damage += 2;
+					return Damage >= GetMaxUses() - 1;
 				}
 				default:
 					return false;

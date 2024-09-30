@@ -38,6 +38,7 @@ using MiNET.Net.RakNet;
 using MiNET.Utils.Metadata;
 using MiNET.Utils.Vectors;
 using MiNET.Utils.Nbt;
+using System.Linq;
 
 namespace MiNET.Net
 {
@@ -250,6 +251,7 @@ namespace MiNET.Net
 		void HandleMcpeEmoteList(McpeEmoteList message);
 		void HandleMcpePermissionRequest(McpePermissionRequest message);
 		void HandleMcpePlayerFog(McpePlayerFog message);
+		void HandleMcpeAnimateEntity(McpeAnimateEntity message);
 	}
 
 	public class McpeClientMessageDispatcher
@@ -660,6 +662,9 @@ namespace MiNET.Net
 					break;
 				case McpePlayerFog msg:
 					_messageHandler.HandleMcpePlayerFog(msg);
+					break;
+				case McpeAnimateEntity msg:
+					_messageHandler.HandleMcpeAnimateEntity(msg);
 					break;
 				default:
 					return false;
@@ -10603,7 +10608,7 @@ namespace MiNET.Net
 		public string platformId; // = null;
 		public string emoteId; // = null;
 		public byte flags; // = null;
-		public long tick; // = null;
+		public uint tick; // = null;
 
 		public McpeEmotePacket()
 		{
@@ -10619,10 +10624,10 @@ namespace MiNET.Net
 
 			WriteUnsignedVarLong(runtimeEntityId);
 			Write(emoteId);
+			WriteUnsignedVarInt(tick);
 			Write(xuid);
 			Write(platformId);
 			Write(flags);
-			Write(tick);
 
 			AfterEncode();
 		}
@@ -10638,10 +10643,10 @@ namespace MiNET.Net
 
 			runtimeEntityId = ReadUnsignedVarLong();
 			emoteId = ReadString();
+			tick = ReadUnsignedVarInt();
 			xuid = ReadString();
 			platformId = ReadString();
 			flags = ReadByte();
-			tick = ReadLong();
 
 			AfterDecode();
 		}
@@ -10657,7 +10662,7 @@ namespace MiNET.Net
 			xuid = default(string);
 			platformId = default(string);
 			emoteId = default(string);
-			tick = default(long);
+			tick = default(uint);
 			flags = default(byte);
 		}
 
@@ -10927,5 +10932,81 @@ namespace MiNET.Net
 
 		}
 	}
+	public partial class McpeAnimateEntity : Packet<McpeAnimateEntity>
+	{
 
+		public string animationName; // = null;
+		public string nextState; // = null;
+		public string stopExpression; // = null;
+		public int molangVersion; // = null;
+		public string controllerName; // = null;
+		public float blendOutTime; // = null;
+		public long[] entities; // = null;
+
+		public McpeAnimateEntity()
+		{
+			Id = 0x9e;
+			IsMcpe = true;
+		}
+
+		protected override void EncodePacket()
+		{
+			base.EncodePacket();
+
+			BeforeEncode();
+
+			Write(animationName);
+			Write(nextState);
+			Write(stopExpression);
+			Write(molangVersion);
+			Write(controllerName);
+			Write(blendOutTime);
+			WriteUnsignedVarInt((uint)entities.Count());
+			for (int i = 0; i < entities.Count(); i++)
+			{
+				WriteUnsignedVarLong(entities[i]);
+			}
+
+			AfterEncode();
+		}
+
+		partial void BeforeEncode();
+		partial void AfterEncode();
+
+		protected override void DecodePacket()
+		{
+			base.DecodePacket();
+
+			BeforeDecode();
+
+			animationName = ReadString();
+			nextState = ReadString();
+			stopExpression = ReadString();
+			molangVersion = ReadInt();
+			controllerName = ReadString();
+			blendOutTime = ReadFloat();
+			for (int i = 0; i < ReadUnsignedVarInt(); i++)
+			{
+				entities[i] = ReadUnsignedVarLong();
+			}
+
+			AfterDecode();
+		}
+
+		partial void BeforeDecode();
+		partial void AfterDecode();
+
+		protected override void ResetPacket()
+		{
+			base.ResetPacket();
+
+			animationName = default(string);
+			nextState = default(string);
+			stopExpression = default(string);
+			molangVersion = default(int);
+			controllerName = default(string);
+			blendOutTime = default(float);
+			entities = default(long[]);
+		}
+	}
 }

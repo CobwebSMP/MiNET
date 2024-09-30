@@ -34,6 +34,7 @@ using MiNET.Entities.World;
 using MiNET.Items;
 using MiNET.Net;
 using MiNET.Utils;
+using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
 namespace MiNET
@@ -99,6 +100,14 @@ namespace MiNET
 				Player.Level.RelayBroadcast(sound);
 			}
 
+			if (itemInHand.ExtraData != null)
+			{
+				if (itemInHand.ExtraData.Get<NbtInt>("Damage") != null)
+				{
+					itemInHand.ExtraData.Get<NbtInt>("Damage").Value = itemInHand.Damage;
+				}
+			}
+
 			SendSetSlot(InHandSlot);
 		}
 
@@ -106,14 +115,27 @@ namespace MiNET
 		{
 			if (Player.GameMode != GameMode.Survival) return;
 
-			Helmet = DamageArmorItem(Helmet);
-			Chest = DamageArmorItem(Chest);
-			Leggings = DamageArmorItem(Leggings);
-			Boots = DamageArmorItem(Boots);
-			Player.SendEquipmentForPlayer();
+			bool armorBroke = false;
+
+			Helmet = DamageArmorItem(Helmet, ref armorBroke);
+			Chest = DamageArmorItem(Chest, ref armorBroke);
+			Leggings = DamageArmorItem(Leggings, ref armorBroke);
+			Boots = DamageArmorItem(Boots, ref armorBroke);
+
+			var armorContent = McpeInventoryContent.CreateObject();
+			armorContent.inventoryId = 0x78;
+			armorContent.input = Player.Inventory.GetArmor();
+			Player.SendPacket(armorContent);
+
+			if (armorBroke)
+			{
+				Player.SendArmorForPlayer();
+				Player.Level.BroadcastSound((BlockCoordinates) Player.KnownPosition, LevelSoundEventType.Break, -1);
+			}
+
 		}
 
-		public virtual Item DamageArmorItem(Item item)
+		public virtual Item DamageArmorItem(Item item, ref bool armorBroke)
 		{
 			if (Player.GameMode != GameMode.Survival) return item;
 
@@ -123,18 +145,17 @@ namespace MiNET
 				if (new Random().Next(1 + unbreakingLevel) != 0) return item;
 			}
 
-			item.Metadata++;
+			item.Damage++;
 
-			if (item.Metadata >= item.Durability)
+			if (item.Damage >= item.Durability && item.Id != 0)
 			{
 				item = new ItemAir();
+				armorBroke = true;
+			}
 
-				var sound = McpeLevelSoundEventOld.CreateObject();
-				sound.soundId = 5;
-				sound.blockId = -1;
-				sound.entityType = 1;
-				sound.position = Player.KnownPosition;
-				Player.Level.RelayBroadcast(sound);
+			if (item.ExtraData != null)
+			{
+				item.ExtraData.Get<NbtInt>("Damage").Value = item.Damage;
 			}
 
 			return item;
@@ -381,13 +402,65 @@ namespace MiNET
 			}
 		}
 
-		public virtual void SendSetSlot(int slot)
+		public virtual void SendSetSlot(int slot, byte ContainerId = 12)
 		{
+			//Log.Warn(ContainerId);
+			uint inventoryId;
+			uint invId = 255;
+			Inventory inv = null;
+
+			if (Player._openInventory is Inventory inventory)
+			{
+				invId = inventory.WindowsId;
+				inv = inventory;
+			}
+
+			switch (ContainerId)
+			{
+				case 0:
+				case 1:
+				case 13:
+				case 22:
+					inventoryId = 124; //UI
+					break;
+				case 6:
+				case 12:
+				case 28:
+				case 29:
+					inventoryId = 0; //Player inventory
+					break;
+				case 7:
+				case 24:
+				case 25:
+				case 30:
+				case 45:
+					inventoryId = invId; //Container
+					break;
+				default:
+					inventoryId = 0;
+					Log.Warn($"SendSetSlot: Unknown ContainerId: {ContainerId}");
+					break;
+			}
+
+			Item item;
+
+			if (inventoryId == 124)
+			{
+				item = UiInventory.Slots[slot];
+			}
+			else if (inventoryId == invId)
+			{
+				item = Player.Level.InventoryManager.GetInventory(inv.Id).Slots[slot];
+			}
+			else
+			{
+				item = Slots[slot];
+			}
+
 			var sendSlot = McpeInventorySlot.CreateObject();
-			sendSlot.inventoryId = 0;
+			sendSlot.inventoryId = inventoryId;
 			sendSlot.slot = (uint) slot;
-		//	sendSlot.uniqueid = Slots[slot].UniqueId;
-			sendSlot.item = Slots[slot];
+			sendSlot.item = item;
 			Player.SendPacket(sendSlot);
 		}
 

@@ -49,6 +49,7 @@ using MiNET.Utils.Nbt;
 using MiNET.Utils.Skins;
 using MiNET.Utils.Vectors;
 using Newtonsoft.Json;
+using static MiNET.Net.McpePlayerAuthInput;
 
 namespace MiNET.Net
 {
@@ -1333,8 +1334,13 @@ namespace MiNET.Net
 						}
 					}
 				}
-				
-				WriteUnsignedVarInt(0); //FilterStrings
+
+				WriteUnsignedVarInt((uint) request.filteredString.Count);
+
+				for (int fi = 0; fi < request.filteredString.Count; fi++)
+				{
+					Write(request.filteredString[fi]);
+				}
 			}
 		}
 
@@ -1540,7 +1546,7 @@ namespace MiNET.Net
 
 				for (int fi = 0; fi < filterStringCount; fi++)
 				{
-					ReadString();
+					actions.filteredString.Add(ReadString());
 				}
 				var filterStringCause = ReadUint();
 			}
@@ -3877,6 +3883,26 @@ namespace MiNET.Net
 			{
 				Write(emoteIds);
 			}
+		}
+
+		public PlayerBlockActions ReadPlayerBlockActions()
+		{
+			PlayerBlockActions actions = new PlayerBlockActions();
+			var actionCount = ReadSignedVarInt();
+			for (int i = 0; i < actionCount; i++)
+			{
+				var actionType = (PlayerAction) ReadSignedVarInt();
+				if (actionType is PlayerAction.StartBreak or PlayerAction.AbortBreak or PlayerAction.StopBreak or PlayerAction.Breaking or PlayerAction.PredictDestroyBlock or PlayerAction.ContinueDestroyBlock)
+				{
+					actions.PlayerBlockAction.Add(new PlayerBlockActionData() { PlayerActionType = actionType, BlockCoordinates = new BlockCoordinates(ReadSignedVarInt(), ReadSignedVarInt(), ReadSignedVarInt()), Facing = ReadVarInt() });
+				}
+				else
+				{
+					actions.PlayerBlockAction.Add(new PlayerBlockActionData() { PlayerActionType = actionType});
+
+				}
+			}
+			return actions;
 		}
 
 		public fogStack Read()

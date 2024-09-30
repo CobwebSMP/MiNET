@@ -25,10 +25,10 @@
 
 using System.Collections.Generic;
 using System.Numerics;
+using fNbt;
 using log4net;
 using MiNET.Blocks;
 using MiNET.Entities;
-using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -42,6 +42,7 @@ namespace MiNET.Items
 		{
 			MaxStackSize = 1;
 			ItemType = ItemType.Hoe;
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
@@ -80,15 +81,15 @@ namespace MiNET.Items
 				{
 					if (block is Grass || block is Dirt || block is GrassPath)
 					{
-						Metadata++;
-						return Metadata >= GetMaxUses() - 1;
+						Damage++;
+						return Damage >= GetMaxUses() - 1;
 					}
 					return false;
 				}
 				case ItemDamageReason.EntityAttack:
 				{
-					Metadata++;
-					return Metadata >= GetMaxUses() - 1;
+					Damage++;
+					return Damage >= GetMaxUses() - 1;
 				}
 				default:
 					return false;

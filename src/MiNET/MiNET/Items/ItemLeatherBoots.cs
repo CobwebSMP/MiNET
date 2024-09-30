@@ -32,6 +32,7 @@ namespace MiNET.Items
 			MaxStackSize = 1;
 			ItemType = ItemType.Boots;
 			ItemMaterial = ItemMaterial.Leather;
+			Durability = 65;
 		}
 	}
 }

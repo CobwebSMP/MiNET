@@ -354,5 +354,34 @@
 		"7": "minecraft:stone_brick_wall",
 		"8": "minecraft:mossy_stone_brick_wall",
 		"9": "minecraft:brick_wall"
+	},
+	"minecraft:red_sandstone": {
+		"1": "minecraft:chiseled_red_sandstone",
+		"2": "minecraft:cut_red_sandstone",
+		"3": "minecraft:smooth_red_sandstone"
+	},
+    "minecraft:sand": {
+		"1": "minecraft:red_sand"
+	},
+    "minecraft:sandstone": {
+		"1": "minecraft:chiseled_sandstone",
+		"2": "minecraft:cut_sandstone",
+		"3": "minecraft:smooth_sandstone"
+	},
+	"minecraft:quartz_block": {
+		"1": "minecraft:chiseled_quartz_block",
+		"2": "minecraft:quartz_pillar",
+		"3": "minecraft:smooth_quartz"
+	},
+	"minecraft:prismarine": {
+		"1": "minecraft:dark_prismarine",
+		"2": "minecraft:prismarine_bricks"
+	},
+	"minecraft:purpur_block": {
+		"2": "minecraft:purpur_pillar",
+	},
+	"minecraft:anvil": {
+		"4": "minecraft:chipped_anvil",
+		"8": "minecraft:damaged_anvil",
 	}
 }

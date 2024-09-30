@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -39,7 +39,7 @@ namespace MiNET
 	{
 		private static readonly ILog Log = LogManager.GetLogger(typeof(DamageCalculator));
 
-		public virtual double CalculateItemDamage(Player player, Item item, Player target)
+		public virtual double CalculateItemDamage(Player player, Item item, Entity target)
 		{
 			double damage = item.GetDamage();
 
@@ -96,7 +96,7 @@ namespace MiNET
 			return damage + increase; //Item Damage.
 		}
 
-		public virtual double CalculateFallDamage(Player player, double damage, Player target)
+		public virtual double CalculateFallDamage(Player player, double damage, Entity target)
 		{
 			var fallDamage = new Random().Next((int) (damage / 2 + 2));
 
@@ -107,7 +107,7 @@ namespace MiNET
 			return fallDamage;
 		}
 
-		public virtual double CalculateEffectDamage(Player player, double damage, Player target)
+		public virtual double CalculateEffectDamage(Player player, double damage, Entity target)
 		{
 			double effectDamage = 0;
 			Effect effect;
@@ -123,7 +123,7 @@ namespace MiNET
 			return effectDamage;
 		}
 
-		public virtual double CalculateDamageIncreaseFromEnchantments(Player player, Item tool, Player target)
+		public virtual double CalculateDamageIncreaseFromEnchantments(Player player, Item tool, Entity target)
 		{
 			if (tool == null) return 0;
 			if (tool.ExtraData == null) return 0;
@@ -148,104 +148,97 @@ namespace MiNET
 			return increase;
 		}
 
-		public virtual double CalculatePlayerDamage(Entity source, Player target, Item tool, double damage, DamageCause cause)
+		public virtual double CalculatePlayerDamage(Entity source, Entity target, Item tool, double damage, DamageCause cause)
 		{
 			double originalDamage = damage;
 			double armorValue = 0;
 			double epfValue = 0;
 
+			if (target is Player player)
 			{
+				Item armorPiece1 = player.Inventory.Helmet;
+				switch (armorPiece1.ItemMaterial)
 				{
-					Item armorPiece = target.Inventory.Helmet;
-					switch (armorPiece.ItemMaterial)
-					{
-						case ItemMaterial.Leather:
-							armorValue += 1;
-							break;
-						case ItemMaterial.Gold:
-							armorValue += 2;
-							break;
-						case ItemMaterial.Chain:
-							armorValue += 2;
-							break;
-						case ItemMaterial.Iron:
-							armorValue += 2;
-							break;
-						case ItemMaterial.Diamond:
-							armorValue += 3;
-							break;
-					}
-					epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece, tool, cause);
+					case ItemMaterial.Leather:
+						armorValue += 1;
+						break;
+					case ItemMaterial.Gold:
+						armorValue += 2;
+						break;
+					case ItemMaterial.Chain:
+						armorValue += 2;
+						break;
+					case ItemMaterial.Iron:
+						armorValue += 2;
+						break;
+					case ItemMaterial.Diamond:
+						armorValue += 3;
+						break;
 				}
+				epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece1, tool, cause);
 
+				Item armorPiece2 = player.Inventory.Chest;
+				switch (armorPiece2.ItemMaterial)
 				{
-					Item armorPiece = target.Inventory.Chest;
-					switch (armorPiece.ItemMaterial)
-					{
-						case ItemMaterial.Leather:
-							armorValue += 3;
-							break;
-						case ItemMaterial.Gold:
-							armorValue += 5;
-							break;
-						case ItemMaterial.Chain:
-							armorValue += 5;
-							break;
-						case ItemMaterial.Iron:
-							armorValue += 6;
-							break;
-						case ItemMaterial.Diamond:
-							armorValue += 8;
-							break;
-					}
-					epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece, tool, cause);
+					case ItemMaterial.Leather:
+						armorValue += 3;
+						break;
+					case ItemMaterial.Gold:
+						armorValue += 5;
+						break;
+					case ItemMaterial.Chain:
+						armorValue += 5;
+						break;
+					case ItemMaterial.Iron:
+						armorValue += 6;
+						break;
+					case ItemMaterial.Diamond:
+						armorValue += 8;
+						break;
 				}
+				epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece2, tool, cause);
 
+				Item armorPiece3 = player.Inventory.Leggings;
+				switch (armorPiece3.ItemMaterial)
 				{
-					Item armorPiece = target.Inventory.Leggings;
-					switch (armorPiece.ItemMaterial)
-					{
-						case ItemMaterial.Leather:
-							armorValue += 2;
-							break;
-						case ItemMaterial.Gold:
-							armorValue += 3;
-							break;
-						case ItemMaterial.Chain:
-							armorValue += 4;
-							break;
-						case ItemMaterial.Iron:
-							armorValue += 5;
-							break;
-						case ItemMaterial.Diamond:
-							armorValue += 6;
-							break;
-					}
-					epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece, tool, cause);
+					case ItemMaterial.Leather:
+						armorValue += 2;
+						break;
+					case ItemMaterial.Gold:
+						armorValue += 3;
+						break;
+					case ItemMaterial.Chain:
+						armorValue += 4;
+						break;
+					case ItemMaterial.Iron:
+						armorValue += 5;
+						break;
+					case ItemMaterial.Diamond:
+						armorValue += 6;
+						break;
 				}
+				epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece3, tool, cause);
 
+				Item armorPiece4 = player.Inventory.Boots;
+				switch (armorPiece4.ItemMaterial)
 				{
-					Item armorPiece = target.Inventory.Boots;
-					switch (armorPiece.ItemMaterial)
-					{
-						case ItemMaterial.Leather:
-							armorValue += 1;
-							break;
-						case ItemMaterial.Gold:
-							armorValue += 1;
-							break;
-						case ItemMaterial.Chain:
-							armorValue += 1;
-							break;
-						case ItemMaterial.Iron:
-							armorValue += 2;
-							break;
-						case ItemMaterial.Diamond:
-							armorValue += 3;
-							break;
-					}
-					epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece, tool, cause);
+					case ItemMaterial.Leather:
+						armorValue += 1;
+						break;
+					case ItemMaterial.Gold:
+						armorValue += 1;
+						break;
+					case ItemMaterial.Chain:
+						armorValue += 1;
+						break;
+					case ItemMaterial.Iron:
+						armorValue += 2;
+						break;
+					case ItemMaterial.Diamond:
+						armorValue += 3;
+						break;
 				}
+				epfValue += CalculateDamageReductionFromEnchantments(source, armorPiece4, tool, cause);
 			}
 
 			damage = damage * (1 - Math.Max(armorValue / 5, armorValue - damage / 2) / 25);

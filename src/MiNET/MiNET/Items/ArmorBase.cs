@@ -24,7 +24,7 @@
 #endregion
 
 using System;
-using MiNET.Utils;
+using fNbt;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -34,6 +34,7 @@ namespace MiNET.Items
 	{
 		protected ArmorHelmetBase(string name, short id, short metadata = 0, int count = 1) : base(name, id, metadata, count)
 		{
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
@@ -51,6 +52,7 @@ namespace MiNET.Items
 	{
 		protected ArmorChestplateBase(string name, short id, short metadata = 0, int count = 1) : base(name, id, metadata, count)
 		{
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
@@ -68,6 +70,7 @@ namespace MiNET.Items
 	{
 		protected ArmorLeggingsBase(string name, short id, short metadata = 0, int count = 1) : base(name, id, metadata, count)
 		{
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
@@ -85,6 +88,7 @@ namespace MiNET.Items
 	{
 		protected ArmorBootsBase(string name, short id, short metadata = 0, int count = 1) : base(name, id, metadata, count)
 		{
+			ExtraData = new NbtCompound { new NbtInt("Damage", 0), new NbtInt("RepairCost", 1) };
 		}
 
 		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
