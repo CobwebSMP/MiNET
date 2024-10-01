@@ -266,13 +266,23 @@ namespace MiNET
 			Item sourceItem = GetContainerItem(source.ContainerId, source.Slot);
 			Item destItem = GetContainerItem(destination.ContainerId, destination.Slot);
 
-			SetContainerItem(source.ContainerId, source.Slot, destItem);
-			SetContainerItem(destination.ContainerId, destination.Slot, sourceItem);
 
-			if (source.ContainerId == 21 || source.ContainerId == 22 || destination.ContainerId == 21 || destination.ContainerId == 22)
+			if (!_player.OnItemTransaction(new ItemTransactionEventArgs(_player, _player.Level, sourceItem, action)))
 			{
-				if (!(GetContainerItem(21, 14) is ItemAir) && !(GetContainerItem(22, 15) is ItemAir)) Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
-				else Enchantment.SendEmptyEnchantments(_player);
+				//revert. Empty looks ok
+			}
+			else
+			{
+				SetContainerItem(source.ContainerId, source.Slot, destItem);
+				SetContainerItem(destination.ContainerId, destination.Slot, sourceItem);
+
+				if (source.ContainerId == 21 || source.ContainerId == 22 || destination.ContainerId == 21 || destination.ContainerId == 22)
+				{
+					if (!(GetContainerItem(21, 14) is ItemAir) && !(GetContainerItem(22, 15) is ItemAir))
+						Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
+					else
+						Enchantment.SendEmptyEnchantments(_player);
+				}
 			}
 
 			stackResponses.Add(new StackResponseContainerInfo
@@ -309,61 +319,68 @@ namespace MiNET
 		{
 			byte count = action.Count;
 			Item sourceItem;
-			Item destItem;
+			Item destItem = new ItemAir();
 			StackRequestSlotInfo source = action.Source;
 			StackRequestSlotInfo destination = action.Destination;
 
 			sourceItem = GetContainerItem(source.ContainerId, source.Slot);
 
-			if (sourceItem.Count == count || sourceItem.Count - count <= 0)
+			if (!_player.OnItemTransaction(new ItemTransactionEventArgs(_player, _player.Level, sourceItem, action)))
 			{
-				destItem = sourceItem;
-				sourceItem = new ItemAir();
-				sourceItem.UniqueId = 0;
-				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
+				//revert. Empty looks ok
 			}
 			else
 			{
-				destItem = (Item) sourceItem.Clone();
-				sourceItem.Count -= count;
-				destItem.Count = count;
-				destItem.UniqueId = Environment.TickCount;
-			}
+				if (sourceItem.Count == count || sourceItem.Count - count <= 0)
+				{
+					destItem = sourceItem;
+					sourceItem = new ItemAir();
+					sourceItem.UniqueId = 0;
+					SetContainerItem(source.ContainerId, source.Slot, sourceItem);
+				}
+				else
+				{
+					destItem = (Item) sourceItem.Clone();
+					sourceItem.Count -= count;
+					destItem.Count = count;
+					destItem.UniqueId = Environment.TickCount;
+				}
 
-			Item existingItem = GetContainerItem(destination.ContainerId, destination.Slot);
-			if (existingItem.UniqueId > 0) // is empty/air is what this means
-			{
-				existingItem.Count += count;
-				destItem = existingItem;
-			}
-			else
-			{
-				SetContainerItem(destination.ContainerId, destination.Slot, destItem);
-			}
-			if (destination.ContainerId == 6 || source.ContainerId == 6)
-			{
-				_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
-			}
-			else if (destination.ContainerId == 22)
-			{
-				if (Enum.IsDefined(typeof(ItemType), GetContainerItem(21, 14).ItemType) && !(GetContainerItem(22, 15) is ItemAir))
+				Item existingItem = GetContainerItem(destination.ContainerId, destination.Slot);
+				if (existingItem.UniqueId > 0) // is empty/air is what this means
 				{
-					Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
+					existingItem.Count += count;
+					destItem = existingItem;
 				}
 				else
 				{
-					Enchantment.SendEmptyEnchantments(_player);
+					SetContainerItem(destination.ContainerId, destination.Slot, destItem);
 				}
-			}
-			else if (destination.ContainerId == 23)
-			{
-				if (Enum.IsDefined(typeof(ItemType), GetContainerItem(21, 14).ItemType) && !(GetContainerItem(21, 14) is ItemAir) && !(GetContainerItem(22, 15) is ItemAir))
+				if (destination.ContainerId == 6 || source.ContainerId == 6)
 				{
-					Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
+					_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
 				}
-				else
+				else if (destination.ContainerId == 22)
 				{
-					Enchantment.SendEmptyEnchantments(_player);
+					if (Enum.IsDefined(typeof(ItemType), GetContainerItem(21, 14).ItemType) && !(GetContainerItem(22, 15) is ItemAir))
+					{
+						Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
+					}
+					else
+					{
+						Enchantment.SendEmptyEnchantments(_player);
+					}
+				}
+				else if (destination.ContainerId == 23)
+				{
+					if (Enum.IsDefined(typeof(ItemType), GetContainerItem(21, 14).ItemType) && !(GetContainerItem(21, 14) is ItemAir) && !(GetContainerItem(22, 15) is ItemAir))
+					{
+						Enchantment.SendEnchantments(_player, GetContainerItem(21, 14));
+					}
+					else
+					{
+						Enchantment.SendEmptyEnchantments(_player);
+					}
 				}
 			}
 
@@ -403,48 +420,54 @@ namespace MiNET
 			byte count = action.Count;
 			Item sourceItem;
 			Item destinationItem;
-			Item destItem;
+			Item destItem = new ItemAir();
 			StackRequestSlotInfo source = action.Source;
 			StackRequestSlotInfo destination = action.Destination;
 
 			sourceItem = GetContainerItem(source.ContainerId, source.Slot);
 			destinationItem = GetContainerItem(destination.ContainerId, destination.Slot);
 
-
-			if (source.ContainerId == 60 && sourceItem.Id == destinationItem.Id)
+			if (!_player.OnItemTransaction(new ItemTransactionEventArgs(_player, _player.Level, sourceItem, action)))
 			{
-				destItem = (Item) destinationItem.Clone();
-				destItem.Count += count;
-				destItem.UniqueId = Environment.TickCount;
-			}
-			else if (source.ContainerId != 60 && sourceItem.Count == count)
-			{
-				destItem = (Item) sourceItem.Clone();
-				destItem.Count = (byte)(destinationItem.Count + count);
-				destItem.UniqueId = Environment.TickCount;
-				sourceItem = new ItemAir();
-				sourceItem.UniqueId = 0;
-				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
+				//revert. Empty looks ok
 			}
 			else
 			{
-				destItem = (Item) sourceItem.Clone();
-				destItem.Count = count;
-				destItem.UniqueId = Environment.TickCount;
-				sourceItem.Count -= count;
-				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
-			}
+				if (source.ContainerId == 60 && sourceItem.Id == destinationItem.Id)
+				{
+					destItem = (Item) destinationItem.Clone();
+					destItem.Count += count;
+					destItem.UniqueId = Environment.TickCount;
+				}
+				else if (source.ContainerId != 60 && sourceItem.Count == count)
+				{
+					destItem = (Item) sourceItem.Clone();
+					destItem.Count = (byte) (destinationItem.Count + count);
+					destItem.UniqueId = Environment.TickCount;
+					sourceItem = new ItemAir();
+					sourceItem.UniqueId = 0;
+					SetContainerItem(source.ContainerId, source.Slot, sourceItem);
+				}
+				else
+				{
+					destItem = (Item) sourceItem.Clone();
+					destItem.Count = count;
+					destItem.UniqueId = Environment.TickCount;
+					sourceItem.Count -= count;
+					SetContainerItem(source.ContainerId, source.Slot, sourceItem);
+				}
 
-			SetContainerItem(destination.ContainerId, destination.Slot, destItem);
+				SetContainerItem(destination.ContainerId, destination.Slot, destItem);
 
-			if (source.ContainerId == 22 || source.ContainerId == 23)
-			{
-				Enchantment.SendEmptyEnchantments(_player);
-			}
+				if (source.ContainerId == 22 || source.ContainerId == 23)
+				{
+					Enchantment.SendEmptyEnchantments(_player);
+				}
 
-			if (source.ContainerId == 6)
-			{
-				_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
+				if (source.ContainerId == 6)
+				{
+					_player.SendArmorForPlayer(_player.Level.GetSpawnedPlayers());
+				}
 			}
 
 			stackResponses.Add(new StackResponseContainerInfo

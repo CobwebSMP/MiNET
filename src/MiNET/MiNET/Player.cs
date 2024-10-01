@@ -3072,25 +3072,32 @@ namespace MiNET
 						// Drop
 						Item sourceItem = Inventory.GetItemInHand();
 
-						if (newItem.Id != sourceItem.Id) Log.Warn($"Inventory mismatch. Client reported drop item as {newItem} and it did not match existing item {sourceItem}");
-
-						byte count = newItem.Count;
-
-						Item dropItem;
-						if (sourceItem.Count == count)
+						if (!OnItemDrop(new ItemDropEventArgs(this, Level, sourceItem)))
 						{
-							dropItem = sourceItem;
-							Inventory.ClearInventorySlot((byte) Inventory.InHandSlot);
+							Inventory.SendSetSlot(Inventory.InHandSlot);
 						}
 						else
 						{
-							dropItem = (Item) sourceItem.Clone();
-							sourceItem.Count -= count;
-							dropItem.Count = count;
-							dropItem.UniqueId = Environment.TickCount;
-						}
+							if (newItem.Id != sourceItem.Id) { Log.Warn($"Inventory mismatch. Client reported drop item as {newItem} and it did not match existing item {sourceItem}"); }
 
-						DropItem(dropItem);
+							byte count = newItem.Count;
+
+							Item dropItem;
+							if (sourceItem.Count == count)
+							{
+								dropItem = sourceItem;
+								Inventory.ClearInventorySlot((byte) Inventory.InHandSlot);
+							}
+							else
+							{
+								dropItem = (Item) sourceItem.Clone();
+								sourceItem.Count -= count;
+								dropItem.Count = count;
+								dropItem.UniqueId = Environment.TickCount;
+							}
+
+							DropItem(dropItem);
+						}
 						break;
 					}
 				}
@@ -4374,6 +4381,22 @@ namespace MiNET
 			return !e.Cancel;
 		}
 
+		public event EventHandler<ItemDropEventArgs> ItemDrop;
+
+		protected virtual bool OnItemDrop(ItemDropEventArgs e)
+		{
+			ItemDrop?.Invoke(this, e);
+			return !e.Cancel;
+		}
+
+		public event EventHandler<ItemTransactionEventArgs> ItemTransaction;
+
+		public virtual bool OnItemTransaction(ItemTransactionEventArgs e)
+		{
+			ItemTransaction?.Invoke(this, e);
+			return !e.Cancel;
+		}
+
 		public virtual void HandleMcpeNetworkStackLatency(McpeNetworkStackLatency message)
 		{
 			var packet = McpeNetworkStackLatency.CreateObject();
@@ -4433,6 +4456,28 @@ namespace MiNET
 			Entity = entity;
 			Damager = damager;
 			Level = entity?.Level;
+		}
+	}
+
+	public class ItemDropEventArgs : LevelCancelEventArgs
+	{
+		public Item Item { get; }
+
+		public ItemDropEventArgs(Player player, Level level, Item item) : base(player, level)
+		{
+			Item = item;
+		}
+	}
+
+	public class ItemTransactionEventArgs : LevelCancelEventArgs
+	{
+		public Item Item { get; }
+		public ItemStackAction Action { get; }
+
+		public ItemTransactionEventArgs(Player player, Level level, Item item, ItemStackAction action) : base(player, level)
+		{
+			Item = item;
+			Action = action;
 		}
 	}
 }
