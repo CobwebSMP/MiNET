@@ -269,7 +269,7 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeMobEquipment(McpeMobEquipment message)
 		{
-			Log.Warn($"Entity with {message.runtimeEntityId} is holding {message.item.Name}");
+			Log.Warn($"Entity with {message.runtimeEntityId} is holding {message.item}");
 		}
 
 		public virtual void HandleMcpeMobArmorEquipment(McpeMobArmorEquipment message)

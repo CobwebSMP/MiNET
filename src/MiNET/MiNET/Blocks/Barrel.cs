@@ -42,6 +42,11 @@ namespace MiNET.Blocks
 			Hardness = 2.5f;
 		}
 
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
+		}
+
 
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{

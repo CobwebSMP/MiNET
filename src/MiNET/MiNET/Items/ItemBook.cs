@@ -36,6 +36,7 @@ namespace MiNET.Items
 	{
 		public ItemEnchantedBook() : base("minecraft:enchanted_book", 403)
 		{
+			MaxStackSize = 1;
 		}
 	}
 

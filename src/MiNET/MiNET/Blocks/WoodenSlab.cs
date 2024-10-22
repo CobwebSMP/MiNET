@@ -25,6 +25,7 @@
 
 using System;
 using System.Numerics;
+using MiNET.Items;
 using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -40,6 +41,11 @@ namespace MiNET.Blocks
 			IsFlammable = true;
 			IsTransparent = true; // Partial - blocks light.
 			IsBlockingSkylight = false; // Partial - blocks light.
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates targetCoordinates, BlockFace face, Vector3 faceCoords)

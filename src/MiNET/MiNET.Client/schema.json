@@ -2708,6 +2708,24 @@
     ]
   },
   {
+    "Command": "golden_rail [\"rail_data_bit\" = true, \"rail_direction\" = 0]",
+    "Name": "minecraft:golden_rail",
+    "Id": 27,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "rail_data_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "rail_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "golden_rail [\"rail_data_bit\" = true, \"rail_direction\" = 1]",
     "Name": "minecraft:golden_rail",
     "Id": 27,
@@ -2914,12 +2932,12 @@
       {
         "Type": "1",
         "Name": "rail_data_bit",
-        "Value": "0"
+        "Value": "1"
       },
       {
         "Type": "3",
         "Name": "rail_direction",
-        "Value": "1"
+        "Value": "0"
       }
     ]
   },
@@ -7762,6 +7780,24 @@
     ]
   },
   {
+    "Command": "stone_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:stone_button",
+    "Id": 77,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "stone_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:stone_button",
     "Id": 77,
@@ -7848,6 +7884,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "stone_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:stone_button",
+    "Id": 77,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -8912,6 +8966,19 @@
         "Type": "3",
         "Name": "direction",
         "Value": "3"
+      }
+    ]
+  },
+  {
+    "Command": "cake [\"bite_counter\" = 0]",
+    "Name": "minecraft:cake",
+    "Id": 92,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "bite_counter",
+        "Value": "0"
       }
     ]
   },
@@ -13115,6 +13182,24 @@
     "States": []
   },
   {
+    "Command": "dropper [\"facing_direction\" = 0, \"triggered_bit\" = false]",
+    "Name": "minecraft:dropper",
+    "Id": 125,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "triggered_bit",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "dropper [\"facing_direction\" = 1, \"triggered_bit\" = false]",
     "Name": "minecraft:dropper",
     "Id": 125,
@@ -13201,6 +13286,24 @@
         "Type": "1",
         "Name": "triggered_bit",
         "Value": "0"
+      }
+    ]
+  },
+  {
+    "Command": "dropper [\"facing_direction\" = 0, \"triggered_bit\" = true]",
+    "Name": "minecraft:dropper",
+    "Id": 125,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "triggered_bit",
+        "Value": "1"
       }
     ]
   },
@@ -13399,6 +13502,24 @@
         "Type": "3",
         "Name": "rail_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "activator_rail [\"rail_data_bit\" = true, \"rail_direction\" = 0]",
+    "Name": "minecraft:activator_rail",
+    "Id": 126,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "rail_data_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "rail_direction",
+        "Value": "0"
       }
     ]
   },
@@ -15167,6 +15288,24 @@
     ]
   },
   {
+    "Command": "command_block [\"conditional_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:command_block",
+    "Id": 137,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "command_block [\"conditional_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:command_block",
     "Id": 137,
@@ -15253,6 +15392,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "command_block [\"conditional_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:command_block",
+    "Id": 137,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -15510,7 +15667,7 @@
     ]
   },
   {
-    "Command": "end_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
+    "Command": "end_stone_brick_wall [\"wall_connection_type_east\" = \"none\", \"wall_connection_type_north\" = \"none\", \"wall_connection_type_south\" = \"none\", \"wall_connection_type_west\" = \"none\", \"wall_post_bit\" = false]",
     "Name": "minecraft:cobblestone_wall",
     "Id": 139,
     "Data": 12,
@@ -15770,6 +15927,24 @@
     ]
   },
   {
+    "Command": "wooden_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:wooden_button",
+    "Id": 143,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "wooden_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:wooden_button",
     "Id": 143,
@@ -15856,6 +16031,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "wooden_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:wooden_button",
+    "Id": 143,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -18300,6 +18493,24 @@
     ]
   },
   {
+    "Command": "double_wooden_slab [\"minecraft:vertical_half\" = \"bottom\", \"wood_type\" = \"oak\"]",
+    "Name": "minecraft:double_wooden_slab",
+    "Id": 157,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "top_slot_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "8",
+        "Name": "wood_type",
+        "Value": "oak"
+      }
+    ]
+  },
+  {
     "Command": "double_wooden_slab [\"minecraft:vertical_half\" = \"bottom\", \"wood_type\" = \"spruce\"]",
     "Name": "minecraft:double_wooden_slab",
     "Id": 157,
@@ -18386,6 +18597,24 @@
         "Type": "8",
         "Name": "wood_type",
         "Value": "dark_oak"
+      }
+    ]
+  },
+  {
+    "Command": "double_wooden_slab [\"minecraft:vertical_half\" = \"top\", \"wood_type\" = \"oak\"]",
+    "Name": "minecraft:double_wooden_slab",
+    "Id": 157,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "top_slot_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "wood_type",
+        "Value": "oak"
       }
     ]
   },
@@ -18480,6 +18709,24 @@
     ]
   },
   {
+    "Command": "wooden_slab [\"minecraft:vertical_half\" = \"bottom\", \"wood_type\" = \"oak\"]",
+    "Name": "minecraft:wooden_slab",
+    "Id": 158,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "top_slot_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "8",
+        "Name": "wood_type",
+        "Value": "oak"
+      }
+    ]
+  },
+  {
     "Command": "wooden_slab [\"minecraft:vertical_half\" = \"bottom\", \"wood_type\" = \"spruce\"]",
     "Name": "minecraft:wooden_slab",
     "Id": 158,
@@ -18566,6 +18813,24 @@
         "Type": "8",
         "Name": "wood_type",
         "Value": "dark_oak"
+      }
+    ]
+  },
+  {
+    "Command": "wooden_slab [\"minecraft:vertical_half\" = \"top\", \"wood_type\" = \"oak\"]",
+    "Name": "minecraft:wooden_slab",
+    "Id": 158,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "top_slot_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "8",
+        "Name": "wood_type",
+        "Value": "oak"
       }
     ]
   },
@@ -23831,6 +24096,24 @@
     ]
   },
   {
+    "Command": "repeating_command_block [\"conditional_bit\" = false, \"facing_direction\" = 0",
+    "Name": "minecraft:repeating_command_block",
+    "Id": 188,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "repeating_command_block [\"conditional_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:repeating_command_block",
     "Id": 188,
@@ -23917,6 +24200,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "repeating_command_block [\"conditional_bit\" = true, \"facing_direction\" = 0",
+    "Name": "minecraft:repeating_command_block",
+    "Id": 188,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -24011,6 +24312,24 @@
     ]
   },
   {
+    "Command": "chain_command_block [\"conditional_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:chain_command_block",
+    "Id": 189,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "chain_command_block [\"conditional_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:chain_command_block",
     "Id": 189,
@@ -24097,6 +24416,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "chain_command_block [\"conditional_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:chain_command_block",
+    "Id": 188,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "conditional_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -29445,6 +29782,24 @@
     ]
   },
   {
+    "Command": "observer [\"minecraft:facing_direction\" = \"down\", \"powered_bit\" = false]",
+    "Name": "minecraft:observer",
+    "Id": 251,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "powered_bit",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "observer [\"minecraft:facing_direction\" = \"up\", \"powered_bit\" = false]",
     "Name": "minecraft:observer",
     "Id": 251,
@@ -29531,6 +29886,24 @@
         "Type": "1",
         "Name": "powered_bit",
         "Value": "0"
+      }
+    ]
+  },
+  {
+    "Command": "observer [\"minecraft:facing_direction\" = \"down\", \"powered_bit\" = true]",
+    "Name": "minecraft:observer",
+    "Id": 251,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "powered_bit",
+        "Value": "1"
       }
     ]
   },
@@ -32149,6 +32522,24 @@
     "States": []
   },
   {
+    "Command": "acacia_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:acacia_button",
+    "Id": 395,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "acacia_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:acacia_button",
     "Id": 395,
@@ -32235,6 +32626,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "acacia_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:acacia_button",
+    "Id": 395,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -32329,6 +32738,24 @@
     ]
   },
   {
+    "Command": "birch_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:birch_button",
+    "Id": 396,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "birch_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:birch_button",
     "Id": 396,
@@ -32415,6 +32842,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "birch_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:birch_button",
+    "Id": 396,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -32509,6 +32954,24 @@
     ]
   },
   {
+    "Command": "dark_oak_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:dark_oak_button",
+    "Id": 397,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "dark_oak_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:dark_oak_button",
     "Id": 397,
@@ -32595,6 +33058,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "dark_oak_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:dark_oak_button",
+    "Id": 397,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -32689,6 +33170,24 @@
     ]
   },
   {
+    "Command": "jungle_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:jungle_button",
+    "Id": 398,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "jungle_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:jungle_button",
     "Id": 398,
@@ -32775,6 +33274,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "jungle_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:jungle_button",
+    "Id": 398,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -32869,6 +33386,24 @@
     ]
   },
   {
+    "Command": "spruce_button [\"button_pressed_bit\" = false, \"facing_direction\" = 0]",
+    "Name": "minecraft:spruce_button",
+    "Id": 399,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "0"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "spruce_button [\"button_pressed_bit\" = false, \"facing_direction\" = 1]",
     "Name": "minecraft:spruce_button",
     "Id": 399,
@@ -32955,6 +33490,24 @@
         "Type": "3",
         "Name": "facing_direction",
         "Value": "5"
+      }
+    ]
+  },
+  {
+    "Command": "spruce_button [\"button_pressed_bit\" = true, \"facing_direction\" = 0]",
+    "Name": "minecraft:spruce_button",
+    "Id": 399,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "1",
+        "Name": "button_pressed_bit",
+        "Value": "1"
+      },
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
       }
     ]
   },
@@ -41851,6 +42404,24 @@
     "States": []
   },
   {
+    "Command": "barrel [\"facing_direction\" = 0, \"open_bit\" = false]",
+    "Name": "minecraft:barrel",
+    "Id": 458,
+    "Data": 0,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "open_bit",
+        "Value": "0"
+      }
+    ]
+  },
+  {
     "Command": "barrel [\"facing_direction\" = 1, \"open_bit\" = false]",
     "Name": "minecraft:barrel",
     "Id": 458,
@@ -41937,6 +42508,24 @@
         "Type": "1",
         "Name": "open_bit",
         "Value": "0"
+      }
+    ]
+  },
+  {
+    "Command": "barrel [\"facing_direction\" = 0, \"open_bit\" = true]",
+    "Name": "minecraft:barrel",
+    "Id": 458,
+    "Data": 8,
+    "States": [
+      {
+        "Type": "3",
+        "Name": "facing_direction",
+        "Value": "0"
+      },
+      {
+        "Type": "1",
+        "Name": "open_bit",
+        "Value": "1"
       }
     ]
   },

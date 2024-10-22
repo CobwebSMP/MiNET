@@ -54,11 +54,6 @@ namespace MiNET.Items
 		public ItemBlock([NotNull] Block block, short metadata = 0) : base(block.Name, (short) (block.Id > 255 ? 255 - block.Id : block.Id), metadata)
 		{
 			Block = block ?? throw new ArgumentNullException(nameof(block));
-	
-			if (BlockFactory.BlockStates.TryGetValue(block.GetState(), out BlockStateContainer value))
-			{
-				Metadata = (short) (value.ItemInstance?.Metadata ?? (value.Data == -1 ? 0 : value.Data));
-			}
 
 			FuelEfficiency = Block.FuelEfficiency;
 		}

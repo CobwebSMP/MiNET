@@ -69,6 +69,7 @@ namespace MiNET.Utils
 		public bool   HasScripts      { get; set; }
 
 		public bool isAddon { get; set; }
+		public string cndUrls { get; set; }
 	}
 
 	public class TexturePackInfos : List<TexturePackInfo>

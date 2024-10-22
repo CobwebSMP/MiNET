@@ -33,6 +33,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using log4net;
 using log4net.Config;
+using MiNET.Net;
 using MiNET.Utils;
 
 namespace MiNET.Console
@@ -74,7 +75,7 @@ namespace MiNET.Console
 				currentProcess.ProcessorAffinity = (IntPtr) Config.GetProperty("ProcessorAffinity", (int) currentProcess.ProcessorAffinity);
 
 				var service = new MiNetServer();
-				Log.Info("Starting...");
+				Log.Info($"Starting MiNET for Minecraft Bedrock Edition {McpeProtocolInfo.GameVersion}...");
 
 				if (Config.GetProperty("UserBedrockGenerator", false))
 				{

@@ -177,7 +177,7 @@ namespace MiNET.Client
 
 		public override void HandleMcpeInventoryContent(McpeInventoryContent message)
 		{
-			Log.Error($"Set container content on Window ID: 0x{message.inventoryId:x2}, Count: {message.input.Count}, ContainerName: {message.ContainerName.ContainerId} - {message.ContainerName.DynamicId}, dynamicSlotSize: {message.dynamicSlotSize}");
+			Log.Error($"Set container content on Window ID: 0x{message.inventoryId:x2}, Count: {message.input.Count}, ContainerName: {message.ContainerName.ContainerId} - {message.ContainerName.DynamicId}");
 
 			CallPacketHandlers(message);
 

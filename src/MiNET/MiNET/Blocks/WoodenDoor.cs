@@ -23,12 +23,19 @@
 
 #endregion
 
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class WoodenDoor : DoorBase
 	{
 		public WoodenDoor() : base(64)
 		{
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 	}
 }

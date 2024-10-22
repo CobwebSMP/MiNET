@@ -27,6 +27,7 @@ using System;
 using System.Numerics;
 using fNbt;
 using MiNET.BlockEntities;
+using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -39,6 +40,11 @@ namespace MiNET.Blocks
 
 		public StandingBanner() : base(176)
 		{
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 
 		protected override bool CanPlace(Level world, Player player, BlockCoordinates blockCoordinates, BlockCoordinates targetCoordinates, BlockFace face)

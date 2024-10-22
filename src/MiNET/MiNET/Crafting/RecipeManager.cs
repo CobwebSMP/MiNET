@@ -4313,6 +4313,24 @@ namespace MiNET.Crafting
                     {
                         new Item(22, 0, 1),
                     }, "crafting_table"),
+                new ShapedRecipe(1, 1,
+                    new List<Item>
+                    {
+                        new Item(351, 15, 3),
+                    },
+                    new Item[]
+                    {
+                        new Item(352, 0, 1),
+                    }, "crafting_table"),
+                new ShapedRecipe(1, 1,
+                    new List<Item>
+                    {
+                        new Item(351, 15, 9),
+                    },
+                    new Item[]
+                    {
+                        new Item(216, 0, 1),
+                    }, "crafting_table"),
                 new ShapedRecipe(2, 2,
                     new List<Item>
                     {

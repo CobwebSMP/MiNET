@@ -23,6 +23,7 @@
 
 #endregion
 
+using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 using System;
@@ -38,6 +39,11 @@ namespace MiNET.Blocks
 			BlastResistance = 15;
 			Hardness = 2;
 			IsFlammable = true;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)

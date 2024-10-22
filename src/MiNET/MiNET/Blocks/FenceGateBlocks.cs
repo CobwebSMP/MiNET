@@ -29,6 +29,7 @@ using MiNET.Worlds;
 using MiNET.Sounds;
 using MiNET.Entities;
 using System;
+using MiNET.Items;
 
 namespace MiNET.Blocks
 {
@@ -44,6 +45,12 @@ namespace MiNET.Blocks
 			Hardness = 2;
 			IsFlammable = true;
 		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
+		}
+
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates targetCoordinates, BlockFace face, Vector3 faceCoords)
 		{
 			Direction = player.GetDirectionEmum() switch

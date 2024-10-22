@@ -36,6 +36,11 @@ namespace MiNET.Blocks
 			IsFlammable = true;
 		}
 
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
+		}
+
 		public override Item[] GetDrops(Item tool)
 		{
 			var items = base.GetDrops(tool);

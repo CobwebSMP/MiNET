@@ -25,6 +25,7 @@
 
 using System.Numerics;
 using MiNET.Entities;
+using MiNET.Items;
 using MiNET.Sounds;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -42,6 +43,15 @@ namespace MiNET.Blocks
 			IsTransparent = true;
 			BlastResistance = 15;
 			Hardness = 5;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			if (this is IronTrapdoor)
+			{
+				return item is ItemPickaxe ? true : false;
+			}
+			return item is ItemAxe ? true : false;
 		}
 
 		public override bool PlaceBlock(Level world, Player player, BlockCoordinates targetCoordinates, BlockFace face, Vector3 faceCoords)

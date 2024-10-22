@@ -25,6 +25,7 @@
 
 using System.Numerics;
 using log4net;
+using MiNET.Items;
 using MiNET.Sounds;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
@@ -46,6 +47,7 @@ namespace MiNET.Blocks
 			BlastResistance = 15;
 			Hardness = 3;
 		}
+
 
 		protected override bool CanPlace(Level world, Player player, BlockCoordinates blockCoordinates, BlockCoordinates targetCoordinates, BlockFace face)
 		{

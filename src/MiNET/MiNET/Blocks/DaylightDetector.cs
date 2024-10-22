@@ -23,6 +23,8 @@
 
 #endregion
 
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class DaylightDetector : Block
@@ -32,6 +34,11 @@ namespace MiNET.Blocks
 			IsTransparent = true;
 			BlastResistance = 1;
 			Hardness = 0.2f;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 	}
 }

@@ -23,6 +23,8 @@
 
 #endregion
 
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class Bookshelf : Block
@@ -33,6 +35,11 @@ namespace MiNET.Blocks
 			BlastResistance = 7.5f;
 			Hardness = 1.5f;
 			IsFlammable = true;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 	}
 }

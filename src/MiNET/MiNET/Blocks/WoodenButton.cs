@@ -23,6 +23,8 @@
 
 #endregion
 
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class WoodenButton : Button
@@ -30,6 +32,11 @@ namespace MiNET.Blocks
 		public WoodenButton() : base(143)
 		{
 			TickRate = 30;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 	}
 }

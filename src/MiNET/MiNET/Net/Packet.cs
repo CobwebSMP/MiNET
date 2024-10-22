@@ -1332,6 +1332,15 @@ namespace MiNET.Net
 							Write(ta.TimesCrafted);
 							break;
 						}
+
+						case MineBlockAction ta:
+						{
+							Write((byte) McpeItemStackRequest.ActionType.MineBlock);
+							WriteVarInt(ta.Slot);
+							WriteVarInt(ta.Durability);
+							WriteSignedVarInt(ta.stackNetworkId);
+							break;
+						}
 					}
 				}
 
@@ -1360,11 +1369,17 @@ namespace MiNET.Net
 		//public const CRAFTING_NON_IMPLEMENTED_DEPRECATED_ASK_TY_LAING = 13; 
 		//public const CRAFTING_RESULTS_DEPRECATED_ASK_TY_LAING = 14; //no idea what this is for
 
-		public ItemStackRequests ReadItemStackRequests()
+		public ItemStackRequests ReadItemStackRequests(bool single = false)
 		{
 			var requests = new ItemStackRequests();
 
-			var c = ReadUnsignedVarInt();
+			uint c = 1;
+
+			if (!single)
+			{
+				c = ReadUnsignedVarInt();
+			}
+
 			//Log.Warn($"Count: {c}");
 			for (int i = 0; i < c; i++)
 			{
@@ -1532,6 +1547,15 @@ namespace MiNET.Net
 							var action = new CraftResultDeprecatedAction();
 							action.ResultItems = ReadItems();
 							action.TimesCrafted = ReadByte();
+							actions.Add(action);
+							break;
+						}
+						case McpeItemStackRequest.ActionType.MineBlock:
+						{
+							var action = new MineBlockAction();
+							action.Slot = ReadVarInt();
+							action.Durability = ReadVarInt();
+							action.stackNetworkId = ReadSignedVarInt();
 							actions.Add(action);
 							break;
 						}
@@ -2422,6 +2446,7 @@ namespace MiNET.Net
 				Write(info.HasScripts);
 				Write(info.isAddon);
 				Write(info.RtxEnabled);
+				Write(info.cndUrls);
 			}
 		}
 
@@ -2443,7 +2468,9 @@ namespace MiNET.Net
 				var hasScripts      = ReadBool();
 				var isAddon         = ReadBool();
 				var rtxEnabled      = ReadBool();
-				
+				var cndUrls         = ReadString();
+
+
 				info.UUID = id;
 				info.Version = version;
 				info.Size = size;
@@ -2453,6 +2480,7 @@ namespace MiNET.Net
 				info.ContentIdentity = contentIdentity;
 				info.isAddon = isAddon;
 				info.RtxEnabled = rtxEnabled;
+				info.cndUrls = cndUrls;
 				
 				packInfos.Add(info);
 			}

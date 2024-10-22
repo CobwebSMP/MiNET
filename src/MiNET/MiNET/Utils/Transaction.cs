@@ -167,6 +167,13 @@ namespace MiNET.Utils
 		public byte TimesCrafted { get; set; }
 	}
 
+	public class MineBlockAction : ItemStackAction
+	{
+		public int Slot { get; set; }
+		public int Durability { get; set; }
+		public int stackNetworkId { get; set; }
+	}
+
 	public class ItemStackResponses : List<ItemStackResponse>
 	{
 	}

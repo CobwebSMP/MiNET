@@ -57,5 +57,10 @@ public enum AuthInputFlags : long
 	VerticalCollision = 1L << 50,
 	DownLeft = 1L << 51,
 	DownRight = 1L << 52,
-	INPUT_NUM = 1L << 53
+	StartUsingItem = 53,
+	IsCameraRelativeMovementEnabled = 1L << 54,
+	IsRotControlledByMoveDirection = 1L << 55,
+	StartSpinAttack = 1L << 56,
+	StopSpinAttack = 1L << 57,
+	INPUT_NUM = 1L << 58
 }

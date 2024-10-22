@@ -52,6 +52,8 @@ namespace MiNET.Blocks
 			var itemInHand = player.Inventory.GetItemInHand();
 			if (Growth < MaxGrowth && itemInHand is ItemDye && itemInHand.Metadata == 15)
 			{
+				itemInHand.Count--;
+				player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
 				Growth += (byte) new Random().Next(2, 6);
 				if (Growth > MaxGrowth) Growth = MaxGrowth;
 

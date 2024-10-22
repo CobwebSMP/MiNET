@@ -39,6 +39,11 @@ namespace MiNET.Blocks
 			IsFlammable = true;
 		}
 
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
+		}
+
 		public override bool Interact(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoord)
 		{
 			var itemInHand = player.Inventory.GetItemInHand();

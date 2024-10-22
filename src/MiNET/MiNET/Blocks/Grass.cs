@@ -45,6 +45,11 @@ namespace MiNET.Blocks
 			Hardness = 0.6f;
 		}
 
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemShovel ? true : false;
+		}
+
 		public override void DoPhysics(Level level)
 		{
 			if (level.GameMode == GameMode.Creative) return;

@@ -44,6 +44,11 @@ namespace MiNET.Blocks
 			Hardness = 2f;
 		}
 
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
+		}
+
 		public override void BreakBlock(Level level, BlockFace face, bool silent = false)
 		{
 			if (level.BlockWithTicks.TryGetValue(Coordinates, out long value))

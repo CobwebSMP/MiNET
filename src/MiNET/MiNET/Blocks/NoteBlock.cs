@@ -23,6 +23,8 @@
 
 #endregion
 
+using MiNET.Items;
+
 namespace MiNET.Blocks
 {
 	public partial class Noteblock : Block
@@ -32,6 +34,11 @@ namespace MiNET.Blocks
 			BlastResistance = 4;
 			Hardness = 0.8f;
 			//IsFlammable = true; // It can catch fire from lava, but not other means.
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 	}
 }

@@ -86,6 +86,7 @@ namespace MiNET
 		public string Username { get; set; }
 		public string DisplayName { get; set; }
 		public long ClientId { get; set; }
+		public long CurrentTick { get; set; }
 		public UUID ClientUuid { get; set; }
 		public string ServerAddress { get; set; }
 		public PlayerInfo PlayerInfo { get; set; }
@@ -677,7 +678,7 @@ namespace MiNET
 					{
 						Block target = Level.GetBlock(message.coordinates);
 						var drops = target.GetDrops(Inventory.GetItemInHand());
-						float tooltypeFactor = drops == null || drops.Length == 0 ? 5f : 1.5f; // 1.5 if proper tool
+						float tooltypeFactor = drops == null || drops.Length == 0 ? 5f : 1.5f; 
 						double breakTime = Math.Ceiling(target.Hardness * tooltypeFactor * 20);
 
 						McpeLevelEvent breakEvent = McpeLevelEvent.CreateObject();
@@ -1955,6 +1956,7 @@ namespace MiNET
 			McpeSetEntityData mcpeSetEntityData = McpeSetEntityData.CreateObject();
 			mcpeSetEntityData.runtimeEntityId = EntityManager.EntityIdSelf;
 			mcpeSetEntityData.metadata = metadata;
+			mcpeSetEntityData.tick = CurrentTick;
 			SendPacket(mcpeSetEntityData);
 
 			base.BroadcastSetEntityData(metadata);
@@ -1965,6 +1967,7 @@ namespace MiNET
 			McpeSetEntityData mcpeSetEntityData = McpeSetEntityData.CreateObject();
 			mcpeSetEntityData.runtimeEntityId = EntityManager.EntityIdSelf;
 			mcpeSetEntityData.metadata = GetMetadata();
+			mcpeSetEntityData.tick = CurrentTick;
 			SendPacket(mcpeSetEntityData);
 		}
 
@@ -2216,7 +2219,7 @@ namespace MiNET
 
 		protected virtual bool DetectSimpleFly(PlayerLocation message, bool isOnGround)
 		{
-			double d = Math.Abs(KnownPosition.Y - (message.X - 1.62f));
+			double d = Math.Abs(KnownPosition.Y - (message.Y - 1.62f));
 			return !(AllowFly || IsOnGround || isOnGround || d > 0.001);
 		}
 
@@ -2287,6 +2290,7 @@ namespace MiNET
 
 		public void HandleMcpePlayerAuthInput(McpePlayerAuthInput message)
 		{
+			CurrentTick = message.Tick;
 			if (KnownPosition != message.Position)
 			{
 				var origin = KnownPosition.ToVector3();
@@ -2415,14 +2419,18 @@ namespace MiNET
 					switch (action.PlayerActionType)
 					{
 						case PlayerAction.StartBreak:
-						{
+						case PlayerAction.ContinueDestroyBlock:
+							{
 								if (GameMode == GameMode.Survival)
 								{
 									Block target = Level.GetBlock(action.BlockCoordinates);
-									var drops = target.GetDrops(Inventory.GetItemInHand());
-									float tooltypeFactor = drops == null || drops.Length == 0 ? 5f : 1.5f;
-									double breakTime = Math.Ceiling(target.Hardness * tooltypeFactor * 20);
+									var tool = Inventory.GetItemInHand();
+									var drops = target.GetDrops(tool);
 
+									double tooltypeFactor = drops == null || drops.Length == 0 ? 5 : 1.5;
+									tooltypeFactor /= tool.GetBreakingSpeed(target);
+
+									double breakTime = Math.Ceiling(target.Hardness * tooltypeFactor * 20);
 									McpeLevelEvent breakEvent = McpeLevelEvent.CreateObject();
 									breakEvent.eventId = 3600;
 									breakEvent.position = action.BlockCoordinates;
@@ -2433,7 +2441,6 @@ namespace MiNET
 								break;
 							}
 						case PlayerAction.Breaking:
-						case PlayerAction.ContinueDestroyBlock:
 							{
 								Block target = Level.GetBlock(action.BlockCoordinates);
 								int data = ((int) target.GetRuntimeId()) | ((byte) (action.Facing << 24));
@@ -2513,7 +2520,7 @@ namespace MiNET
 
 			foreach (var slot in updatedSlots)
 			{
-				//Inventory.SendSetSlot(slot.Slot, slot.ContainerId);  todo something breaks
+				Inventory.SendSetSlot(slot.Slot, slot.ContainerId);
 			}
 		}
 
@@ -3759,6 +3766,7 @@ namespace MiNET
 			McpeUpdateAttributes attributesPackate = McpeUpdateAttributes.CreateObject();
 			attributesPackate.runtimeEntityId = EntityManager.EntityIdSelf;
 			attributesPackate.attributes = attributes;
+			attributesPackate.tick = CurrentTick;
 			SendPacket(attributesPackate);
 		}
 
@@ -3933,6 +3941,7 @@ namespace MiNET
 			McpeSetEntityMotion motions = McpeSetEntityMotion.CreateObject();
 			motions.runtimeEntityId = EntityManager.EntityIdSelf;
 			motions.velocity = velocity;
+			motions.tick = CurrentTick;
 			SendPacket(motions);
 		}
 
@@ -4318,6 +4327,17 @@ namespace MiNET
 			McpeRemoveEntity mcpeRemovePlayer = McpeRemoveEntity.CreateObject();
 			mcpeRemovePlayer.entityIdSelf = EntityId;
 			Level.RelayBroadcast(this, players, mcpeRemovePlayer);
+		}
+
+		public virtual void CorrectPlayerMovement() //probably useful to prevent movement hacks. Todo check after release
+		{
+			McpeCorrectPlayerMovement packet = McpeCorrectPlayerMovement.CreateObject();
+			packet.Type = (byte)(Vehicle == 0 ? 0 : 3);
+			packet.Postition = KnownPosition;
+			packet.Velocity = Velocity;
+			packet.OnGround = !IsGliding && IsOnGround;
+			packet.Tick = CurrentTick;
+			SendPacket(packet);
 		}
 
 

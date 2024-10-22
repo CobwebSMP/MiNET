@@ -418,14 +418,13 @@ namespace MiNET
 		protected virtual void ProcessTakeAction(TakeAction action, List<StackResponseContainerInfo> stackResponses)
 		{
 			byte count = action.Count;
-			Item sourceItem;
-			Item destinationItem;
-			Item destItem = new ItemAir();
+
 			StackRequestSlotInfo source = action.Source;
 			StackRequestSlotInfo destination = action.Destination;
 
-			sourceItem = GetContainerItem(source.ContainerId, source.Slot);
-			destinationItem = GetContainerItem(destination.ContainerId, destination.Slot);
+			Item destItem = new ItemAir();
+			Item sourceItem = GetContainerItem(source.ContainerId, source.Slot);
+			Item destinationItem = GetContainerItem(destination.ContainerId, destination.Slot);
 
 			if (!_player.OnItemTransaction(new ItemTransactionEventArgs(_player, _player.Level, sourceItem, action)))
 			{
@@ -433,30 +432,44 @@ namespace MiNET
 			}
 			else
 			{
-				if (source.ContainerId == 60 && sourceItem.Id == destinationItem.Id)
+				int totalItems = destinationItem.Count + sourceItem.Count;
+				if (source.ContainerId == 60 && source.Slot == 50) //crafting
 				{
-					destItem = (Item) destinationItem.Clone();
-					destItem.Count += count;
+					destItem = (Item) sourceItem.Clone();
+					destItem.Count = (byte )(destinationItem.Count + count);
 					destItem.UniqueId = Environment.TickCount;
+
+					sourceItem = new ItemAir();
+					sourceItem.UniqueId = 0;
 				}
-				else if (source.ContainerId != 60 && sourceItem.Count == count)
+				else if (totalItems > 64) //combine if more than 64
+				{
+					int excessItems = totalItems - 64;
+					destItem = (Item) sourceItem.Clone();
+					destItem.Count = 64;
+					destItem.UniqueId = Environment.TickCount;
+
+					sourceItem.Count = (byte)excessItems;
+				}
+				else if (sourceItem.Count == count) //take or combine if less or 64
 				{
 					destItem = (Item) sourceItem.Clone();
 					destItem.Count = (byte) (destinationItem.Count + count);
 					destItem.UniqueId = Environment.TickCount;
+
 					sourceItem = new ItemAir();
 					sourceItem.UniqueId = 0;
-					SetContainerItem(source.ContainerId, source.Slot, sourceItem);
 				}
-				else
+				else //split
 				{
 					destItem = (Item) sourceItem.Clone();
 					destItem.Count = count;
 					destItem.UniqueId = Environment.TickCount;
+
 					sourceItem.Count -= count;
-					SetContainerItem(source.ContainerId, source.Slot, sourceItem);
 				}
 
+				SetContainerItem(source.ContainerId, source.Slot, sourceItem);
 				SetContainerItem(destination.ContainerId, destination.Slot, destItem);
 
 				if (source.ContainerId == 22 || source.ContainerId == 23)

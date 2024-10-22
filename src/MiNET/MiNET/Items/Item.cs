@@ -120,6 +120,30 @@ namespace MiNET.Items
 			}
 		}
 
+		public virtual int GetBreakingSpeed(Block target)
+		{
+			if (!target.IsBestTool(this))
+			{
+				return 1;
+			}
+
+			switch (ItemMaterial)
+			{
+				case ItemMaterial.Wood:
+					return 2;
+				case ItemMaterial.Gold:
+					return 12;
+				case ItemMaterial.Stone:
+					return 4;
+				case ItemMaterial.Iron:
+					return 6;
+				case ItemMaterial.Diamond:
+					return 8;
+				default:
+					return 1;
+			}
+		}
+
 		public virtual bool Animate(Level world, Player player)
 		{
 			return false;

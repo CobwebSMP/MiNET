@@ -24,7 +24,7 @@
 #endregion
 
 using System.Numerics;
-using MiNET.Utils;
+using MiNET.Items;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -37,6 +37,11 @@ namespace MiNET.Blocks
 			IsTransparent = true;
 			BlastResistance = 2;
 			Hardness = 0.4f;
+		}
+
+		public override bool IsBestTool(Item item)
+		{
+			return item is ItemAxe ? true : false;
 		}
 
 		protected override bool CanPlace(Level world, Player player, BlockCoordinates blockCoordinates, BlockCoordinates targetCoordinates, BlockFace face)

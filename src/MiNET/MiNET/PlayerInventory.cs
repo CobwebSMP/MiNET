@@ -276,7 +276,7 @@ namespace MiNET
 
 		public bool AddItem(Item item, bool update)
 		{
-			for (int si = 0; si < Slots.Count; si++)
+		/*	for (int si = 0; si < Slots.Count; si++)
 			{
 				Item existingItem = Slots[si];
 
@@ -305,9 +305,9 @@ namespace MiNET
 					if (update) SendSetSlot(si);
 					return true;
 				}
-			}
+			}*/
 
-			return false;
+			return SetFirstEmptySlot(item, update);
 		}
 
 

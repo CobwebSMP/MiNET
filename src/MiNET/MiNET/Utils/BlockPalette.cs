@@ -79,18 +79,6 @@ namespace MiNET.Utils
 						}
 					}
 				}
-
-				dynamic itemInstance = obj.ItemInstance;
-				if (itemInstance != null)
-				{
-					record.ItemInstance = new ItemPickInstance()
-					{
-						Id = itemInstance.Id,
-						Metadata = itemInstance.Metadata,
-						WantNbt = itemInstance.WantNbt
-					};
-				}
-
 				pallet.Add(record.RuntimeId, record);
 			}
 
@@ -109,7 +97,6 @@ namespace MiNET.Utils
 
 		[JsonIgnore]
 		public byte[] StatesCacheNbt { get; set; }
-		public ItemPickInstance ItemInstance { get; set; }
 
 		protected bool Equals(BlockStateContainer other)
 		{
@@ -164,13 +151,6 @@ namespace MiNET.Utils
 		{
 			return $"{nameof(Name)}: {Name}, {nameof(Id)}: {Id}, {nameof(Data)}: {Data}, {nameof(RuntimeId)}: {RuntimeId}, {nameof(States)} {{ {string.Join(';', States)} }}";
 		}
-	}
-
-	public class ItemPickInstance
-	{
-		public short Id { get; set; } = -1;
-		public short Metadata { get; set; } = -1;
-		public bool WantNbt { get; set; } = false;
 	}
 
 	public interface IBlockState

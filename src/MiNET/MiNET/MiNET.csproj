@@ -2,7 +2,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>MiNET-CobwebSMP</PackageId>
-    <Version>1.13.0.20</Version>
+    <Version>1.13.0.21</Version>
     <Authors>gurun</Authors>
     <Company>Niclas Olofsson</Company>
     <Description>MiNET - a Minecraft PocketEdition Server</Description>
@@ -34,7 +34,7 @@
   <ItemGroup>
     <PackageReference Include="jose-jwt" Version="5.0.0" />
     <PackageReference Include="LibNoise.NetStandart" Version="0.2.0" />
-    <PackageReference Include="log4net" Version="3.0.0" />
+    <PackageReference Include="log4net" Version="3.0.1" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
     <PackageReference Include="MiNET.astar" Version="1.0.14" />
     <PackageReference Include="MiNET.fnbt" Version="1.0.22" />
