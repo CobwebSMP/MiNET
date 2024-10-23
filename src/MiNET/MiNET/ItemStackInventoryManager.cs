@@ -31,6 +31,7 @@ using log4net;
 using MiNET.Crafting;
 using MiNET.Items;
 using MiNET.Utils;
+using Newtonsoft.Json;
 
 namespace MiNET
 {
@@ -125,34 +126,10 @@ namespace MiNET
 				}
 			}
 
-			foreach (IGrouping<byte, StackResponseContainerInfo> stackResponseGroup in stackResponses.GroupBy(r => r.ContainerId))
-			{
-				if (stackResponseGroup.Count() > 1)
-				{
-					byte containerId = stackResponseGroup.Key;
-					StackResponseSlotInfo slotToKeep = null;
-					foreach (IGrouping<byte, StackResponseSlotInfo> slotGroup in stackResponseGroup.SelectMany(d => d.Slots).GroupBy(s => s.Slot))
-					{
-						byte slot = slotGroup.Key;
-						if (slotGroup.Count() > 1)
-						{
-							slotToKeep = slotGroup.ToList().Last();
-						}
-					}
-					if (slotToKeep != null)
-					{
-						foreach (StackResponseContainerInfo containerInfo in stackResponseGroup)
-						{
-							if (!containerInfo.Slots.Contains(slotToKeep))
-							{
-								stackResponses.Remove(containerInfo);
-							}
-						}
-					}
-				}
-			}
-
-			return stackResponses;
+			return stackResponses
+				.GroupBy(item => new { Slot = item.Slots.First().Slot, ContainerId = item.ContainerId })
+				.Select(group => group.Last())
+				.ToList();
 		}
 
 		protected virtual void ProcessConsumeAction(ConsumeAction action, List<StackResponseContainerInfo> stackResponses)
