@@ -23,7 +23,6 @@
 
 #endregion
 
-using System;
 using log4net;
 using MiNET.Items;
 using MiNET.Net;
@@ -40,8 +39,8 @@ namespace MiNET
 		public int Hunger { get; set; } = 20;
 		public int MinHunger { get; set; } = 0;
 		public int MaxHunger { get; set; } = 20;
-		public double Saturation { get; set; }
-		public double Exhaustion { get; set; }
+		public double Saturation { get; set; } = 5;
+		public double Exhaustion { get; set; } = 0;
 
 		public HungerManager(Player player)
 		{
@@ -70,25 +69,30 @@ namespace MiNET
 
 		public virtual void Move(double distance)
 		{
-			if (distance < 0) throw new Exception("Distance: " + distance);
-			// 0.01 per meter for walking
-			// 0.005 for sneaking
-			// 0.1 for sprinting
+			//Swimming                                                    0.01     per meter (ok)
+			//Breaking a block                                            0.005    per block broken (ok)
+			//Sprinting                                                   0.1      per meter (ok)
+			//Jumping	                                                  0.05     per jump (ok)
+			//Attacking an entity	                                      0.1      per attack landed (ok)
+			//Taking damage that is normally protected by armor           0.1      per distinct instance of damage being received ?? (todo)
+			//Hunger                                                      0.005    per tick, per Hunger status effect level (todo)
+			//Jumping while sprinting                                     0.2      per jump (ok)
 
-			double movementStrainFactor = 0.01; // Default for walking
+			//Sneaking and walking no longer affect exhaustion since 1.18.30
 
-			if (Player.IsSneaking)
+			//double movementStrainFactor = 0.01;
+
+			if (Player.CurrentTick % 20 == 0) //questionable
 			{
-				movementStrainFactor = 0.005;
+				if (Player.IsSwimming)
+				{
+					IncreaseExhaustion(0.01f);
+				}
+				else if (Player.IsSprinting)
+				{
+					IncreaseExhaustion(0.1f);
+				}
 			}
-			else if (Player.IsSprinting)
-			{
-				movementStrainFactor = 0.1;
-			}
-
-			Exhaustion += (distance * movementStrainFactor);
-
-			ProcessHunger();
 		}
 
 		public virtual void ProcessHunger(bool forceSend = false)
@@ -113,8 +117,16 @@ namespace MiNET
 
 				if (Saturation > 0)
 				{
-					Saturation -= 1;
-					if (Saturation < 0) send = true;
+					if (Player.Level.Difficulty != Difficulty.Peaceful)
+					{
+						Saturation -= 1;
+					}
+
+					if (Saturation < 0)
+					{
+						Saturation = 0;
+						send = true;
+					}
 				}
 				else
 				{
@@ -137,35 +149,29 @@ namespace MiNET
 			{
 				_ticker++;
 
-				if (_ticker % 80 == 0)
+				if (_ticker == 80)
 				{
-					Player.HealthManager.TakeHit(null, 1, DamageCause.Starving);
+					if (
+						(Player.Level.Difficulty == Difficulty.Easy && Player.HealthManager.Hearts > 10) ||  // on Easy difficulty player health stops dropping at 10
+						(Player.Level.Difficulty == Difficulty.Normal && Player.HealthManager.Hearts > 1) || // on Normal at 1
+						(Player.Level.Difficulty == Difficulty.Hard)                                         // on Hard keep draining until the player eats something or starves to death
+						)
+					{
+						Player.HealthManager.TakeHit(null, 1, DamageCause.Starving);
+					}
+					_ticker = 0;
 				}
 			}
-			else if (Hunger > 18 && Player.HealthManager.Hearts < 20)
+			else if ((Player.Level.Difficulty == Difficulty.Peaceful || Hunger > 17) && Player.HealthManager.Hearts < 20)
 			{
 				_ticker++;
-
-				if (Hunger >= 20 && Saturation > 0)
+				if (Player.Level.NaturalRegeneration)
 				{
-					if (_ticker % 10 == 0)
+					if (_ticker == 80)
 					{
-						if (Player.Level.Difficulty != Difficulty.Hardcore)
-						{
-							IncreaseExhaustion(4);
-							Player.HealthManager.Regen(1);
-						}
-					}
-				}
-				else
-				{
-					if (_ticker % 80 == 0)
-					{
-						if (Player.Level.Difficulty != Difficulty.Hardcore)
-						{
-							IncreaseExhaustion(4);
-							Player.HealthManager.Regen(1);
-						}
+						IncreaseExhaustion(6);
+						Player.HealthManager.Regen(1);
+						_ticker = 0;
 					}
 				}
 			}
@@ -173,8 +179,6 @@ namespace MiNET
 			{
 				_ticker = 0;
 			}
-
-			//DisplayDebugPopup();
 		}
 
 		public void DisplayDebugPopup()
@@ -245,7 +249,7 @@ namespace MiNET
 		public virtual void ResetHunger()
 		{
 			Hunger = MaxHunger;
-			Saturation = MaxHunger;
+			Saturation = 5;
 			Exhaustion = 0;
 		}
 	}

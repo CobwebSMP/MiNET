@@ -23,16 +23,22 @@
 
 #endregion
 
-using System;
+using System.Numerics;
 using MiNET.Blocks;
+using MiNET.Effects;
+using MiNET.Entities.Passive;
+using MiNET.Items;
 using MiNET.Net;
-using MiNET.Sounds;
+using MiNET.Utils.Metadata;
 using MiNET.Worlds;
 
 namespace MiNET.Entities.Projectiles
 {
 	public class Arrow : Projectile
 	{
+		public byte EffectValue { get; set; } = 0;
+		public bool isFlame { get; set; }
+		public int PickupDelay = 10;
 		public Arrow(Player shooter, Level level, int damage = 2, bool isCritical = false) : base(shooter, EntityType.ShotArrow, level, damage, isCritical)
 		{
 			Width = 0.15;
@@ -59,13 +65,78 @@ namespace MiNET.Entities.Projectiles
 			entityEvent.eventId = 39;
 			entityEvent.data = 14;
 			Level.RelayBroadcast(entityEvent);
+			Level.BroadcastSound(blockCollided.Coordinates, LevelSoundEventType.BowHit);
 		}
 
 		protected override void OnHitEntity(Entity entityCollided)
 		{
 			IsCritical = false;
 			BroadcastSetEntityData();
+			var effects = Effect.GetEffects((byte) (EffectValue - 1));
+			if (entityCollided is Player player)
+			{
+				foreach (var effect in effects)
+				{
+					effect.Duration = effect.Duration / 8;
+					player.SetEffect(effect);
+				}
+				if (isFlame)
+				{
+					player.HealthManager.Ignite(100);
+				}
+			}
+			else if (entityCollided is PassiveMob mob) //todo
+			{
+				if (isFlame)
+				{
+					mob.HealthManager.Ignite(100);
+				}
+			}
 		}
 
+		public override void OnTick(Entity[] entities)
+		{
+			base.OnTick(entities);
+
+			if (PickupDelay > 0)
+			{
+				PickupDelay--;
+			}
+			else if(Velocity == Vector3.Zero)
+			{
+				var bbox = GetBoundingBox();
+				var players = Level.GetSpawnedPlayers();
+				foreach (var player in players)
+				{
+					if (player.GameMode != GameMode.Spectator && bbox.Intersects(player.GetBoundingBox() + 1))
+					{
+						if (player.Inventory.SetFirstEmptySlot(ItemFactory.GetItem("minecraft:arrow", EffectValue), true))
+						{
+							var takeItemEntity = McpeTakeItemEntity.CreateObject();
+							takeItemEntity.runtimeEntityId = EntityId;
+							takeItemEntity.target = player.EntityId;
+							Level.RelayBroadcast(takeItemEntity);
+
+							var takeItemEntity2 = McpeTakeItemEntity.CreateObject();
+							takeItemEntity2.runtimeEntityId = EntityId;
+							takeItemEntity2.target = EntityManager.EntityIdSelf;
+							player.SendPacket(takeItemEntity2);
+						}
+						DespawnEntity();
+					}
+				}
+			}
+		}
+
+		public override MetadataDictionary GetMetadata()
+		{
+			if (isFlame)
+			{
+				HealthManager.Ignite();
+			}
+			MetadataDictionary metadata = base.GetMetadata();
+			metadata[(int) MetadataFlags.CustomDisplay] = new MetadataByte(EffectValue);
+			return metadata;
+		}
 	}
 }

@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public FireResistance() : base(EffectType.FireResistance)
 		{
-			ParticleColor = Color.FromArgb(0xE4, 0x9A, 0x3A);
+			ParticleColor = Color.FromArgb(0xff, 0x99, 0x00);
 		}
 	}
 }

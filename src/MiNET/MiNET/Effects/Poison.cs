@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public Poison() : base(EffectType.Poison)
 		{
-			ParticleColor = Color.FromArgb(0x4E, 0x93, 0x31);
+			ParticleColor = Color.FromArgb(0x87, 0xa3, 0x63);
 		}
 
 		public override void OnTick(Player player)

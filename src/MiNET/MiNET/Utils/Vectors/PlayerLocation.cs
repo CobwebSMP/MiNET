@@ -153,5 +153,15 @@ namespace MiNET.Utils.Vectors
 		{
 			return $"X={X}, Y={Y}, Z={Z}, HeadYaw={HeadYaw}, Yaw={Yaw}, Pich={Pitch}";
 		}
+
+		public static bool Equal(PlayerLocation pos_1_62, PlayerLocation pos, float tolerance = 0.01f)
+		{
+			return Math.Abs(pos_1_62.X - pos.X) < tolerance &&
+				   Math.Abs((pos_1_62.Y + 1.62f) - pos.Y) < tolerance &&
+				   Math.Abs(pos_1_62.Z - pos.Z) < tolerance &&
+				   Math.Abs(pos_1_62.HeadYaw - pos.HeadYaw) < tolerance &&
+				   Math.Abs(pos_1_62.Yaw - pos.Yaw) < tolerance &&
+				   Math.Abs(pos_1_62.Pitch - pos.Pitch) < tolerance;
+		}
 	}
 }

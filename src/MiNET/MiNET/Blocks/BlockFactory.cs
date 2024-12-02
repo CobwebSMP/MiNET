@@ -45,7 +45,7 @@ namespace MiNET.Blocks
 
 		public static ICustomBlockFactory CustomBlockFactory { get; set; }
 
-		public static readonly byte[] TransparentBlocks = new byte[600];
+		public static readonly byte[] TransparentBlocks = new byte[1300];
 		public static readonly byte[] LuminousBlocks = new byte[600];
 		public static Dictionary<string, int> NameToId { get; private set; }
 		public static BlockPalette BlockPalette { get; set; } = null;
@@ -515,6 +515,11 @@ namespace MiNET.Blocks
 				471 => new WitherRose(),
 				472 => new StickyPistonArmCollision(),
 				541 => new Chain(),
+				1220 => new WitherSkull(),
+				1221 => new ZombieHead(),
+				1222 => new PlayerHead(),
+				1223 => new CreeperHead(),
+				1224 => new DragonHead(),
 				_ => new Block(blockId)
 			};
 

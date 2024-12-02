@@ -75,8 +75,7 @@ namespace MiNET.Plugins
 			if (Config.GetProperty("PluginDisabled", false)) return;
 			LoadCommands(new VanillaCommands());
 			// Default it is the directory we are executing, and below.
-			string pluginDirectoryPaths = Path.GetDirectoryName(new Uri(Assembly.GetEntryAssembly().Location).LocalPath);
-			pluginDirectoryPaths = Config.GetProperty("PluginDirectory", pluginDirectoryPaths);
+			string pluginDirectoryPaths = Config.GetProperty("PluginDirectory", "Plugins").Trim();
 			//HACK: Make it possible to define multiple PATH;PATH;PATH
 
 			foreach (string dirPath in pluginDirectoryPaths.Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
@@ -208,7 +207,7 @@ namespace MiNET.Plugins
 				return assembly;
 			}
 			
-			Log.Warn($"Could not resolve assembly: {args.Name}");
+			Log.Debug($"Could not resolve assembly: {args.Name}");
 
 			return null;
 		}

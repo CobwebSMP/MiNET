@@ -133,30 +133,6 @@ namespace MiNET.Entities
 
 		public override void SpawnToPlayers(Player[] players)
 		{
-			{
-				var fake = new Player(null, null)
-				{
-					ClientUuid = ClientUuid,
-					EntityId = EntityId,
-					NameTag = NameTag,
-					DisplayName = NameTag,
-					Username = NameTag,
-					Skin = Skin,
-					PlayerInfo = new PlayerInfo
-					{
-						DeviceOS = 7,
-						PlatformChatId = NameTag,
-					}
-				};
-
-				var playerList = McpePlayerList.CreateObject();
-				playerList.records = new PlayerAddRecords {fake};
-				Level.RelayBroadcast(players, Level.CreateMcpeBatch(playerList.Encode()));
-				playerList.records = null;
-				playerList.PutPool();
-			}
-
-			{
 				var message = McpeAddPlayer.CreateObject();
 				message.uuid = ClientUuid;
 				message.username = NameTag;
@@ -171,16 +147,13 @@ namespace MiNET.Entities
 				message.metadata = GetMetadata();
 				message.layers = GetAbilities();
 				Level.RelayBroadcast(players, message);
-			}
 
-			{
-				var message = McpeMobEquipment.CreateObject();
-				message.runtimeEntityId = EntityId;
-				message.item = ItemInHand;
-				message.slot = 0;
-				Level.RelayBroadcast(players, message);
-			}
-			{
+				var mobEquipment = McpeMobEquipment.CreateObject();
+				mobEquipment.runtimeEntityId = EntityId;
+				mobEquipment.item = ItemInHand;
+				mobEquipment.slot = 0;
+				Level.RelayBroadcast(players, mobEquipment);
+
 				var armorEquipment = McpeMobArmorEquipment.CreateObject();
 				armorEquipment.runtimeEntityId = EntityId;
 				armorEquipment.helmet = Helmet;
@@ -188,30 +161,11 @@ namespace MiNET.Entities
 				armorEquipment.leggings = Leggings;
 				armorEquipment.boots = Boots;
 				Level.RelayBroadcast(players, armorEquipment);
-			}
 
-			{
-				var fake = new Player(null, null)
-				{
-					ClientUuid = ClientUuid,
-					EntityId = EntityId,
-					NameTag = NameTag,
-					Skin = Skin
-				};
-
-				var playerList = McpePlayerList.CreateObject();
-				playerList.records = new PlayerRemoveRecords { fake };
-				Level.RelayBroadcast(players, Level.CreateMcpeBatch(playerList.Encode()));
-				playerList.records = null;
-				playerList.PutPool();
-			}
-
-			{
 				var setEntityData = McpeSetEntityData.CreateObject();
 				setEntityData.runtimeEntityId = EntityId;
 				setEntityData.metadata = GetMetadata();
 				Level?.RelayBroadcast(players, setEntityData);
-			}
 		}
 
 		public void RemoveFromPlayerList()

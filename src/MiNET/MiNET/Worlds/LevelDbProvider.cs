@@ -77,8 +77,6 @@ namespace MiNET.Worlds
 		public void Initialize()
 		{
 			BasePath ??= Config.GetProperty("WorldDirectory", "Worlds").Trim();
-			var pluginDir = Config.GetProperty("PluginDirectory", "Plugins").Trim();
-			var resourceDir = Config.GetProperty("ResourceDirectory", "ResourcePacks").Trim();
 
 			var directory = new DirectoryInfo(Path.Combine(BasePath, "db"));
 
@@ -102,6 +100,8 @@ namespace MiNET.Worlds
 			{
 				Log.Warn($"No level.dat found at {levelFileName}. Creating empty.");
 				LevelInfo = new LevelInfoBedrock();
+				var pluginDir = Config.GetProperty("PluginDirectory", "Plugins").Trim();
+				var resourceDir = Config.GetProperty("ResourceDirectory", "ResourcePacks").Trim();
 				if (!Directory.Exists(BasePath))
 				{
 					Directory.CreateDirectory(BasePath);
@@ -236,6 +236,17 @@ namespace MiNET.Worlds
 						int z = blockEntityTag["z"].IntValue;
 
 						chunkColumn.SetBlockEntity(new BlockCoordinates(x, y, z), (NbtCompound) blockEntityTag);
+
+						if (blockEntityTag["id"].StringValue == "Skull" && blockEntityTag["SkullType"].ByteValue > 0)
+						{
+							var blockObject = chunkColumn.GetBlockObject(x & 0x0f, y, z & 0x0f);
+
+							if (blockObject is SkullBase block) {
+								var newBlock = (SkullBase) BlockFactory.GetBlockById(1219 + blockEntityTag["SkullType"].ByteValue);
+								newBlock.FacingDirection = block.FacingDirection;
+								chunkColumn.SetBlock(x & 0x0f, y, z & 0x0f, newBlock);
+							}
+						}
 					} while (position < data.Length);
 				}
 				else
@@ -317,7 +328,14 @@ namespace MiNET.Worlds
 					};
 					file.LoadFromStream(reader, NbtCompression.None);
 					var tag = (NbtCompound) file.RootTag;
-					Block block = BlockFactory.GetBlockByName(tag["name"].StringValue);
+					var blockName = tag["name"].StringValue;
+
+					if (blockName.Contains("head") || blockName.Contains("skull"))
+					{
+						blockName = "minecraft:skull";
+					}
+
+					Block block = BlockFactory.GetBlockByName(blockName);
 					if (block != null && block.GetType() != typeof(Block) && !(block is Air))
 					{
 						List<IBlockState> blockState = ReadBlockState(tag);

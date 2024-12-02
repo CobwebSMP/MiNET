@@ -99,6 +99,7 @@ namespace MiNET.Entities
 			Level = level;
 			EntityTypeId = entityTypeId;
 			KnownPosition = new PlayerLocation();
+			LastSentPosition = new PlayerLocation();
 			HealthManager = new HealthManager(this);
 		}
 
@@ -203,7 +204,7 @@ namespace MiNET.Entities
 			SittingAmount = 89,
 			SittingAmountPrevious = 90,
 			EatingCounter = 91,
-			Unknown6 = 92,
+			EntityFlags2 = 92,
 			LayingAmount = 93,
 			LayingAmountPrevious = 94,
 			DataDuration = 95,
@@ -250,6 +251,7 @@ namespace MiNET.Entities
 		{
 			MetadataDictionary metadata = new MetadataDictionary();
 			metadata[(int) MetadataFlags.EntityFlags] = new MetadataLong(GetDataValue());
+			metadata[(int) MetadataFlags.EntityFlags2] = new MetadataLong(GetDataValue(2));
 			metadata[(int) MetadataFlags.NameTag] = new MetadataString(NameTag ?? string.Empty);
 			metadata[(int) MetadataFlags.AvailableAir] = new MetadataShort(HealthManager.Air);
 			metadata[(int) MetadataFlags.PotionColor] = new MetadataInt(PotionColor);
@@ -265,19 +267,14 @@ namespace MiNET.Entities
 			return metadata;
 		}
 
-		public virtual long GetDataValue()
+		public virtual long GetDataValue(int flags = 1)
 		{
-			//Player: 10000000000000011001000000000000
-			// 12, 15, 16, 31
-
-			BitArray bits = GetFlags();
+			BitArray bits = flags == 1 ? GetFlags() : GetFlags2();
 
 			byte[] bytes = new byte[8];
 			bits.CopyTo(bytes, 0);
 
 			long dataValue = BitConverter.ToInt64(bytes, 0);
-			//Log.Debug($"Bit-array datavalue: dec={dataValue} hex=0x{dataValue:x2}, bin={Convert.ToString((long) dataValue, 2)}b ");
-			//if (Log.IsDebugEnabled) Log.Debug($"// {Convert.ToString(dataValue, 2)}; {FlagsToString(dataValue)}");
 			return dataValue;
 		}
 
@@ -427,6 +424,7 @@ namespace MiNET.Entities
 		public bool IsAffectedByGravity { get; set; }
 		public bool IsWasdControlled { get; set; }
 		public bool CanPowerJump { get; set; }
+		public bool IsLayingDown { get; set; }
 
 		public enum DataFlags
 		{
@@ -604,6 +602,12 @@ namespace MiNET.Entities
 
 			bits[(int) DataFlags.Swimming] = IsSwimming;
 
+			return bits;
+		}
+
+		protected virtual BitArray GetFlags2()
+		{
+			BitArray bits = new BitArray(64);
 			return bits;
 		}
 
@@ -1014,6 +1018,14 @@ namespace MiNET.Entities
 
 			SeenEntities.Add(target);
 			return true;
+		}
+
+		public event EventHandler<PlayerDamageToEntityEventArgs> PlayerDamageToEntity;
+
+		public virtual bool OnPlayerDamageToEntity(PlayerDamageToEntityEventArgs e)
+		{
+			PlayerDamageToEntity?.Invoke(this, e);
+			return !e.Cancel;
 		}
 	}
 }

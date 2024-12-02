@@ -249,6 +249,9 @@ namespace MiNET.Net
 				case McpePlayerAuthInput msg:
 					handler.HandleMcpePlayerAuthInput(msg);
 					break;
+				case McpeServerboundLoadingScreen msg:
+					handler.HandleMcpeServerboundLoadingScreen(msg);
+					break;
 
 				default:
 				{

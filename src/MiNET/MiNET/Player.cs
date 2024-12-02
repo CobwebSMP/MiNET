@@ -205,12 +205,13 @@ namespace MiNET
 		public virtual void HandleMcpePlayerSkin(McpePlayerSkin message)
 		{
 			McpePlayerSkin pk = McpePlayerSkin.CreateObject();
-			pk.uuid = this.ClientUuid;
+			pk.uuid = ClientUuid;
 			pk.skin = message.skin;
-			pk.oldSkinName = this.Skin.SkinId;
+			pk.oldSkinName = Skin.SkinId;
 			pk.skinName = message.skinName;
-			this.Skin = message.skin;
-			this.Level.RelayBroadcast(pk);
+			pk.isVerified = true;
+			Skin = message.skin;
+			Level.RelayBroadcast(pk);
 		}
 
 		public virtual void HandleMcpePhotoTransfer(McpePhotoTransfer message)
@@ -738,7 +739,7 @@ namespace MiNET
 				//}
 				case PlayerAction.Jump:
 				{
-					HungerManager.IncreaseExhaustion(IsSprinting ? 0.8f : 0.2f);
+					HungerManager.IncreaseExhaustion(IsSprinting ? 0.2f : 0.05f);
 					break;
 				}
 				case PlayerAction.StartSprint:
@@ -839,6 +840,10 @@ namespace MiNET
 					break;
 				}
 				case PlayerAction.StopFlying:
+				{
+					break;
+				}
+				case PlayerAction.Respawn:
 				{
 					break;
 				}
@@ -1918,7 +1923,7 @@ namespace MiNET
 
 				CleanCache();
 
-				ForcedSendChunk(Level.SpawnPoint);
+				ForcedSendChunk(SpawnPosition);
 
 				MiNetServer.FastThreadPool.QueueUserWorkItem(() =>
 				{
@@ -2291,7 +2296,7 @@ namespace MiNET
 		public void HandleMcpePlayerAuthInput(McpePlayerAuthInput message)
 		{
 			CurrentTick = message.Tick;
-			if (KnownPosition != message.Position)
+			if (!PlayerLocation.Equal(KnownPosition, message.Position))
 			{
 				var origin = KnownPosition.ToVector3();
 				double distanceTo = Vector3.Distance(origin, new Vector3(message.Position.X, message.Position.Y - 1.62f, message.Position.Z));
@@ -2337,7 +2342,7 @@ namespace MiNET
 				else
 				{
 					double damage = StartFallY - KnownPosition.Y;
-					if ((damage - 3) > 0)
+					if ((damage - 3) > 0 && Level.Falldamage)
 					{
 						HealthManager.TakeHit(null, (int) DamageCalculator.CalculatePlayerDamage(null, this, null, damage, DamageCause.Fall), DamageCause.Fall);
 					}
@@ -2408,7 +2413,7 @@ namespace MiNET
 
 				if ((message.InputFlags & AuthInputFlags.StartJumping) != 0)
 				{
-					HungerManager.IncreaseExhaustion(IsSprinting ? 0.8f : 0.2f);
+					HungerManager.IncreaseExhaustion(IsSprinting ? 0.2f : 0.05f);
 				}
 			}
 
@@ -2940,7 +2945,7 @@ namespace MiNET
 			}
 
 			Inventory.DamageItemInHand(ItemDamageReason.EntityAttack, target, null);
-			HungerManager.IncreaseExhaustion(0.3f);
+			HungerManager.IncreaseExhaustion(0.1f);
 		}
 
 		protected virtual void HandleInventoryMismatchTransaction(InventoryMismatchTransaction transaction)
@@ -3239,6 +3244,24 @@ namespace MiNET
 					closePacket.windowId = inventory.WindowsId;
 					closePacket.server = message == null ? true : false;
 					SendPacket(closePacket);
+
+					Block block = Level.GetBlock(inventory.Coordinates);
+					if (block is Chest or TrappedChest)
+					{
+						Level.BroadcastSound(inventory.Coordinates, LevelSoundEventType.ChestClosed);
+					}
+					else if (block is EnderChest)
+					{
+						Level.BroadcastSound(inventory.Coordinates, LevelSoundEventType.EnderchestClosed);
+					}
+					else if (block is ShulkerBox)
+					{
+						Level.BroadcastSound(inventory.Coordinates, LevelSoundEventType.ShulkerboxClosed);
+					}
+					else if (block is Barrel)
+					{
+						Level.BroadcastSound(inventory.Coordinates, LevelSoundEventType.BlockBarrelClose);
+					}
 				}
 				else if (_openInventory is HorseInventory horseInventory)
 				{
@@ -3482,7 +3505,7 @@ namespace MiNET
 			levelSettings.hasAchievementsDisabled = true;
 			levelSettings.time = (int) Level.WorldTime;
 			levelSettings.eduOffer = PlayerInfo.Edition == 1 ? 1 : 0;
-			levelSettings.rainLevel = 0;
+			levelSettings.rainLevel = Level.rainLevel;
 			levelSettings.lightningLevel = 0;
 			levelSettings.isMultiplayer = true;
 			levelSettings.broadcastToLan = true;
@@ -3492,7 +3515,7 @@ namespace MiNET
 			levelSettings.bonusChest = false;
 			levelSettings.mapEnabled = false;
 			levelSettings.permissionLevel = (byte) PermissionLevel;
-			levelSettings.gameVersion = "";
+			levelSettings.gameVersion = McpeProtocolInfo.GameVersion;
 			levelSettings.hasEduFeaturesEnabled = true;
 			levelSettings.onlySpawnV1Villagers = false;
 
@@ -4387,17 +4410,9 @@ namespace MiNET
 
 		public event EventHandler<PlayerDamageToPlayerEventArgs> PlayerDamageToPlayer;
 
-		protected virtual bool OnPlayerDamageToPlayer(PlayerDamageToPlayerEventArgs e)
+		public virtual bool OnPlayerDamageToPlayer(PlayerDamageToPlayerEventArgs e)
 		{
 			PlayerDamageToPlayer?.Invoke(this, e);
-			return !e.Cancel;
-		}
-
-		public event EventHandler<PlayerDamageToEntityEventArgs> PlayerDamageToEntity;
-
-		protected virtual bool OnPlayerDamageToEntity(PlayerDamageToEntityEventArgs e)
-		{
-			PlayerDamageToEntity?.Invoke(this, e);
 			return !e.Cancel;
 		}
 
@@ -4438,6 +4453,11 @@ namespace MiNET
 		{
 			//TODO handle this.
 			Log.Debug($"Damaged anvil at {message.coordinates.X} {message.coordinates.Y} {message.coordinates.Z} Amount = {message.damageAmount}");
+		}
+
+		public void HandleMcpeServerboundLoadingScreen(McpeServerboundLoadingScreen message)
+		{
+			Log.Debug($"Loading screen: {(message.ScreenType == 1 ? "Opened" : message.ScreenType == 2 ? "Closed" : "Unknown")} {message.ScreenId}");
 		}
 
 	}

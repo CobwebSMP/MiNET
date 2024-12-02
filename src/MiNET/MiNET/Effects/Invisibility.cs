@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public Invisibility() : base(EffectType.Invisibility)
 		{
-			ParticleColor = Color.FromArgb(0x7F, 0x83, 0x92);
+			ParticleColor = Color.FromArgb(0xf6, 0xf6, 0xf6);
 		}
 
 		public override void SendAdd(Player player)

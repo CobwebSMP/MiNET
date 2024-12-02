@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public NightVision() : base(EffectType.NightVision)
 		{
-			ParticleColor = Color.FromArgb(0x1F, 0x1F, 0xA1);
+			ParticleColor = Color.FromArgb(0xc2, 0xff, 0x66);
 		}
 	}
 }

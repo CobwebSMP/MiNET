@@ -34,7 +34,7 @@ namespace MiNET.Effects
 
 		public Regeneration() : base(EffectType.Regeneration)
 		{
-			ParticleColor = Color.FromArgb(0xCD, 0x5C, 0xAB);
+			ParticleColor = Color.FromArgb(0xcd, 0x5c, 0xab);
 		}
 
 

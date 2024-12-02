@@ -579,7 +579,6 @@ namespace MiNET.Items
 	public class ItemPhantomMembrane : Item { public ItemPhantomMembrane() : base("minecraft:phantom_membrane", 470) {} }
 	public class ItemSuspiciousStew : Item { public ItemSuspiciousStew() : base("minecraft:suspicious_stew", 734) {} }
 	public class ItemPoppedChorusFruit : Item { public ItemPoppedChorusFruit() : base("minecraft:popped_chorus_fruit", 433) {} }
-	public class ItemSplashPotion : Item { public ItemSplashPotion() : base("minecraft:splash_potion", 438) {} }
 	public class ItemPrismarineShard : Item { public ItemPrismarineShard() : base("minecraft:prismarine_shard", 409) {} }
 	public class ItemShulkerShell : Item { public ItemShulkerShell() : base("minecraft:shulker_shell", 445) {} }
 	public class ItemTotemOfUndying : Item { public ItemTotemOfUndying() : base("minecraft:totem_of_undying", 450) {} }

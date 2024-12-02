@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public Weakness() : base(EffectType.Weakness)
 		{
-			ParticleColor = Color.FromArgb(0x48, 0x4D, 0x48);
+			ParticleColor = Color.FromArgb(0x48, 0x4d, 0x48);
 		}
 	}
 }

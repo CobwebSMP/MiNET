@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -33,7 +33,7 @@ namespace MiNET.Effects
 
 		public Slowness() : base(EffectType.Slowness)
 		{
-			ParticleColor = Color.FromArgb(0x5a, 0x6c, 0x81);
+			ParticleColor = Color.FromArgb(0x8b, 0xaf, 0xe0);
 		}
 
 		public override void SendAdd(Player player)

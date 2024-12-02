@@ -598,7 +598,7 @@ namespace MiNET.Worlds
 			new Biome
 			{
 				Id = 168,
-				Name = " Bamboo Jungle",
+				Name = "Bamboo Jungle",
 				DefinitionName = "bamboo_jungle",
 				Temperature = 0.95f,
 				Downfall = 0.9f
@@ -606,10 +606,130 @@ namespace MiNET.Worlds
 			new Biome
 			{
 				Id = 169,
-				Name = " Bamboo Jungle Hills",
+				Name = "Bamboo Jungle Hills",
 				DefinitionName = "bamboo_jungle_hills",
 				Temperature = 0.95f,
 				Downfall = 0.9f
+			},
+			new Biome
+			{
+				Id = 178,
+				Name = "Soulsand Valley",
+				DefinitionName = "soulsand_valley",
+				Temperature = 2.0f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 179,
+				Name = "Crimson Forest",
+				DefinitionName = "crimson_forest",
+				Temperature = 2.0f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 180,
+				Name = "Wraped Forest",
+				DefinitionName = "warped_forest",
+				Temperature = 2.0f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 181,
+				Name = "Basalt Deltas",
+				DefinitionName = "basalt_deltas",
+				Temperature = 2.0f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 182,
+				Name = "Jagged Peaks",
+				DefinitionName = "jagged_peaks",
+				Temperature = -0.7f,
+				Downfall = 0.9f
+			},
+			new Biome
+			{
+				Id = 183,
+				Name = "Frozen Peaks",
+				DefinitionName = "frozen_peaks",
+				Temperature = -0.7f,
+				Downfall = 0.9f
+			},
+			new Biome
+			{
+				Id = 184,
+				Name = "Snowy Slopes",
+				DefinitionName = "snowy_slopes",
+				Temperature = -0.3f,
+				Downfall = 0.9f
+			},
+			new Biome
+			{
+				Id = 185,
+				Name = "Grove",
+				DefinitionName = "grove",
+				Temperature = -0.2f,
+				Downfall = 0.8f
+			},
+			new Biome
+			{
+				Id = 186,
+				Name = "Meadow",
+				DefinitionName = "meadow",
+				Temperature = 0.3f,
+				Downfall = 0.8f
+			},
+			new Biome
+			{
+				Id = 187,
+				Name = "Lush Caves",
+				DefinitionName = "lush_caves",
+				Temperature = 0.9f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 188,
+				Name = "Dripstone Caves",
+				DefinitionName = "dripstone_caves",
+				Temperature = 0.2f,
+				Downfall = 0.0f
+			},
+			new Biome
+			{
+				Id = 189,
+				Name = "Stony Peaks",
+				DefinitionName = "stony_peaks",
+				Temperature = 1.0f,
+				Downfall = 0.3f
+			},
+			new Biome
+			{
+				Id = 190,
+				Name = "Deep Dark",
+				DefinitionName = "deep_dark",
+				Temperature = 0.8f,
+				Downfall = 0.4f
+			},
+			new Biome
+			{
+				Id = 191,
+				Name = "Mangrove Swamp",
+				DefinitionName = "mangrove_swamp",
+				Temperature = 0.8f,
+				Downfall = 0.9f
+			},
+			new Biome
+			{
+				Id = 192,
+				Name = "Cherry Grove",
+				DefinitionName = "cherry_grove",
+				Temperature = 0.3f,
+				Downfall = 0.8f
 			},
 		};
 
@@ -838,6 +958,7 @@ namespace MiNET.Worlds
 					{
 						new NbtFloat("downfall", biome.Downfall),
 						new NbtFloat("temperature", biome.Temperature),
+						new NbtByte("rain", 1), //todo regenerate biomes
 					}
 				);
 			}

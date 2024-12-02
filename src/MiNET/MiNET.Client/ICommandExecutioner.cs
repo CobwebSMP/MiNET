@@ -135,10 +135,10 @@ namespace MiNET.Client
 					if (block.Id == 26 && (block.Data == 3 || block.Data == 7)) { posX = posX + 1; } //offset to get bed first update
 
 					await Task.Delay(100);
-					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");
-					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");  //TODO find out why sometimes at random time and random block are not placed
-					SendCommand(client, $"/setblock {posX} 50 {posZ} {block.Command}");
-					SendCommand(client, $"/tp TheGrey {x} 352 0");
+					SendCommand(client, $"/setblock {posX} 200 {posZ} {block.Command}");
+					SendCommand(client, $"/setblock {posX} 200 {posZ} {block.Command}");  //TODO find out why sometimes at random time and random block are not placed
+					SendCommand(client, $"/setblock {posX} 200 {posZ} {block.Command}");
+					SendCommand(client, $"/tp TheGrey {x} 210 0");
 					if (!BlockstateGenerator.blockPosition.ContainsKey(x)) { BlockstateGenerator.blockPosition.Add(x, block); }
 					x += 2;
 					tp++;
@@ -165,7 +165,7 @@ namespace MiNET.Client
 		public void HandleMcpeUpdateBlock(BedrockTraceHandler caller, McpeUpdateBlock message) //for blocks with one update
 		{
 			//Log.Error($"defaultupdate {message.blockRuntimeId} {message.coordinates.X} {message.coordinates.Y} {message.coordinates.Z}");
-			if (BlockstateGenerator.blockPosition.TryGetValue(message.coordinates.X, out var state) && message.coordinates.Y == 50 && message.coordinates.Z == 0 && !BlockstateGenerator.BlockPalette.ContainsKey((int) message.blockRuntimeId))
+			if (BlockstateGenerator.blockPosition.TryGetValue(message.coordinates.X, out var state) && message.coordinates.Y == 200 && message.coordinates.Z == 0 && !BlockstateGenerator.BlockPalette.ContainsKey((int) message.blockRuntimeId))
 			{
 				Log.Warn($"Got runtimeID for {state.Name} (id: {state.Id} data: {state.Data})");
 				BlockstateGenerator.createContainer(state.Name, message.blockRuntimeId, state.Id, state.Data, state.States);
@@ -185,8 +185,8 @@ namespace MiNET.Client
 		{
 			foreach (var block in message.layerZeroUpdates)
 			{
-				//Log.Error($"layer0 {block.BlockRuntimeId} {block.Coordinates.X} {block.Coordinates.Y} {block.Coordinates.Z}");
-				if (BlockstateGenerator.blockPosition.TryGetValue(block.Coordinates.X, out var state) && block.Coordinates.Y == 50 && block.Coordinates.Z == 0 && !BlockstateGenerator.BlockPalette.ContainsKey((int)block.BlockRuntimeId))
+			//	Log.Error($"layer0 {block.BlockRuntimeId} {block.Coordinates.X} {block.Coordinates.Y} {block.Coordinates.Z}");
+				if (BlockstateGenerator.blockPosition.TryGetValue(block.Coordinates.X, out var state) && block.Coordinates.Y == 200 && block.Coordinates.Z == 0 && !BlockstateGenerator.BlockPalette.ContainsKey((int)block.BlockRuntimeId))
 				{
 					Log.Warn($"Got runtimeID for {state.Name} (id: {state.Id} data: {state.Data})");
 					BlockstateGenerator.createContainer(state.Name, block.BlockRuntimeId, state.Id, state.Data, state.States);

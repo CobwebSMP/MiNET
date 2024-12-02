@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Numerics;
 using MiNET.Net;
 using MiNET.Worlds;
@@ -10,6 +11,12 @@ namespace MiNET.Particles
 		public SplashPotionParticle(Level level, Vector3 coordinates, int r, int g, int b) : base(0, level)
 		{
 			Data = CustomPotionColor(r, g, b);
+			Position = coordinates;
+		}
+
+		public SplashPotionParticle(Level level, Vector3 coordinates, Color color) : base(0, level)
+		{
+			Data = CustomPotionColor(color.R, color.G, color.B);
 			Position = coordinates;
 		}
 

@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public InstantHealth() : base(EffectType.InstantHealth)
 		{
-			ParticleColor = Color.FromArgb(0xF8, 0x24, 0x23);
+			ParticleColor = Color.FromArgb(0xf8, 0x24, 0x23);
 		}
 
 		public override void SendAdd(Player player)

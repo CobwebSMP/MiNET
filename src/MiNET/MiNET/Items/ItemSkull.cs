@@ -43,9 +43,14 @@ namespace MiNET.Items
 		public override void PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
 			var coor = GetNewCoordinatesFromFace(blockCoordinates, face);
+			var itemInHand = player.Inventory.GetItemInHand();
+			var skull = (SkullBase) BlockFactory.GetBlockById(144);
+			if (itemInHand.Metadata > 0)
+			{
+				skull = (SkullBase) BlockFactory.GetBlockById(1219 + itemInHand.Metadata);
+			}
 			if (face == BlockFace.Up) // On top of block
 			{
-				var skull = (Skull) BlockFactory.GetBlockById(144);
 				skull.Coordinates = coor;
 				skull.FacingDirection = 1; // Skull on floor, rotation in block entity
 				world.SetBlock(skull);
@@ -57,7 +62,6 @@ namespace MiNET.Items
 			}
 			else
 			{
-				var skull = (Skull) BlockFactory.GetBlockById(144);
 				skull.Coordinates = coor;
 				skull.FacingDirection = (int) face; // Skull on floor, rotation in block entity
 				world.SetBlock(skull);
@@ -77,7 +81,6 @@ namespace MiNET.Items
 
 			if (player.GameMode == GameMode.Survival)
 			{
-				var itemInHand = player.Inventory.GetItemInHand();
 				itemInHand.Count--;
 				player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, itemInHand);
 			}

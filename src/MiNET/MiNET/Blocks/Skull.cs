@@ -25,9 +25,10 @@
 
 namespace MiNET.Blocks
 {
-	public partial class Skull : Block
+	public abstract class SkullBase : Block
 	{
-		public Skull() : base(144)
+		[StateRange(0, 5)] public virtual int FacingDirection { get; set; }
+		public SkullBase(int id) : base(id)
 		{
 			IsTransparent = true;
 			BlastResistance = 5;

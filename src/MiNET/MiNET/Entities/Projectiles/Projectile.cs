@@ -42,6 +42,7 @@ namespace MiNET.Entities.Projectiles
 		private static readonly ILog Log = LogManager.GetLogger(typeof(Projectile));
 
 		public Player Shooter { get; set; }
+		public Entity LastAttackTarget { get; set; }
 		public int Ttl { get; set; } = 0;
 		public bool DespawnOnImpact { get; set; } = true;
 		public int Damage { get; set; }
@@ -116,9 +117,32 @@ namespace MiNET.Entities.Projectiles
 			Entity entityCollided = CheckEntityCollide(KnownPosition, Velocity);
 
 			bool collided = false;
+			bool doDamage = true;
 			Block collidedWithBlock = null;
 			if (entityCollided != null && Damage >= 0)
 			{
+				LastAttackTarget = entityCollided;
+
+				Player player = entityCollided as Player;
+				Entity entity = null;
+
+				if (player != null)
+				{
+					if (!player.OnPlayerDamageToPlayer(new PlayerDamageToPlayerEventArgs(player, Shooter))) 
+					{
+						doDamage = false;
+					}
+				}
+				else
+				{
+					entity = entityCollided;
+
+					if (!entity.OnPlayerDamageToEntity(new PlayerDamageToEntityEventArgs(entity, Shooter)) && entity != null)
+					{
+						doDamage = false;
+					}
+				}
+
 				double speed = Math.Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y + Velocity.Z * Velocity.Z);
 				double damage = Math.Ceiling(speed * Damage);
 				if (IsCritical)
@@ -136,24 +160,24 @@ namespace MiNET.Entities.Projectiles
 					damage = damage + ((PowerLevel + 1) * 0.25);
 				}
 
-				Player player = entityCollided as Player;
-
-				if (player != null)
+				if (player != null && doDamage)
 				{
 					damage = player.DamageCalculator.CalculatePlayerDamage(this, player, null, damage, DamageCause.Projectile);
 					player.LastAttackTarget = entityCollided;
+					entityCollided.HealthManager.TakeHit(this, (int) damage, DamageCause.Projectile);
+					entityCollided.HealthManager.LastDamageSource = Shooter;
+					OnHitEntity(entityCollided);
 				}
 
-				entityCollided.HealthManager.TakeHit(this, (int) damage, DamageCause.Projectile);
-				entityCollided.HealthManager.LastDamageSource = Shooter;
-				OnHitEntity(entityCollided);
+				if (entity != null && doDamage)
+				{
+					entity.HealthManager.TakeHit(this, (int) damage, DamageCause.Projectile);
+					entity.HealthManager.LastDamageSource = Shooter;
+					OnHitEntity(entity);
+				}
+
 				if (entityCollided is not ExperienceOrb) { DespawnEntity(); } //todo add collision values
 				return;
-			}else if (entityCollided != null && Damage == -1)
-			{
-				entityCollided.HealthManager.LastDamageSource = Shooter;
-				OnHitEntity(entityCollided);
-				if (entityCollided is not ExperienceOrb) { DespawnEntity(); } //todo add collision values
 			}
 			else
 			{

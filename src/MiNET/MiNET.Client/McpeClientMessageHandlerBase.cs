@@ -24,6 +24,7 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography;
@@ -33,9 +34,12 @@ using log4net;
 using MiNET.Net;
 using MiNET.Utils;
 using MiNET.Utils.Cryptography;
+using MiNET.Utils.Metadata;
 using MiNET.Utils.Vectors;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
+using static MiNET.Entities.Entity;
 
 namespace MiNET.Client
 {
@@ -252,6 +256,8 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeEntityEvent(McpeEntityEvent message)
 		{
+			Log.Warn($"got entity event: {message.runtimeEntityId} / {message.eventId} / {message.data}");
+
 		}
 
 		public virtual void HandleMcpeMobEffect(McpeMobEffect message)
@@ -287,26 +293,30 @@ namespace MiNET.Client
 		public virtual void HandleMcpeSetEntityData(McpeSetEntityData message)
 		{
 			//Log.Warn(JsonConvert.SerializeObject(message, Formatting.Indented));
-
-			/*if (message.metadata[0] == null) { return; }
-			MetadataLong metadataLong = message.metadata[0] as MetadataLong;
-			byte[] bytes = BitConverter.GetBytes(metadataLong.Value);
-			BitArray bits = new BitArray(bytes);
-			Log.Warn($"Got entity metadata flags from value: {metadataLong.Value}");
-			Log.Warn($"start =============================================");
-			for (int i = 0; i < Enum.GetValues(typeof(DataFlags)).Length; i++)
+			/*Log.Warn($"start =============================================");
+			if (message.metadata[(int) MetadataFlags.EntityFlags] != null)
 			{
-				DataFlags flag = (DataFlags) i;
-				if (i < 64)
+				MetadataLong metadataLong = message.metadata[(int) MetadataFlags.EntityFlags] as MetadataLong;
+				BitArray bits = new BitArray(BitConverter.GetBytes(metadataLong.Value));
+				for (int i = 0; i < 64; i++)
 				{
+					DataFlags flag = (DataFlags) i;
 					Log.Warn($"{flag}: {bits[i]}");
 				}
-				else
+			}
+
+			if (message.metadata[(int) MetadataFlags.EntityFlags] != null)
+			{
+				MetadataLong metadataLong2 = message.metadata[(int) MetadataFlags.EntityFlags] as MetadataLong;
+				BitArray bits2 = new BitArray(BitConverter.GetBytes(metadataLong2.Value));
+				for (int i = 65; i < Enum.GetValues(typeof(DataFlags)).Length; i++)
 				{
-					Log.Warn($"{flag}: {bits[i - 64]}");
+					DataFlags flag = (DataFlags) i;
+					Log.Warn($"{flag}: {bits2[i - 64]}");
 				}
 			}
-			Log.Warn($"end =============================================");*/
+			Log.Warn($"end =============================================");
+			*/
 		}
 
 		public virtual void HandleMcpeSetEntityMotion(McpeSetEntityMotion message)
@@ -661,6 +671,7 @@ namespace MiNET.Client
 
 		public virtual void HandleMcpeOnScreenTextureAnimation(McpeOnScreenTextureAnimation message)
 		{
+			Log.Warn($"Got onscreen animation {message.effectId}");
 		}
 
 		public virtual void HandleMcpeMapCreateLockedCopy(McpeMapCreateLockedCopy message)
@@ -786,6 +797,11 @@ namespace MiNET.Client
 		public virtual void HandleMcpeAnimateEntity(McpeAnimateEntity message)
 		{
 			Log.Warn($"Got entity animation {message.animationName}");
+		}
+
+		public void HandleMcpeServerboundLoadingScreen(McpeServerboundLoadingScreen message)
+		{
+
 		}
 	}
 

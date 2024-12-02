@@ -31,7 +31,7 @@ namespace MiNET.Effects
 	{
 		public InstantDamage() : base(EffectType.InstantDamage)
 		{
-			ParticleColor = Color.FromArgb(0x43, 0x0A, 0x09);
+			ParticleColor = Color.FromArgb(0xa9, 0x65, 0x6a);
 		}
 
 		public override void SendAdd(Player player)

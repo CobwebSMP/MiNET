@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 // The contents of this file are subject to the Common Public Attribution
 // License Version 1.0. (the "License"); you may not use this file except in
@@ -48,7 +48,7 @@ namespace MiNET.BlockEntities
 			};
 
 			var item = (NbtCompound) Compound["Item"];
-			item.Add(new NbtShort("id", 0));
+			item.Add(new NbtString("Name", ""));
 			item.Add(new NbtShort("Damage", 0));
 			item.Add(new NbtByte("Count", 0));
 
@@ -69,10 +69,10 @@ namespace MiNET.BlockEntities
 			Compound = compound;
 			if (compound.TryGet("Item", out var item))
 			{
-				var id = item["id"].ShortValue;
+				var name = item["Name"].StringValue;
 				var damage = item["Damage"].ShortValue;
 				var count = item["Count"].ShortValue;
-				ItemInFrame = ItemFactory.GetItem(id, damage, count);
+				ItemInFrame = ItemFactory.GetItem(name, damage, count);
 			}
 			if (compound.TryGet("ItemRotation", out var rotation))
 			{
@@ -103,7 +103,7 @@ namespace MiNET.BlockEntities
 			{
 				var newItem = new NbtCompound("Item")
 				{
-					new NbtShort("id", item.Id),
+					new NbtString("Name", item.Name),
 					new NbtShort("Damage", item.Metadata),
 					new NbtByte("Count", 1)
 				};
@@ -132,7 +132,7 @@ namespace MiNET.BlockEntities
 			var itemComp = Compound["Item"] as NbtCompound;
 			if (itemComp == null) return slots;
 
-			Item item = ItemFactory.GetItem(itemComp["id"].ShortValue, itemComp["Damage"].ShortValue, itemComp["Count"].ByteValue);
+			Item item = ItemFactory.GetItem(itemComp["Name"].StringValue, itemComp["Damage"].ShortValue, itemComp["Count"].ByteValue);
 			slots.Add(item);
 
 			return slots;

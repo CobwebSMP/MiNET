@@ -34,7 +34,7 @@ namespace MiNET.Effects
 		public Speed() : base(EffectType.Speed)
 		{
 			Particles = false;
-			ParticleColor = Color.FromArgb(0x7c, 0xaf, 0xc6);
+			ParticleColor = Color.FromArgb(0x33, 0xeb, 0xff);
 		}
 
 		public override void SendAdd(Player player)

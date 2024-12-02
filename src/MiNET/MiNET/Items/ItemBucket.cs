@@ -26,7 +26,6 @@
 using System.Numerics;
 using log4net;
 using MiNET.Blocks;
-using MiNET.Utils;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 
@@ -35,11 +34,33 @@ namespace MiNET.Items
 	public class ItemBucket : Item
 	{
 		private static readonly ILog Log = LogManager.GetLogger(typeof(ItemBucket));
-
+		private bool _isUsing;
 		public ItemBucket(short metadata) : base("minecraft:bucket", 325, metadata)
 		{
 			MaxStackSize = 1;
 			FuelEfficiency = (short) (Metadata == 10 ? 1000 : 0);
+		}
+
+		public override void UseItem(Level world, Player player, BlockCoordinates blockCoordinates)
+		{
+			if (_isUsing)
+			{
+				player.RemoveAllEffects();
+
+				if (player.GameMode == GameMode.Survival || player.GameMode == GameMode.Adventure)
+				{
+					player.Inventory.SetInventorySlot(player.Inventory.InHandSlot, ItemFactory.GetItem(325), true);
+				}
+				_isUsing = false;
+				return;
+			}
+
+			_isUsing = true;
+		}
+
+		public override void Release(Level world, Player player, BlockCoordinates blockCoordinates)
+		{
+			_isUsing = false;
 		}
 
 		public override void PlaceBlock(Level world, Player player, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)

@@ -446,11 +446,20 @@ namespace MiNET.Client
 		public override void HandleMcpeLevelEvent(McpeLevelEvent message)
 		{
 			int data = message.data;
-			if (message.eventId == 2001)
+			if (message.eventId == (int) LevelEventType.ParticlesDestroyBlock)
 			{
 				int blockId = data & 0xff;
 				int metadata = data >> 12;
 				Log.Debug($"BlockID={blockId}, Metadata={metadata}");
+			}
+			else if (message.eventId == (int)LevelEventType.ParticlesPotionSplash)
+			{
+				Log.Warn($"Got effect with data: {message.data}");
+				var r = (message.data >> 16) & 0xFF;
+				var g = (message.data >> 8) & 0xFF;
+				var b = message.data & 0xFF;
+
+				Log.Warn($"Actual effect color R: 0x{r.ToString("x")} G: 0x{g.ToString("x")} B: 0x{b.ToString("x")}");
 			}
 		}
 
@@ -716,23 +725,22 @@ namespace MiNET.Client
 
 		public override void HandleMcpeBiomeDefinitionList(McpeBiomeDefinitionList message)
 		{
-			//NbtCompound list = new NbtCompound("");
-			//foreach (Biome biome in Biomes)
-			//{
-			//	if (string.IsNullOrEmpty(biome.DefinitionName))
-			//		continue;
-			//	list.Add(
-			//		new NbtCompound(biome.DefinitionName)
-			//		{
-			//			new NbtFloat("downfall", biome.Downfall),
-			//			new NbtFloat("temperature", biome.Temperature),
-			//		}
-			//	);
-			//}
+			NbtCompound list = new NbtCompound("");
+			foreach (var biome in message.namedtag.NbtFile.RootTag as NbtCompound)
+			{
+				string biomeName = biome.Name;
+				float downfall = (biome["downfall"] as NbtFloat).Value;
+				float temperature = (biome["temperature"] as NbtFloat).Value;
+				list.Add(
+					new NbtCompound(biomeName)
+					{
+						new NbtFloat("temperature", temperature),
+						new NbtFloat("downfall", downfall),
+					}
+				);
+			}
 
-			var root = message.namedtag.NbtFile.RootTag;
-			//Log.Debug($"\n{root}");
-			File.WriteAllText("newResources/biomes.txt", root.ToString());
+			File.WriteAllText("newResources/biomes.txt", list.ToString());
 			Log.Warn("Received biome definitions exported to newResources/biomes.txt\n");
 		}
 

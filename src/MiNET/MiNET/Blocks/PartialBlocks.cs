@@ -8041,12 +8041,16 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Skull  // 144 typeof=Skull
+    public partial class Skull : SkullBase  // 144 typeof=Skull
     {
 		public override string Name => "minecraft:skull";
-		[StateRange(0, 5)] public  int FacingDirection { get; set; } = 2;
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
 
-        public override void SetState(List<IBlockState> states)
+		public Skull() : base(144)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
         {
             foreach (var state in states)
             {
@@ -8069,8 +8073,168 @@ namespace MiNET.Blocks
         } // method
     } // class
 
-    public partial class Slime  // 165 typeof=Slime
-    {
+	public partial class WitherSkull : SkullBase  // 1220 typeof=WitherSkull
+	{
+		public override string Name => "minecraft:wither_skeleton_skull";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+
+		public WitherSkull() : base(1220)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
+		{
+			foreach (var state in states)
+			{
+				switch (state)
+				{
+					case BlockStateInt s when s.Name == "facing_direction":
+						FacingDirection = s.Value;
+						break;
+				} // switch
+			} // foreach
+		} // method
+
+		public override BlockStateContainer GetState()
+		{
+			var record = new BlockStateContainer();
+			record.Name = "minecraft:wither_skeleton_skull";
+			record.Id = 1220;
+			record.States.Add(new BlockStateInt { Name = "facing_direction", Value = FacingDirection });
+			return record;
+		} // method
+	} // class
+
+	public partial class ZombieHead : SkullBase  // 1221 typeof=ZombieHead
+	{
+		public override string Name => "minecraft:zombie_head";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+
+		public ZombieHead() : base(1221)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
+		{
+			foreach (var state in states)
+			{
+				switch (state)
+				{
+					case BlockStateInt s when s.Name == "facing_direction":
+						FacingDirection = s.Value;
+						break;
+				} // switch
+			} // foreach
+		} // method
+
+		public override BlockStateContainer GetState()
+		{
+			var record = new BlockStateContainer();
+			record.Name = "minecraft:zombie_head";
+			record.Id = 1221;
+			record.States.Add(new BlockStateInt { Name = "facing_direction", Value = FacingDirection });
+			return record;
+		} // method
+	} // class
+
+	public partial class PlayerHead : SkullBase  // 1222 typeof=PlayerHead
+	{
+		public override string Name => "minecraft:player_head";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+
+		public PlayerHead() : base(1222)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
+		{
+			foreach (var state in states)
+			{
+				switch (state)
+				{
+					case BlockStateInt s when s.Name == "facing_direction":
+						FacingDirection = s.Value;
+						break;
+				} // switch
+			} // foreach
+		} // method
+
+		public override BlockStateContainer GetState()
+		{
+			var record = new BlockStateContainer();
+			record.Name = "minecraft:player_head";
+			record.Id = 1222;
+			record.States.Add(new BlockStateInt { Name = "facing_direction", Value = FacingDirection });
+			return record;
+		} // method
+	} // class
+
+	public partial class CreeperHead : SkullBase  // 1223 typeof=CreeperHead
+	{
+		public override string Name => "minecraft:creeper_head";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+
+		public CreeperHead() : base(1223)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
+		{
+			foreach (var state in states)
+			{
+				switch (state)
+				{
+					case BlockStateInt s when s.Name == "facing_direction":
+						FacingDirection = s.Value;
+						break;
+				} // switch
+			} // foreach
+		} // method
+
+		public override BlockStateContainer GetState()
+		{
+			var record = new BlockStateContainer();
+			record.Name = "minecraft:creeper_head";
+			record.Id = 1223;
+			record.States.Add(new BlockStateInt { Name = "facing_direction", Value = FacingDirection });
+			return record;
+		} // method
+	} // class
+
+	public partial class DragonHead : SkullBase  // 1224 typeof=ZombieHead
+	{
+		public override string Name => "minecraft:dragon_head";
+		[StateRange(0, 5)] public override int FacingDirection { get; set; } = 2;
+
+		public DragonHead() : base(1224)
+		{
+		}
+
+		public override void SetState(List<IBlockState> states)
+		{
+			foreach (var state in states)
+			{
+				switch (state)
+				{
+					case BlockStateInt s when s.Name == "facing_direction":
+						FacingDirection = s.Value;
+						break;
+				} // switch
+			} // foreach
+		} // method
+
+		public override BlockStateContainer GetState()
+		{
+			var record = new BlockStateContainer();
+			record.Name = "minecraft:dragon_head";
+			record.Id = 1224;
+			record.States.Add(new BlockStateInt { Name = "facing_direction", Value = FacingDirection });
+			return record;
+		} // method
+	} // class
+
+	public partial class Slime  // 165 typeof=Slime
+	{
 		public override string Name => "minecraft:slime";
 		public override void SetState(List<IBlockState> states)
         {

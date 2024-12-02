@@ -32,7 +32,7 @@ namespace MiNET.Effects
 		public JumpBoost() : base(EffectType.JumpBoost)
 		{
 			Particles = false;
-			ParticleColor = Color.FromArgb(0x22, 0xFF, 0x4C);
+			ParticleColor = Color.FromArgb(0xfd, 0xff, 0x84);
 		}
 	}
 }

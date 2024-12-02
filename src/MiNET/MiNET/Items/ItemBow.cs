@@ -81,39 +81,45 @@ namespace MiNET.Items
 				player.SendPlayerInventory(); // Need to reset inventory, because we don't know what the client did here
 				return;
 			}
+			world.BroadcastSound(blockCoordinates, LevelSoundEventType.Bow);
 
 			PlayerInventory inventory = player.Inventory;
 
 			bool isInfinity = this.GetEnchantingLevel(EnchantingType.Infinity) > 0;
-			bool haveArrow = player.GameMode == GameMode.Creative;
+			bool isFlame = this.GetEnchantingLevel(EnchantingType.Flame) > 0;
+			bool haveArrow = false;
+			byte effect = 0;
 			if (!haveArrow)
 			{
 				// Try off-hand first
 				Item item = inventory.OffHand;
-				if (item.Id == 262)
+				if (item is ItemArrow)
 				{
 					haveArrow = true;
-					if (!isInfinity)
+					effect = (byte) item.Metadata;
+					if (!isInfinity && player.GameMode != GameMode.Creative)
 					{
 						item.Count -= 1;
 						item.UniqueId = Environment.TickCount;
 						if (item.Count <= 0) inventory.OffHand = new ItemAir();
-
 						player.SendPlayerInventory();
 					}
 				}
 			}
 			if (!haveArrow)
 			{
-				//TODO: Consume arrows properly
-				//TODO: Make sure we deal with arrows based on "potions"
 				for (byte i = 0; i < inventory.Slots.Count; i++)
 				{
 					Item itemStack = inventory.Slots[i];
-					if (itemStack.Id == 262)
+					if (itemStack is ItemArrow)
 					{
 						haveArrow = true;
-						if (isInfinity) inventory.RemoveItems(262, 1);
+						effect = (byte) itemStack.Metadata;
+						if (!isInfinity && player.GameMode != GameMode.Creative)
+						{
+							itemStack.Count--;
+							player.Inventory.SetInventorySlot(i, itemStack);
+						}
 						break;
 					}
 				}
@@ -126,6 +132,8 @@ namespace MiNET.Items
 
 			var arrow = new Arrow(player, world, 2, !(force < 1.0));
 			arrow.PowerLevel = this.GetEnchantingLevel(EnchantingType.Power);
+			arrow.EffectValue = effect;
+			arrow.isFlame = isFlame;
 			arrow.KnownPosition = (PlayerLocation) player.KnownPosition.Clone();
 			arrow.KnownPosition.Y += 1.62f;
 

@@ -44401,11 +44401,394 @@
     ]
   },
   {
-    "Id": 471,
+    "Id": 1220,
     "Data": 0,
-    "Name": "minecraft:wither_rose",
-    "RuntimeId": 10736,
-    "States": []
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12469,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 0
+      }
+    ]
+  },
+  {
+    "Id": 1220,
+    "Data": 1,
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12470,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 1
+      }
+    ]
+  },
+  {
+    "Id": 1220,
+    "Data": 2,
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12471,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Id": 1220,
+    "Data": 3,
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12472,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 3
+      }
+    ]
+  },
+  {
+    "Id": 1220,
+    "Data": 4,
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12473,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 4
+      }
+    ]
+  },
+  {
+    "Id": 1220,
+    "Data": 5,
+    "Name": "minecraft:wither_skeleton_skull",
+    "RuntimeId": 12474,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 5
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 0,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 33,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 0
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 1,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 34,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 1
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 2,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 35,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 3,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 36,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 3
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 4,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 37,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 4
+      }
+    ]
+  },
+  {
+    "Id": 1221,
+    "Data": 5,
+    "Name": "minecraft:zombie_head",
+    "RuntimeId": 38,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 5
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 0,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4855,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 0
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 1,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4856,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 1
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 2,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4857,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 3,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4858,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 3
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 4,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4859,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 4
+      }
+    ]
+  },
+  {
+    "Id": 1222,
+    "Data": 5,
+    "Name": "minecraft:player_head",
+    "RuntimeId": 4860,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 5
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 0,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9400,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 0
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 1,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9401,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 1
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 2,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9402,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 3,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9403,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 3
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 4,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9404,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 4
+      }
+    ]
+  },
+  {
+    "Id": 1223,
+    "Data": 5,
+    "Name": "minecraft:creeper_head",
+    "RuntimeId": 9405,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 5
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 0,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9424,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 0
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 1,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9425,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 1
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 2,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9426,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 3,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9427,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 3
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 4,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9428,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 4
+      }
+    ]
+  },
+  {
+    "Id": 1224,
+    "Data": 5,
+    "Name": "minecraft:dragon_head",
+    "RuntimeId": 9429,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "facing_direction",
+        "Value": 5
+      }
+    ]
   },
   {
     "Id": 416,

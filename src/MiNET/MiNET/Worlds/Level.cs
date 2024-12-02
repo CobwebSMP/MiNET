@@ -48,7 +48,7 @@ using MiNET.Utils.Diagnostics;
 using MiNET.Utils.IO;
 using MiNET.Utils.Nbt;
 using MiNET.Utils.Vectors;
-using Newtonsoft.Json;
+using static MiNET.WeatherManager;
 
 namespace MiNET.Worlds
 {
@@ -105,6 +105,7 @@ namespace MiNET.Worlds
 		public EntityManager EntityManager { get; protected set; }
 		public InventoryManager InventoryManager { get; protected set; }
 		public EntitySpawnManager EntitySpawnManager { get; protected set; }
+		public WeatherManager WeatherManager { get; protected set; }
 
 		public int ViewDistance { get; set; }
 
@@ -116,6 +117,8 @@ namespace MiNET.Worlds
 		public int UnloadInterval { get; set; } = -1;
 
 		public string fog { get; set; } = "";
+		public weatherTypes Weather { get; set; } = weatherTypes.clear;
+		public float rainLevel { get; set; }
 
 		public Level(LevelManager levelManager, string levelId, IWorldProvider worldProvider, EntityManager entityManager, GameMode gameMode = GameMode.Survival, Difficulty difficulty = Difficulty.Normal, int viewDistance = 11)
 		{
@@ -125,6 +128,7 @@ namespace MiNET.Worlds
 			EntityManager = entityManager;
 			InventoryManager = new InventoryManager(this);
 			EntitySpawnManager = new EntitySpawnManager(this);
+			WeatherManager = new WeatherManager(this);
 			LevelId = levelId;
 			GameMode = gameMode;
 			Difficulty = difficulty;
@@ -269,6 +273,7 @@ namespace MiNET.Worlds
 						entity.SpawnToPlayers(new[] {newPlayer});
 					}
 
+					newPlayer.Skin.IsVerified = true;
 					SpawnToAll(newPlayer);
 				}
 
@@ -310,28 +315,21 @@ namespace MiNET.Worlds
 				var spawnedPlayers = players.ToList();
 				spawnedPlayers.Add(newPlayer);
 
-				Player[] sendList = spawnedPlayers.ToArray();
-
-				SendPlayerList();
-
 				newPlayer.SpawnToPlayers(players);
 
 				foreach (Player spawnedPlayer in players)
 				{
 					spawnedPlayer.SpawnToPlayers(new[] {newPlayer});
 				}
-			}
-		}
 
-		public async void SendPlayerList()
-		{
-			await Task.Delay(4000);
-			Player[] players = GetAllPlayers();
-			var spawnedPlayers = players.ToList();
-			McpePlayerList playerListMessage = McpePlayerList.CreateObject();
-			playerListMessage.records = new PlayerAddRecords(spawnedPlayers);
-			RelayBroadcast(CreateMcpeBatch(playerListMessage.Encode()));
-			playerListMessage.PutPool();
+				McpePlayerList playerListMessage = McpePlayerList.CreateObject();
+				playerListMessage.records = new PlayerAddRecords(spawnedPlayers);
+				newPlayer.SendPacket(playerListMessage);
+
+				McpePlayerList playerList = McpePlayerList.CreateObject();
+				playerList.records = new PlayerAddRecords { newPlayer };
+				RelayBroadcast(playerList);
+			}
 		}
 
 		public virtual void RemovePlayer(Player player, bool despawn = true)
@@ -486,6 +484,8 @@ namespace MiNET.Worlds
 			try
 			{
 				TickTime++;
+
+				WeatherManager.tick(TickTime);
 
 				Player[] players = GetSpawnedPlayers();
 
@@ -830,20 +830,35 @@ namespace MiNET.Worlds
 
 			foreach (var player in players)
 			{
-				if (now - player.LastUpdatedTime <= now - lastSendTime)
+				if (now - player.LastUpdatedTime <= now - lastSendTime && player.KnownPosition != player.LastSentPosition)
 				{
-					var knownPosition = (PlayerLocation) player.KnownPosition.Clone();
-
-					McpeMoveEntityDelta move = McpeMoveEntityDelta.CreateObject();
-					move.runtimeEntityId = player.EntityId;
-					move.prevSentPosition = player.LastSentPosition;
-					move.currentPosition = new PlayerLocation(player.KnownPosition.X, player.KnownPosition.Y + 1.62f, player.KnownPosition.Z, player.KnownPosition.HeadYaw, player.KnownPosition.Yaw, player.KnownPosition.Pitch);
-					move.isOnGround = player.IsWalker && player.IsOnGround;
-					if (move.SetFlags())
+					if (Vector3.Distance(player.KnownPosition, player.LastSentPosition) > ViewDistance)
 					{
-						RelayBroadcast(move);
+						var knownPosition = (PlayerLocation) player.KnownPosition.Clone();
+
+						var move = McpeMoveEntity.CreateObject();
+						move.runtimeEntityId = player.EntityId;
+						move.flags = 2;
+						move.position = knownPosition;
+						move.position.Y += 1.62f;
+						movePackets.Add(move);
 					}
-					movePackets.Add(move);
+					else
+					{
+						var knownPosition = (PlayerLocation) player.KnownPosition.Clone();
+
+						McpeMoveEntityDelta move = McpeMoveEntityDelta.CreateObject();
+						move.runtimeEntityId = player.EntityId;
+						move.prevSentPosition = player.LastSentPosition;
+						move.currentPosition = knownPosition;
+						move.currentPosition.Y += 1.62f;
+						move.isOnGround = player.IsWalker && player.IsOnGround;
+						if (move.SetFlags())
+						{
+							RelayBroadcast(move);
+						}
+						movePackets.Add(move);
+					}
 					playerMoveCount++;
 				}
 				player.LastSentPosition = (PlayerLocation) player.KnownPosition.Clone();
@@ -1414,7 +1429,7 @@ namespace MiNET.Worlds
 				BreakBlock(player, block, blockEntity, inHand, face);
 
 				player.Inventory.DamageItemInHand(ItemDamageReason.BlockBreak, null, block);
-				player.HungerManager.IncreaseExhaustion(0.025f);
+				player.HungerManager.IncreaseExhaustion(0.005f);
 				player.ExperienceManager.AddExperience(block.GetExperiencePoints());
 			}
 		}

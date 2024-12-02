@@ -792,6 +792,10 @@ namespace MiNET
 		public void HandleMcpeAnvilDamage(McpeAnvilDamage message)
 		{
 		}
+
+		public void HandleMcpeServerboundLoadingScreen(McpeServerboundLoadingScreen message)
+		{
+		}
 	}
 
 	public interface IServerManager
