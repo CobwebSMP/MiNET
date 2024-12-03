@@ -36,7 +36,7 @@ namespace MiNET.Utils
 		/// <summary>
 		///		The unique identifier for the pack
 		/// </summary>
-		public string UUID    { get; set; }
+		public UUID UUID    { get; set; }
 		
 		/// <summary>
 		/// Version is the version of the pack. The client will cache packs sent by the server as

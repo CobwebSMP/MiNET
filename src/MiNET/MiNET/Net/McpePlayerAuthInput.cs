@@ -48,6 +48,7 @@ public partial class McpePlayerAuthInput : Packet<McpePlayerAuthInput>
 
 		AnalogMoveVector = ReadVector2();
 		CameraOrientation = ReadVector3();
+		ReadVector2(); //motion todo
 	}
 
 	partial void AfterEncode()

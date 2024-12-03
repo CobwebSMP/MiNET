@@ -379,6 +379,7 @@ namespace MiNET
 				var directory = Config.GetProperty("ResourceDirectory", "ResourcePacks");
 				var directoryB = Config.GetProperty("BehaviorDirectory", "BehaviorPacks");
 				packInfo.mustAccept = Config.GetProperty("ForceResourcePacks", false);
+				packInfo.templateUUID = new UUID(Guid.Empty.ToByteArray());
 
 				if (Directory.Exists(directory))
 				{
@@ -428,7 +429,7 @@ namespace MiNET
 							manifestStructure obj = JsonConvert.DeserializeObject<manifestStructure>(jsonContent);
 							packInfos.Add(new TexturePackInfo
 							{
-								UUID = obj.Header.Uuid,
+								UUID = new UUID(obj.Header.Uuid),
 								Version = $"{obj.Header.Version[0]}.{obj.Header.Version[1]}.{obj.Header.Version[2]}",
 								Size = (ulong) File.ReadAllBytes(zipPack).Count(),
 								ContentKey = encrypted ? File.ReadAllText($"{zipPack}.key") : "",
@@ -468,7 +469,7 @@ namespace MiNET
 							manifestStructure obj = JsonConvert.DeserializeObject<manifestStructure>(jsonContent);
 							packInfosB.Add(new ResourcePackInfo
 							{
-								UUID = obj.Header.Uuid,
+								UUID = new UUID(obj.Header.Uuid),
 								Version = $"{obj.Header.Version[0]}.{obj.Header.Version[1]}.{obj.Header.Version[2]}",
 								Size = (ulong) File.ReadAllBytes(zipPack).Count()
 							});
@@ -493,11 +494,11 @@ namespace MiNET
 				var packVersionsB = new ResourcePackIdVersions();
 				foreach (var packData in PlayerPackData)
 				{
-					packVersions.Add(new PackIdVersion { Id = packData.UUID, Version = packData.Version });
+					packVersions.Add(new PackIdVersion { Id = packData.UUID.ToString(), Version = packData.Version });
 				}
 				foreach (var packData in PlayerPackDataB)
 				{
-					packVersionsB.Add(new PackIdVersion { Id = packData.UUID, Version = packData.Version });
+					packVersionsB.Add(new PackIdVersion { Id = packData.UUID.ToString(), Version = packData.Version });
 				}
 				packStack.resourcepackidversions = packVersions;
 				packStack.behaviorpackidversions = packVersionsB;

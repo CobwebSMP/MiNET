@@ -205,6 +205,7 @@ namespace MiNET.Utils
 		public byte Count          { get; set; }
 		public int  StackNetworkId { get; set; }
 		public string  CustomName     { get; set; }
+		public string FilteredCustomName { get; set; }
 		public int DurabilityCorrection { get; set; }
 	}
 

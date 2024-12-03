@@ -124,7 +124,7 @@ namespace MiNET.Client
 
 				foreach (ResourcePackInfo packInfo in message.texturepacks)
 				{
-					resourcePackIds.Add(packInfo.UUID);
+					resourcePackIds.Add(packInfo.UUID.ToString());
 				}
 
 				var response = new McpeResourcePackClientResponse();

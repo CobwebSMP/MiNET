@@ -43,5 +43,6 @@ Here are few plugins for MiNET that you can try:
 
  - [Chairs](https://github.com/CobwebSMP/Chairs)
  - [MiPermissionsNET](https://github.com/CupidonSauce173/MiPermissionsNET)
+ - [SnowFall](https://github.com/laz1444/SnowFall)
  - [WorldEdit](https://github.com/CobwebSMP/WorldEdit)
 

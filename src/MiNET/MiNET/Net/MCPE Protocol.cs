@@ -44,8 +44,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 748;
-		public const string GameVersion = "1.21.40";
+		public const int ProtocolVersion = 766;
+		public const string GameVersion = "1.21.50";
 	}
 
 	public interface IMcpeMessageHandler
@@ -2216,6 +2216,8 @@ namespace MiNET.Net
 		public bool mustAccept; // = null;
 		public bool hasAddons; // = null;
 		public bool hasScripts; // = null;
+		public UUID templateUUID; // = null;
+		public string templateVersion; // = null;
 		public TexturePackInfos texturepacks; // = null;
 
 		public McpeResourcePacksInfo()
@@ -2233,6 +2235,8 @@ namespace MiNET.Net
 			Write(mustAccept);
 			Write(hasAddons);
 			Write(hasScripts);
+			Write(templateUUID);
+			Write(templateVersion);
 			Write(texturepacks);
 
 			AfterEncode();
@@ -2250,6 +2254,8 @@ namespace MiNET.Net
 			mustAccept = ReadBool();
 			hasAddons = ReadBool();
 			hasScripts = ReadBool();
+			templateUUID = ReadUUID();
+			templateVersion = ReadString();
 			texturepacks = ReadTexturePackInfos();
 
 			AfterDecode();
@@ -2265,7 +2271,9 @@ namespace MiNET.Net
 			mustAccept=default(bool);
 			hasAddons=default(bool);
 			hasScripts=default(bool);
-			texturepacks=default(TexturePackInfos);
+			templateUUID=default(UUID);
+			templateVersion=default(string);
+			texturepacks =default(TexturePackInfos);
 		}
 
 	}

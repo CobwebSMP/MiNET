@@ -1599,6 +1599,7 @@ namespace MiNET.Net
 						Write(slot.Count);
 						WriteSignedVarInt(slot.StackNetworkId);
 						Write(slot.CustomName);
+						Write(slot.FilteredCustomName);
 						WriteSignedVarInt(slot.DurabilityCorrection);
 					}
 				}
@@ -1639,6 +1640,7 @@ namespace MiNET.Net
 						slot.Count = ReadByte();
 						slot.StackNetworkId = ReadSignedVarInt();
 						slot.CustomName = ReadString();
+						slot.FilteredCustomName = ReadString();
 						slot.DurabilityCorrection = ReadSignedVarInt();
 						
 						containerInfo.Slots.Add(slot);
@@ -2459,7 +2461,7 @@ namespace MiNET.Net
 			for (int i = 0; i < count; i++)
 			{
 				var info            = new TexturePackInfo();
-				var id              = ReadString();
+				var id              = ReadUUID();
 				var version         = ReadString();
 				var size            = ReadUlong();
 				var encryptionKey   = ReadString();
@@ -2521,7 +2523,7 @@ namespace MiNET.Net
 			{
 				var info = new ResourcePackInfo();
 				
-				var id = ReadString();
+				var id = ReadUUID();
 				var version = ReadString();
 				var size = ReadUlong();
 				var encryptionKey = ReadString();
