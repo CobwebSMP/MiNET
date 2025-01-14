@@ -226,32 +226,36 @@ namespace MiNET.Client
 			writer2.WriteLine("		{");
 			writer2.WriteLine("			//Generated with MiNET.Client (creativeGroups.txt)");
 
-			var lastCategory = 0;
+			var ConstructionIndex = 0;
+			var EquipmentIndex = 0;
+			var ItemsIndex = 0;
+			var NatureIndex = 0;
 			foreach (var group in message.groups)
 			{
-				if (group.Icon.Id == 0) continue;
-				if (group.Category != lastCategory)
+				if (group.Icon.Id == 0)
 				{
-					lastCategory = group.Category;
 					if (group.Category == 1)
 					{
-						writer2.WriteLine($"			{{\"Construction\", new creativeGroup(1, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Construction{ConstructionIndex++}\", new creativeGroup(1, \"\", new ItemAir())}},");
 					}
 					else if (group.Category == 2)
 					{
-						writer2.WriteLine($"			{{\"Equipment\", new creativeGroup(2, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Equipment{EquipmentIndex++}\", new creativeGroup(2, \"\", new ItemAir())}},");
 					}
 					else if (group.Category == 3)
 					{
-						writer2.WriteLine($"			{{\"Items\", new creativeGroup(3, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Items{ItemsIndex++}\", new creativeGroup(3, \"\", new ItemAir())}},");
 					}
 					else if (group.Category == 4)
 					{
-						writer2.WriteLine($"			{{\"Nature\", new creativeGroup(4, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Nature{NatureIndex++}\", new creativeGroup(4, \"\", new ItemAir())}},");
 					}
 				}
-				string groupName = group.Name.Split('.').Last();
-				writer2.WriteLine($"			{{\"{char.ToUpper(groupName[0]) + groupName.Substring(1)}\", new creativeGroup({group.Category}, \"{group.Name}\", new Item({group.Icon.Id}, {group.Icon.Metadata}))}},");
+				else
+				{
+					string groupName = group.Name.Split('.').Last();
+					writer2.WriteLine($"			{{\"{char.ToUpper(groupName[0]) + groupName.Substring(1)}\", new creativeGroup({group.Category}, \"{group.Name}\", new Item({group.Icon.Id}, {group.Icon.Metadata}))}},");
+				}
 			}
 			writer2.WriteLine("		};");
 			writer2.Flush();

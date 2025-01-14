@@ -93,7 +93,6 @@ namespace MiNET
 		public static Dictionary<string, creativeGroup> CreativeGroups = new Dictionary<string, creativeGroup>()
 		{
 			//Generated with MiNET.Client (creativeGroups.txt)
-			{"Construction", new creativeGroup(1, "", new ItemAir())},
 			{"Planks", new creativeGroup(1, "itemGroup.name.planks", new Item(5, 0))},
 			{"Walls", new creativeGroup(1, "itemGroup.name.walls", new Item(139, 0))},
 			{"Fence", new creativeGroup(1, "itemGroup.name.fence", new Item(85, 0))},
@@ -101,38 +100,51 @@ namespace MiNET
 			{"Stairs", new creativeGroup(1, "itemGroup.name.stairs", new Item(67, 0))},
 			{"Door", new creativeGroup(1, "itemGroup.name.door", new Item(324, 0))},
 			{"Trapdoor", new creativeGroup(1, "itemGroup.name.trapdoor", new Item(96, 0))},
+			{"Construction0", new creativeGroup(1, "", new ItemAir())},
 			{"Glass", new creativeGroup(1, "itemGroup.name.glass", new Item(20, 0))},
 			{"GlassPane", new creativeGroup(1, "itemGroup.name.glassPane", new Item(102, 0))},
+			{"Construction1", new creativeGroup(1, "", new ItemAir())},
 			{"Slab", new creativeGroup(1, "itemGroup.name.slab", new Item(44, 0))},
 			{"StoneBrick", new creativeGroup(1, "itemGroup.name.stoneBrick", new Item(98, 0))},
+			{"Construction2", new creativeGroup(1, "", new ItemAir())},
 			{"Sandstone", new creativeGroup(1, "itemGroup.name.sandstone", new Item(24, 0))},
+			{"Construction3", new creativeGroup(1, "", new ItemAir())},
 			{"Copper", new creativeGroup(1, "itemGroup.name.copper", new Item(-340, 0))},
+			{"Construction4", new creativeGroup(1, "", new ItemAir())},
 			{"Wool", new creativeGroup(1, "itemGroup.name.wool", new Item(35, 0))},
 			{"WoolCarpet", new creativeGroup(1, "itemGroup.name.woolCarpet", new Item(171, 0))},
 			{"ConcretePowder", new creativeGroup(1, "itemGroup.name.concretePowder", new Item(237, 0))},
 			{"Concrete", new creativeGroup(1, "itemGroup.name.concrete", new Item(236, 0))},
 			{"StainedClay", new creativeGroup(1, "itemGroup.name.stainedClay", new Item(172, 0))},
 			{"GlazedTerracotta", new creativeGroup(1, "itemGroup.name.glazedTerracotta", new Item(220, 0))},
-			{"Equipment", new creativeGroup(2, "", new ItemAir())},
+			{"Construction5", new creativeGroup(1, "", new ItemAir())},
+			{"Equipment0", new creativeGroup(2, "", new ItemAir())},
 			{"Ore", new creativeGroup(2, "itemGroup.name.ore", new Item(15, 0))},
 			{"Stone", new creativeGroup(2, "itemGroup.name.stone", new Item(1, 0))},
+			{"Equipment1", new creativeGroup(2, "", new ItemAir())},
 			{"Log", new creativeGroup(2, "itemGroup.name.log", new Item(17, 0))},
 			{"Wood", new creativeGroup(2, "itemGroup.name.wood", new Item(-212, 0))},
 			{"Leaves", new creativeGroup(2, "itemGroup.name.leaves", new Item(18, 0))},
 			{"Sapling", new creativeGroup(2, "itemGroup.name.sapling", new Item(6, 0))},
+			{"Equipment2", new creativeGroup(2, "", new ItemAir())},
 			{"Seed", new creativeGroup(2, "itemGroup.name.seed", new Item(295, 0))},
 			{"Crop", new creativeGroup(2, "itemGroup.name.crop", new Item(296, 0))},
+			{"Equipment3", new creativeGroup(2, "", new ItemAir())},
 			{"Grass", new creativeGroup(2, "itemGroup.name.grass", new Item(-848, 0))},
 			{"Coral_decorations", new creativeGroup(2, "itemGroup.name.coral_decorations", new Item(-131, 3))},
 			{"Flower", new creativeGroup(2, "itemGroup.name.flower", new Item(37, 0))},
 			{"Dye", new creativeGroup(2, "itemGroup.name.dye", new Item(351, 11))},
+			{"Equipment4", new creativeGroup(2, "", new ItemAir())},
 			{"RawFood", new creativeGroup(2, "itemGroup.name.rawFood", new Item(365, 0))},
 			{"Mushroom", new creativeGroup(2, "itemGroup.name.mushroom", new Item(39, 0))},
+			{"Equipment5", new creativeGroup(2, "", new ItemAir())},
 			{"MonsterStoneEgg", new creativeGroup(2, "itemGroup.name.monsterStoneEgg", new Item(97, 0))},
+			{"Equipment6", new creativeGroup(2, "", new ItemAir())},
 			{"MobEgg", new creativeGroup(2, "itemGroup.name.mobEgg", new Item(383, 10))},
+			{"Equipment7", new creativeGroup(2, "", new ItemAir())},
 			{"Coral", new creativeGroup(2, "itemGroup.name.coral", new Item(-132, 0))},
 			{"Sculk", new creativeGroup(2, "itemGroup.name.sculk", new Item(-458, 0))},
-			{"Items", new creativeGroup(3, "", new ItemAir())},
+			{"Equipment8", new creativeGroup(2, "", new ItemAir())},
 			{"Helmet", new creativeGroup(3, "itemGroup.name.helmet", new Item(298, 0))},
 			{"Chestplate", new creativeGroup(3, "itemGroup.name.chestplate", new Item(299, 0))},
 			{"Leggings", new creativeGroup(3, "itemGroup.name.leggings", new Item(300, 0))},
@@ -142,40 +154,59 @@ namespace MiNET
 			{"Pickaxe", new creativeGroup(3, "itemGroup.name.pickaxe", new Item(270, 0))},
 			{"Shovel", new creativeGroup(3, "itemGroup.name.shovel", new Item(269, 0))},
 			{"Hoe", new creativeGroup(3, "itemGroup.name.hoe", new Item(290, 0))},
+			{"Items0", new creativeGroup(3, "", new ItemAir())},
 			{"Arrow", new creativeGroup(3, "itemGroup.name.arrow", new Item(262, 0))},
+			{"Items1", new creativeGroup(3, "", new ItemAir())},
 			{"CookedFood", new creativeGroup(3, "itemGroup.name.cookedFood", new Item(366, 0))},
 			{"MiscFood", new creativeGroup(3, "itemGroup.name.miscFood", new Item(297, 0))},
+			{"Items2", new creativeGroup(3, "", new ItemAir())},
 			{"GoatHorn", new creativeGroup(3, "itemGroup.name.goatHorn", new Item(761, 0))},
+			{"Items3", new creativeGroup(3, "", new ItemAir())},
 			{"Bundles", new creativeGroup(3, "itemGroup.name.bundles", new Item(260, 0))},
 			{"HorseArmor", new creativeGroup(3, "itemGroup.name.horseArmor", new Item(416, 0))},
+			{"Items4", new creativeGroup(3, "", new ItemAir())},
 			{"Potion", new creativeGroup(3, "itemGroup.name.potion", new Item(373, 0))},
 			{"SplashPotion", new creativeGroup(3, "itemGroup.name.splashPotion", new Item(438, 0))},
 			{"LingeringPotion", new creativeGroup(3, "itemGroup.name.lingeringPotion", new Item(441, 0))},
 			{"OminousBottle", new creativeGroup(3, "itemGroup.name.ominousBottle", new Item(628, 0))},
-			{"Nature", new creativeGroup(4, "", new ItemAir())},
+			{"Items5", new creativeGroup(3, "", new ItemAir())},
+			{"Nature0", new creativeGroup(4, "", new ItemAir())},
 			{"Bed", new creativeGroup(4, "itemGroup.name.bed", new Item(355, 0))},
+			{"Nature1", new creativeGroup(4, "", new ItemAir())},
 			{"Candles", new creativeGroup(4, "itemGroup.name.candles", new Item(-412, 0))},
+			{"Nature2", new creativeGroup(4, "", new ItemAir())},
 			{"Anvil", new creativeGroup(4, "itemGroup.name.anvil", new Item(145, 0))},
+			{"Nature3", new creativeGroup(4, "", new ItemAir())},
 			{"Chest", new creativeGroup(4, "itemGroup.name.chest", new Item(54, 0))},
+			{"Nature4", new creativeGroup(4, "", new ItemAir())},
 			{"ShulkerBox", new creativeGroup(4, "itemGroup.name.shulkerBox", new Item(205, 0))},
+			{"Nature5", new creativeGroup(4, "", new ItemAir())},
 			{"Record", new creativeGroup(4, "itemGroup.name.record", new Item(500, 0))},
+			{"Nature6", new creativeGroup(4, "", new ItemAir())},
 			{"Sign", new creativeGroup(4, "itemGroup.name.sign", new Item(323, 0))},
 			{"Hanging_sign", new creativeGroup(4, "itemGroup.name.hanging_sign", new Item(-500, 0))},
+			{"Nature7", new creativeGroup(4, "", new ItemAir())},
 			{"Skull", new creativeGroup(4, "itemGroup.name.skull", new Item(-968, 0))},
+			{"Nature8", new creativeGroup(4, "", new ItemAir())},
 			{"EnchantedBook", new creativeGroup(4, "itemGroup.name.enchantedBook", new Item(403, 0))},
 			{"Boat", new creativeGroup(4, "itemGroup.name.boat", new Item(333, 0))},
 			{"Chestboat", new creativeGroup(4, "itemGroup.name.chestboat", new Item(675, 0))},
 			{"Rail", new creativeGroup(4, "itemGroup.name.rail", new Item(66, 0))},
 			{"Minecart", new creativeGroup(4, "itemGroup.name.minecart", new Item(328, 0))},
+			{"Nature9", new creativeGroup(4, "", new ItemAir())},
 			{"Buttons", new creativeGroup(4, "itemGroup.name.buttons", new Item(143, 0))},
+			{"Nature10", new creativeGroup(4, "", new ItemAir())},
 			{"PressurePlate", new creativeGroup(4, "itemGroup.name.pressurePlate", new Item(72, 0))},
+			{"Nature11", new creativeGroup(4, "", new ItemAir())},
 			{"Banner", new creativeGroup(4, "itemGroup.name.banner", new Item(446, 0))},
 			{"Banner_pattern", new creativeGroup(4, "itemGroup.name.banner_pattern", new Item(434, 0))},
 			{"PotterySherds", new creativeGroup(4, "itemGroup.name.potterySherds", new Item(694, 0))},
 			{"Smithing_templates", new creativeGroup(4, "itemGroup.name.smithing_templates", new Item(717, 0))},
 			{"Firework", new creativeGroup(4, "itemGroup.name.firework", new Item(401, 0))},
 			{"FireworkStars", new creativeGroup(4, "itemGroup.name.fireworkStars", new Item(402, 0))},
+			{"Nature12", new creativeGroup(4, "", new ItemAir())},
 		};
+
 
 
 		public static Dictionary<string, List<Item>> CreativeInventoryItems = new Dictionary<string, List<Item>>() //group name, item
@@ -285,7 +316,7 @@ namespace MiNET
 					new Item(167, 0), //iron_trapdoor
 				}
 			},
-			{"Construction", new List<Item>
+			{"Construction0", new List<Item>
 				{
 					new Item(101, 0), //iron_bars
 				}
@@ -311,6 +342,253 @@ namespace MiNET
 					new Item(241, 6), //pink_stained_glass
 				}
 			},
+			{"GlassPane", new List<Item>
+				{
+					new Item(102, 0), //glass_pane
+					new Item(160, 0), //white_stained_glass_pane
+					new Item(160, 8), //light_gray_stained_glass_pane
+					new Item(160, 7), //gray_stained_glass_pane
+					new Item(160, 15), //black_stained_glass_pane
+					new Item(160, 12), //brown_stained_glass_pane
+					new Item(160, 14), //red_stained_glass_pane
+					new Item(160, 1), //orange_stained_glass_pane
+					new Item(160, 4), //yellow_stained_glass_pane
+					new Item(160, 5), //lime_stained_glass_pane
+					new Item(160, 13), //green_stained_glass_pane
+					new Item(160, 9), //cyan_stained_glass_pane
+					new Item(160, 3), //light_blue_stained_glass_pane
+					new Item(160, 11), //blue_stained_glass_pane
+					new Item(160, 10), //purple_stained_glass_pane
+					new Item(160, 2), //magenta_stained_glass_pane
+					new Item(160, 6), //pink_stained_glass_pane
+				}
+			},
+			{"Construction1", new List<Item>
+				{
+					new Item(65, 0), //ladder
+					new Item(-165, 0), //scaffolding
+				}
+			},
+			{"Slab", new List<Item>
+				{
+
+					new Item(44, 0), //smooth_stone_slab
+					new Item(-166, 2), //stone_slab
+					new Item(44, 3), //cobblestone_slab
+					new Item(182, 5), //mossy_cobblestone_slab
+					new Item(44, 2), //oak_slab
+					new Item(158, 1), //spruce_slab
+					new Item(158, 2), //birch_slab
+					new Item(158, 3), //jungle_slab
+					new Item(158, 4), //acacia_slab
+					new Item(158, 5), //dark_oak_slab
+					new Item(44, 5), //stone_brick_slab
+					new Item(-166, 0), //mossy_stone_brick_slab
+					new Item(44, 1), //sandstone_slab
+					new Item(-166, 3), //cut_sandstone_slab
+					new Item(182, 6), //smooth_sandstone_slab
+					new Item(182, 0), //red_sandstone_slab
+					new Item(-166, 4), //cut_red_sandstone_slab
+					new Item(-162, 1), //smooth_red_sandstone_slab
+					new Item(-162, 6), //granite_slab
+					new Item(-162, 7), //polished_granite_slab
+					new Item(-162, 4), //diorite_slab
+					new Item(-162, 5), //polished_diorite_slab
+					new Item(-162, 3), //andesite_slab
+					new Item(-162, 2), //polished_andesite_slab
+					new Item(44, 4), //bricks_slab
+					new Item(44, 7), //nether_brick_slab
+					new Item(182, 7), //red_nether_brick_slab
+					new Item(-162, 0), //end_stone_brick_slab
+					new Item(44, 6), //quartz_slab
+					new Item(-166, 1), //smooth_quartz_slab
+					new Item(182, 1), //purpur_slab
+					new Item(182, 2), //prismarine_slab
+					new Item(182, 3), //dark_prismarine_slab
+					new Item(182, 4), //prismarine_bricks_slab
+				}
+			},
+			{"StoneBrick", new List<Item>
+				{
+					new Item(45, 0), //brick_block
+					new Item(98, 0), //stone_bricks
+					new Item(98, 1), //mossy_stone_bricks
+					new Item(98, 2), //cracked_stone_bricks
+					new Item(98, 3), //chiseled_stone_bricks
+					new Item(206, 0), //end_stone_bricks
+					new Item(168, 2), //prismarine_bricks
+				}
+			},
+			{"Construction2", new List<Item>
+				{
+					new Item(4, 0), //cobblestone
+					new Item(48, 0), //mossy_cobblestone
+					new Item(-183, 0), //smooth_stone
+				}
+			},
+			{"Sandstone", new List<Item>
+				{
+					new Item(24, 0), //sandstone
+					new Item(24, 1), //chiseled_sandstone
+					new Item(24, 2), //cut_sandstone
+					new Item(24, 3), //smooth_sandstone
+					new Item(179, 0), //red_sandstone
+					new Item(179, 1), //chiseled_red_sandstone
+					new Item(179, 2), //cut_red_sandstone
+					new Item(179, 3), //smooth_red_sandstone
+				}
+			},
+			{"Construction3", new List<Item>
+				{
+					new Item(173, 0), //coal_block
+					new Item(-139, 0), //dried_kelp_block
+					new Item(41, 0), //gold_block
+					new Item(42, 0), //iron_block
+					new Item(133, 0), //emerald_block
+					new Item(57, 0), //diamond_block
+					new Item(22, 0), //lapis_lazuli_block
+					new Item(155, 0), //quartz_block
+					new Item(155, 2), //pillar_quartz_block
+					new Item(155, 1), //chiseled_quartz_block
+					new Item(155, 3), //smooth_quartz_block
+					new Item(168, 0), //prismarine
+					new Item(168, 1), //dark_prismarine
+					new Item(165, 0), //slime_block
+					new Item(170, 0), //haybale
+					new Item(216, 0), //bone_block
+					new Item(214, 0), //nether_wart_block
+					new Item(112, 0), //nether_brick_block
+					new Item(215, 0), //red_nether_brick
+				}
+			},
+			{"Wool", new List<Item>
+				{
+					new Item(35, 0), //white_wool
+					new Item(35, 8), //light_gray_wool
+					new Item(35, 7), //gray_wool
+					new Item(35, 15), //black_wool
+					new Item(35, 12), //brown_wool
+					new Item(35, 14), //red_wool
+					new Item(35, 1), //orange_wool
+					new Item(35, 4), //yellow_wool
+					new Item(35, 5), //lime_wool
+					new Item(35, 13), //green_wool
+					new Item(35, 9), //cyan_wool
+					new Item(35, 3), //light_blue_wool
+					new Item(35, 11), //blue_wool
+					new Item(35, 10), //purple_wool
+					new Item(35, 2), //magenta_wool
+					new Item(35, 6), //pink_wool
+				}
+			},
+			{"WoolCarpet", new List<Item>
+				{
+					new Item(171, 0), //white_carpet_carpet
+					new Item(171, 8), //light_gray_carpet
+					new Item(171, 7), //gray_carpet
+					new Item(171, 15), //black_carpet
+					new Item(171, 12), //brown_carpet
+					new Item(171, 14), //red_carpet
+					new Item(171, 1), //orange_carpet
+					new Item(171, 4), //yellow_carpet
+					new Item(171, 5), //lime_carpet
+					new Item(171, 13), //green_carpet
+					new Item(171, 9), //cyan_carpet
+					new Item(171, 3), //light_blue_carpet
+					new Item(171, 11), //blue_carpet
+					new Item(171, 10), //purple_carpet
+					new Item(171, 2), //magenta_carpet
+					new Item(171, 6), //pink_carpet
+				}
+			},          
+			{"ConcretePowder", new List<Item>
+				{
+					new Item(237, 0), //white_concrete_powder
+					new Item(237, 8), //light_gray_concrete_powder
+					new Item(237, 7), //gray_concrete_powder
+					new Item(237, 15), //black_concrete_powder
+					new Item(237, 12), //brown_concrete_powder
+					new Item(237, 14), //red_concrete_powder
+					new Item(237, 1), //orange_concrete_powder
+					new Item(237, 4), //yellow_concrete_powder
+					new Item(237, 5), //lime_concrete_powder
+					new Item(237, 13), //green_concrete_powder
+					new Item(237, 9), //cyan_concrete_powder
+					new Item(237, 3), //light_blue_concrete_powder
+					new Item(237, 11), //blue_concrete_powder
+					new Item(237, 10), //purple_concrete_powder
+					new Item(237, 2), //magenta_concrete_powder
+					new Item(237, 6), //pink_concrete_powder
+				}
+			},
+			{"Concrete", new List<Item>
+				{
+					new Item(236, 0), //white_concrete
+					new Item(236, 8), //light_gray_concrete
+					new Item(236, 7), //gray_concrete
+					new Item(236, 15), //black_concrete
+					new Item(236, 12), //brown_concrete
+					new Item(236, 14), //red_concrete
+					new Item(236, 1), //orange_concrete
+					new Item(236, 4), //yellow_concrete
+					new Item(236, 5), //lime_concrete
+					new Item(236, 13), //green_concrete
+					new Item(236, 9), //cyan_concrete
+					new Item(236, 3), //light_blue_concrete
+					new Item(236, 11), //blue_concrete
+					new Item(236, 10), //purple_concrete
+					new Item(236, 2), //magenta_concrete
+					new Item(236, 6), //pink_concrete
+				}
+			},
+			{"StainedClay", new List<Item>
+				{
+					new Item(82, 0), //clay_block
+					new Item(172, 0), //terracotta
+					new Item(159, 0), //white_terracotta
+					new Item(159, 8), //light_gray_terracotta
+					new Item(159, 7), //gray_terracotta
+					new Item(159, 15), //black_terracotta
+					new Item(159, 12), //brown_terracotta
+					new Item(159, 14), //red_terracotta
+					new Item(159, 1), //orange_terracotta
+					new Item(159, 4), //yellow_terracotta
+					new Item(159, 5), //lime_terracotta
+					new Item(159, 13), //green_terracotta
+					new Item(159, 9), //cyan_terracotta
+					new Item(159, 3), //light_blue_terracotta
+					new Item(159, 11), //blue_terracotta
+					new Item(159, 10), //purple_terracotta
+					new Item(159, 2), //magenta_terracotta
+					new Item(159, 6), //pink_terracotta
+				}
+			},
+			{"GlazedTerracotta", new List<Item>
+				{
+					new Item(220, 0), //white_glazed_terracotta
+					new Item(228, 0), //silver_glazed_terracotta
+					new Item(227, 0), //gray_glazed_terracotta
+					new Item(235, 0), //black_glazed_terracotta
+					new Item(232, 0), //brown_glazed_terracotta
+					new Item(234, 0), //red_glazed_terracotta
+					new Item(221, 0), //orange_glazed_terracotta
+					new Item(224, 0), //yellow_glazed_terracotta
+					new Item(225, 0), //lime_glazed_terracotta 
+					new Item(233, 0), //green_glazed_terracotta	
+					new Item(229, 0), //cyan_glazed_terracotta
+					new Item(223, 0), //light_blue_glazed_terracotta
+					new Item(231, 0), //blue_glazed_terracotta
+					new Item(219, 0), //purple_glazed_terracotta
+					new Item(222, 0), //magenta_glazed_terracotta
+					new Item(226, 0), //pink_glazed_terracotta
+				}
+			},
+			{"Construction5", new List<Item>
+				{
+					new Item(201, 0), //purpur_block
+					new Item(201, 2), //purpur_pillar
+				}
+			},
 		};
 
 
@@ -320,196 +598,7 @@ namespace MiNET
 			//Minecraft Bedrock Edition 1.13.0 Creative Inventory
 
 
-			new Item(102, 0), //glass_pane
-            new Item(160, 0), //white_stained_glass_pane
-			new Item(160, 8), //light_gray_stained_glass_pane
-			new Item(160, 7), //gray_stained_glass_pane
-			new Item(160, 15), //black_stained_glass_pane
-			new Item(160, 12), //brown_stained_glass_pane
-			new Item(160, 14), //red_stained_glass_pane
-			new Item(160, 1), //orange_stained_glass_pane
-			new Item(160, 4), //yellow_stained_glass_pane
-			new Item(160, 5), //lime_stained_glass_pane
-            new Item(160, 13), //green_stained_glass_pane
-			new Item(160, 9), //cyan_stained_glass_pane
-			new Item(160, 3), //light_blue_stained_glass_pane
-			new Item(160, 11), //blue_stained_glass_pane
-            new Item(160, 10), //purple_stained_glass_pane
-            new Item(160, 2), //magenta_stained_glass_pane
-            new Item(160, 6), //pink_stained_glass_pane
-            new Item(65, 0), //ladder
-            new Item(-165, 0), //scaffolding
-            new Item(44, 0), //smooth_stone_slab
-            new Item(-166, 2), //stone_slab
-            new Item(44, 3), //cobblestone_slab
-            new Item(182, 5), //mossy_cobblestone_slab
-            new Item(44, 2), //oak_slab
-            new Item(158, 1), //spruce_slab
-            new Item(158, 2), //birch_slab
-            new Item(158, 3), //jungle_slab
-            new Item(158, 4), //acacia_slab
-            new Item(158, 5), //dark_oak_slab
-            new Item(44, 5), //stone_brick_slab
-            new Item(-166, 0), //mossy_stone_brick_slab
-            new Item(44, 1), //sandstone_slab
-            new Item(-166, 3), //cut_sandstone_slab
-            new Item(182, 6), //smooth_sandstone_slab
-            new Item(182, 0), //red_sandstone_slab
-            new Item(-166, 4), //cut_red_sandstone_slab
-            new Item(-162, 1), //smooth_red_sandstone_slab
-            new Item(-162, 6), //granite_slab
-            new Item(-162, 7), //polished_granite_slab
-            new Item(-162, 4), //diorite_slab
-            new Item(-162, 5), //polished_diorite_slab
-            new Item(-162, 3), //andesite_slab
-            new Item(-162, 2), //polished_andesite_slab
-            new Item(44, 4), //bricks_slab
-            new Item(44, 7), //nether_brick_slab
-            new Item(182, 7), //red_nether_brick_slab
-            new Item(-162, 0), //end_stone_brick_slab
-            new Item(44, 6), //quartz_slab
-            new Item(-166, 1), //smooth_quartz_slab
-            new Item(182, 1), //purpur_slab
-            new Item(182, 2), //prismarine_slab
-            new Item(182, 3), //dark_prismarine_slab
-            new Item(182, 4), //prismarine_bricks_slab
-			new Item(45, 0), //brick_block
-            new Item(98, 0), //stone_bricks
-            new Item(98, 1), //mossy_stone_bricks
-            new Item(98, 2), //cracked_stone_bricks
-            new Item(98, 3), //chiseled_stone_bricks
-            new Item(206, 0), //end_stone_bricks
-            new Item(168, 2), //prismarine_bricks
-            new Item(4, 0), //cobblestone
-            new Item(48, 0), //mossy_cobblestone
-            new Item(-183, 0), //smooth_stone
-            new Item(24, 0), //sandstone
-            new Item(24, 1), //chiseled_sandstone
-            new Item(24, 2), //cut_sandstone
-            new Item(24, 3), //smooth_sandstone
-            new Item(179, 0), //red_sandstone
-            new Item(179, 1), //chiseled_red_sandstone
-            new Item(179, 2), //cut_red_sandstone
-            new Item(179, 3), //smooth_red_sandstone
-            new Item(173, 0), //coal_block
-            new Item(-139, 0), //dried_kelp_block
-            new Item(41, 0), //gold_block
-            new Item(42, 0), //iron_block
-            new Item(133, 0), //emerald_block
-            new Item(57, 0), //diamond_block
-            new Item(22, 0), //lapis_lazuli_block
-            new Item(155, 0), //quartz_block
-            new Item(155, 2), //pillar_quartz_block
-            new Item(155, 1), //chiseled_quartz_block
-            new Item(155, 3), //smooth_quartz_block
-            new Item(168, 0), //prismarine
-            new Item(168, 1), //dark_prismarine
-            new Item(165, 0), //slime_block
-            new Item(170, 0), //haybale
-            new Item(216, 0), //bone_block
-			new Item(214, 0), //nether_wart_block
-			new Item(112, 0), //nether_brick_block
-            new Item(215, 0), //red_nether_brick
-			new Item(35, 0), //white_wool
-            new Item(35, 8), //light_gray_wool
-            new Item(35, 7), //gray_wool
-            new Item(35, 15), //black_wool
-            new Item(35, 12), //brown_wool
-            new Item(35, 14), //red_wool
-            new Item(35, 1), //orange_wool
-            new Item(35, 4), //yellow_wool
-            new Item(35, 5), //lime_wool
-            new Item(35, 13), //green_wool
-            new Item(35, 9), //cyan_wool
-            new Item(35, 3), //light_blue_wool
-            new Item(35, 11), //blue_wool
-            new Item(35, 10), //purple_wool
-            new Item(35, 2), //magenta_wool
-            new Item(35, 6), //pink_wool
-            new Item(171, 0), //white_carpet_carpet
-            new Item(171, 8), //light_gray_carpet
-            new Item(171, 7), //gray_carpet
-            new Item(171, 15), //black_carpet
-            new Item(171, 12), //brown_carpet
-            new Item(171, 14), //red_carpet
-            new Item(171, 1), //orange_carpet
-            new Item(171, 4), //yellow_carpet
-            new Item(171, 5), //lime_carpet
-            new Item(171, 13), //green_carpet
-            new Item(171, 9), //cyan_carpet
-            new Item(171, 3), //light_blue_carpet
-            new Item(171, 11), //blue_carpet
-            new Item(171, 10), //purple_carpet
-            new Item(171, 2), //magenta_carpet
-            new Item(171, 6), //pink_carpet
-			new Item(237, 0), //white_concrete_powder
-            new Item(237, 8), //light_gray_concrete_powder
-            new Item(237, 7), //gray_concrete_powder
-            new Item(237, 15), //black_concrete_powder
-            new Item(237, 12), //brown_concrete_powder
-            new Item(237, 14), //red_concrete_powder
-            new Item(237, 1), //orange_concrete_powder
-            new Item(237, 4), //yellow_concrete_powder
-            new Item(237, 5), //lime_concrete_powder
-            new Item(237, 13), //green_concrete_powder
-            new Item(237, 9), //cyan_concrete_powder
-            new Item(237, 3), //light_blue_concrete_powder
-            new Item(237, 11), //blue_concrete_powder
-            new Item(237, 10), //purple_concrete_powder
-            new Item(237, 2), //magenta_concrete_powder
-            new Item(237, 6), //pink_concrete_powder
-            new Item(236, 0), //white_concrete
-            new Item(236, 8), //light_gray_concrete
-            new Item(236, 7), //gray_concrete
-            new Item(236, 15), //black_concrete
-            new Item(236, 12), //brown_concrete
-            new Item(236, 14), //red_concrete
-            new Item(236, 1), //orange_concrete
-            new Item(236, 4), //yellow_concrete
-            new Item(236, 5), //lime_concrete
-            new Item(236, 13), //green_concrete
-            new Item(236, 9), //cyan_concrete
-            new Item(236, 3), //light_blue_concrete
-            new Item(236, 11), //blue_concrete
-            new Item(236, 10), //purple_concrete
-            new Item(236, 2), //magenta_concrete
-            new Item(236, 6), //pink_concrete
-			new Item(82, 0), //clay_block
-            new Item(172, 0), //terracotta
-            new Item(159, 0), //white_terracotta
-            new Item(159, 8), //light_gray_terracotta
-            new Item(159, 7), //gray_terracotta
-            new Item(159, 15), //black_terracotta
-            new Item(159, 12), //brown_terracotta
-            new Item(159, 14), //red_terracotta
-            new Item(159, 1), //orange_terracotta
-            new Item(159, 4), //yellow_terracotta
-            new Item(159, 5), //lime_terracotta
-            new Item(159, 13), //green_terracotta
-            new Item(159, 9), //cyan_terracotta
-            new Item(159, 3), //light_blue_terracotta
-            new Item(159, 11), //blue_terracotta
-            new Item(159, 10), //purple_terracotta
-            new Item(159, 2), //magenta_terracotta
-            new Item(159, 6), //pink_terracotta
-            new Item(220, 0), //white_glazed_terracotta
-            new Item(228, 0), //silver_glazed_terracotta
-            new Item(227, 0), //gray_glazed_terracotta
-            new Item(235, 0), //black_glazed_terracotta
-            new Item(232, 0), //brown_glazed_terracotta
-            new Item(234, 0), //red_glazed_terracotta
-            new Item(221, 0), //orange_glazed_terracotta
-            new Item(224, 0), //yellow_glazed_terracotta
-            new Item(225, 0), //lime_glazed_terracotta 
-            new Item(233, 0), //green_glazed_terracotta	
-            new Item(229, 0), //cyan_glazed_terracotta
-            new Item(223, 0), //light_blue_glazed_terracotta
-            new Item(231, 0), //blue_glazed_terracotta
-            new Item(219, 0), //purple_glazed_terracotta
-            new Item(222, 0), //magenta_glazed_terracotta
-            new Item(226, 0), //pink_glazed_terracotta
-            new Item(201, 0), //purpur_block
-            new Item(201, 2), //purpur_pillar
+
             new Item(3, 0), //dirt
             new Item(3, 1), //coarse_dirt
             new Item(2, 0), //grass_block

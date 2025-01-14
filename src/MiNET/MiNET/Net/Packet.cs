@@ -888,7 +888,6 @@ namespace MiNET.Net
 				int category = ReadInt();
 				string name = ReadString();
 				Item item = ReadItem(false);
-				if(item is ItemAir) continue;
 				group.Add(new creativeGroup(category, name, item));
 			}
 
