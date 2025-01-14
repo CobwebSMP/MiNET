@@ -92,7 +92,7 @@ namespace MiNET
 
 		public static Dictionary<string, creativeGroup> CreativeGroups = new Dictionary<string, creativeGroup>()
 		{
-			//Generated code
+			//Generated with MiNET.Client (creativeGroups.txt)
 			{"Construction", new creativeGroup(1, "", new ItemAir())},
 			{"Planks", new creativeGroup(1, "itemGroup.name.planks", new Item(5, 0))},
 			{"Walls", new creativeGroup(1, "itemGroup.name.walls", new Item(139, 0))},
@@ -206,7 +206,111 @@ namespace MiNET
 					new Item(139, 12), //end_stone_wall
 					new Item(139, 13), //prismarine_wall
 				}
-			}
+			},
+			{"Fence", new List<Item>
+				{
+					new Item(85, 0), //oak_fence
+					new Item(85, 1), //spruce_fence
+					new Item(85, 2), //birch_fence
+					new Item(85, 3), //jungle_fence
+					new Item(85, 4), //acacia_fence
+					new Item(85, 5), //dark_oak_fence
+					new Item(113, 0), //nether_brick_fence
+				}
+			},
+			{"FenceGate", new List<Item>
+				{
+					new Item(107, 0), //oak_fence_gate
+					new Item(183, 0), //spruce_fence_gate
+					new Item(184, 0), //birch_fence_gate
+					new Item(185, 0), //jungle_fence_gate
+					new Item(187, 0), //acacia_fence_gate
+					new Item(186, 0), //dark_oak_fence_gate
+				}
+			},
+			{"Stairs", new List<Item>
+				{
+					new Item(-180, 0), //stone_stairs
+					new Item(67, 0), //cobblestone_stairs
+					new Item(-179, 0), //mossy_cobblestone_stairs
+					new Item(53, 0), //oak_stairs
+					new Item(134, 0), //spruce_stairs
+					new Item(135, 0), //birch_stairs
+					new Item(136, 0), //jungle_stairs
+					new Item(163, 0), //acacia_stairs
+					new Item(164, 0), //dark_oak_stairs
+					new Item(109, 0), //stone_brick_stairs
+					new Item(-175, 0), //mossy_stone_brick_stairs
+					new Item(128, 0), //sandstone_stairs
+					new Item(-177, 0), //smooth_sandstone_stairs
+					new Item(180, 0), //red_sandstone_stairs
+					new Item(-176, 0), //smooth_red_sandstone_stairs
+					new Item(-169, 0), //granite_stairs
+					new Item(-172, 0), //polished_granite_stairs
+					new Item(-170, 0), //diorite_stairs
+					new Item(-173, 0), //polished_diorite_stairs
+					new Item(-171, 0), //andesite_stairs
+					new Item(-174, 0), //polished_andesite_stairs
+					new Item(108, 0), //brick_stairs
+					new Item(114, 0), //nether_brick_stairs
+					new Item(-184, 0), //red_nether_brick_stairs
+					new Item(-178, 0), //end_stone_brick_stairs
+					new Item(156, 0), //quartz_stairs
+					new Item(-185, 0), //smooth_quartz_stairs
+					new Item(203, 0), //purpur_stairs
+					new Item(-2, 0), //prismarine_stairs
+					new Item(-3, 0), //dark_prismarine_stairs
+					new Item(-4, 0), //prismarine_brick_stairs
+				}
+			},
+			{"Doors", new List<Item>
+				{
+					new Item(324, 0), //oak_door
+					new Item(427, 0), //spruce_door
+					new Item(428, 0), //birch_door
+					new Item(429, 0), //jungle_door
+					new Item(430, 0), //acacia_door
+					new Item(431, 0), //dark_oak_door
+					new Item(330, 0), //iron_door
+				}
+			},
+			{"Trapdoor", new List<Item>
+				{
+					new Item(96, 0), //oak_trapdoor
+					new Item(-149, 0), //spruce_trapdoor
+					new Item(-146, 0), //birch_trapdoor
+					new Item(-148, 0), //jungle_trapdoor
+					new Item(-145, 0), //acacia_trapdoor
+					new Item(-147, 0), //dark_oak_trapdoor
+					new Item(167, 0), //iron_trapdoor
+				}
+			},
+			{"Construction", new List<Item>
+				{
+					new Item(101, 0), //iron_bars
+				}
+			},
+			{"Glass", new List<Item>
+				{
+					new Item(20, 0), //glass 
+					new Item(241, 0), //white_stained_glass
+					new Item(241, 8), //light_gray_stained_glass
+					new Item(241, 7), //gray_stained_glass
+					new Item(241, 15), //black_stained_glass
+					new Item(241, 12), //brown_stained_glass
+					new Item(241, 14), //red_stained_glass
+					new Item(241, 1), //orange_stained_glass
+					new Item(241, 4), //yellow_stained_glass
+					new Item(241, 5), //lime_stained_glass
+					new Item(241, 13), //green_stained_glass
+					new Item(241, 9), //cyan_stained_glass
+					new Item(241, 3), //light_blue_stained_glass
+					new Item(241, 11), //blue_stained_glass
+					new Item(241, 10), //purple_stained_glass
+					new Item(241, 2), //magenta_stained_glass
+					new Item(241, 6), //pink_stained_glass
+				}
+			},
 		};
 
 
@@ -215,82 +319,7 @@ namespace MiNET
 		{
 			//Minecraft Bedrock Edition 1.13.0 Creative Inventory
 
-			new Item(85, 0), //oak_fence
-            new Item(85, 1), //spruce_fence
-            new Item(85, 2), //birch_fence
-            new Item(85, 3), //jungle_fence
-            new Item(85, 4), //acacia_fence
-            new Item(85, 5), //dark_oak_fence
-            new Item(113, 0), //nether_brick_fence
-            new Item(107, 0), //oak_fence_gate
-            new Item(183, 0), //spruce_fence_gate
-            new Item(184, 0), //birch_fence_gate
-            new Item(185, 0), //jungle_fence_gate
-            new Item(187, 0), //acacia_fence_gate
-            new Item(186, 0), //dark_oak_fence_gate
-			new Item(-180, 0), //stone_stairs
-            new Item(67, 0), //cobblestone_stairs
-            new Item(-179, 0), //mossy_cobblestone_stairs
-            new Item(53, 0), //oak_stairs
-            new Item(134, 0), //spruce_stairs
-            new Item(135, 0), //birch_stairs
-            new Item(136, 0), //jungle_stairs
-            new Item(163, 0), //acacia_stairs
-            new Item(164, 0), //dark_oak_stairs
-            new Item(109, 0), //stone_brick_stairs
-            new Item(-175, 0), //mossy_stone_brick_stairs
-            new Item(128, 0), //sandstone_stairs
-            new Item(-177, 0), //smooth_sandstone_stairs
-            new Item(180, 0), //red_sandstone_stairs
-            new Item(-176, 0), //smooth_red_sandstone_stairs
-            new Item(-169, 0), //granite_stairs
-            new Item(-172, 0), //polished_granite_stairs
-            new Item(-170, 0), //diorite_stairs
-            new Item(-173, 0), //polished_diorite_stairs
-            new Item(-171, 0), //andesite_stairs
-            new Item(-174, 0), //polished_andesite_stairs
-            new Item(108, 0), //brick_stairs
-            new Item(114, 0), //nether_brick_stairs
-            new Item(-184, 0), //red_nether_brick_stairs
-            new Item(-178, 0), //end_stone_brick_stairs
-            new Item(156, 0), //quartz_stairs
-            new Item(-185, 0), //smooth_quartz_stairs
-            new Item(203, 0), //purpur_stairs
-            new Item(-2, 0), //prismarine_stairs
-            new Item(-3, 0), //dark_prismarine_stairs
-            new Item(-4, 0), //prismarine_brick_stairs
-			new Item(324, 0), //oak_door
-            new Item(427, 0), //spruce_door
-            new Item(428, 0), //birch_door
-            new Item(429, 0), //jungle_door
-            new Item(430, 0), //acacia_door
-            new Item(431, 0), //dark_oak_door
-            new Item(330, 0), //iron_door
-			new Item(96, 0), //oak_trapdoor
-            new Item(-149, 0), //spruce_trapdoor
-            new Item(-146, 0), //birch_trapdoor
-            new Item(-148, 0), //jungle_trapdoor
-            new Item(-145, 0), //acacia_trapdoor
-            new Item(-147, 0), //dark_oak_trapdoor
-            new Item(167, 0), //iron_trapdoor
-            new Item(101, 0), //iron_bars
-			new Item(20, 0), //glass 
-            new Item(241, 0), //white_stained_glass
-			new Item(241, 8), //light_gray_stained_glass
-			new Item(241, 7), //gray_stained_glass
-			new Item(241, 15), //black_stained_glass
-			new Item(241, 12), //brown_stained_glass
-			new Item(241, 14), //red_stained_glass
-			new Item(241, 1), //orange_stained_glass
-			new Item(241, 4), //yellow_stained_glass
-			new Item(241, 5), //lime_stained_glass
-            new Item(241, 13), //green_stained_glass
-			new Item(241, 9), //cyan_stained_glass
-			new Item(241, 3), //light_blue_stained_glass
-			new Item(241, 11), //blue_stained_glass
-            new Item(241, 10), //purple_stained_glass
-            new Item(241, 2), //magenta_stained_glass
-            new Item(241, 6), //pink_stained_glass
+
 			new Item(102, 0), //glass_pane
             new Item(160, 0), //white_stained_glass_pane
 			new Item(160, 8), //light_gray_stained_glass_pane

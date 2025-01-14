@@ -224,7 +224,7 @@ namespace MiNET.Client
 			var writer2 = new IndentedTextWriter(new StreamWriter(file2), "\t");
 			writer2.WriteLine("public static Dictionary<string, creativeGroup> CreativeGroups = new Dictionary<string, creativeGroup>()");
 			writer2.WriteLine("		{");
-			writer2.WriteLine("			//Generated code");
+			writer2.WriteLine("			//Generated with MiNET.Client (creativeGroups.txt)");
 
 			var lastCategory = 0;
 			foreach (var group in message.groups)
