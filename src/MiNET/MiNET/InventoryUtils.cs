@@ -1279,368 +1279,474 @@ namespace MiNET
 					new Item(441, 41), //lingering_potion_slowFalling
 				}
 			},
-		};
-
-
-		// GENERATED CODE. DON'T EDIT BY HAND
-		public static List<Item> CreativeInventoryItemsOLD = new List<Item>()
-		{
-			//Minecraft Bedrock Edition 1.13.0 Creative Inventory
-
-			new Item(280, 0), //stick
-            new Item(355, 0), //bed_white
-            new Item(355, 8), //bed_light_gray
-            new Item(355, 7), //bed_gray
-            new Item(355, 15), //bed_black
-            new Item(355, 12), //bed_brown
-            new Item(355, 14), //bed_red
-            new Item(355, 1), //bed_oraange
-            new Item(355, 4), //bed_yellow
-            new Item(355, 5), //bed_lime
-            new Item(355, 13), //bed_green
-            new Item(355, 9), //bed_cyan
-            new Item(355, 3), //bed_light_blue
-            new Item(355, 11), //bed_blue
-            new Item(355, 10), //bed_purple
-            new Item(355, 2), //bed_magenta
-            new Item(355, 6), //bed_pink
-			new Item(50, 0), //torch
-            new Item(-156, 0), //sea_pickle
-            new Item(-208, 0), //lantern
-            new Item(58, 0), //crafting_table
-            new Item(-200, 0), //cartography_table
-            new Item(-201, 0), //fletching_table
-            new Item(-202, 0), //smithing_table
-            new Item(720, 0), //campfire
-            new Item(61, 0), //furnace
-            new Item(-196, 0), //blast_furnace
-            new Item(-198, 0), //smoker
-            new Item(379, 0), //brewing_stand
-            new Item(145, 0), //anvil
-            new Item(145, 4), //slightly_damaged_anvil
-            new Item(145, 8), //very_damaged_anvil
-            new Item(-195, 0), //grindstone
-            new Item(116, 0), //enchantment_table
-            new Item(47, 0), //bookshelf
-            new Item(-194, 0), //lectern
-            new Item(380, 0), //cauldron
-            new Item(-213, 0), //composter
-            new Item(54, 0), //chest
-            new Item(146, 0), //trapped_chest
-            new Item(130, 0), //ender_chest
-            new Item(-203, 0), //barrel
-			new Item(205, 0), //shulker_box
-            new Item(218, 0), //white_shulker_box
-            new Item(218, 8), //light_gray_shulker_box
-            new Item(218, 7), //gray_shulker_box
-            new Item(218, 15), //black_shulker_box
-            new Item(218, 12), //brown_shulker_box
-            new Item(218, 14), //red_shulker_box
-            new Item(218, 1), //orange_shulker_box
-            new Item(218, 4), //yellow_shulker_box
-            new Item(218, 5), //lime_shulker_box
-            new Item(218, 13), //green_shulker_box
-            new Item(218, 9), //cyan_shulker_box
-            new Item(218, 3), //light_blue_shulker_box
-            new Item(218, 11), //blue_shulker_box
-            new Item(218, 10), //purple_shulker_box
-            new Item(218, 2), //magenta_shulker_box
-            new Item(218, 6), //pink_shulker_box
-			new Item(425, 0), //armor_stand
-            new Item(25, 0), //note_block
-            new Item(84, 0), //jukebox
-            new Item(500, 0), //music_disc_13
-            new Item(501, 0), //music_disc_cat
-            new Item(502, 0), //music_disc_blocks
-            new Item(503, 0), //music_disc_chirp
-            new Item(504, 0), //music_disc_far
-            new Item(505, 0), //music_disc_mall
-            new Item(506, 0), //music_disc_mellohi
-            new Item(507, 0), //music_disc_stal
-            new Item(508, 0), //music_disc_strad
-            new Item(509, 0), //music_disc_ward
-            new Item(510, 0), //music_disc_11
-            new Item(511, 0), //music_disc_wait
-            new Item(348, 0), //glowstone_dust
-            new Item(89, 0), //glowstone
-            new Item(123, 0), //redstone_lamp
-            new Item(169, 0), //sea_lantern
-            new Item(323, 0), //oak_sign
-            new Item(472, 0), //spruce_sign
-            new Item(473, 0), //birch_sign
-            new Item(474, 0), //jungle_sign
-            new Item(475, 0), //acacia_sign
-            new Item(476, 0), //dark_oak_sign
-            new Item(321, 0), //painting
-            new Item(389, 0), //item_frame
-            new Item(390, 0), //flower_pot
-            new Item(281, 0), //bowl
-			new Item(325, 0), //bucket
-            new Item(325, 1), //milk
-            new Item(325, 8), //water_bucket
-            new Item(325, 10), //lava_bucket
-            new Item(325, 2), //bucket_of_cod
-            new Item(325, 3), //bucket_of_salmon
-            new Item(325, 4), //bucket_of_tropical_fish
-			new Item(325, 5), //bucket_of_pufferfish
-            new Item(397, 3), //head
-            new Item(397, 2), //zombie_head
-            new Item(397, 4), //creeper_head
-            new Item(397, 5), //dragon_head
-            new Item(397, 0), //skeleton_skull
-            new Item(397, 1), //wither_skeleton_skull
-            new Item(138, 0), //beacon
-            new Item(-206, 0), //bell
-            new Item(-157, 0), //conduit
-            new Item(-197, 0), //stonecutter
-            new Item(120, 0), //end_portal_frame
-            new Item(263, 0), //coal
-            new Item(263, 1), //charcoal
-            new Item(264, 0), //diamond
-            new Item(452, 0), //iron_nugget
-            new Item(265, 0), //iron_ingot
-            new Item(371, 0), //gold_nugget
-            new Item(266, 0), //gold_ingot
-            new Item(388, 0), //emerald
-            new Item(406, 0), //quartz
-            new Item(337, 0), //clay_ball
-            new Item(336, 0), //brick
-            new Item(405, 0), //netherbrick
-            new Item(409, 0), //prismarine_shard
-            new Item(422, 0), //prismarine_crystals
-            new Item(465, 0), //nautilus_shell
-            new Item(467, 0), //heart_of_the_sea
-            new Item(468, 0), //scute
-            new Item(470, 0), //phantom_membrane
-            new Item(287, 0), //string
-            new Item(288, 0), //feather
-            new Item(318, 0), //flint
-            new Item(289, 0), //gunpowder
-            new Item(334, 0), //leather
-            new Item(415, 0), //rabbit_hide
-            new Item(414, 0), //rabbits_foot
-            new Item(385, 0), //fire_charge
-            new Item(369, 0), //blaze_rod
-            new Item(377, 0), //blaze_powder
-            new Item(378, 0), //magma_cream
-            new Item(376, 0), //fermented_spider_eye
-            new Item(437, 0), //dragon_breath
-            new Item(445, 0), //shulker_shell
-            new Item(370, 0), //ghast_tear
-            new Item(341, 0), //slime_ball
-            new Item(368, 0), //ender_pearl
-            new Item(381, 0), //ender_eye
-            new Item(399, 0), //nether_star
-            new Item(208, 0), //end_rod
-            new Item(426, 0), //end_crystal
-            new Item(339, 0), //paper
-            new Item(340, 0), //book
-            new Item(386, 0), //book_and_quill
-			new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 1) } } } }, //enchanted_book_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 2) } } } }, //enchanted_book_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 3) } } } }, //enchanted_book_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 4) } } } }, //enchanted_book_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 1) } } } }, //enchanted_book_fire_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 2) } } } }, //enchanted_book_fire_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 3) } } } }, //enchanted_book_fire_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 4) } } } }, //enchanted_book_fire_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 1) } } } }, //enchanted_book_feather_falling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 2) } } } }, //enchanted_book_feather_falling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 3) } } } }, //enchanted_book_feather_falling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 4) } } } }, //enchanted_book_feather_falling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 1) } } } }, //enchanted_book_blast_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 2) } } } }, //enchanted_book_blast_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 3) } } } }, //enchanted_book_blast_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 4) } } } }, //enchanted_book_blast_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 1) } } } }, //enchanted_book_projectile_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 2) } } } }, //enchanted_book_projectile_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 3) } } } }, //enchanted_book_projectile_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 4) } } } }, //enchanted_book_projectile_protection
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 1) } } } }, //enchanted_book_thorns
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 2) } } } }, //enchanted_book_thorns
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 3) } } } }, //enchanted_book_thorns
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 1) } } } }, //enchanted_book_respiration
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 2) } } } }, //enchanted_book_respiration
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 3) } } } }, //enchanted_book_respiration
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 1) } } } }, //enchanted_book_depth_strider
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 2) } } } }, //enchanted_book_depth_strider
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 3) } } } }, //enchanted_book_depth_strider
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 8), new NbtShort("lvl", 1) } } } }, //enchanted_book_aqua_affinity
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 1) } } } }, //enchanted_book_sharpness
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 2) } } } }, //enchanted_book_sharpness
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 3) } } } }, //enchanted_book_sharpness
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 4) } } } }, //enchanted_book_sharpness
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 5) } } } }, //enchanted_book_sharpness
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 1) } } } }, //enchanted_book_smite
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 2) } } } }, //enchanted_book_smite
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 3) } } } }, //enchanted_book_smite
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 4) } } } }, //enchanted_book_smite
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 5) } } } }, //enchanted_book_smite
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 1) } } } }, //enchanted_book_bane_of_arthropods
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 2) } } } }, //enchanted_book_bane_of_arthropods
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 3) } } } }, //enchanted_book_bane_of_arthropods
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 4) } } } }, //enchanted_book_bane_of_arthropods
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 5) } } } }, //enchanted_book_bane_of_arthropods
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 12), new NbtShort("lvl", 1) } } } }, //enchanted_book_knockback
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 12), new NbtShort("lvl", 2) } } } }, //enchanted_book_knockback
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 13), new NbtShort("lvl", 1) } } } }, //enchanted_book_fire_aspect
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 13), new NbtShort("lvl", 2) } } } }, //enchanted_book_fire_aspect
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 1) } } } }, //enchanted_book_looting
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 2) } } } }, //enchanted_book_looting
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 3) } } } }, //enchanted_book_looting
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 1) } } } }, //enchanted_book_efficiency
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 2) } } } }, //enchanted_book_efficiency
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 3) } } } }, //enchanted_book_efficiency
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 4) } } } }, //enchanted_book_efficiency
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 5) } } } }, //enchanted_book_efficiency
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 16), new NbtShort("lvl", 1) } } } }, //enchanted_book_silk_touch
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 1) } } } }, //enchanted_book_unbreaking
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 2) } } } }, //enchanted_book_unbreaking
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 3) } } } }, //enchanted_book_unbreaking
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 1) } } } }, //enchanted_book_fortune
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 2) } } } }, //enchanted_book_fortune
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 3) } } } }, //enchanted_book_fortune
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 1) } } } }, //enchanted_book_power
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 2) } } } }, //enchanted_book_power
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 3) } } } }, //enchanted_book_power
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 4) } } } }, //enchanted_book_power
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 5) } } } }, //enchanted_book_power
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 20), new NbtShort("lvl", 1) } } } }, //enchanted_book_punch
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 20), new NbtShort("lvl", 2) } } } }, //enchanted_book_punch
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 21), new NbtShort("lvl", 1) } } } }, //enchanted_book_flame
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 22), new NbtShort("lvl", 1) } } } }, //enchanted_book_infinity
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 1) } } } }, //enchanted_book_luck_of_the_sea
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 2) } } } }, //enchanted_book_luck_of_the_sea
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 3) } } } }, //enchanted_book_luck_of_the_sea
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 1) } } } }, //enchanted_book_lure
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 2) } } } }, //enchanted_book_lure
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 3) } } } }, //enchanted_book_lure
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 25), new NbtShort("lvl", 1) } } } }, //enchanted_book_frost_walker
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 25), new NbtShort("lvl", 2) } } } }, //enchanted_book_frost_walker
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 26), new NbtShort("lvl", 1) } } } }, //enchanted_book_mending
-			new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 1) } } } }, //enchanted_book_impaling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 2) } } } }, //enchanted_book_impaling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 3) } } } }, //enchanted_book_impaling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 4) } } } }, //enchanted_book_impaling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 5) } } } }, //enchanted_book_impaling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 1) } } } }, //enchanted_book_riptide
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 2) } } } }, //enchanted_book_riptide
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 3) } } } }, //enchanted_book_riptide
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 1) } } } }, //enchanted_book_loyalty
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 2) } } } }, //enchanted_book_loyalty
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 3) } } } }, //enchanted_book_loyalty
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 32), new NbtShort("lvl", 1) } } } }, //enchanted_book_channeling
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 33), new NbtShort("lvl", 1) } } } }, //enchanted_book_multishot
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 1) } } } }, //enchanted_book_piercing
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 2) } } } }, //enchanted_book_piercing
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 3) } } } }, //enchanted_book_piercing
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 4) } } } }, //enchanted_book_piercing
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 1) } } } }, //enchanted_book_quick_charge
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 2) } } } }, //enchanted_book_quick_charge
-            new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 3) } } } }, //enchanted_book_quick_charge
-			new Item(333, 0), //boat_oak
-            new Item(333, 1), //boat_spruce
-            new Item(333, 2), //boat_birch
-            new Item(333, 3), //boat_jungle
-            new Item(333, 4), //boat_acacia
-            new Item(333, 5), //boat_dark_oak
-            new Item(66, 0), //rail
-            new Item(27, 0), //powered_rail
-            new Item(28, 0), //detector_rail
-            new Item(126, 0), //activator_rail
-            new Item(328, 0), //minecart
-            new Item(342, 0), //chest_minecart
-            new Item(408, 0), //hopper_minecart
-            new Item(407, 0), //tnt_minecart
-            new Item(331, 0), //redstone
-            new Item(152, 0), //redstone_block
-            new Item(76, 0), //redstone_torch
-            new Item(69, 0), //lever
-            new Item(143, 0), //oak_button
-            new Item(-144, 0), //spruce_button
-            new Item(-141, 0), //birch_button
-            new Item(-143, 0), //jungle_button
-            new Item(-140, 0), //acacia_button
-            new Item(-142, 0), //dark_oak_button
-            new Item(77, 0), //stone_button
-            new Item(131, 0), //tripwire_hook
-            new Item(72, 0), //oak_pressure_plate
-            new Item(-154, 0), //spruce_pressure_plate
-            new Item(-151, 0), //birch_pressure_plate
-            new Item(-153, 0), //jungle_pressure_plate
-            new Item(-150, 0), //acacia_pressure_plate
-            new Item(-152, 0), //dark_oak_pressure_plate
-            new Item(70, 0), //stone_pressure_plate
-            new Item(147, 0), //light_weight_pressure_plate
-            new Item(148, 0), //heavy_weight_pressure_plate
-            new Item(251, 0), //observer
-            new Item(151, 0), //daylight_sensor
-            new Item(356, 0), //repeater
-            new Item(404, 0), //comparator
-            new Item(410, 0), //hopper
-            new Item(125, 0), //dropper
-            new Item(23, 0), //dispenser
-            new Item(33, 0), //piston
-            new Item(29, 0), //sticky_piston
-            new Item(46, 0), //tnt
-            new Item(421, 0), //name_tag
-            new Item(-204, 0), //loom
-			new Item(446, 0), //banner_white
-            new Item(446, 8), //banner_light_gray
-            new Item(446, 7), //banner_gray
-            new Item(446, 15), //banner_black
-            new Item(446, 12), //banner_brown
-            new Item(446, 14), //banner_red
-            new Item(446, 1), //banner_orange
-            new Item(446, 4), //banner_yellow
-            new Item(446, 5), //banner_lime
-            new Item(446, 13), //banner_green
-            new Item(446, 9), //banner_cyan
-            new Item(446, 3), //banner_light_blue
-            new Item(446, 11), //banner_blue
-            new Item(446, 10), //banner_purple
-            new Item(446, 2), //banner_magenta
-            new Item(446, 6), //banner_pink
-            new Item(446, 15){ ExtraData = new NbtCompound { new NbtInt("Type", 1) } }, //illager_banner
-            new Item(434, 0), //banner_pattern
-            new Item(434, 1), //banner_pattern
-            new Item(434, 2), //banner_pattern
-            new Item(434, 3), //banner_pattern
-            new Item(434, 4), //banner_pattern
-            new Item(434, 5), //banner_pattern
-			new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)0), new NbtByte("Flight") } } }, //firework_rocket
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{0}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_white
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{8}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_light_gray
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{7}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_gray
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{15}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_black
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{12}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_brown
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{14}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_red
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{1}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_orange
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{4}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_yellow
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{5}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_lime
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{13}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_green
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{9}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_cyan
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{3}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_light_blue
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{11}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_blue
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{10}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_purple
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{2}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_magenta
-            new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{6}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_pink
-            new Item(402, 0){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{0}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -14869215) } }, //firework_star_white
-            new Item(402, 8){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{8}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12103854) } }, //firework_star_light_gray
-            new Item(402, 7){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{7}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -6447721) } }, //firework_star_gray
-            new Item(402, 15){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{15}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -986896) } }, //firework_star_black
-            new Item(402, 12){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{12}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12930086) } }, //firework_star_brown
-            new Item(402, 14){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{14}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -425955) } }, //firework_star_red
-            new Item(402, 1){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{1}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -5231066) } }, //firework_star_orange
-            new Item(402, 4){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{4}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12827478) } }, //firework_star_yellow
-            new Item(402, 5){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{5}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -7785800) } }, //firework_star_lime
-            new Item(402, 13){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{13}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -3715395) } }, //firework_star_green
-            new Item(402, 9){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{9}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -816214) } }, //firework_star_cyan
-            new Item(402, 3){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{3}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -8170446) } }, //firework_star_light_blue
-            new Item(402, 11){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{11}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -75715) } }, //firework_star_blue
-            new Item(402, 10){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{10}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -8337633) } }, //firework_star_purple
-            new Item(402, 2){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{2}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -10585066) } }, //firework_star_magenta
-            new Item(402, 6){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{6}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -15295332) } }, //firework_star_pink
+			{"Items0", new List<Item>
+				{
+					new Item(280, 0), //stick
+				}
+			},
+			{"Bed", new List<Item>
+				{
+					new Item(355, 0), //bed_white
+					new Item(355, 8), //bed_light_gray
+					new Item(355, 7), //bed_gray
+					new Item(355, 15), //bed_black
+					new Item(355, 12), //bed_brown
+					new Item(355, 14), //bed_red
+					new Item(355, 1), //bed_oraange
+					new Item(355, 4), //bed_yellow
+					new Item(355, 5), //bed_lime
+					new Item(355, 13), //bed_green
+					new Item(355, 9), //bed_cyan
+					new Item(355, 3), //bed_light_blue
+					new Item(355, 11), //bed_blue
+					new Item(355, 10), //bed_purple
+					new Item(355, 2), //bed_magenta
+					new Item(355, 6), //bed_pink
+				}
+			},
+			{"Items1", new List<Item>
+				{
+					new Item(50, 0), //torch
+					new Item(-156, 0), //sea_pickle
+					new Item(-208, 0), //lantern
+					new Item(58, 0), //crafting_table
+					new Item(-200, 0), //cartography_table
+					new Item(-201, 0), //fletching_table
+					new Item(-202, 0), //smithing_table
+					new Item(720, 0), //campfire
+					new Item(61, 0), //furnace
+					new Item(-196, 0), //blast_furnace
+					new Item(-198, 0), //smoker
+					new Item(379, 0), //brewing_stand
+				}
+			},
+			{"Anvil", new List<Item>
+				{
+					new Item(145, 0), //anvil
+					new Item(145, 4), //slightly_damaged_anvil
+					new Item(145, 8), //very_damaged_anvil
+				}
+			},
+			{"Items3", new List<Item>
+				{
+					new Item(-195, 0), //grindstone
+					new Item(116, 0), //enchantment_table
+					new Item(47, 0), //bookshelf
+					new Item(-194, 0), //lectern
+					new Item(380, 0), //cauldron
+					new Item(-213, 0), //composter
+				}
+			},
+			{"Chest", new List<Item>
+				{
+					new Item(54, 0), //chest
+					new Item(146, 0), //trapped_chest
+					new Item(130, 0), //ender_chest
+				}
+			},
+			{"Items4", new List<Item>
+				{
+					new Item(-203, 0), //barrel
+				}
+			},
+			{"ShulkerBox", new List<Item>
+				{
+					new Item(205, 0), //shulker_box
+					new Item(218, 0), //white_shulker_box
+					new Item(218, 8), //light_gray_shulker_box
+					new Item(218, 7), //gray_shulker_box
+					new Item(218, 15), //black_shulker_box
+					new Item(218, 12), //brown_shulker_box
+					new Item(218, 14), //red_shulker_box
+					new Item(218, 1), //orange_shulker_box
+					new Item(218, 4), //yellow_shulker_box
+					new Item(218, 5), //lime_shulker_box
+					new Item(218, 13), //green_shulker_box
+					new Item(218, 9), //cyan_shulker_box
+					new Item(218, 3), //light_blue_shulker_box
+					new Item(218, 11), //blue_shulker_box
+					new Item(218, 10), //purple_shulker_box
+					new Item(218, 2), //magenta_shulker_box
+					new Item(218, 6), //pink_shulker_box
+				}
+			},
+			{"Items5", new List<Item>
+				{
+					new Item(425, 0), //armor_stand
+					new Item(25, 0), //note_block
+					new Item(84, 0), //jukebox
+				}
+			},
+			{"Record", new List<Item>
+				{
+					new Item(500, 0), //music_disc_13
+					new Item(501, 0), //music_disc_cat
+					new Item(502, 0), //music_disc_blocks
+					new Item(503, 0), //music_disc_chirp
+					new Item(504, 0), //music_disc_far
+					new Item(505, 0), //music_disc_mall
+					new Item(506, 0), //music_disc_mellohi
+					new Item(507, 0), //music_disc_stal
+					new Item(508, 0), //music_disc_strad
+					new Item(509, 0), //music_disc_ward
+					new Item(510, 0), //music_disc_11
+					new Item(511, 0), //music_disc_wait
+				}
+			},
+			{"Items6", new List<Item>
+				{
+					new Item(348, 0), //glowstone_dust
+					new Item(89, 0), //glowstone
+					new Item(123, 0), //redstone_lamp
+					new Item(169, 0), //sea_lantern
+				}
+			},
+			{"Sign", new List<Item>
+				{
+					new Item(323, 0), //oak_sign
+					new Item(472, 0), //spruce_sign
+					new Item(473, 0), //birch_sign
+					new Item(474, 0), //jungle_sign
+					new Item(475, 0), //acacia_sign
+					new Item(476, 0), //dark_oak_sign
+				}
+			},
+			{"Items7", new List<Item>
+				{
+					new Item(321, 0), //painting
+					new Item(389, 0), //item_frame
+					new Item(390, 0), //flower_pot
+					new Item(281, 0), //bowl
+					new Item(325, 0), //bucket
+					new Item(325, 1), //milk
+					new Item(325, 8), //water_bucket
+					new Item(325, 10), //lava_bucket
+					new Item(325, 2), //bucket_of_cod
+					new Item(325, 3), //bucket_of_salmon
+					new Item(325, 4), //bucket_of_tropical_fish
+					new Item(325, 5), //bucket_of_pufferfish
+				}
+			},
+			{"Skull", new List<Item>
+				{
+					new Item(397, 3), //head
+					new Item(397, 2), //zombie_head
+					new Item(397, 4), //creeper_head
+					new Item(397, 5), //dragon_head
+					new Item(397, 0), //skeleton_skull
+					new Item(397, 1), //wither_skeleton_skull
+				}
+			},
+			{"Items8", new List<Item>
+				{
+					new Item(138, 0), //beacon
+					new Item(-206, 0), //bell
+					new Item(-157, 0), //conduit
+					new Item(-197, 0), //stonecutter
+					new Item(120, 0), //end_portal_frame
+					new Item(263, 0), //coal
+					new Item(263, 1), //charcoal
+					new Item(264, 0), //diamond
+					new Item(452, 0), //iron_nugget
+					new Item(265, 0), //iron_ingot
+					new Item(371, 0), //gold_nugget
+					new Item(266, 0), //gold_ingot
+					new Item(388, 0), //emerald
+					new Item(406, 0), //quartz
+					new Item(337, 0), //clay_ball
+					new Item(336, 0), //brick
+					new Item(405, 0), //netherbrick
+					new Item(409, 0), //prismarine_shard
+					new Item(422, 0), //prismarine_crystals
+					new Item(465, 0), //nautilus_shell
+					new Item(467, 0), //heart_of_the_sea
+					new Item(468, 0), //scute
+					new Item(470, 0), //phantom_membrane
+					new Item(287, 0), //string
+					new Item(288, 0), //feather
+					new Item(318, 0), //flint
+					new Item(289, 0), //gunpowder
+					new Item(334, 0), //leather
+					new Item(415, 0), //rabbit_hide
+					new Item(414, 0), //rabbits_foot
+					new Item(385, 0), //fire_charge
+					new Item(369, 0), //blaze_rod
+					new Item(377, 0), //blaze_powder
+					new Item(378, 0), //magma_cream
+					new Item(376, 0), //fermented_spider_eye
+					new Item(437, 0), //dragon_breath
+					new Item(445, 0), //shulker_shell
+					new Item(370, 0), //ghast_tear
+					new Item(341, 0), //slime_ball
+					new Item(368, 0), //ender_pearl
+					new Item(381, 0), //ender_eye
+					new Item(399, 0), //nether_star
+					new Item(208, 0), //end_rod
+					new Item(426, 0), //end_crystal
+					new Item(339, 0), //paper
+					new Item(340, 0), //book
+					new Item(386, 0), //book_and_quill
+				}
+			},
+			{"EnchantedBook", new List<Item>
+				{
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 1) } } } }, //enchanted_book_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 2) } } } }, //enchanted_book_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 3) } } } }, //enchanted_book_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 0), new NbtShort("lvl", 4) } } } }, //enchanted_book_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 1) } } } }, //enchanted_book_fire_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 2) } } } }, //enchanted_book_fire_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 3) } } } }, //enchanted_book_fire_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 1), new NbtShort("lvl", 4) } } } }, //enchanted_book_fire_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 1) } } } }, //enchanted_book_feather_falling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 2) } } } }, //enchanted_book_feather_falling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 3) } } } }, //enchanted_book_feather_falling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 2), new NbtShort("lvl", 4) } } } }, //enchanted_book_feather_falling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 1) } } } }, //enchanted_book_blast_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 2) } } } }, //enchanted_book_blast_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 3) } } } }, //enchanted_book_blast_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 3), new NbtShort("lvl", 4) } } } }, //enchanted_book_blast_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 1) } } } }, //enchanted_book_projectile_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 2) } } } }, //enchanted_book_projectile_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 3) } } } }, //enchanted_book_projectile_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 4), new NbtShort("lvl", 4) } } } }, //enchanted_book_projectile_protection
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 1) } } } }, //enchanted_book_thorns
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 2) } } } }, //enchanted_book_thorns
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 5), new NbtShort("lvl", 3) } } } }, //enchanted_book_thorns
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 1) } } } }, //enchanted_book_respiration
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 2) } } } }, //enchanted_book_respiration
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 6), new NbtShort("lvl", 3) } } } }, //enchanted_book_respiration
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 1) } } } }, //enchanted_book_depth_strider
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 2) } } } }, //enchanted_book_depth_strider
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 7), new NbtShort("lvl", 3) } } } }, //enchanted_book_depth_strider
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 8), new NbtShort("lvl", 1) } } } }, //enchanted_book_aqua_affinity
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 1) } } } }, //enchanted_book_sharpness
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 2) } } } }, //enchanted_book_sharpness
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 3) } } } }, //enchanted_book_sharpness
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 4) } } } }, //enchanted_book_sharpness
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 9), new NbtShort("lvl", 5) } } } }, //enchanted_book_sharpness
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 1) } } } }, //enchanted_book_smite
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 2) } } } }, //enchanted_book_smite
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 3) } } } }, //enchanted_book_smite
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 4) } } } }, //enchanted_book_smite
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 10), new NbtShort("lvl", 5) } } } }, //enchanted_book_smite
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 1) } } } }, //enchanted_book_bane_of_arthropods
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 2) } } } }, //enchanted_book_bane_of_arthropods
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 3) } } } }, //enchanted_book_bane_of_arthropods
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 4) } } } }, //enchanted_book_bane_of_arthropods
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 11), new NbtShort("lvl", 5) } } } }, //enchanted_book_bane_of_arthropods
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 12), new NbtShort("lvl", 1) } } } }, //enchanted_book_knockback
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 12), new NbtShort("lvl", 2) } } } }, //enchanted_book_knockback
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 13), new NbtShort("lvl", 1) } } } }, //enchanted_book_fire_aspect
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 13), new NbtShort("lvl", 2) } } } }, //enchanted_book_fire_aspect
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 1) } } } }, //enchanted_book_looting
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 2) } } } }, //enchanted_book_looting
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 14), new NbtShort("lvl", 3) } } } }, //enchanted_book_looting
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 1) } } } }, //enchanted_book_efficiency
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 2) } } } }, //enchanted_book_efficiency
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 3) } } } }, //enchanted_book_efficiency
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 4) } } } }, //enchanted_book_efficiency
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 15), new NbtShort("lvl", 5) } } } }, //enchanted_book_efficiency
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 16), new NbtShort("lvl", 1) } } } }, //enchanted_book_silk_touch
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 1) } } } }, //enchanted_book_unbreaking
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 2) } } } }, //enchanted_book_unbreaking
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 17), new NbtShort("lvl", 3) } } } }, //enchanted_book_unbreaking
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 1) } } } }, //enchanted_book_fortune
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 2) } } } }, //enchanted_book_fortune
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 18), new NbtShort("lvl", 3) } } } }, //enchanted_book_fortune
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 1) } } } }, //enchanted_book_power
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 2) } } } }, //enchanted_book_power
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 3) } } } }, //enchanted_book_power
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 4) } } } }, //enchanted_book_power
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 19), new NbtShort("lvl", 5) } } } }, //enchanted_book_power
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 20), new NbtShort("lvl", 1) } } } }, //enchanted_book_punch
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 20), new NbtShort("lvl", 2) } } } }, //enchanted_book_punch
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 21), new NbtShort("lvl", 1) } } } }, //enchanted_book_flame
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 22), new NbtShort("lvl", 1) } } } }, //enchanted_book_infinity
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 1) } } } }, //enchanted_book_luck_of_the_sea
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 2) } } } }, //enchanted_book_luck_of_the_sea
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 23), new NbtShort("lvl", 3) } } } }, //enchanted_book_luck_of_the_sea
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 1) } } } }, //enchanted_book_lure
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 2) } } } }, //enchanted_book_lure
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 24), new NbtShort("lvl", 3) } } } }, //enchanted_book_lure
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 25), new NbtShort("lvl", 1) } } } }, //enchanted_book_frost_walker
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 25), new NbtShort("lvl", 2) } } } }, //enchanted_book_frost_walker
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 26), new NbtShort("lvl", 1) } } } }, //enchanted_book_mending
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 1) } } } }, //enchanted_book_impaling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 2) } } } }, //enchanted_book_impaling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 3) } } } }, //enchanted_book_impaling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 4) } } } }, //enchanted_book_impaling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 29), new NbtShort("lvl", 5) } } } }, //enchanted_book_impaling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 1) } } } }, //enchanted_book_riptide
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 2) } } } }, //enchanted_book_riptide
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 30), new NbtShort("lvl", 3) } } } }, //enchanted_book_riptide
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 1) } } } }, //enchanted_book_loyalty
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 2) } } } }, //enchanted_book_loyalty
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 31), new NbtShort("lvl", 3) } } } }, //enchanted_book_loyalty
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 32), new NbtShort("lvl", 1) } } } }, //enchanted_book_channeling
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 33), new NbtShort("lvl", 1) } } } }, //enchanted_book_multishot
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 1) } } } }, //enchanted_book_piercing
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 2) } } } }, //enchanted_book_piercing
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 3) } } } }, //enchanted_book_piercing
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 34), new NbtShort("lvl", 4) } } } }, //enchanted_book_piercing
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 1) } } } }, //enchanted_book_quick_charge
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 2) } } } }, //enchanted_book_quick_charge
+					new Item(403, 0){ ExtraData = new NbtCompound { new NbtList("ench", (NbtTagType)10) { new NbtCompound { new NbtShort("id", 35), new NbtShort("lvl", 3) } } } }, //enchanted_book_quick_charge
+				}
+			},
+			{"Boat", new List<Item>
+				{
+				new Item(333, 0), //boat_oak
+				new Item(333, 1), //boat_spruce
+				new Item(333, 2), //boat_birch
+				new Item(333, 3), //boat_jungle
+				new Item(333, 4), //boat_acacia
+				new Item(333, 5), //boat_dark_oak
+				}
+			},
+			{"Rail", new List<Item>
+				{
+				new Item(66, 0), //rail
+				new Item(27, 0), //powered_rail
+				new Item(28, 0), //detector_rail
+				new Item(126, 0), //activator_rail
+				}
+			},
+			{"Minecart", new List<Item>
+				{
+					new Item(328, 0), //minecart
+					new Item(342, 0), //chest_minecart
+					new Item(408, 0), //hopper_minecart
+					new Item(407, 0), //tnt_minecart
+				}
+			},
+			{"Items9", new List<Item>
+				{
+					new Item(331, 0), //redstone
+					new Item(152, 0), //redstone_block
+					new Item(76, 0), //redstone_torch
+					new Item(69, 0), //lever
+				}
+			},
+			{"Buttons", new List<Item>
+				{
+					new Item(143, 0), //oak_button
+					new Item(-144, 0), //spruce_button
+					new Item(-141, 0), //birch_button
+					new Item(-143, 0), //jungle_button
+					new Item(-140, 0), //acacia_button
+					new Item(-142, 0), //dark_oak_button
+					new Item(77, 0), //stone_button
+				}
+			},
+			{"Items10", new List<Item>
+				{
+					new Item(131, 0), //tripwire_hook
+				}
+			},
+			{"PressurePlate", new List<Item>
+				{
+					new Item(72, 0), //oak_pressure_plate
+					new Item(-154, 0), //spruce_pressure_plate
+					new Item(-151, 0), //birch_pressure_plate
+					new Item(-153, 0), //jungle_pressure_plate
+					new Item(-150, 0), //acacia_pressure_plate
+					new Item(-152, 0), //dark_oak_pressure_plate
+					new Item(70, 0), //stone_pressure_plate
+					new Item(147, 0), //light_weight_pressure_plate
+					new Item(148, 0), //heavy_weight_pressure_plate
+				}
+			},
+			{"Items11", new List<Item>
+				{
+					new Item(251, 0), //observer
+					new Item(151, 0), //daylight_sensor
+					new Item(356, 0), //repeater
+					new Item(404, 0), //comparator
+					new Item(410, 0), //hopper
+					new Item(125, 0), //dropper
+					new Item(23, 0), //dispenser
+					new Item(33, 0), //piston
+					new Item(29, 0), //sticky_piston
+					new Item(46, 0), //tnt
+					new Item(421, 0), //name_tag
+					new Item(-204, 0), //loom
+				}
+			},
+			{"Banner", new List<Item>
+				{
+					new Item(446, 0), //banner_white
+					new Item(446, 8), //banner_light_gray
+					new Item(446, 7), //banner_gray
+					new Item(446, 15), //banner_black
+					new Item(446, 12), //banner_brown
+					new Item(446, 14), //banner_red
+					new Item(446, 1), //banner_orange
+					new Item(446, 4), //banner_yellow
+					new Item(446, 5), //banner_lime
+					new Item(446, 13), //banner_green
+					new Item(446, 9), //banner_cyan
+					new Item(446, 3), //banner_light_blue
+					new Item(446, 11), //banner_blue
+					new Item(446, 10), //banner_purple
+					new Item(446, 2), //banner_magenta
+					new Item(446, 6), //banner_pink
+					new Item(446, 15){ ExtraData = new NbtCompound { new NbtInt("Type", 1) } }, //illager_banner
+				}
+			},
+			{"Banner_pattern", new List<Item>
+				{
+					new Item(434, 0), //banner_pattern
+					new Item(434, 1), //banner_pattern
+					new Item(434, 2), //banner_pattern
+					new Item(434, 3), //banner_pattern
+					new Item(434, 4), //banner_pattern
+					new Item(434, 5), //banner_pattern
+				}
+			},
+			{"Firework", new List<Item>
+				{
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)0), new NbtByte("Flight") } } }, //firework_rocket
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{0}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_white
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{8}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_light_gray
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{7}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_gray
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{15}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_black
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{12}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_brown
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{14}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_red
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{1}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_orange
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{4}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_yellow
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{5}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_lime
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{13}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_green
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{9}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_cyan
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{3}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_light_blue
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{11}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_blue
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{10}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_purple
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{2}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_magenta
+					new Item(401, 0){ ExtraData = new NbtCompound { new NbtCompound("Fireworks") { new NbtList("Explosions", (NbtTagType)10) { new NbtCompound { new NbtByteArray("FireworkColor", new byte[1]{6}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) } }, new NbtByte("Flight", 1) } } }, //firework_rocket_pink
+           
+				}
+			},
+			{"FireworkStars", new List<Item>
+				{
+					new Item(402, 0){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{0}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -14869215) } }, //firework_star_white
+					new Item(402, 8){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{8}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12103854) } }, //firework_star_light_gray
+					new Item(402, 7){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{7}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -6447721) } }, //firework_star_gray
+					new Item(402, 15){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{15}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -986896) } }, //firework_star_black
+					new Item(402, 12){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{12}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12930086) } }, //firework_star_brown
+					new Item(402, 14){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{14}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -425955) } }, //firework_star_red
+					new Item(402, 1){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{1}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -5231066) } }, //firework_star_orange
+					new Item(402, 4){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{4}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -12827478) } }, //firework_star_yellow
+					new Item(402, 5){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{5}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -7785800) } }, //firework_star_lime
+					new Item(402, 13){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{13}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -3715395) } }, //firework_star_green
+					new Item(402, 9){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{9}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -816214) } }, //firework_star_cyan
+					new Item(402, 3){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{3}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -8170446) } }, //firework_star_light_blue
+					new Item(402, 11){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{11}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -75715) } }, //firework_star_blue
+					new Item(402, 10){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{10}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -8337633) } }, //firework_star_purple
+					new Item(402, 2){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{2}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -10585066) } }, //firework_star_magenta
+					new Item(402, 6){ ExtraData = new NbtCompound { new NbtCompound("FireworksItem") { new NbtByteArray("FireworkColor", new byte[1]{6}), new NbtByteArray("FireworkFade", new byte[0]{}), new NbtByte("FireworkFlicker", 0), new NbtByte("FireworkTrail", 0), new NbtByte("FireworkType", 0) }, new NbtInt("customColor", -15295332) } }, //firework_star_pink
+		
+				}
+			},
 		};
 	}
 }
