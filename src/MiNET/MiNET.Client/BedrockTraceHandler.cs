@@ -240,15 +240,15 @@ namespace MiNET.Client
 					}
 					else if (group.Category == 2)
 					{
-						writer2.WriteLine($"			{{\"Equipment{EquipmentIndex++}\", new creativeGroup(2, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Nature{EquipmentIndex++}\", new creativeGroup(2, \"\", new ItemAir())}},");
 					}
 					else if (group.Category == 3)
 					{
-						writer2.WriteLine($"			{{\"Items{ItemsIndex++}\", new creativeGroup(3, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Equipment{ItemsIndex++}\", new creativeGroup(3, \"\", new ItemAir())}},");
 					}
 					else if (group.Category == 4)
 					{
-						writer2.WriteLine($"			{{\"Nature{NatureIndex++}\", new creativeGroup(4, \"\", new ItemAir())}},");
+						writer2.WriteLine($"			{{\"Items{NatureIndex++}\", new creativeGroup(4, \"\", new ItemAir())}},");
 					}
 				}
 				else
