@@ -55,6 +55,7 @@ using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 using Newtonsoft.Json;
 using System.IO.Compression;
+using System.Threading.Tasks;
 
 namespace MiNET
 {
@@ -1520,110 +1521,37 @@ namespace MiNET
 					throw new ArgumentOutOfRangeException(nameof(dimension), dimension, null);
 			}
 
-			Level.RemovePlayer(this);
-
-			Dimension fromDimension = Level.Dimension;
-
 			if (toLevel == null && levelFunc != null)
 			{
 				toLevel = levelFunc();
 			}
 
-			Level = toLevel; // Change level
-			SpawnPosition = spawnPoint ?? Level?.SpawnPoint;
-
-			BroadcastSetEntityData();
-
-			SendUpdateAttributes();
-
-			CleanCache();
-
-			// Check if we need to generate a platform
-			if (dimension == Dimension.TheEnd)
+			Action transferFunc = delegate
 			{
-				BlockCoordinates platformPosition = ((BlockCoordinates) SpawnPosition).BlockDown();
-				if (!(Level.GetBlock(platformPosition) is Obsidian))
-				{
-					for (int x = 0; x < 5; x++)
-					{
-						for (int z = 0; z < 5; z++)
-						{
-							for (int y = 0; y < 5; y++)
-							{
-								var coordinates = new BlockCoordinates(x, y, z) + platformPosition + new BlockCoordinates(-2, 0, -2);
-								if (y == 0)
-								{
-									Level.SetBlock(new Obsidian() {Coordinates = coordinates});
-								}
-								else
-								{
-									Level.SetAir(coordinates);
-								}
-							}
-						}
-					}
-				}
-			}
-			else if (dimension == Dimension.Overworld && fromDimension == Dimension.TheEnd)
-			{
-				// Spawn on player home spawn
-			}
-			else if (dimension == Dimension.Nether)
-			{
-				// Find closes portal or spawn new
-				// coordinate translation x/8
+				Level.RemovePlayer(this);
 
-				BlockCoordinates start = (BlockCoordinates) KnownPosition;
-				start /= new BlockCoordinates(8, 1, 8);
+				Level = toLevel;
+				SpawnPosition = spawnPoint ?? Level?.SpawnPoint;
 
-				PlayerLocation pos = FindNetherSpawn(Level, start);
-				if (pos != null)
-				{
-					SpawnPosition = pos;
-				}
-				else
-				{
-					SpawnPosition = CreateNetherPortal(Level);
-				}
-			}
-			else if (dimension == Dimension.Overworld && fromDimension == Dimension.Nether)
-			{
-				// Find closes portal or spawn new
-				// coordinate translation x * 8
+				BroadcastSetEntityData();
 
-				BlockCoordinates start = (BlockCoordinates) KnownPosition;
-				start *= new BlockCoordinates(8, 1, 8);
+				SendUpdateAttributes();
 
-				PlayerLocation pos = FindNetherSpawn(Level, start);
-				if (pos != null)
-				{
-					SpawnPosition = pos;
-				}
-				else
-				{
-					SpawnPosition = CreateNetherPortal(Level);
-				}
-			}
+				CleanCache();
 
-			Log.Debug($"Spawn point: {SpawnPosition}");
-
-			SendChunkRadiusUpdate();
-
-			ForcedSendChunk(SpawnPosition);
-
-			// send teleport to spawn
-			SetPosition(SpawnPosition);
-
-			MiNetServer.FastThreadPool.QueueUserWorkItem(() =>
-			{
 				Level.AddPlayer(this, true);
 
-				ForcedSendChunks(() =>
-				{
-					Log.WarnFormat("Respawn player {0} on level {1}", Username, Level.LevelId);
+				SendDimensionChangeAck();
 
-					SendSetTime();
-				});
+				BroadcastSetEntityData();
+
+				SetPosition(SpawnPosition);
+
+			};
+
+			_ = Task.Run(async () => {
+				await Task.Delay(1000);
+				transferFunc();
 			});
 		}
 
@@ -1881,7 +1809,7 @@ namespace MiNET
 		}
 
 
-		public virtual void SpawnLevel(Level toLevel, PlayerLocation spawnPoint, bool useLoadingScreen = false, Func<Level> levelFunc = null, Action postSpawnAction = null)
+		public virtual void SpawnLevel(Level toLevel, PlayerLocation spawnPoint, bool useLoadingScreen = true, Func<Level> levelFunc = null, Action postSpawnAction = null)
 		{
 			bool oldNoAi = NoAi;
 			SetNoAi(true);
@@ -1898,21 +1826,19 @@ namespace MiNET
 
 			Action transferFunc = delegate
 			{
-				if (useLoadingScreen)
-				{
-					SendChangeDimension(Dimension.Overworld);
-				}
-
 				Level.RemovePlayer(this, true);
 
 				Level = toLevel; // Change level
 				SpawnPosition = spawnPoint ?? Level?.SpawnPoint;
 
+				if (useLoadingScreen)
+				{
+					SendChangeDimension(Dimension.Overworld, false, SpawnPosition);
+				}
+
 				HungerManager.ResetHunger();
 
 				HealthManager.ResetHealth();
-
-				BroadcastSetEntityData();
 
 				SendUpdateAttributes();
 
@@ -1924,27 +1850,28 @@ namespace MiNET
 
 				CleanCache();
 
-				ForcedSendChunk(SpawnPosition);
+				SetNoAi(oldNoAi);
 
-				MiNetServer.FastThreadPool.QueueUserWorkItem(() =>
+				SendSetTime();
+
+				Level.AddPlayer(this, true);
+
+				if (useLoadingScreen)
 				{
-					Level.AddPlayer(this, true);
+					SendDimensionChangeAck();
+				}
 
-					SetNoAi(oldNoAi);
+				BroadcastSetEntityData();
 
-					ForcedSendChunks(() =>
-					{
-						Log.InfoFormat("Respawn player {0} on level {1}", Username, Level.LevelId);
-
-						SendSetTime();
-
-						postSpawnAction?.Invoke();
-					});
-				});
 				SetPosition(SpawnPosition);
+
+				postSpawnAction?.Invoke();
 			};
 
-			transferFunc();
+			_ = Task.Run(async () => {
+				await Task.Delay(1000);
+				transferFunc();
+			});
 		}
 
 		protected virtual void SendChangeDimension(Dimension dimension, bool respawn = false, Vector3 position = new Vector3())
@@ -3809,6 +3736,14 @@ namespace MiNET
 		public virtual void SendSetTime()
 		{
 			SendSetTime((int) Level.WorldTime);
+		}
+
+		public virtual void SendDimensionChangeAck()
+		{
+			McpePlayerAction action = McpePlayerAction.CreateObject();
+			action.runtimeEntityId = EntityId;
+			action.actionId = (int) PlayerAction.DimensionChangeAck;
+			SendPacket(action);
 		}
 
 		public virtual void SendSetTime(int time)
