@@ -32,7 +32,7 @@
     <EmbeddedResource Include="Resources\block_meta_map.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="jose-jwt" Version="5.1.0" />
+    <PackageReference Include="jose-jwt" Version="5.1.1" />
     <PackageReference Include="LibNoise.NetStandart" Version="0.2.0" />
     <PackageReference Include="log4net" Version="3.0.3" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />

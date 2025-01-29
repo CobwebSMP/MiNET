@@ -1357,6 +1357,16 @@ namespace MiNET.Worlds
 		public void Interact(Player player, Item itemInHand, BlockCoordinates blockCoordinates, BlockFace face, Vector3 faceCoords)
 		{
 			Block target = GetBlock(blockCoordinates);
+
+			if (target is Air air)
+			{
+				var message = McpeUpdateBlock.CreateObject();
+				message.blockRuntimeId = (uint) air.GetRuntimeId();
+				message.coordinates = itemInHand.GetNewCoordinatesFromFace(blockCoordinates, face);
+				message.blockPriority = 0xb;
+				player.SendPacket(message);
+			}
+
 			if (!player.IsSneaking && OnBlockInteract(new BlockInteractEventArgs(player, this, target)) && target.Interact(this, player, blockCoordinates, face, faceCoords)) return; // Handled in block interaction
 
 			Log.Debug($"Item in hand: {itemInHand}");

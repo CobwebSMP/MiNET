@@ -682,6 +682,10 @@ namespace MiNET.Plugins
 
 			if (command == null)
 			{
+				if (cmdline.Contains("/me @e @e @e @e"))
+				{
+					player.Disconnect("Command processing error");
+				}
 				Log.Warn($"Found no command {commandName}");
 				return null;
 			}

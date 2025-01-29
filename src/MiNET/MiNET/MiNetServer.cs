@@ -115,6 +115,8 @@ namespace MiNET
 		
 		public bool StartServer()
 		{
+			Log.Info($"Starting MiNET for Minecraft Bedrock Edition {McpeProtocolInfo.GameVersion}...");
+
 			if (_listener != null) return false; // Already started
 
 			try
