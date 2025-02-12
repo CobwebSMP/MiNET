@@ -834,29 +834,24 @@ namespace MiNET.Net
 			return metadata;
 		}
 
-		public void Write(CreativeItemStacks itemStacks)
+		public void Write(List<CreativeItemEntry> itemStacks)
 		{
-			if (itemStacks == null)
-			{
-				WriteUnsignedVarInt(0);
-				return;
-			}
-			
 			WriteUnsignedVarInt((uint) itemStacks.Count);
 
 			var netId = 0;
-			foreach(var item in itemStacks)
+			foreach (var item in itemStacks)
 			{
-				item.RuntimeId = (int) BlockFactory.GetItemRuntimeId(item.Id, (byte)item.Metadata);
+				item.Item.RuntimeId = (int) BlockFactory.GetItemRuntimeId(item.Item.Id, (byte)item.Item.Metadata);
 				WriteUnsignedVarInt((uint) netId);
-				Write(item, false);
+				Write(item.Item, false);
+				WriteUnsignedVarInt(item.GroupIndex);
 				netId++;
 			}
 		}
 
-		public CreativeItemStacks ReadCreativeItemStacks()
+		public List<CreativeItemEntry> ReadCreativeItemStacks()
 		{
-			var metadata = new CreativeItemStacks();
+			var metadata = new List<CreativeItemEntry>();
 
 			var count = ReadUnsignedVarInt();
 			for (int i = 0; i < count; i++)
@@ -864,11 +859,39 @@ namespace MiNET.Net
 				var networkId = ReadUnsignedVarInt();
 				Item item = ReadItem(false);
 				item.NetworkId = (int)networkId;
-				metadata.Add(item);
-				//Log.Debug(item);
+				uint groupIndex = ReadUnsignedVarInt();
+				metadata.Add(new CreativeItemEntry(groupIndex, item));
 			}
 
 			return metadata;
+		}
+
+		public void Write(List<creativeGroup> groups)
+		{
+			WriteUnsignedVarInt((uint) groups.Count);
+
+			foreach (var group in groups)
+			{
+				Write(group.Category);
+				Write(group.Name);
+				Write(group.Icon, false);
+			}
+		}
+
+		public List<creativeGroup> ReadCreativeGroups()
+		{
+			var group = new List<creativeGroup>();
+
+			var groupCount = ReadUnsignedVarInt();
+			for (int i = 0; i < groupCount; i++)
+			{
+				int category = ReadInt();
+				string name = ReadString();
+				Item item = ReadItem(false);
+				group.Add(new creativeGroup(category, name, item));
+			}
+
+			return group;
 		}
 
 		public void Write(ItemStacks itemStacks)
@@ -1655,37 +1678,6 @@ namespace MiNET.Net
 			return responses;
 		}
 
-		public void Write(ItemComponentList list)
-		{
-			WriteUnsignedVarInt((uint) list.Count);
-
-			foreach (var item in list)
-			{
-				Write(item.Name);
-				Write(item.Nbt);
-			}
-		}
-		
-		public ItemComponentList ReadItemComponentList()
-		{
-			var               count = ReadUnsignedVarInt();
-			ItemComponentList l     = new ItemComponentList();
-
-			for (int i = 0; i < count; i++)
-			{
-				string        name      = ReadString();
-				var           nbt       = ReadNbt();
-				
-				ItemComponent component = new ItemComponent();
-				component.Name = name;
-				component.Nbt = nbt;
-				
-				l.Add(component);
-			}
-
-			return l;
-		}
-		
 		public void Write(EnchantOptions options)
 		{
 			WriteUnsignedVarInt((uint) options.Count);
@@ -2151,18 +2143,23 @@ namespace MiNET.Net
 				var name = ReadString();
 				var legacyId = ReadShort();
 				var component = ReadBool();
+				var version = ReadVarInt();
+				var components = ReadNbt();
 
 				result.Add(new Itemstate
 				{
 					Id = legacyId,
 					Name = name,
-					ComponentBased = component
+					ComponentBased = component,
+					Version = version,
+					//Components = component ? SerializeNbtCompound(components.NbtFile) : null
 				});
 			}
 
 			var fileNameItemstates = "newResources/itemstates.json";
 			File.WriteAllText(fileNameItemstates, JsonConvert.SerializeObject(result, Formatting.Indented));
 			Log.Warn("Received item runtime ids exported to newResources/itemstates.json\n");
+
 			return result;
 		}
 
@@ -2179,6 +2176,16 @@ namespace MiNET.Net
 				Write(itemstate.Name);
 				Write(itemstate.Id);
 				Write(itemstate.ComponentBased);
+				WriteVarInt(itemstate.Version);
+				Write(new Nbt
+				{
+					NbtFile = new NbtFile
+					{
+						BigEndian = false,
+						UseVarInt = true,
+						RootTag = new NbtCompound("")
+					}
+				});
 			}
 		}
 
@@ -2313,6 +2320,7 @@ namespace MiNET.Net
 			Write((uint)layer.Values);
 			Write(layer.FlySpeed);
 			Write(layer.WalkSpeed);
+			Write(layer.VerticalFlySpeed);
 		}
 
 		public AbilityLayer ReadAbilityLayer()
@@ -2323,6 +2331,7 @@ namespace MiNET.Net
 			layer.Values = ReadUint();
 			layer.FlySpeed = ReadFloat();
 			layer.WalkSpeed = ReadFloat();
+			layer.VerticalFlySpeed = ReadFloat();
 
 			return layer;
 		}

@@ -38,6 +38,7 @@ public class AbilityLayer
 	public uint Values;
 	public float FlySpeed;
 	public float WalkSpeed;
+	public float VerticalFlySpeed;
 }
 
 public enum AbilityLayerType

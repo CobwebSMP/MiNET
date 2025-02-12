@@ -522,14 +522,14 @@ namespace MiNET
 
 		protected virtual void ProcessCraftCreativeAction(CraftCreativeAction action)
 		{
-			Item creativeItem = InventoryUtils.CreativeInventoryItems[(int)action.CreativeItemNetworkId];
+			Item creativeItem = InventoryUtils.itemList[(int)action.CreativeItemNetworkId];
 			if (creativeItem == null) throw new Exception($"Failed to find inventory item with unique id: {action.CreativeItemNetworkId}");
 			creativeItem = ItemFactory.GetItem(creativeItem.Id, creativeItem.Metadata);
 			creativeItem.Count = (byte) creativeItem.MaxStackSize;
 			creativeItem.UniqueId = Environment.TickCount;
 			if (creativeItem.ExtraData == null)
 			{
-				creativeItem.ExtraData = InventoryUtils.CreativeInventoryItems[(int) action.CreativeItemNetworkId].ExtraData;
+				creativeItem.ExtraData = InventoryUtils.itemList[(int) action.CreativeItemNetworkId].ExtraData;
 			}
 			Log.Debug($"Creating {creativeItem}");
 			_player.Inventory.UiInventory.Slots[50] = creativeItem;
