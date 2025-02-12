@@ -62,6 +62,8 @@ namespace MiNET.Net
 		StartCrawling = 32,
 		StopCrawling = 33,
 		StartFlying = 34,
-		StopFlying = 35
+		StopFlying = 35,
+		ClientAckServerData = 36,
+		StartUsingItem = 37
 	}
 }

@@ -11880,6 +11880,19 @@
     ]
   },
   {
+    "Id": 106,
+    "Data": 15,
+    "Name": "minecraft:vine",
+    "RuntimeId": 3053,
+    "States": [
+      {
+        "Type": 3,
+        "Name": "vine_direction_bits",
+        "Value": 15
+      }
+    ]
+  },
+  {
     "Id": 107,
     "Data": 0,
     "Name": "minecraft:fence_gate",
