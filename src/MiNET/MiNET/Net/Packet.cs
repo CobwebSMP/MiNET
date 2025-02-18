@@ -2146,13 +2146,25 @@ namespace MiNET.Net
 				var version = ReadVarInt();
 				var components = ReadNbt();
 
+				byte[] componentValue = new byte[0];
+
+				if (component && components.NbtFile.RootTag["components"] != null)
+				{
+					using (MemoryStream stream = new MemoryStream())
+					{
+						NbtFile file = new NbtFile(components.NbtFile.RootTag["components"] as NbtCompound);
+						file.SaveToStream(stream, NbtCompression.None);
+						componentValue = stream.ToArray();
+					}
+				}
+
 				result.Add(new Itemstate
 				{
 					Id = legacyId,
 					Name = name,
 					ComponentBased = component,
 					Version = version,
-					//Components = component ? SerializeNbtCompound(components.NbtFile) : null
+					Components = componentValue
 				});
 			}
 
@@ -2177,7 +2189,7 @@ namespace MiNET.Net
 				Write(itemstate.Id);
 				Write(itemstate.ComponentBased);
 				WriteVarInt(itemstate.Version);
-				Write(new Nbt
+				Nbt nbt = new Nbt
 				{
 					NbtFile = new NbtFile
 					{
@@ -2185,7 +2197,21 @@ namespace MiNET.Net
 						UseVarInt = true,
 						RootTag = new NbtCompound("")
 					}
-				});
+				};
+				if (itemstate.ComponentBased && itemstate.Components.Count() > 0)
+				{
+					using (MemoryStream stream = new MemoryStream(itemstate.Components))
+					{
+						NbtFile file = new NbtFile();
+						file.LoadFromStream(stream, NbtCompression.None);
+						var componentNbt = new NbtCompound("")
+						{
+							file.RootTag as NbtCompound
+						};
+						nbt.NbtFile.RootTag = componentNbt;
+					}
+				}
+				Write(nbt);
 			}
 		}
 
