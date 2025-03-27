@@ -549,7 +549,11 @@ namespace MiNET.Entities
 			Timer2 = 116,
 			Timer3 = 117,
 			BodyRotationBlocked = 118,
-			RendersWhenInvisible = 119
+			RendersWhenInvisible = 119,
+			BodyRotationAxisAligned = 120,
+			Collidable = 121,
+			WasdAirControlled = 122,
+			Count = 123
 		}
 
 		protected virtual BitArray GetFlags()
@@ -659,6 +663,7 @@ namespace MiNET.Entities
 			addEntity.speedX = Velocity.X;
 			addEntity.speedY = Velocity.Y;
 			addEntity.speedZ = Velocity.Z;
+			addEntity.syncdata = new PropertySyncData() { intProperties = new Dictionary<uint, int>() { { 0, 0 } } }; //todo
 			addEntity.attributes = GetEntityAttributes();
 
 			Level.RelayBroadcast(players, addEntity);

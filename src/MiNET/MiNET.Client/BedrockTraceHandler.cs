@@ -406,6 +406,11 @@ namespace MiNET.Client
 				Client._mobWriter.Flush();
 			}
 
+			if (message.entityType == "minecraft:pig")
+			{
+				Log.Warn(JsonConvert.SerializeObject(message, Formatting.Indented));
+			}
+
 			if (message.entityType == "minecraft:horse")
 			{
 				var id = message.runtimeEntityId;

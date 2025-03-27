@@ -45,8 +45,8 @@ namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 776;
-		public const string GameVersion = "1.21.60";
+		public const int ProtocolVersion = 786;
+		public const string GameVersion = "1.21.70";
 	}
 
 	public interface IMcpeMessageHandler
@@ -60,7 +60,6 @@ namespace MiNET.Net
 		void HandleMcpeMoveEntity(McpeMoveEntity message);
 		void HandleMcpeMovePlayer(McpeMovePlayer message);
 		void HandleMcpeRiderJump(McpeRiderJump message);
-		void HandleMcpeLevelSoundEventOld(McpeLevelSoundEventOld message);
 		void HandleMcpeEntityEvent(McpeEntityEvent message);
 		void HandleMcpeInventoryTransaction(McpeInventoryTransaction message);
 		void HandleMcpeMobEquipment(McpeMobEquipment message);
@@ -97,7 +96,6 @@ namespace MiNET.Net
 		void HandleMcpeSetLocalPlayerAsInitialized(McpeSetLocalPlayerAsInitialized message);
 		void HandleMcpeNetworkStackLatency(McpeNetworkStackLatency message);
 		void HandleMcpeScriptCustomEvent(McpeScriptCustomEvent message);
-		void HandleMcpeLevelSoundEventV2(McpeLevelSoundEventV2 message);
 		void HandleMcpeLevelSoundEvent(McpeLevelSoundEvent message);
 		void HandleMcpeClientCacheStatus(McpeClientCacheStatus message);
 		void HandleMcpeNetworkSettings(McpeNetworkSettings message);
@@ -138,7 +136,6 @@ namespace MiNET.Net
 		void HandleMcpeRiderJump(McpeRiderJump message);
 		void HandleMcpeUpdateBlock(McpeUpdateBlock message);
 		void HandleMcpeAddPainting(McpeAddPainting message);
-		void HandleMcpeLevelSoundEventOld(McpeLevelSoundEventOld message);
 		void HandleMcpeLevelEvent(McpeLevelEvent message);
 		void HandleMcpeBlockEvent(McpeBlockEvent message);
 		void HandleMcpeEntityEvent(McpeEntityEvent message);
@@ -219,7 +216,6 @@ namespace MiNET.Net
 		void HandleMcpeScriptCustomEvent(McpeScriptCustomEvent message);
 		void HandleMcpeSpawnParticleEffect(McpeSpawnParticleEffect message);
 		void HandleMcpeAvailableEntityIdentifiers(McpeAvailableEntityIdentifiers message);
-		void HandleMcpeLevelSoundEventV2(McpeLevelSoundEventV2 message);
 		void HandleMcpeNetworkChunkPublisherUpdate(McpeNetworkChunkPublisherUpdate message);
 		void HandleMcpeBiomeDefinitionList(McpeBiomeDefinitionList message);
 		void HandleMcpeLevelSoundEvent(McpeLevelSoundEvent message);
@@ -322,9 +318,6 @@ namespace MiNET.Net
 					break;
 				case McpeAddPainting msg:
 					_messageHandler.HandleMcpeAddPainting(msg);
-					break;
-				case McpeLevelSoundEventOld msg:
-					_messageHandler.HandleMcpeLevelSoundEventOld(msg);
 					break;
 				case McpeLevelEvent msg:
 					_messageHandler.HandleMcpeLevelEvent(msg);
@@ -566,9 +559,6 @@ namespace MiNET.Net
 				case McpeAvailableEntityIdentifiers msg:
 					_messageHandler.HandleMcpeAvailableEntityIdentifiers(msg);
 					break;
-				case McpeLevelSoundEventV2 msg:
-					_messageHandler.HandleMcpeLevelSoundEventV2(msg);
-					break;
 				case McpeNetworkChunkPublisherUpdate msg:
 					_messageHandler.HandleMcpeNetworkChunkPublisherUpdate(msg);
 					break;
@@ -780,7 +770,7 @@ namespace MiNET.Net
 					case 0x17:
 						//Deprecated McpeTickSync
 					case 0x18:
-						return McpeLevelSoundEventOld.CreateObject().Decode(buffer);
+						//Deprecated McpeLevelSoundEventOld
 					case 0x19:
 						return McpeLevelEvent.CreateObject().Decode(buffer);
 					case 0x1a:
@@ -965,8 +955,6 @@ namespace MiNET.Net
 						return McpeSpawnParticleEffect.CreateObject().Decode(buffer);
 					case 0x77:
 						return McpeAvailableEntityIdentifiers.CreateObject().Decode(buffer);
-					case 0x78:
-						return McpeLevelSoundEventV2.CreateObject().Decode(buffer);
 					case 0x79:
 						return McpeNetworkChunkPublisherUpdate.CreateObject().Decode(buffer);
 					case 0x7a:
@@ -3338,75 +3326,6 @@ namespace MiNET.Net
 			coordinates=default(BlockCoordinates);
 			direction=default(int);
 			title=default(string);
-		}
-
-	}
-
-
-	public partial class McpeLevelSoundEventOld : Packet<McpeLevelSoundEventOld>
-	{
-
-		public byte soundId; // = null;
-		public Vector3 position; // = null;
-		public int blockId; // = null;
-		public int entityType; // = null;
-		public bool isBabyMob; // = null;
-		public bool isGlobal; // = null;
-
-		public McpeLevelSoundEventOld()
-		{
-			Id = 0x18;
-			IsMcpe = true;
-		}
-
-		protected override void EncodePacket()
-		{
-			base.EncodePacket();
-
-			BeforeEncode();
-
-			Write(soundId);
-			Write(position);
-			WriteSignedVarInt(blockId);
-			WriteSignedVarInt(entityType);
-			Write(isBabyMob);
-			Write(isGlobal);
-
-			AfterEncode();
-		}
-
-		partial void BeforeEncode();
-		partial void AfterEncode();
-
-		protected override void DecodePacket()
-		{
-			base.DecodePacket();
-
-			BeforeDecode();
-
-			soundId = ReadByte();
-			position = ReadVector3();
-			blockId = ReadSignedVarInt();
-			entityType = ReadSignedVarInt();
-			isBabyMob = ReadBool();
-			isGlobal = ReadBool();
-
-			AfterDecode();
-		}
-
-		partial void BeforeDecode();
-		partial void AfterDecode();
-
-		protected override void ResetPacket()
-		{
-			base.ResetPacket();
-
-			soundId=default(byte);
-			position=default(Vector3);
-			blockId=default(int);
-			entityType=default(int);
-			isBabyMob=default(bool);
-			isGlobal=default(bool);
 		}
 
 	}
@@ -8610,74 +8529,6 @@ namespace MiNET.Net
 
 	}
 
-	public partial class McpeLevelSoundEventV2 : Packet<McpeLevelSoundEventV2>
-	{
-
-		public byte soundId; // = null;
-		public Vector3 position; // = null;
-		public int blockId; // = null;
-		public string entityType; // = null;
-		public bool isBabyMob; // = null;
-		public bool isGlobal; // = null;
-
-		public McpeLevelSoundEventV2()
-		{
-			Id = 0x78;
-			IsMcpe = true;
-		}
-
-		protected override void EncodePacket()
-		{
-			base.EncodePacket();
-
-			BeforeEncode();
-
-			Write(soundId);
-			Write(position);
-			WriteSignedVarInt(blockId);
-			Write(entityType);
-			Write(isBabyMob);
-			Write(isGlobal);
-
-			AfterEncode();
-		}
-
-		partial void BeforeEncode();
-		partial void AfterEncode();
-
-		protected override void DecodePacket()
-		{
-			base.DecodePacket();
-
-			BeforeDecode();
-
-			soundId = ReadByte();
-			position = ReadVector3();
-			blockId = ReadSignedVarInt();
-			entityType = ReadString();
-			isBabyMob = ReadBool();
-			isGlobal = ReadBool();
-
-			AfterDecode();
-		}
-
-		partial void BeforeDecode();
-		partial void AfterDecode();
-
-		protected override void ResetPacket()
-		{
-			base.ResetPacket();
-
-			soundId=default(byte);
-			position=default(Vector3);
-			blockId=default(int);
-			entityType=default(string);
-			isBabyMob=default(bool);
-			isGlobal=default(bool);
-		}
-
-	}
-
 	public partial class McpeNetworkChunkPublisherUpdate : Packet<McpeNetworkChunkPublisherUpdate>
 	{
 
@@ -8801,6 +8652,7 @@ namespace MiNET.Net
 		public string entityType; // = null;
 		public bool isBabyMob; // = null;
 		public bool isGlobal; // = null;
+		public long entityId = -1;
 
 		public McpeLevelSoundEvent()
 		{
@@ -8820,6 +8672,7 @@ namespace MiNET.Net
 			Write(entityType);
 			Write(isBabyMob);
 			Write(isGlobal);
+			Write(entityId);
 
 			AfterEncode();
 		}
@@ -8839,6 +8692,7 @@ namespace MiNET.Net
 			entityType = ReadString();
 			isBabyMob = ReadBool();
 			isGlobal = ReadBool();
+			entityId = ReadLong();
 
 			AfterDecode();
 		}
@@ -8856,6 +8710,7 @@ namespace MiNET.Net
 			entityType=default(string);
 			isBabyMob=default(bool);
 			isGlobal=default(bool);
+			entityId=default(long);
 		}
 
 	}
@@ -8895,7 +8750,7 @@ namespace MiNET.Net
 
 			eventId = ReadSignedVarInt();
 			//eventData = ReadNbt(); todo wrong
-			for (byte i = 0; i < 62; i++) //shhhh
+			for (byte i = 0; i < 60; i++) //shhhh
 			{
 				ReadByte();
 			}

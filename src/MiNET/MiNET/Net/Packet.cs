@@ -2148,7 +2148,7 @@ namespace MiNET.Net
 
 				byte[] componentValue = new byte[0];
 
-				if (component && components.NbtFile.RootTag["components"] != null)
+				if (components.NbtFile.RootTag["components"] != null)
 				{
 					using (MemoryStream stream = new MemoryStream())
 					{
@@ -2198,7 +2198,7 @@ namespace MiNET.Net
 						RootTag = new NbtCompound("")
 					}
 				};
-				if (itemstate.ComponentBased && itemstate.Components.Count() > 0)
+				if (itemstate.Components.Count() > 0)
 				{
 					using (MemoryStream stream = new MemoryStream(itemstate.Components))
 					{
