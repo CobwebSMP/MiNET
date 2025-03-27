@@ -34,7 +34,7 @@
   <ItemGroup>
     <PackageReference Include="jose-jwt" Version="5.1.1" />
     <PackageReference Include="LibNoise.NetStandart" Version="0.2.0" />
-    <PackageReference Include="log4net" Version="3.0.3" />
+    <PackageReference Include="log4net" Version="3.0.4" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
     <PackageReference Include="MiNET.astar" Version="1.0.14" />
     <PackageReference Include="MiNET.fnbt" Version="1.0.22" />
