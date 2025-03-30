@@ -86,7 +86,7 @@ namespace MiNET.Utils.Skins
 		public byte[] Data { get; set; }
 		public string GeometryName { get; set; }
 		public string GeometryData { get; set; }
-		public string GeometryDataVersion { get; set; }
+		public string GeometryDataVersion { get; set; } = "0.0.0";
 
 		public string ArmSize { get; set; }
 
