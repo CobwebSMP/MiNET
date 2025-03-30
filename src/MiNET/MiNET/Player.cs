@@ -1141,6 +1141,8 @@ namespace MiNET
 
 				SendStartGame();
 
+				SendEntityProperties();
+
 				SendItemComponents();
 
 				SendAvailableEntityIdentifiers();
@@ -3483,6 +3485,39 @@ namespace MiNET
 			McpeItemComponent itemComponent = McpeItemComponent.CreateObject();
 			itemComponent.entries = ItemFactory.Itemstates;
 			SendPacket(itemComponent);
+		}
+
+		public void SendEntityProperties()
+		{
+			using (var stream = new MemoryStream(ResourceUtil.ReadEntityProperties().ToArray()))
+			{
+				var nbt = Packet.ReadNbtCompound(stream, true);
+				foreach (var entityTypeTag in nbt)
+				{
+					if (entityTypeTag is NbtList entityList)
+					{
+						foreach (var entityData in entityList)
+						{
+							if (entityData is NbtCompound compound)
+							{
+								Nbt entityNbt = new Nbt
+								{
+									NbtFile = new NbtFile
+									{
+										BigEndian = false,
+										UseVarInt = true,
+										RootTag = compound.Get<NbtCompound>("")
+									}
+								};
+
+								McpeSyncEntityProperty entityProperty = McpeSyncEntityProperty.CreateObject();
+								entityProperty.propertyData = entityNbt;
+								SendPacket(entityProperty);
+							}
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>

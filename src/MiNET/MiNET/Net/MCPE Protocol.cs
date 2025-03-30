@@ -250,6 +250,7 @@ namespace MiNET.Net
 		void HandleMcpePermissionRequest(McpePermissionRequest message);
 		void HandleMcpePlayerFog(McpePlayerFog message);
 		void HandleMcpeAnimateEntity(McpeAnimateEntity message);
+		void HandleMcpeSyncEntityProperty(McpeSyncEntityProperty message);
 	}
 
 	public class McpeClientMessageDispatcher
@@ -658,6 +659,9 @@ namespace MiNET.Net
 				case McpeAnimateEntity msg:
 					_messageHandler.HandleMcpeAnimateEntity(msg);
 					break;
+				case McpeSyncEntityProperty msg:
+					_messageHandler.HandleMcpeSyncEntityProperty(msg);
+					break;
 				default:
 					return false;
 			}
@@ -1039,6 +1043,8 @@ namespace MiNET.Net
 						return McpePlayerFog.CreateObject().Decode(buffer);
 					case 0x8D:
 						return McpeAnvilDamage.CreateObject().Decode(buffer);
+					case 0xa5:
+						return McpeSyncEntityProperty.CreateObject().Decode(buffer);
 				}
 			}
 
@@ -11002,6 +11008,53 @@ namespace MiNET.Net
 
 			ScreenType = default(int);
 			ScreenId = default(int);
+		}
+
+	}
+
+	public partial class McpeSyncEntityProperty : Packet<McpeSyncEntityProperty>
+	{
+		public Nbt propertyData; // = null;
+
+		public McpeSyncEntityProperty()
+		{
+			Id = 0xa5;
+			IsMcpe = true;
+		}
+
+		protected override void EncodePacket()
+		{
+			base.EncodePacket();
+
+			BeforeEncode();
+
+			Write(propertyData);
+
+			AfterEncode();
+		}
+
+		partial void BeforeEncode();
+		partial void AfterEncode();
+
+		protected override void DecodePacket()
+		{
+			base.DecodePacket();
+
+			BeforeDecode();
+
+			propertyData = ReadNbt();
+
+			AfterDecode();
+		}
+
+		partial void BeforeDecode();
+		partial void AfterDecode();
+
+		protected override void ResetPacket()
+		{
+			base.ResetPacket();
+
+			propertyData = default(Nbt);
 		}
 
 	}

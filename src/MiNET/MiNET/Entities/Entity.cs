@@ -663,7 +663,6 @@ namespace MiNET.Entities
 			addEntity.speedX = Velocity.X;
 			addEntity.speedY = Velocity.Y;
 			addEntity.speedZ = Velocity.Z;
-			addEntity.syncdata = new PropertySyncData() { intProperties = new Dictionary<uint, int>() { { 0, 0 } } }; //todo
 			addEntity.attributes = GetEntityAttributes();
 
 			Level.RelayBroadcast(players, addEntity);

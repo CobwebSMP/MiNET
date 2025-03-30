@@ -2,7 +2,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>MiNET-CobwebSMP</PackageId>
-    <Version>1.13.0.26</Version>
+    <Version>1.13.0.27</Version>
     <Authors>gurun</Authors>
     <Company>Niclas Olofsson</Company>
     <Description>MiNET - a Minecraft PocketEdition Server</Description>
@@ -30,6 +30,7 @@
     <EmbeddedResource Include="Resources\itemstates.json" />
     <EmbeddedResource Include="Resources\item_id_map.json" />
     <EmbeddedResource Include="Resources\block_meta_map.json" />
+    <EmbeddedResource Include="Resources\entity_properties.nbt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="jose-jwt" Version="5.1.1" />

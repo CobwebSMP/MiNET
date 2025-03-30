@@ -30,6 +30,8 @@ namespace MiNET.Utils
 {
 	public static class ResourceUtil
 	{
+		private static MemoryStream EntityProperties;
+
 		public static T ReadResource<T>(string filename, Type namespaceProvider = null, string subFolder = null)
 		{
 			if (namespaceProvider == null)
@@ -47,6 +49,20 @@ namespace MiNET.Utils
 			{
 				return JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
 			}
+		}
+
+		public static MemoryStream ReadEntityProperties()
+		{
+			if (EntityProperties == null)
+			{
+				var assembly = Assembly.GetExecutingAssembly();
+				using (var resourceStream = assembly.GetManifestResourceStream("MiNET.Resources.entity_properties.nbt"))
+				{
+					EntityProperties = new MemoryStream();
+					resourceStream.CopyTo(EntityProperties);
+				}
+			}
+			return EntityProperties;
 		}
 	}
 }

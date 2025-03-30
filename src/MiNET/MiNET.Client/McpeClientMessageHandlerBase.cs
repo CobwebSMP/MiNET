@@ -725,25 +725,25 @@ namespace MiNET.Client
 		}
 
 		/// <inheritdoc />
-		public void HandleMcpeSubChunkPacket(McpeSubChunkPacket message)
+		public virtual void HandleMcpeSubChunkPacket(McpeSubChunkPacket message)
 		{
 			
 		}
 
 		/// <inheritdoc />
-		public void HandleMcpeDimensionData(McpeDimensionData message)
+		public virtual void HandleMcpeDimensionData(McpeDimensionData message)
 		{
 			
 		}
 
 		/// <inheritdoc />
-		public void HandleMcpeUpdateAbilities(McpeUpdateAbilities message)
+		public virtual void HandleMcpeUpdateAbilities(McpeUpdateAbilities message)
 		{
 			Client.permissionLevel = (PermissionLevel) message.playerPermissions;
 		}
 
 		/// <inheritdoc />
-		public void HandleMcpeUpdateAdventureSettings(McpeUpdateAdventureSettings message)
+		public virtual void HandleMcpeUpdateAdventureSettings(McpeUpdateAdventureSettings message)
 		{
 			
 		}
@@ -756,32 +756,32 @@ namespace MiNET.Client
 		{
 		}
 
-		public void HandleMcpeTrimData(McpeTrimData message)
+		public virtual void HandleMcpeTrimData(McpeTrimData message)
 		{
 			
 		}
 
-		public void HandleMcpeOpenSign(McpeOpenSign message)
+		public virtual void HandleMcpeOpenSign(McpeOpenSign message)
 		{
 			
 		}
 
-		public void HandleMcpeEmote(McpeEmotePacket message)
+		public virtual void HandleMcpeEmote(McpeEmotePacket message)
 		{
 
 		}
 
-		public void HandleMcpeEmoteList(McpeEmoteList message)
+		public virtual void HandleMcpeEmoteList(McpeEmoteList message)
 		{
 
 		}
 
-		public void HandleMcpePermissionRequest(McpePermissionRequest message)
+		public virtual void HandleMcpePermissionRequest(McpePermissionRequest message)
 		{
 
 		}
 
-		public void HandleMcpePlayerFog(McpePlayerFog message)
+		public virtual void HandleMcpePlayerFog(McpePlayerFog message)
 		{
 
 		}
@@ -791,7 +791,7 @@ namespace MiNET.Client
 			Log.Warn($"Got entity animation {message.animationName}");
 		}
 
-		public void HandleMcpeServerboundLoadingScreen(McpeServerboundLoadingScreen message)
+		public virtual void HandleMcpeSyncEntityProperty(McpeSyncEntityProperty message)
 		{
 
 		}

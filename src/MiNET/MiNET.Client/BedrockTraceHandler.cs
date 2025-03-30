@@ -44,7 +44,6 @@ using MiNET.Utils.Metadata;
 using MiNET.Utils.Vectors;
 using MiNET.Worlds;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MiNET.Client
 {
@@ -817,6 +816,40 @@ namespace MiNET.Client
 			//{
 			//	Log.Warn($"Received command output: {msg}");
 			//}
+		}
+
+		private static NbtCompound entityNbt = new NbtCompound("Entities");
+
+		public override void HandleMcpeSyncEntityProperty(McpeSyncEntityProperty message)
+		{
+			var entityData = message.propertyData.NbtFile.RootTag;
+			string entityType = entityData["type"].StringValue;
+
+			if (!entityNbt.Contains(entityType))
+			{
+				entityNbt.Add(new NbtList(entityType, NbtTagType.Compound));
+			}
+
+			var entityList = entityNbt.Get<NbtList>(entityType);
+			var compound = new NbtCompound
+			{
+				entityData.Clone() as NbtTag
+			};
+
+			entityList.Add(compound);
+		}
+
+		public override void HandleMcpeItemComponent(McpeItemComponent message)
+		{
+			var nbtFile = new NbtFile(entityNbt);
+			nbtFile.UseVarInt = true;
+			nbtFile.SaveToFile("newResources/entity_properties.nbt", NbtCompression.None);
+			Log.Warn("Received entities properties to newResources/entity_properties.nbt\n");
+			entityNbt.Clear();
+
+			var fileNameItemstates = "newResources/itemstates.json";
+			File.WriteAllText(fileNameItemstates, JsonConvert.SerializeObject(message.entries, Formatting.Indented));
+			Log.Warn("Received item runtime ids exported to newResources/itemstates.json\n");
 		}
 	}
 }

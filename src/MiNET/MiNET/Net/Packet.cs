@@ -2168,10 +2168,6 @@ namespace MiNET.Net
 				});
 			}
 
-			var fileNameItemstates = "newResources/itemstates.json";
-			File.WriteAllText(fileNameItemstates, JsonConvert.SerializeObject(result, Formatting.Indented));
-			Log.Warn("Received item runtime ids exported to newResources/itemstates.json\n");
-
 			return result;
 		}
 
