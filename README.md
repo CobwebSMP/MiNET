@@ -5,6 +5,11 @@ MiNET (CobwebSMP edition)
 [![NuGet Version](https://img.shields.io/nuget/v/MiNET-CobwebSMP.svg) 
 [![Downloads count](https://img.shields.io/nuget/dt/MiNET-CobwebSMP.svg) 
 
+## Warning!
+
+As a result of our network shut down updates for this software may be delayed, incomplete or even stopped.
+Consider migrating to: [CRPE-Team/MiNET](https://github.com/CRPE-Team/MiNET)
+
 ## What is this?
 
 This is fork of [MiNET](https://github.com/NiclasOlofsson/MiNET), that includes additional changes and features:

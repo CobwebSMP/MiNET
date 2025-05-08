@@ -697,10 +697,6 @@ namespace MiNET
 		{
 		}
 
-		public void HandleMcpePlayerInput(McpePlayerInput message)
-		{
-		}
-
 		public void HandleMcpeSetPlayerGameType(McpeSetPlayerGameType message)
 		{
 		}

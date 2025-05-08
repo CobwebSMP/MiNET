@@ -180,9 +180,6 @@ namespace MiNET.Net
 				case McpeItemStackRequest nms:
 					handler.HandleMcpeItemStackRequest(nms);
 					break;
-				case McpePlayerInput msg:
-					handler.HandleMcpePlayerInput(msg);
-					break;
 				case McpeRiderJump msg:
 					handler.HandleMcpeRiderJump(msg);
 					break;

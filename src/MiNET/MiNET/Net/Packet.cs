@@ -48,6 +48,7 @@ using MiNET.Utils.Metadata;
 using MiNET.Utils.Nbt;
 using MiNET.Utils.Skins;
 using MiNET.Utils.Vectors;
+using MiNET.Worlds;
 using Newtonsoft.Json;
 using static MiNET.Net.McpePlayerAuthInput;
 
@@ -530,6 +531,7 @@ namespace MiNET.Net
 					Write(false); // is teacher
 					Write(false); // is host
 					Write(false); // subclient?
+					Write(0); //color
 				}
 			}
 			else if (records is PlayerRemoveRecords)
@@ -575,6 +577,7 @@ namespace MiNET.Net
 						ReadBool(); // is teacher
 						ReadBool(); // is host
 						ReadBool(); // is subclient
+						ReadInt(); //color
 
 						player.PlayerInfo = new PlayerInfo()
 						{
@@ -3984,6 +3987,60 @@ namespace MiNET.Net
 			{
 				Write(effect);
 			}
+		}
+
+		public void Write(Biome[] biomes)
+		{
+			WriteUnsignedVarInt((uint)biomes.Count());
+			for (short i = 0; i < biomes.Count(); i++)
+			{
+				Write(i);
+				Write(false);
+				Write(biomes[i].Temperature);
+				Write(biomes[i].Downfall);
+				Write(biomes[i].RedSporeDensity);
+				Write(biomes[i].BlueSporeDensity);
+				Write(biomes[i].AshDensity);
+				Write(biomes[i].WhiteAshDensity);
+				Write(biomes[i].Depth);
+				Write(biomes[i].Scale);
+				Write(biomes[i].WaterColor);
+				Write(biomes[i].Downfall > 0 ? true : false);
+				Write(false);
+				Write(false);
+			}
+
+			WriteUnsignedVarInt((uint)biomes.Count());
+			foreach (Biome biome in biomes)
+			{
+				Write(biome.DefinitionName);
+			}
+		}
+
+		public Biome[] ReadBiomes()
+		{
+			var biomeCount = ReadUnsignedVarInt();
+			var biomes = new Biome[biomeCount];
+			for (int i = 0; i < biomeCount; i++)
+			{
+				var biome = new Biome();
+				if (ReadBool())
+				{
+					biome.Id = ReadShort();
+				}
+				biome.Temperature = ReadFloat();
+				biome.Downfall = ReadFloat();
+				//.....
+				biomes[i] = biome;
+			}
+
+			var biomeNameCount = ReadUnsignedVarInt();
+			for (int i = 0; i < biomeNameCount; i++)
+			{
+				biomes[i].DefinitionName = ReadString();
+			}
+
+			return biomes;
 		}
 
 		public bool CanRead()

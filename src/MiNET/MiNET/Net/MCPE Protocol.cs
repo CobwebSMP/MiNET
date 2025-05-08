@@ -40,13 +40,14 @@ using MiNET.Utils.Vectors;
 using MiNET.Utils.Nbt;
 using System.Linq;
 using System.Collections.Generic;
+using MiNET.Worlds;
 
 namespace MiNET.Net
 {
 	public class McpeProtocolInfo
 	{
-		public const int ProtocolVersion = 786;
-		public const string GameVersion = "1.21.70";
+		public const int ProtocolVersion = 800;
+		public const string GameVersion = "1.21.80";
 	}
 
 	public interface IMcpeMessageHandler
@@ -79,7 +80,6 @@ namespace MiNET.Net
 		void HandleMcpeCraftingEvent(McpeCraftingEvent message);
 		void HandleMcpeAdventureSettings(McpeAdventureSettings message);
 		void HandleMcpeBlockEntityData(McpeBlockEntityData message);
-		void HandleMcpePlayerInput(McpePlayerInput message);
 		void HandleMcpeSetPlayerGameType(McpeSetPlayerGameType message);
 		void HandleMcpeMapInfoRequest(McpeMapInfoRequest message);
 		void HandleMcpeRequestChunkRadius(McpeRequestChunkRadius message);
@@ -837,8 +837,6 @@ namespace MiNET.Net
 						return McpeAdventureSettings.CreateObject().Decode(buffer);
 					case 0x38:
 						return McpeBlockEntityData.CreateObject().Decode(buffer);
-					case 0x39:
-						return McpePlayerInput.CreateObject().Decode(buffer);
 					case 0x3a:
 						return McpeLevelChunk.CreateObject().Decode(buffer);
 					case 0x3b:
@@ -5241,66 +5239,6 @@ namespace MiNET.Net
 
 	}
 
-	public partial class McpePlayerInput : Packet<McpePlayerInput>
-	{
-
-		public float motionX; // = null;
-		public float motionZ; // = null;
-		public bool jumping; // = null;
-		public bool sneaking; // = null;
-
-		public McpePlayerInput()
-		{
-			Id = 0x39;
-			IsMcpe = true;
-		}
-
-		protected override void EncodePacket()
-		{
-			base.EncodePacket();
-
-			BeforeEncode();
-
-			Write(motionX);
-			Write(motionZ);
-			Write(jumping);
-			Write(sneaking);
-
-			AfterEncode();
-		}
-
-		partial void BeforeEncode();
-		partial void AfterEncode();
-
-		protected override void DecodePacket()
-		{
-			base.DecodePacket();
-
-			BeforeDecode();
-
-			motionX = ReadFloat();
-			motionZ = ReadFloat();
-			jumping = ReadBool();
-			sneaking = ReadBool();
-
-			AfterDecode();
-		}
-
-		partial void BeforeDecode();
-		partial void AfterDecode();
-
-		protected override void ResetPacket()
-		{
-			base.ResetPacket();
-
-			motionX=default(float);
-			motionZ=default(float);
-			jumping=default(bool);
-			sneaking=default(bool);
-		}
-
-	}
-
 	public partial class McpeLevelChunk : Packet<McpeLevelChunk>
 	{
 
@@ -8604,7 +8542,7 @@ namespace MiNET.Net
 	public partial class McpeBiomeDefinitionList : Packet<McpeBiomeDefinitionList>
 	{
 
-		public Nbt namedtag; // = null;
+		public Biome[] biomes; // = null;
 
 		public McpeBiomeDefinitionList()
 		{
@@ -8618,7 +8556,7 @@ namespace MiNET.Net
 
 			BeforeEncode();
 
-			Write(namedtag);
+			Write(biomes);
 
 			AfterEncode();
 		}
@@ -8632,7 +8570,7 @@ namespace MiNET.Net
 
 			BeforeDecode();
 
-			namedtag = ReadNbt();
+			biomes = ReadBiomes();
 
 			AfterDecode();
 		}
@@ -8644,7 +8582,7 @@ namespace MiNET.Net
 		{
 			base.ResetPacket();
 
-			namedtag=default(Nbt);
+			biomes = default(Biome[]);
 		}
 
 	}

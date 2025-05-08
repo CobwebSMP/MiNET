@@ -771,22 +771,36 @@ namespace MiNET.Client
 
 		public override void HandleMcpeBiomeDefinitionList(McpeBiomeDefinitionList message)
 		{
-			NbtCompound list = new NbtCompound("");
-			foreach (var biome in message.namedtag.NbtFile.RootTag as NbtCompound)
+			var sb = new StringBuilder();
+
+			sb.AppendLine("public class BiomeUtils");
+			sb.AppendLine("{");
+			sb.AppendLine("\tpublic static Biome[] Biomes =");
+			sb.AppendLine("\t{");
+
+			int index = 0;
+			foreach (var biome in message.biomes)
 			{
-				string biomeName = biome.Name;
-				float downfall = (biome["downfall"] as NbtFloat).Value;
-				float temperature = (biome["temperature"] as NbtFloat).Value;
-				list.Add(
-					new NbtCompound(biomeName)
-					{
-						new NbtFloat("temperature", temperature),
-						new NbtFloat("downfall", downfall),
-					}
-				);
+				string defName = biome.DefinitionName;
+				string displayName = string.Join(" ", defName.Split('_').Select(word => char.ToUpper(word[0]) + word.Substring(1)));
+
+				sb.AppendLine("\t\tnew Biome");
+				sb.AppendLine("\t\t{");
+				sb.AppendLine($"\t\t\tId = {index},");
+				sb.AppendLine($"\t\t\tName = \"{displayName}\",");
+				sb.AppendLine($"\t\t\tDefinitionName = \"{defName}\",");
+				sb.AppendLine($"\t\t\tTemperature = {biome.Temperature.ToString("0.0")}f,");
+				sb.AppendLine($"\t\t\tDownfall = {biome.Downfall.ToString("0.0")}f");
+				sb.AppendLine(index < message.biomes.Count() - 1 ? "\t\t}," : "\t\t}");
+				index++;
 			}
 
-			File.WriteAllText("newResources/biomes.txt", list.ToString());
+			sb.AppendLine("\t};");
+			sb.AppendLine("}");
+
+			Directory.CreateDirectory("newResources");
+			File.WriteAllText("newResources/biomes.txt", sb.ToString());
+
 			Log.Warn("Received biome definitions exported to newResources/biomes.txt\n");
 		}
 

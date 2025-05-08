@@ -24,7 +24,6 @@
 #endregion
 
 using System.Linq;
-using fNbt;
 
 namespace MiNET.Worlds
 {
@@ -35,6 +34,13 @@ namespace MiNET.Worlds
 		public string DefinitionName;
 		public float Temperature;
 		public float Downfall;
+		public float RedSporeDensity;
+		public float BlueSporeDensity;
+		public float AshDensity;
+		public float WhiteAshDensity;
+		public float Depth;
+		public float Scale;
+		public int WaterColor;
 		public int Grass; // r,g,b, NOT multiplied by alpha
 		public int Foliage; // r,g,b, NOT multiplied by alpha
 	}
@@ -50,7 +56,7 @@ namespace MiNET.Worlds
 				DefinitionName = "ocean",
 				Temperature = 0.5f,
 				Downfall = 0.5f
-			}, // default values of temp and rain
+			},
 			new Biome
 			{
 				Id = 1,
@@ -66,7 +72,7 @@ namespace MiNET.Worlds
 				DefinitionName = "desert",
 				Temperature = 2.0f,
 				Downfall = 0.0f
-			},
+			},/* TODO crashing, need to regenerate from BDS
 			new Biome
 			{
 				Id = 3,
@@ -730,7 +736,7 @@ namespace MiNET.Worlds
 				DefinitionName = "cherry_grove",
 				Temperature = 0.3f,
 				Downfall = 0.8f
-			},
+			},*/
 		};
 
 		private struct BiomeCorner
@@ -944,25 +950,6 @@ namespace MiNET.Worlds
 			color = (r << 16) | (g << 8) | b;
 
 			return color;
-		}
-
-		public static NbtCompound GenerateDefinitionList()
-		{
-			NbtCompound list = new NbtCompound("");
-			foreach (Biome biome in Biomes)
-			{
-				if (string.IsNullOrEmpty(biome.DefinitionName))
-					continue;
-				list.Add(
-					new NbtCompound(biome.DefinitionName)
-					{
-						new NbtFloat("downfall", biome.Downfall),
-						new NbtFloat("temperature", biome.Temperature),
-						new NbtByte("rain", 1), //todo regenerate biomes
-					}
-				);
-			}
-			return list;
 		}
 	}
 }

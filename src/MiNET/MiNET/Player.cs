@@ -508,11 +508,6 @@ namespace MiNET
 			SendPacket(packStack);
 		}
 
-		public virtual void HandleMcpePlayerInput(McpePlayerInput message)
-		{
-			Log.Debug($"Player input: x={message.motionX}, z={message.motionZ}, jumping={message.jumping}, sneaking={message.sneaking}");
-		}
-
 		public virtual void HandleMcpeRiderJump(McpeRiderJump message)
 		{
 			if (IsRiding && Vehicle > 0)
@@ -1215,18 +1210,8 @@ namespace MiNET
 
 		public virtual void SendBiomeDefinitionList()
 		{
-			var nbt = new Nbt
-			{
-				NbtFile = new NbtFile
-				{
-					BigEndian = false,
-					UseVarInt = true,
-					RootTag = BiomeUtils.GenerateDefinitionList(),
-				}
-			};
-
 			var pk = McpeBiomeDefinitionList.CreateObject();
-			pk.namedtag = nbt;
+			pk.biomes = BiomeUtils.Biomes;
 			SendPacket(pk);
 		}
 
@@ -3456,13 +3441,9 @@ namespace MiNET
 			startGame.isTrial = false;
 			startGame.currentTick = Level.TickTime;
 			startGame.enchantmentSeed = 123456;
-			if (Config.GetProperty("ServerAuthoritativeMovement", true))
-			{
-				startGame.movementType = 3;
-				startGame.movementRewindHistorySize = 40;
-				startGame.enableNewBlockBreakSystem = true;
-			}
-
+			startGame.movementType = 2;
+			startGame.movementRewindHistorySize = 40;
+			startGame.enableNewBlockBreakSystem = true;
 			startGame.enableNewInventorySystem = true;
 			startGame.blockPaletteChecksum = 0;
 			startGame.serverVersion = McpeProtocolInfo.GameVersion;
