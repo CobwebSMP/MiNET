@@ -33,7 +33,7 @@
     <EmbeddedResource Include="Resources\entity_properties.nbt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="jose-jwt" Version="5.1.1" />
+    <PackageReference Include="jose-jwt" Version="5.2.0" />
     <PackageReference Include="LibNoise.NetStandart" Version="0.2.0" />
     <PackageReference Include="log4net" Version="3.0.4" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
